@@ -1,0 +1,18 @@
+export const WORD_BANK = [
+  "shark",
+  "car",
+  "mars",
+  "ocean",
+  "forest",
+  "whisper",
+  "nervous",
+  "thunder",
+  "rocket",
+  "harvest",
+  "wander",
+  "bitter",
+  "youtube",
+  "minecraft",
+  "money",
+  "tokyo"
+];

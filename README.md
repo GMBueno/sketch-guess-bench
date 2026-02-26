@@ -1,23 +1,23 @@
 # SketchGuess Bench
 
 Benchmark flow per word:
-1. Drawer model receives the hidden word and returns SVG.
-2. Server renders SVG to JPEG.
-3. Guesser model receives the JPEG and makes a one-word guess.
-4. If wrong, another draw/guess turn runs (up to 10 guesses).
+1. Drawer model receives the hidden word and returns SVG once.
+2. Server renders SVG to JPEG once.
+3. Guesser model receives that JPEG and returns one ordered list of 20 guesses.
+4. Evaluation uses the first correct guess position in that order.
 
 Scoring:
 - Solved in `n` guesses => score `n`
-- Not solved in 10 guesses => score `11`
+- Not solved in 20 guesses => score `21`
 - Lower total guesses is better
 
 Current setup (fast + cheap iteration):
 - Model: `google/gemini-3-flash-preview`
-- Word bank: `shark`, `car`, `mars`
+- Word bank lives in `data/wordbank.js`
 
 Replay dashboard:
 - Shows turn-by-turn guesses
-- Shows both JPEG fed to guesser and SVG source for each draw turn
+- Shows SVG for each draw turn, with optional JPEG popup
 
 ## Run
 

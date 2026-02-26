@@ -5,6 +5,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { WORD_BANK } from "./data/wordbank.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,12 +13,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MAX_HINTS = 10;
+const MAX_HINTS = 20;
 const BENCHMARK_CONCURRENCY = Number(process.env.BENCHMARK_CONCURRENCY || 3);
 const REQUEST_MAX_RETRIES = 3;
 const REQUEST_TIMEOUT_MS = Number(process.env.OPENROUTER_TIMEOUT_MS || 60000);
 const GAME_TIMEOUT_MS = Number(process.env.GAME_TIMEOUT_MS || 120000);
-const WORD_BANK = ["shark", "car", "mars"];
 
 const MODELS = [
   {
@@ -59,24 +59,23 @@ Rules:
 3) Do not include text labels, letters, or numbers in the drawing.
 4) Keep the SVG simple and valid. No scripts, no foreignObject.
 5) Use a 512x512 canvas.
-6) If prior guesses were wrong, adjust the drawing to be clearer.
 
 Output schema:
 { "svg": "string" }`;
 
 const GUESSER_SYSTEM_PROMPT = `You are the guesser in a visual one-word guessing game.
-Return JSON only, with a single field: guess.
+Return JSON only, with a single field: guesses.
 
 Rules:
-1) You receive a JPEG image of a drawing each turn.
-2) Guess exactly one word in EN-US, no spaces.
-3) Use previous guesses to improve.
-4) Do not repeat prior guesses.
-5) Prefer concrete nouns when uncertain.
+1) You receive one JPEG image of a drawing.
+2) Return exactly 20 one-word guesses in order of confidence (best guess first).
+3) The order is important and will be scored by first correct position.
+4) Do not repeat guesses.
+5) Each guess must be EN-US one word, no spaces.
 6) Avoid punctuation and numbers.
 
 Output schema:
-{ "guess": "string" }`;
+{ "guesses": ["string", "... exactly 20 items ..."] }`;
 
 const SVG_FALLBACK = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
   <rect width="512" height="512" fill="#f5f7ff"/>
@@ -224,36 +223,30 @@ async function runBenchmark(runId) {
 
 async function runSingleGame(model, targetWord) {
   const turns = [];
-  const pastGuesses = [];
-  let solved = false;
 
-  for (let turnNumber = 1; turnNumber <= MAX_HINTS; turnNumber += 1) {
-    const drawing = await generateValidDrawing({ model, targetWord, turns });
-    turns.push({
-      turnNumber,
-      role: "draw",
-      svg: drawing.svg,
-      jpgDataUrl: drawing.jpgDataUrl
-    });
+  const drawing = await generateValidDrawing({ model, targetWord });
+  turns.push({
+    turnNumber: 1,
+    role: "draw",
+    svg: drawing.svg,
+    jpgDataUrl: drawing.jpgDataUrl
+  });
 
-    const guess = await generateValidGuess({
-      model,
-      turns,
-      pastGuesses,
-      drawingJpgDataUrl: drawing.jpgDataUrl
-    });
-    const correct = isSameWord(guess, targetWord);
+  const guesses = await generateOrderedGuesses({
+    model,
+    drawingJpgDataUrl: drawing.jpgDataUrl
+  });
+
+  let firstCorrectTurn = null;
+  for (let turnNumber = 1; turnNumber <= guesses.length; turnNumber += 1) {
+    const guess = guesses[turnNumber - 1];
+    const correct = firstCorrectTurn === null && isSameWord(guess, targetWord);
+    if (correct) firstCorrectTurn = turnNumber;
     turns.push({ turnNumber, role: "guess", text: guess, correct });
-
-    pastGuesses.push(normalizeWord(guess));
-
-    if (correct) {
-      solved = true;
-      break;
-    }
   }
 
-  const guessesUsed = turns.filter((turn) => turn.role === "guess").length;
+  const solved = firstCorrectTurn !== null;
+  const guessesUsed = solved ? firstCorrectTurn : MAX_HINTS;
   const penalizedGuesses = solved ? guessesUsed : MAX_HINTS + 1;
 
   return {
@@ -265,7 +258,7 @@ async function runSingleGame(model, targetWord) {
   };
 }
 
-async function generateValidDrawing({ model, targetWord, turns }) {
+async function generateValidDrawing({ model, targetWord }) {
   const maxAttempts = 4;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
@@ -276,8 +269,7 @@ async function generateValidDrawing({ model, targetWord, turns }) {
       payload: {
         targetWord,
         language: "EN-US",
-        canvas: { width: 512, height: 512 },
-        turnHistory: summarizeTurnsForDrawer(turns)
+        canvas: { width: 512, height: 512 }
       }
     });
 
@@ -299,8 +291,9 @@ async function generateValidDrawing({ model, targetWord, turns }) {
   };
 }
 
-async function generateValidGuess({ model, turns, pastGuesses, drawingJpgDataUrl }) {
+async function generateOrderedGuesses({ model, drawingJpgDataUrl }) {
   const maxAttempts = 4;
+  let bestGuesses = [];
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     const response = await sendStructuredRequest({
@@ -313,9 +306,7 @@ async function generateValidGuess({ model, turns, pastGuesses, drawingJpgDataUrl
           text: JSON.stringify({
             language: "EN-US",
             maxHints: MAX_HINTS,
-            disallowedGuesses: pastGuesses,
-            turnHistory: summarizeTurnsForGuesser(turns),
-            note: "Use the attached image to guess the hidden target word."
+            note: "Return 10 ordered guesses. Position 1 is the highest-confidence guess."
           })
         },
         {
@@ -327,16 +318,16 @@ async function generateValidGuess({ model, turns, pastGuesses, drawingJpgDataUrl
       ]
     });
 
-    const guess = sanitizeOneWord(response.guess);
-    if (!guess) continue;
-    if (!wordPattern.test(guess)) continue;
-    if (pastGuesses.includes(normalizeWord(guess))) continue;
-
-    return guess;
+    const guesses = sanitizeGuessList(response.guesses);
+    if (guesses.length > bestGuesses.length) {
+      bestGuesses = guesses;
+    }
+    if (guesses.length === MAX_HINTS) {
+      return guesses;
+    }
   }
 
-  const fallback = WORD_BANK.find((word) => !pastGuesses.includes(normalizeWord(word)));
-  return fallback || "unknown";
+  return fillMissingGuesses(bestGuesses);
 }
 
 async function sendStructuredRequest({ modelId, provider, systemPrompt, payload, userContent, temperature = 0.3 }) {
@@ -450,24 +441,59 @@ function isSafeSvg(svg) {
   return true;
 }
 
-function summarizeTurnsForDrawer(turns) {
-  return turns
-    .filter((turn) => turn.role === "guess")
-    .map((turn) => ({
-      turnNumber: turn.turnNumber,
-      guess: turn.text,
-      correct: Boolean(turn.correct)
-    }));
+function sanitizeGuessList(raw) {
+  if (!Array.isArray(raw)) return [];
+
+  const guesses = [];
+  const used = new Set();
+  for (const item of raw) {
+    const guess = sanitizeOneWord(item);
+    if (!guess) continue;
+    if (!wordPattern.test(guess)) continue;
+    const normalized = normalizeWord(guess);
+    if (!normalized || used.has(normalized)) continue;
+    used.add(normalized);
+    guesses.push(guess);
+    if (guesses.length === MAX_HINTS) break;
+  }
+  return guesses;
 }
 
-function summarizeTurnsForGuesser(turns) {
-  return turns
-    .filter((turn) => turn.role === "guess")
-    .map((turn) => ({
-      turnNumber: turn.turnNumber,
-      guess: turn.text,
-      correct: Boolean(turn.correct)
-    }));
+function fillMissingGuesses(guesses) {
+  const output = [...guesses];
+  const used = new Set(output.map((guess) => normalizeWord(guess)));
+  const fallbackPool = [
+    ...WORD_BANK,
+    "animal",
+    "vehicle",
+    "planet",
+    "fish",
+    "tree",
+    "house",
+    "bird",
+    "boat",
+    "mountain",
+    "flower",
+    "robot",
+    "forest",
+    "city",
+    "tool",
+    "star",
+    "moon",
+    "ocean",
+    "creature",
+    "machine"
+  ];
+
+  for (const candidate of fallbackPool) {
+    const normalized = normalizeWord(candidate);
+    if (!normalized || used.has(normalized)) continue;
+    used.add(normalized);
+    output.push(candidate);
+    if (output.length === MAX_HINTS) break;
+  }
+
+  return output.slice(0, MAX_HINTS);
 }
 
 async function svgToJpegDataUrl(svg) {
