@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess Word Benchmark</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <header>
+        <h1>Guess Word Benchmark</h1>
+        <p>Same-model clue giver vs guesser. Ranking uses lower total guesses (with penalties on misses).</p>
+      </header>
+
+      <section class="card actions">
+        <button id="run-benchmark">Run Benchmark</button>
+        <div id="status"></div>
+        <div id="progress-panel" hidden>
+          <div id="progress-text"></div>
+          <div class="progress-track">
+            <div id="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Rankings</h2>
+        <label for="benchmark-select">Benchmark run</label>
+        <select id="benchmark-select"></select>
+        <table id="ranking-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Model</th>
+              <th>Solved</th>
+              <th>Failed</th>
+              <th>Total Guesses</th>
+              <th>Avg Guesses</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="card replay">
+        <h2>Replay</h2>
+        <div class="replay-controls">
+          <label for="model-select">Model</label>
+          <select id="model-select"></select>
+
+          <label for="word-select">Target Word</label>
+          <select id="word-select"></select>
+        </div>
+
+        <div id="replay-summary"></div>
+        <ol id="replay-turns"></ol>
+      </section>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
