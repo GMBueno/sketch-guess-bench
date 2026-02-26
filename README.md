@@ -11,9 +11,11 @@ Scoring:
 - Not solved in 20 guesses => score `21`
 - Lower total guesses is better
 
-Current setup (fast + cheap iteration):
-- Model: `google/gemini-3-flash-preview`
+Current setup:
+- Models: `google/gemini-3-flash-preview`, `openai/gpt-5-mini` (provider: `azure`)
 - Word bank lives in `data/wordbank.js`
+- Dashboard is read-only (rankings + replay only)
+- Benchmarks run one model at a time
 
 Replay dashboard:
 - Shows turn-by-turn guesses
@@ -25,6 +27,9 @@ Replay dashboard:
 npm install
 export OPENROUTER_API_KEY="your_key_here"
 npm run dev
+curl -s -X POST http://localhost:3000/api/benchmarks/run \
+  -H "Content-Type: application/json" \
+  -d '{"modelKey":"gpt5mini"}'
 ```
 
 Open [http://localhost:3000](http://localhost:3000).

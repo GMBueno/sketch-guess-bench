@@ -14,12 +14,18 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MAX_HINTS = 20;
-const BENCHMARK_CONCURRENCY = Number(process.env.BENCHMARK_CONCURRENCY || 3);
+const BENCHMARK_CONCURRENCY = Number(process.env.BENCHMARK_CONCURRENCY || 10);
 const REQUEST_MAX_RETRIES = 3;
 const REQUEST_TIMEOUT_MS = Number(process.env.OPENROUTER_TIMEOUT_MS || 60000);
 const GAME_TIMEOUT_MS = Number(process.env.GAME_TIMEOUT_MS || 120000);
 
 const MODELS = [
+  {
+    key: "gpt5mini",
+    label: "GPT-5 Mini",
+    modelId: "openai/gpt-5-mini",
+    provider: { order: ["azure"], allow_fallbacks: false }
+  },
   {
     key: "gemini3flash",
     label: "Gemini 3 Flash",
@@ -33,7 +39,7 @@ const FIXED_PROVIDER = {
 };
 
 const DATA_DIR = path.join(__dirname, "data");
-const RESULTS_FILE = path.join(DATA_DIR, "benchmarks.json");
+const MODEL_RESULTS_DIR = path.join(DATA_DIR, "benchmarks");
 const PUBLIC_DIR = path.join(__dirname, "public");
 const benchmarkProgress = {
   status: "idle",
@@ -93,7 +99,7 @@ app.use(express.json({ limit: "1mb" }));
 app.use(express.static(PUBLIC_DIR));
 
 app.get("/api/status", async (_req, res) => {
-  const data = await readResults();
+  const benchmarks = await readAllBenchmarks();
   res.json({
     ok: true,
     hasApiKey: Boolean(process.env.OPENROUTER_API_KEY),
@@ -101,7 +107,7 @@ app.get("/api/status", async (_req, res) => {
     maxHints: MAX_HINTS,
     benchmarkConcurrency: BENCHMARK_CONCURRENCY,
     modelIds: MODELS,
-    benchmarkCount: data.benchmarks.length,
+    benchmarkCount: benchmarks.length,
     provider: {
       default: FIXED_PROVIDER,
       byModel: Object.fromEntries(MODELS.map((m) => [m.modelId, m.provider]))
@@ -110,8 +116,8 @@ app.get("/api/status", async (_req, res) => {
 });
 
 app.get("/api/benchmarks", async (_req, res) => {
-  const data = await readResults();
-  res.json(data.benchmarks);
+  const benchmarks = await readAllBenchmarks();
+  res.json(benchmarks);
 });
 
 app.get("/api/benchmarks/progress", (_req, res) => {
@@ -124,9 +130,18 @@ app.get("/api/benchmarks/progress", (_req, res) => {
   });
 });
 
-app.post("/api/benchmarks/run", async (_req, res) => {
+app.post("/api/benchmarks/run", async (req, res) => {
   if (!process.env.OPENROUTER_API_KEY) {
     res.status(400).json({ error: "Missing OPENROUTER_API_KEY" });
+    return;
+  }
+  const modelKey = typeof req.body?.modelKey === "string" ? req.body.modelKey : "";
+  const model = MODELS.find((item) => item.key === modelKey);
+  if (!model) {
+    res.status(400).json({
+      error: "Invalid or missing modelKey",
+      allowedModelKeys: MODELS.map((item) => item.key)
+    });
     return;
   }
   if (benchmarkProgress.status === "running") {
@@ -135,12 +150,12 @@ app.post("/api/benchmarks/run", async (_req, res) => {
   }
 
   const runId = crypto.randomUUID();
-  startBenchmarkProgress(runId);
+  startBenchmarkProgress(runId, model);
   try {
-    const benchmark = await runBenchmark(runId);
-    const data = await readResults();
-    data.benchmarks.unshift(benchmark);
-    await writeResults(data);
+    const benchmark = await runBenchmark(runId, model);
+    const modelBenchmarks = await readModelBenchmarks(model.key);
+    modelBenchmarks.unshift(benchmark);
+    await writeModelBenchmarks(model.key, modelBenchmarks);
     completeBenchmarkProgress();
     res.json(benchmark);
   } catch (err) {
@@ -154,51 +169,43 @@ app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
 
-async function runBenchmark(runId) {
+async function runBenchmark(runId, model) {
   const startedAt = new Date().toISOString();
-  const modelRuns = await runWithConcurrency(
-    MODELS,
-    Math.min(BENCHMARK_CONCURRENCY, MODELS.length),
-    async (model) => {
-      const games = await runWithConcurrency(
-        WORD_BANK,
-        Math.min(BENCHMARK_CONCURRENCY, WORD_BANK.length),
-        async (targetWord) => {
-          setActiveGame(model.label, targetWord);
-          try {
-            const game = await withTimeout(
-              runSingleGame(model, targetWord),
-              GAME_TIMEOUT_MS,
-              `Game timed out after ${GAME_TIMEOUT_MS}ms`
-            );
-            advanceProgress(model.label, targetWord, false);
-            return game;
-          } catch (err) {
-            advanceProgress(model.label, targetWord, true);
-            return buildFailedGame(targetWord, err);
-          }
-        }
-      );
-
-      const solvedGames = games.filter((game) => game.solved);
-      const failedGames = games.filter((game) => game.failed);
-      const totalGuesses = games.reduce((sum, game) => sum + game.penalizedGuesses, 0);
-
-      return {
-        modelKey: model.key,
-        modelLabel: model.label,
-        modelId: model.modelId,
-        solvedCount: solvedGames.length,
-        failedCount: failedGames.length,
-        totalWords: WORD_BANK.length,
-        totalGuesses,
-        averageGuesses: Number((totalGuesses / WORD_BANK.length).toFixed(2)),
-        games
-      };
+  const games = await runWithConcurrency(
+    WORD_BANK,
+    Math.min(BENCHMARK_CONCURRENCY, WORD_BANK.length),
+    async (targetWord) => {
+      setActiveGame(model.label, targetWord);
+      try {
+        const game = await withTimeout(
+          runSingleGame(model, targetWord),
+          GAME_TIMEOUT_MS,
+          `Game timed out after ${GAME_TIMEOUT_MS}ms`
+        );
+        advanceProgress(model.label, targetWord, false);
+        return game;
+      } catch (err) {
+        advanceProgress(model.label, targetWord, true);
+        return buildFailedGame(targetWord, err);
+      }
     }
   );
 
-  modelRuns.sort((a, b) => a.totalGuesses - b.totalGuesses);
+  const solvedGames = games.filter((game) => game.solved);
+  const failedGames = games.filter((game) => game.failed);
+  const totalGuesses = games.reduce((sum, game) => sum + game.penalizedGuesses, 0);
+
+  const modelRun = {
+    modelKey: model.key,
+    modelLabel: model.label,
+    modelId: model.modelId,
+    solvedCount: solvedGames.length,
+    failedCount: failedGames.length,
+    totalWords: WORD_BANK.length,
+    totalGuesses,
+    averageGuesses: Number((totalGuesses / WORD_BANK.length).toFixed(2)),
+    games
+  };
 
   return {
     id: runId,
@@ -207,17 +214,19 @@ async function runBenchmark(runId) {
     maxHints: MAX_HINTS,
     wordBank: WORD_BANK,
     provider: FIXED_PROVIDER,
-    ranking: modelRuns.map((run, idx) => ({
-      rank: idx + 1,
-      modelKey: run.modelKey,
-      modelLabel: run.modelLabel,
-      totalGuesses: run.totalGuesses,
-      solvedCount: run.solvedCount,
-      failedCount: run.failedCount,
-      totalWords: run.totalWords,
-      averageGuesses: run.averageGuesses
-    })),
-    modelRuns
+    ranking: [
+      {
+        rank: 1,
+        modelKey: modelRun.modelKey,
+        modelLabel: modelRun.modelLabel,
+        totalGuesses: modelRun.totalGuesses,
+        solvedCount: modelRun.solvedCount,
+        failedCount: modelRun.failedCount,
+        totalWords: modelRun.totalWords,
+        averageGuesses: modelRun.averageGuesses
+      }
+    ],
+    modelRuns: [modelRun]
   };
 }
 
@@ -306,7 +315,7 @@ async function generateOrderedGuesses({ model, drawingJpgDataUrl }) {
           text: JSON.stringify({
             language: "EN-US",
             maxHints: MAX_HINTS,
-            note: "Return 10 ordered guesses. Position 1 is the highest-confidence guess."
+            note: "Return 20 ordered guesses. Position 1 is the highest-confidence guess."
           })
         },
         {
@@ -613,15 +622,15 @@ async function withTimeout(promise, timeoutMs, message) {
   }
 }
 
-function startBenchmarkProgress(runId) {
+function startBenchmarkProgress(runId, model) {
   benchmarkProgress.status = "running";
   benchmarkProgress.runId = runId;
   benchmarkProgress.startedAt = new Date().toISOString();
   benchmarkProgress.completedAt = null;
-  benchmarkProgress.totalGames = MODELS.length * WORD_BANK.length;
+  benchmarkProgress.totalGames = WORD_BANK.length;
   benchmarkProgress.completedGames = 0;
   benchmarkProgress.failedGames = 0;
-  benchmarkProgress.activeModel = null;
+  benchmarkProgress.activeModel = model?.label || null;
   benchmarkProgress.activeWord = null;
   benchmarkProgress.lastCompletedModel = null;
   benchmarkProgress.lastCompletedWord = null;
@@ -680,20 +689,54 @@ async function runWithConcurrency(items, maxConcurrency, worker) {
 }
 
 async function readResults() {
+  const benchmarks = await readAllBenchmarks();
+  return { benchmarks };
+}
+
+function getModelResultsFile(modelKey) {
+  return path.join(MODEL_RESULTS_DIR, `${modelKey}.json`);
+}
+
+async function readModelBenchmarks(modelKey) {
+  const filePath = getModelResultsFile(modelKey);
   try {
-    const raw = await fs.readFile(RESULTS_FILE, "utf8");
-    return JSON.parse(raw);
+    const raw = await fs.readFile(filePath, "utf8");
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed?.benchmarks) ? parsed.benchmarks : [];
   } catch (err) {
-    if (err.code === "ENOENT") {
-      return { benchmarks: [] };
-    }
+    if (err.code === "ENOENT") return [];
     throw err;
   }
 }
 
-async function writeResults(data) {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  await fs.writeFile(RESULTS_FILE, JSON.stringify(data, null, 2), "utf8");
+async function writeModelBenchmarks(modelKey, benchmarks) {
+  const filePath = getModelResultsFile(modelKey);
+  await fs.mkdir(MODEL_RESULTS_DIR, { recursive: true });
+  const payload = {
+    modelKey,
+    benchmarks
+  };
+  await fs.writeFile(filePath, JSON.stringify(payload, null, 2), "utf8");
+}
+
+async function readAllBenchmarks() {
+  await fs.mkdir(MODEL_RESULTS_DIR, { recursive: true });
+  const entries = await fs.readdir(MODEL_RESULTS_DIR, { withFileTypes: true });
+  const files = entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+    .map((entry) => path.join(MODEL_RESULTS_DIR, entry.name));
+
+  const all = [];
+  for (const filePath of files) {
+    const raw = await fs.readFile(filePath, "utf8");
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed?.benchmarks)) {
+      all.push(...parsed.benchmarks);
+    }
+  }
+
+  all.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
+  return all;
 }
 
 process.on("exit", () => {

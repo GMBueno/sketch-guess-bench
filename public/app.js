@@ -1,4 +1,3 @@
-const runBtn = document.getElementById("run-benchmark");
 const statusEl = document.getElementById("status");
 const benchmarkSelect = document.getElementById("benchmark-select");
 const rankingBody = document.querySelector("#ranking-table tbody");
@@ -38,30 +37,6 @@ window.render_game_to_text = () => {
 
 window.advanceTime = () => {};
 
-runBtn.addEventListener("click", async () => {
-  runBtn.disabled = true;
-  setStatus("Running benchmark... this may take a few minutes.");
-  startProgressPolling();
-
-  try {
-    const response = await fetch("/api/benchmarks/run", { method: "POST" });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.error || "Failed to run benchmark");
-    }
-
-    await refreshProgressOnce();
-    setStatus(`Benchmark completed: ${new Date(data.completedAt).toLocaleString()}`);
-    await loadBenchmarks(data.id);
-  } catch (err) {
-    await refreshProgressOnce();
-    setStatus(`Error: ${err.message}`);
-  } finally {
-    stopProgressPolling();
-    runBtn.disabled = false;
-  }
-});
-
 benchmarkSelect.addEventListener("change", () => {
   renderSelectedBenchmark();
 });
@@ -93,7 +68,6 @@ async function init() {
   await refreshProgressOnce();
   const progress = await fetchProgress();
   if (progress?.status === "running") {
-    runBtn.disabled = true;
     startProgressPolling();
   }
 }
@@ -103,9 +77,9 @@ async function fetchStatus() {
   const data = await response.json();
 
   if (!data.hasApiKey) {
-    setStatus("OPENROUTER_API_KEY missing. Set it before running benchmarks.");
+    setStatus("OPENROUTER_API_KEY missing.");
   } else {
-    setStatus(`Ready. Provider fixed as: ${JSON.stringify(data.provider)}`);
+    setStatus("Dashboard is read-only. Run benchmarks from code using /api/benchmarks/run with modelKey.");
   }
 }
 

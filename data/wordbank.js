@@ -14,5 +14,9 @@ export const WORD_BANK = [
   "youtube",
   "minecraft",
   "money",
-  "tokyo"
+  "tokyo",
+  "vivid",
+  "build",
+  "time",
+  "chaotic"
 ];
