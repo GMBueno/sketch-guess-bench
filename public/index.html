@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Guess Word Benchmark</title>
+    <title>SVG Draw Guess Benchmark</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="layout">
       <header>
-        <h1>Guess Word Benchmark</h1>
-        <p>Same-model clue giver vs guesser. Ranking uses lower total guesses (with penalties on misses).</p>
+        <h1>SVG Draw Guess Benchmark</h1>
+        <p>The model draws the hidden word as SVG, we convert it to JPEG for the guesser, and score by guesses used.</p>
       </header>
 
       <section class="card actions">
@@ -54,9 +54,17 @@
         </div>
 
         <div id="replay-summary"></div>
+        <div id="replay-visuals"></div>
         <ol id="replay-turns"></ol>
       </section>
     </main>
+
+    <dialog id="jpeg-modal">
+      <div class="jpeg-modal-content">
+        <button id="jpeg-modal-close" type="button">Close</button>
+        <img id="jpeg-modal-image" alt="JPEG preview" />
+      </div>
+    </dialog>
 
     <script src="/app.js" type="module"></script>
   </body>

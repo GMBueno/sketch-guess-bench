@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { chromium } from "playwright";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,99 +13,18 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MAX_HINTS = 10;
-const BENCHMARK_CONCURRENCY = Number(process.env.BENCHMARK_CONCURRENCY || 20);
+const BENCHMARK_CONCURRENCY = Number(process.env.BENCHMARK_CONCURRENCY || 3);
 const REQUEST_MAX_RETRIES = 3;
 const REQUEST_TIMEOUT_MS = Number(process.env.OPENROUTER_TIMEOUT_MS || 60000);
 const GAME_TIMEOUT_MS = Number(process.env.GAME_TIMEOUT_MS || 120000);
-// 50 words beeing:
-// 10 concrete nouns
-// 10 abstract nouns
-// 10 verbs
-// 10 adjectives
-// 10 adverbs
-const WORD_BANK = [
-  "heat",
-  "ocean",
-  "forest",
-  "bridge",
-  "mirror",
-  "thunder",
-  "winter",
-  "pencil",
-  "rocket",
-  "shadow",
-  "love",
-  "freedom",
-  "justice",
-  "happiness",
-  "courage",
-  "intelligence",
-  "time",
-  "knowledge",
-  "beauty",
-  "anger",
-  "run",
-  "think",
-  "build",
-  "optimize",
-  "launch",
-  "surrender",
-  "whisper",
-  "harvest",
-  "forgive",
-  "wander",
-  "gentle",
-  "fierce",
-  "fragile",
-  "vivid",
-  "stubborn",
-  "peaceful",
-  "chaotic",
-  "loyal",
-  "bitter",
-  "radiant",
-  "softly",
-  "fiercely",
-  "slowly",
-  "suddenly",
-  "carefully",
-  "honestly",
-  "quietly",
-  "nervously",
-  "bravely",
-  "completely"
-];
+const WORD_BANK = ["shark", "car", "mars"];
 
 const MODELS = [
-  {
-    key: "gpt5mini",
-    label: "GPT-5 Mini",
-    modelId: "openai/gpt-5-mini",
-    provider: { order: ["openai"], allow_fallbacks: false }
-  },
   {
     key: "gemini3flash",
     label: "Gemini 3 Flash",
     modelId: "google/gemini-3-flash-preview",
     provider: { order: ["google-ai-studio", "google-vertex"], allow_fallbacks: false }
-  },
-  {
-    key: "minimaxm25",
-    label: "MiniMax M2.5",
-    modelId: "minimax/minimax-m2.5",
-    provider: { order: ["minimax/fp8"], allow_fallbacks: false }
-  },
-  {
-    key: "kimik25",
-    label: "Kimi K2.5",
-    modelId: "moonshotai/kimi-k2.5",
-    provider: { order: ["moonshotai/int4"], allow_fallbacks: false }
-  },
-  {
-    key: "glm5",
-    label: "GLM-5",
-    modelId: "z-ai/glm-5",
-    provider: { order: ["z-ai"], allow_fallbacks: false }
   }
 ];
 
@@ -130,33 +50,43 @@ const benchmarkProgress = {
   error: null
 };
 
-const CLUE_SYSTEM_PROMPT = `You are the clue giver in a one-word guessing game.
-Return JSON only, with a single field: clue.
+const DRAWER_SYSTEM_PROMPT = `You are a drawing agent in a one-word guessing game.
+Return JSON only, with a single field: svg.
 
 Rules:
-1) The target word is a single English word.
-2) Your clue must be exactly one word in EN-US, no spaces.
-3) Your clue must not be the exact target word.
-4) Your clue must not contain the target word as a substring.
-5) Avoid punctuation and numbers.
-6) Prefer clues that help the guesser converge quickly.
-7) If prior clues or guesses suggest confusion, use a clarifying clue.
+1) Draw the target word using only SVG graphics.
+2) Output one complete <svg>...</svg> string.
+3) Do not include text labels, letters, or numbers in the drawing.
+4) Keep the SVG simple and valid. No scripts, no foreignObject.
+5) Use a 512x512 canvas.
+6) If prior guesses were wrong, adjust the drawing to be clearer.
 
 Output schema:
-{ "clue": "string" }`;
+{ "svg": "string" }`;
 
-const GUESSER_SYSTEM_PROMPT = `You are the guesser in a one-word guessing game.
+const GUESSER_SYSTEM_PROMPT = `You are the guesser in a visual one-word guessing game.
 Return JSON only, with a single field: guess.
 
 Rules:
-1) Guess exactly one word in EN-US, no spaces.
-2) Use the clue history and previous guesses to improve.
-3) Do not repeat prior guesses.
-4) Prefer the most likely target word.
-5) Avoid punctuation and numbers.
+1) You receive a JPEG image of a drawing each turn.
+2) Guess exactly one word in EN-US, no spaces.
+3) Use previous guesses to improve.
+4) Do not repeat prior guesses.
+5) Prefer concrete nouns when uncertain.
+6) Avoid punctuation and numbers.
 
 Output schema:
 { "guess": "string" }`;
+
+const SVG_FALLBACK = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f5f7ff"/>
+  <circle cx="256" cy="256" r="150" fill="#cdd7ff"/>
+  <rect x="180" y="280" width="160" height="40" rx="20" fill="#6a86ff"/>
+  <circle cx="220" cy="245" r="16" fill="#1f2a44"/>
+  <circle cx="292" cy="245" r="16" fill="#1f2a44"/>
+</svg>`;
+
+let renderBrowserPromise = null;
 
 const wordPattern = /^[\p{L}-]+$/u;
 
@@ -298,15 +228,26 @@ async function runSingleGame(model, targetWord) {
   let solved = false;
 
   for (let turnNumber = 1; turnNumber <= MAX_HINTS; turnNumber += 1) {
-    const clue = await generateValidClue({ model, targetWord, turns });
-    turns.push({ turnNumber, role: "clue", text: clue });
+    const drawing = await generateValidDrawing({ model, targetWord, turns });
+    turns.push({
+      turnNumber,
+      role: "draw",
+      svg: drawing.svg,
+      jpgDataUrl: drawing.jpgDataUrl
+    });
 
-    const guess = await generateValidGuess({ model, turns, pastGuesses });
-    turns.push({ turnNumber, role: "guess", text: guess });
+    const guess = await generateValidGuess({
+      model,
+      turns,
+      pastGuesses,
+      drawingJpgDataUrl: drawing.jpgDataUrl
+    });
+    const correct = isSameWord(guess, targetWord);
+    turns.push({ turnNumber, role: "guess", text: guess, correct });
 
     pastGuesses.push(normalizeWord(guess));
 
-    if (isSameWord(guess, targetWord)) {
+    if (correct) {
       solved = true;
       break;
     }
@@ -324,39 +265,41 @@ async function runSingleGame(model, targetWord) {
   };
 }
 
-async function generateValidClue({ model, targetWord, turns }) {
+async function generateValidDrawing({ model, targetWord, turns }) {
   const maxAttempts = 4;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     const response = await sendStructuredRequest({
       modelId: model.modelId,
       provider: model.provider || FIXED_PROVIDER,
-      systemPrompt: CLUE_SYSTEM_PROMPT,
+      systemPrompt: DRAWER_SYSTEM_PROMPT,
       payload: {
         targetWord,
         language: "EN-US",
-        turns
+        canvas: { width: 512, height: 512 },
+        turnHistory: summarizeTurnsForDrawer(turns)
       }
     });
 
-    const clue = sanitizeOneWord(response.clue);
-    if (!clue) continue;
+    const svg = sanitizeSvg(response.svg);
+    if (!svg) continue;
+    if (!isSafeSvg(svg)) continue;
 
-    const normalizedClue = normalizeWord(clue);
-    const normalizedTarget = normalizeWord(targetWord);
-
-    if (!wordPattern.test(clue)) continue;
-    if (normalizedClue === normalizedTarget) continue;
-    if (normalizedClue.includes(normalizedTarget)) continue;
-    if (normalizedTarget.includes(normalizedClue)) continue;
-
-    return clue;
+    try {
+      const jpgDataUrl = await svgToJpegDataUrl(svg);
+      return { svg, jpgDataUrl };
+    } catch {
+      continue;
+    }
   }
 
-  return "opposite";
+  return {
+    svg: SVG_FALLBACK,
+    jpgDataUrl: await svgToJpegDataUrl(SVG_FALLBACK)
+  };
 }
 
-async function generateValidGuess({ model, turns, pastGuesses }) {
+async function generateValidGuess({ model, turns, pastGuesses, drawingJpgDataUrl }) {
   const maxAttempts = 4;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
@@ -364,13 +307,24 @@ async function generateValidGuess({ model, turns, pastGuesses }) {
       modelId: model.modelId,
       provider: model.provider || FIXED_PROVIDER,
       systemPrompt: GUESSER_SYSTEM_PROMPT,
-      payload: {
-        language: "EN-US",
-        turns,
-        disallowedGuesses: pastGuesses,
-        maxHints: MAX_HINTS,
-        note: "Guess the hidden target word."
-      }
+      userContent: [
+        {
+          type: "text",
+          text: JSON.stringify({
+            language: "EN-US",
+            maxHints: MAX_HINTS,
+            disallowedGuesses: pastGuesses,
+            turnHistory: summarizeTurnsForGuesser(turns),
+            note: "Use the attached image to guess the hidden target word."
+          })
+        },
+        {
+          type: "image_url",
+          image_url: {
+            url: drawingJpgDataUrl
+          }
+        }
+      ]
     });
 
     const guess = sanitizeOneWord(response.guess);
@@ -385,7 +339,7 @@ async function generateValidGuess({ model, turns, pastGuesses }) {
   return fallback || "unknown";
 }
 
-async function sendStructuredRequest({ modelId, provider, systemPrompt, payload }) {
+async function sendStructuredRequest({ modelId, provider, systemPrompt, payload, userContent, temperature = 0.3 }) {
   const maxAttempts = REQUEST_MAX_RETRIES;
   let lastError = null;
 
@@ -395,9 +349,12 @@ async function sendStructuredRequest({ modelId, provider, systemPrompt, payload 
         model: modelId,
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: JSON.stringify(payload) }
+          {
+            role: "user",
+            content: userContent || JSON.stringify(payload || {})
+          }
         ],
-        temperature: 0.3,
+        temperature,
         provider: provider || FIXED_PROVIDER
       };
 
@@ -468,6 +425,77 @@ function sanitizeOneWord(raw) {
   const normalized = raw.trim();
   if (!normalized || /\s/.test(normalized)) return "";
   return normalized;
+}
+
+function sanitizeSvg(raw) {
+  if (typeof raw !== "string") return "";
+  const normalized = raw.trim();
+  if (!normalized) return "";
+
+  const fenced = normalized.match(/```(?:svg|xml)?\s*([\s\S]*?)```/i);
+  const value = fenced ? fenced[1].trim() : normalized;
+
+  const start = value.indexOf("<svg");
+  const end = value.lastIndexOf("</svg>");
+  if (start === -1 || end === -1 || end <= start) return "";
+
+  return value.slice(start, end + "</svg>".length).trim();
+}
+
+function isSafeSvg(svg) {
+  if (typeof svg !== "string" || svg.length < 20 || svg.length > 15000) return false;
+  if (!svg.includes("<svg") || !svg.includes("</svg>")) return false;
+  if (/<script|foreignObject|iframe|object|embed|audio|video/i.test(svg)) return false;
+  if (/\bon\w+\s*=/.test(svg)) return false;
+  return true;
+}
+
+function summarizeTurnsForDrawer(turns) {
+  return turns
+    .filter((turn) => turn.role === "guess")
+    .map((turn) => ({
+      turnNumber: turn.turnNumber,
+      guess: turn.text,
+      correct: Boolean(turn.correct)
+    }));
+}
+
+function summarizeTurnsForGuesser(turns) {
+  return turns
+    .filter((turn) => turn.role === "guess")
+    .map((turn) => ({
+      turnNumber: turn.turnNumber,
+      guess: turn.text,
+      correct: Boolean(turn.correct)
+    }));
+}
+
+async function svgToJpegDataUrl(svg) {
+  const browser = await getRenderBrowser();
+  const page = await browser.newPage({ viewport: { width: 512, height: 512 } });
+
+  try {
+    await page.setContent(
+      `<html><body style="margin:0;background:#fff"><img id="stage" src="data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}" style="width:512px;height:512px;display:block"/></body></html>`,
+      { waitUntil: "domcontentloaded" }
+    );
+
+    const jpgBuffer = await page.locator("#stage").screenshot({
+      type: "jpeg",
+      quality: 85
+    });
+
+    return `data:image/jpeg;base64,${jpgBuffer.toString("base64")}`;
+  } finally {
+    await page.close();
+  }
+}
+
+async function getRenderBrowser() {
+  if (!renderBrowserPromise) {
+    renderBrowserPromise = chromium.launch({ headless: true });
+  }
+  return renderBrowserPromise;
 }
 
 function normalizeWord(value) {
@@ -641,3 +669,10 @@ async function writeResults(data) {
   await fs.mkdir(DATA_DIR, { recursive: true });
   await fs.writeFile(RESULTS_FILE, JSON.stringify(data, null, 2), "utf8");
 }
+
+process.on("exit", () => {
+  if (!renderBrowserPromise) return;
+  renderBrowserPromise
+    .then((browser) => browser.close())
+    .catch(() => {});
+});

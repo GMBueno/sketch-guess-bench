@@ -5,10 +5,14 @@ const rankingBody = document.querySelector("#ranking-table tbody");
 const modelSelect = document.getElementById("model-select");
 const wordSelect = document.getElementById("word-select");
 const replaySummary = document.getElementById("replay-summary");
+const replayVisuals = document.getElementById("replay-visuals");
 const replayTurns = document.getElementById("replay-turns");
 const progressPanel = document.getElementById("progress-panel");
 const progressText = document.getElementById("progress-text");
 const progressBar = document.getElementById("progress-bar");
+const jpegModal = document.getElementById("jpeg-modal");
+const jpegModalImage = document.getElementById("jpeg-modal-image");
+const jpegModalClose = document.getElementById("jpeg-modal-close");
 
 let benchmarks = [];
 let progressPoller = null;
@@ -71,6 +75,16 @@ wordSelect.addEventListener("change", () => {
   renderReplay();
 });
 
+jpegModalClose.addEventListener("click", () => {
+  jpegModal.close();
+});
+
+jpegModal.addEventListener("click", (event) => {
+  if (event.target === jpegModal) {
+    jpegModal.close();
+  }
+});
+
 init();
 
 async function init() {
@@ -105,6 +119,7 @@ async function loadBenchmarks(selectedId) {
     benchmarkSelect.innerHTML = `<option value="">No runs yet</option>`;
     rankingBody.innerHTML = "";
     replaySummary.textContent = "No replay data yet.";
+    replayVisuals.innerHTML = "";
     replayTurns.innerHTML = "";
     return;
   }
@@ -201,12 +216,76 @@ function renderReplay() {
     `Penalized guesses: ${game.penalizedGuesses}`
   ].join(" | ");
 
+  replayVisuals.innerHTML = "";
   replayTurns.innerHTML = "";
+
   for (const turn of game.turns) {
+    if (turn.role === "draw" && turn.svg) {
+      const card = document.createElement("article");
+      card.className = "draw-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = `Turn ${turn.turnNumber} drawing`;
+      card.append(heading);
+
+      const previewRow = document.createElement("div");
+      previewRow.className = "draw-preview-row";
+
+      const svgImg = document.createElement("img");
+      svgImg.className = "draw-preview";
+      svgImg.alt = `Turn ${turn.turnNumber} SVG`;
+      svgImg.src = toSvgDataUrl(turn.svg);
+      previewRow.append(svgImg);
+
+      const actions = document.createElement("div");
+      actions.className = "draw-actions";
+      const showJpegBtn = document.createElement("button");
+      showJpegBtn.type = "button";
+      showJpegBtn.textContent = "Show JPEG";
+      showJpegBtn.disabled = !turn.jpgDataUrl;
+      showJpegBtn.addEventListener("click", () => {
+        if (!turn.jpgDataUrl) return;
+        jpegModalImage.src = turn.jpgDataUrl;
+        jpegModal.showModal();
+      });
+      actions.append(showJpegBtn);
+
+      card.append(previewRow);
+      card.append(actions);
+
+      const details = document.createElement("details");
+      const summary = document.createElement("summary");
+      summary.textContent = "SVG source";
+      details.append(summary);
+
+      const pre = document.createElement("pre");
+      pre.textContent = turn.svg;
+      details.append(pre);
+      card.append(details);
+      replayVisuals.append(card);
+    }
+
     const li = document.createElement("li");
-    li.textContent = `Turn ${turn.turnNumber} - ${turn.role.toUpperCase()}: ${turn.text}`;
+    if (turn.role === "guess") {
+      const suffix = turn.correct === true ? " (correct)" : "";
+      li.textContent = `Turn ${turn.turnNumber} - GUESS: ${turn.text}${suffix}`;
+    } else if (turn.role === "draw") {
+      li.textContent = `Turn ${turn.turnNumber} - DRAW: SVG rendered to JPEG for guesser`;
+    } else {
+      li.textContent = `Turn ${turn.turnNumber} - ${turn.role.toUpperCase()}: ${turn.text || ""}`;
+    }
     replayTurns.append(li);
   }
+}
+
+function toSvgDataUrl(svg) {
+  if (!svg) return "";
+  const bytes = new TextEncoder().encode(svg);
+  let binary = "";
+  for (const byte of bytes) {
+    binary += String.fromCharCode(byte);
+  }
+  return `data:image/svg+xml;base64,${btoa(binary)}`;
 }
 
 function findActiveBenchmark() {

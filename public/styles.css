@@ -133,6 +133,61 @@ select {
   border-radius: 10px;
 }
 
+#replay-visuals {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.draw-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  background: #fafcff;
+}
+
+.draw-card h3 {
+  margin: 0 0 8px;
+  font-size: 0.98rem;
+}
+
+.draw-preview-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr);
+  gap: 8px;
+}
+
+.draw-preview {
+  width: min(100%, 256px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.draw-preview-row {
+  justify-items: center;
+}
+
+.draw-card details {
+  margin-top: 8px;
+}
+
+.draw-actions {
+  margin-top: 8px;
+}
+
+.draw-card pre {
+  margin: 8px 0 0;
+  background: #f1f4fb;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.8rem;
+}
+
 #replay-turns {
   margin: 10px 0 0;
   padding: 0 0 0 20px;
@@ -140,6 +195,33 @@ select {
 
 #replay-turns li {
   margin: 6px 0;
+}
+
+#jpeg-modal {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0;
+  max-width: min(90vw, 760px);
+}
+
+#jpeg-modal::backdrop {
+  background: rgba(10, 20, 40, 0.55);
+}
+
+.jpeg-modal-content {
+  background: #fff;
+  padding: 12px;
+}
+
+#jpeg-modal-close {
+  margin-bottom: 8px;
+}
+
+#jpeg-modal-image {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
 }
 
 @media (max-width: 740px) {
