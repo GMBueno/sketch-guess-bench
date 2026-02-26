@@ -1,7 +1,6 @@
 const statusEl = document.getElementById("status");
-const benchmarkSelect = document.getElementById("benchmark-select");
 const rankingBody = document.querySelector("#ranking-table tbody");
-const modelSelect = document.getElementById("model-select");
+const runSelect = document.getElementById("run-select");
 const wordSelect = document.getElementById("word-select");
 const replaySummary = document.getElementById("replay-summary");
 const replayVisuals = document.getElementById("replay-visuals");
@@ -17,17 +16,17 @@ let benchmarks = [];
 let progressPoller = null;
 
 window.render_game_to_text = () => {
-  const activeBenchmark = findActiveBenchmark();
-  if (!activeBenchmark) {
+  const benchmark = findActiveBenchmark();
+  if (!benchmark) {
     return JSON.stringify({ mode: "idle", message: "No benchmark loaded" });
   }
 
-  const run = activeBenchmark.modelRuns.find((item) => item.modelKey === modelSelect.value);
+  const run = benchmark.modelRuns[0];
   const game = run?.games.find((item) => item.targetWord === wordSelect.value);
 
   return JSON.stringify({
     mode: "replay",
-    benchmarkId: activeBenchmark.id,
+    benchmarkId: benchmark.id,
     model: run?.modelLabel,
     targetWord: game?.targetWord,
     solved: game?.solved,
@@ -37,11 +36,7 @@ window.render_game_to_text = () => {
 
 window.advanceTime = () => {};
 
-benchmarkSelect.addEventListener("change", () => {
-  renderSelectedBenchmark();
-});
-
-modelSelect.addEventListener("change", () => {
+runSelect.addEventListener("change", () => {
   renderWords();
   renderReplay();
 });
@@ -87,10 +82,10 @@ async function loadBenchmarks(selectedId) {
   const response = await fetch("/api/benchmarks");
   benchmarks = await response.json();
 
-  benchmarkSelect.innerHTML = "";
+  runSelect.innerHTML = "";
 
   if (benchmarks.length === 0) {
-    benchmarkSelect.innerHTML = `<option value="">No runs yet</option>`;
+    runSelect.innerHTML = `<option value="">No runs yet</option>`;
     rankingBody.innerHTML = "";
     replaySummary.textContent = "No replay data yet.";
     replayVisuals.innerHTML = "";
@@ -98,27 +93,39 @@ async function loadBenchmarks(selectedId) {
     return;
   }
 
+  renderRankingTable();
+
   for (const benchmark of benchmarks) {
+    const run = benchmark.modelRuns?.[0];
     const option = document.createElement("option");
     option.value = benchmark.id;
-    option.textContent = `${new Date(benchmark.completedAt).toLocaleString()} - ${benchmark.wordBank.length} words`;
-    benchmarkSelect.append(option);
+    option.textContent = `${new Date(benchmark.completedAt).toLocaleString()} - ${run?.modelLabel || "Unknown model"}`;
+    runSelect.append(option);
   }
 
-  benchmarkSelect.value = selectedId || benchmarks[0].id;
-  renderSelectedBenchmark();
+  runSelect.value = selectedId || benchmarks[0].id;
+  renderWords();
+  renderReplay();
 }
 
-function renderSelectedBenchmark() {
-  const benchmark = findActiveBenchmark();
-  if (!benchmark) return;
-
+function renderRankingTable() {
   rankingBody.innerHTML = "";
+  const sortedBenchmarks = [...benchmarks].sort((a, b) => {
+    const rowA = a.ranking?.[0];
+    const rowB = b.ranking?.[0];
+    const solvedA = Number(rowA?.solvedCount || 0);
+    const solvedB = Number(rowB?.solvedCount || 0);
+    if (solvedB !== solvedA) return solvedB - solvedA;
+    return new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime();
+  });
 
-  for (const row of benchmark.ranking) {
+  for (const benchmark of sortedBenchmarks) {
+    const row = benchmark.ranking?.[0];
+    if (!row) continue;
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${row.rank}</td>
+      <td>${new Date(benchmark.completedAt).toLocaleString()}</td>
       <td>${row.modelLabel}</td>
       <td>${row.solvedCount}/${row.totalWords}</td>
       <td>${row.failedCount ?? 0}</td>
@@ -127,34 +134,11 @@ function renderSelectedBenchmark() {
     `;
     rankingBody.append(tr);
   }
-
-  renderModels();
-  renderWords();
-  renderReplay();
-}
-
-function renderModels() {
-  const benchmark = findActiveBenchmark();
-  if (!benchmark) return;
-
-  const prev = modelSelect.value;
-  modelSelect.innerHTML = "";
-
-  for (const run of benchmark.modelRuns) {
-    const option = document.createElement("option");
-    option.value = run.modelKey;
-    option.textContent = `${run.modelLabel} (${run.modelId})`;
-    modelSelect.append(option);
-  }
-
-  modelSelect.value = prev && benchmark.modelRuns.some((run) => run.modelKey === prev)
-    ? prev
-    : benchmark.modelRuns[0].modelKey;
 }
 
 function renderWords() {
   const benchmark = findActiveBenchmark();
-  const run = benchmark?.modelRuns.find((item) => item.modelKey === modelSelect.value);
+  const run = benchmark?.modelRuns?.[0];
   if (!run) return;
 
   const prev = wordSelect.value;
@@ -174,15 +158,14 @@ function renderWords() {
 
 function renderReplay() {
   const benchmark = findActiveBenchmark();
-  if (!benchmark) return;
-
-  const run = benchmark.modelRuns.find((item) => item.modelKey === modelSelect.value);
-  if (!run) return;
+  const run = benchmark?.modelRuns?.[0];
+  if (!benchmark || !run) return;
 
   const game = run.games.find((item) => item.targetWord === wordSelect.value);
   if (!game) return;
 
   replaySummary.textContent = [
+    `Run: ${new Date(benchmark.completedAt).toLocaleString()}`,
     `Model: ${run.modelLabel}`,
     `Target: ${game.targetWord}`,
     `Solved: ${game.solved ? "yes" : "no"}`,
@@ -263,7 +246,7 @@ function toSvgDataUrl(svg) {
 }
 
 function findActiveBenchmark() {
-  return benchmarks.find((item) => item.id === benchmarkSelect.value);
+  return benchmarks.find((item) => item.id === runSelect.value);
 }
 
 function setStatus(message) {
@@ -274,12 +257,6 @@ function startProgressPolling() {
   if (progressPoller) return;
   progressPanel.hidden = false;
   progressPoller = setInterval(refreshProgressOnce, 1000);
-}
-
-function stopProgressPolling() {
-  if (!progressPoller) return;
-  clearInterval(progressPoller);
-  progressPoller = null;
 }
 
 async function refreshProgressOnce() {

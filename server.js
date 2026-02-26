@@ -27,6 +27,12 @@ const MODELS = [
     provider: { order: ["azure"], allow_fallbacks: false }
   },
   {
+    key: "kimik25",
+    label: "Kimi K2.5",
+    modelId: "moonshotai/kimi-k2.5",
+    provider: { order: ["moonshotai/int4"], allow_fallbacks: false }
+  },
+  {
     key: "gemini3flash",
     label: "Gemini 3 Flash",
     modelId: "google/gemini-3-flash-preview",
