@@ -12,7 +12,7 @@ Scoring:
 - Lower total guesses is better
 
 Current setup:
-- Models: `google/gemini-3-flash-preview`, `openai/gpt-5-mini` (provider: `azure`), `moonshotai/kimi-k2.5` (provider: `moonshotai/int4`)
+- Models: `google/gemini-3-flash-preview`, `openai/gpt-5-mini` (provider: `azure`), `moonshotai/kimi-k2.5` (provider: `moonshotai/int4`), `anthropic/claude-haiku-4.5` (provider: `google-vertex`)
 - Word bank lives in `data/wordbank.js`
 - Dashboard is read-only (rankings + replay only)
 - Benchmarks run one model at a time

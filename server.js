@@ -37,6 +37,12 @@ const MODELS = [
     label: "Gemini 3 Flash",
     modelId: "google/gemini-3-flash-preview",
     provider: { order: ["google-ai-studio", "google-vertex"], allow_fallbacks: false }
+  },
+  {
+    key: "claudehaiku45",
+    label: "Claude Haiku 4.5",
+    modelId: "anthropic/claude-haiku-4.5",
+    provider: { order: ["google-vertex"], allow_fallbacks: false }
   }
 ];
 
