@@ -1,4 +1,4 @@
-# SVG Draw Guess Benchmark (OpenRouter)
+# SketchGuess Bench
 
 Benchmark flow per word:
 1. Drawer model receives the hidden word and returns SVG.
