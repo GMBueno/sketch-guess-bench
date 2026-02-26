@@ -119,6 +119,59 @@ select {
   background: #fff;
 }
 
+.compare-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+#compare-status {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.compare-summary-row {
+  cursor: pointer;
+}
+
+.compare-summary-row:hover td {
+  background: #f6f9ff;
+}
+
+.compare-details-row td {
+  background: #fbfcff;
+}
+
+.compare-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.compare-detail-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff;
+}
+
+.compare-detail-card h3 {
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+}
+
+.compare-guesses {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.compare-guesses li {
+  margin: 4px 0;
+}
+
 .replay-controls {
   display: grid;
   grid-template-columns: repeat(2, minmax(180px, 1fr));
@@ -225,6 +278,7 @@ select {
 }
 
 @media (max-width: 740px) {
+  .compare-controls,
   .replay-controls {
     grid-template-columns: 1fr;
   }

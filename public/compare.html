@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SketchGuess Compare</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <header>
+        <h1>Run Comparison</h1>
+        <p>Select two or three runs/models. Click a word row to inspect drawings and guesses.</p>
+        <p><a href="/">Back to Dashboard</a></p>
+      </header>
+
+      <section class="card">
+        <h2>Selections</h2>
+        <div class="compare-controls">
+          <div>
+            <label for="run-a">Run A</label>
+            <select id="run-a"></select>
+          </div>
+          <div>
+            <label for="run-b">Run B</label>
+            <select id="run-b"></select>
+          </div>
+          <div>
+            <label for="run-c">Run C (optional)</label>
+            <select id="run-c"></select>
+          </div>
+        </div>
+        <div id="compare-status"></div>
+      </section>
+
+      <section class="card">
+        <h2>Word-by-Word</h2>
+        <table id="compare-table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+
+    <dialog id="jpeg-modal">
+      <div class="jpeg-modal-content">
+        <button id="jpeg-modal-close" type="button">Close</button>
+        <img id="jpeg-modal-image" alt="JPEG preview" />
+      </div>
+    </dialog>
+
+    <script src="/compare.js" type="module"></script>
+  </body>
+</html>
