@@ -3,18 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SVG Draw Guess Benchmark</title>
+    <title>SketchGuess Bench</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="layout">
-      <header>
-        <h1>SVG Draw Guess Benchmark</h1>
-        <p>The model draws the hidden word as SVG, we convert it to JPEG for the guesser, and score by guesses used.</p>
-        <p><a href="/compare.html">Open Compare View</a></p>
-      </header>
+      <nav class="card navbar" aria-label="Main navigation">
+        <button class="nav-btn active" data-screen="home">Home</button>
+        <button class="nav-btn" data-screen="rankings">Rankings</button>
+        <button class="nav-btn" data-screen="replay">Replay</button>
+        <button class="nav-btn" data-screen="about">About</button>
+      </nav>
 
-      <section class="card actions">
+      <section id="screen-home" class="screen card">
+        <p class="eyebrow">SketchGuess Bench</p>
+        <h1>Visual Reasoning Benchmark</h1>
+        <h2>Home</h2>
+        <p>
+          One model draws a hidden word as SVG. The guesser model sees a rendered JPEG and returns ordered guesses.
+        </p>
+        <p>
+          SketchGuess Bench tests if models can both depict and infer concepts through drawings. It tracks solved words, failures,
+          and guess efficiency.
+        </p>
+        <button id="go-rankings" type="button">See Rankings</button>
         <div id="status"></div>
         <div id="progress-panel" hidden>
           <div id="progress-text"></div>
@@ -24,7 +42,7 @@
         </div>
       </section>
 
-      <section class="card">
+      <section id="screen-rankings" class="screen card" hidden>
         <h2>Rankings</h2>
         <table id="ranking-table">
           <thead>
@@ -41,19 +59,53 @@
         </table>
       </section>
 
-      <section class="card replay">
+      <section id="screen-replay" class="screen card" hidden>
         <h2>Replay</h2>
-        <div class="replay-controls">
-          <label for="run-select">Run</label>
-          <select id="run-select"></select>
-
-          <label for="word-select">Target Word</label>
-          <select id="word-select"></select>
+        <p class="section-note">Pick one run/model and optionally add up to two others for side-by-side comparison.</p>
+        <div class="compare-controls">
+          <div>
+            <label for="run-a">Run A</label>
+            <select id="run-a"></select>
+          </div>
+          <div>
+            <label for="run-b">Run B (optional)</label>
+            <select id="run-b"></select>
+          </div>
+          <div>
+            <label for="run-c">Run C (optional)</label>
+            <select id="run-c"></select>
+          </div>
         </div>
 
-        <div id="replay-summary"></div>
-        <div id="replay-visuals"></div>
-        <ol id="replay-turns"></ol>
+        <div id="compare-status"></div>
+
+        <table id="compare-table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section id="screen-about" class="screen card" hidden>
+        <h2>About</h2>
+        <p>
+          SketchGuess Bench measures visual world modeling and visual understanding together. A drawer model must transform
+          a concept into a compact SVG, and a guesser model must recover that concept from a rasterized image. This setup
+          probes abstraction, depiction quality, and inference quality in one loop.
+        </p>
+        <p>
+          Motivation: text-only benchmarks miss whether models can represent grounded concepts visually. This benchmark adds
+          a lightweight visual channel while keeping runs cheap and repeatable.
+        </p>
+        <p>
+          Pros: easy to run, low cost, interpretable per-word replay, and direct side-by-side model comparison.
+        </p>
+        <p>
+          Cons: scoring depends on wordbank composition, visual style priors can bias outcomes, and provider reliability can
+          affect fail rates independently from model capability.
+        </p>
+        <p>
+          This project is <a href="https://github.com/gmbueno/sketch-guess-bench" target="_blank" rel="noreferrer">open source</a>
+        </p>
       </section>
     </main>
 

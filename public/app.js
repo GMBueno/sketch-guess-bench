@@ -1,13 +1,26 @@
 const statusEl = document.getElementById("status");
-const rankingBody = document.querySelector("#ranking-table tbody");
-const runSelect = document.getElementById("run-select");
-const wordSelect = document.getElementById("word-select");
-const replaySummary = document.getElementById("replay-summary");
-const replayVisuals = document.getElementById("replay-visuals");
-const replayTurns = document.getElementById("replay-turns");
 const progressPanel = document.getElementById("progress-panel");
 const progressText = document.getElementById("progress-text");
 const progressBar = document.getElementById("progress-bar");
+const goRankingsBtn = document.getElementById("go-rankings");
+
+const navButtons = [...document.querySelectorAll(".nav-btn")];
+const screenEls = {
+  home: document.getElementById("screen-home"),
+  rankings: document.getElementById("screen-rankings"),
+  replay: document.getElementById("screen-replay"),
+  about: document.getElementById("screen-about")
+};
+
+const rankingBody = document.querySelector("#ranking-table tbody");
+
+const runASelect = document.getElementById("run-a");
+const runBSelect = document.getElementById("run-b");
+const runCSelect = document.getElementById("run-c");
+const compareStatusEl = document.getElementById("compare-status");
+const compareTableHead = document.querySelector("#compare-table thead");
+const compareTableBody = document.querySelector("#compare-table tbody");
+
 const jpegModal = document.getElementById("jpeg-modal");
 const jpegModalImage = document.getElementById("jpeg-modal-image");
 const jpegModalClose = document.getElementById("jpeg-modal-close");
@@ -16,43 +29,35 @@ let benchmarks = [];
 let progressPoller = null;
 
 window.render_game_to_text = () => {
-  const benchmark = findActiveBenchmark();
-  if (!benchmark) {
-    return JSON.stringify({ mode: "idle", message: "No benchmark loaded" });
-  }
-
-  const run = benchmark.modelRuns[0];
-  const game = run?.games.find((item) => item.targetWord === wordSelect.value);
-
+  const selected = getSelectedBenchmarks();
   return JSON.stringify({
-    mode: "replay",
-    benchmarkId: benchmark.id,
-    model: run?.modelLabel,
-    targetWord: game?.targetWord,
-    solved: game?.solved,
-    turns: game?.turns || []
+    mode: "replay-compare",
+    selectedRunIds: selected.map((item) => item.id)
   });
 };
 
 window.advanceTime = () => {};
 
-runSelect.addEventListener("change", () => {
-  renderWords();
-  renderReplay();
+for (const button of navButtons) {
+  button.addEventListener("click", () => {
+    switchScreen(button.dataset.screen);
+  });
+}
+
+goRankingsBtn.addEventListener("click", () => {
+  switchScreen("rankings");
 });
 
-wordSelect.addEventListener("change", () => {
-  renderReplay();
-});
+runASelect.addEventListener("change", renderReplayComparison);
+runBSelect.addEventListener("change", renderReplayComparison);
+runCSelect.addEventListener("change", renderReplayComparison);
 
 jpegModalClose.addEventListener("click", () => {
   jpegModal.close();
 });
 
 jpegModal.addEventListener("click", (event) => {
-  if (event.target === jpegModal) {
-    jpegModal.close();
-  }
+  if (event.target === jpegModal) jpegModal.close();
 });
 
 init();
@@ -61,9 +66,22 @@ async function init() {
   await fetchStatus();
   await loadBenchmarks();
   await refreshProgressOnce();
+
   const progress = await fetchProgress();
   if (progress?.status === "running") {
     startProgressPolling();
+  }
+
+  switchScreen("home");
+}
+
+function switchScreen(name) {
+  for (const [key, el] of Object.entries(screenEls)) {
+    el.hidden = key !== name;
+  }
+
+  for (const button of navButtons) {
+    button.classList.toggle("active", button.dataset.screen === name);
   }
 }
 
@@ -78,39 +96,27 @@ async function fetchStatus() {
   }
 }
 
-async function loadBenchmarks(selectedId) {
+async function loadBenchmarks() {
   const response = await fetch("/api/benchmarks");
   benchmarks = await response.json();
-
-  runSelect.innerHTML = "";
-
-  if (benchmarks.length === 0) {
-    runSelect.innerHTML = `<option value="">No runs yet</option>`;
-    rankingBody.innerHTML = "";
-    replaySummary.textContent = "No replay data yet.";
-    replayVisuals.innerHTML = "";
-    replayTurns.innerHTML = "";
-    return;
-  }
+  benchmarks.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
 
   renderRankingTable();
+  fillRunSelect(runASelect, { optional: false });
+  fillRunSelect(runBSelect, { optional: true });
+  fillRunSelect(runCSelect, { optional: true });
 
-  for (const benchmark of benchmarks) {
-    const run = benchmark.modelRuns?.[0];
-    const option = document.createElement("option");
-    option.value = benchmark.id;
-    option.textContent = `${new Date(benchmark.completedAt).toLocaleString()} - ${run?.modelLabel || "Unknown model"}`;
-    runSelect.append(option);
-  }
+  if (benchmarks.length > 0) runASelect.value = benchmarks[0].id;
+  runBSelect.value = "";
+  runCSelect.value = "";
 
-  runSelect.value = selectedId || benchmarks[0].id;
-  renderWords();
-  renderReplay();
+  renderReplayComparison();
 }
 
 function renderRankingTable() {
   rankingBody.innerHTML = "";
-  const sortedBenchmarks = [...benchmarks].sort((a, b) => {
+
+  const sorted = [...benchmarks].sort((a, b) => {
     const rowA = a.ranking?.[0];
     const rowB = b.ranking?.[0];
     const solvedA = Number(rowA?.solvedCount || 0);
@@ -119,7 +125,7 @@ function renderRankingTable() {
     return new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime();
   });
 
-  for (const benchmark of sortedBenchmarks) {
+  for (const benchmark of sorted) {
     const row = benchmark.ranking?.[0];
     if (!row) continue;
 
@@ -136,103 +142,170 @@ function renderRankingTable() {
   }
 }
 
-function renderWords() {
-  const benchmark = findActiveBenchmark();
-  const run = benchmark?.modelRuns?.[0];
-  if (!run) return;
+function fillRunSelect(select, { optional }) {
+  select.innerHTML = "";
 
-  const prev = wordSelect.value;
-  wordSelect.innerHTML = "";
-
-  for (const game of run.games) {
-    const option = document.createElement("option");
-    option.value = game.targetWord;
-    option.textContent = `${game.targetWord} (${game.solved ? `solved in ${game.guessesUsed}` : "not solved"})`;
-    wordSelect.append(option);
+  if (optional) {
+    const none = document.createElement("option");
+    none.value = "";
+    none.textContent = "None";
+    select.append(none);
   }
 
-  wordSelect.value = prev && run.games.some((game) => game.targetWord === prev)
-    ? prev
-    : run.games[0].targetWord;
+  for (const benchmark of benchmarks) {
+    const run = benchmark.modelRuns?.[0];
+    const option = document.createElement("option");
+    option.value = benchmark.id;
+    option.textContent = `${new Date(benchmark.completedAt).toLocaleString()} - ${run?.modelLabel || "Unknown model"}`;
+    select.append(option);
+  }
 }
 
-function renderReplay() {
-  const benchmark = findActiveBenchmark();
-  const run = benchmark?.modelRuns?.[0];
-  if (!benchmark || !run) return;
+function getSelectedBenchmarks() {
+  const selectedIds = [runASelect.value, runBSelect.value, runCSelect.value].filter(Boolean);
+  const uniqueIds = [...new Set(selectedIds)];
+  return uniqueIds
+    .map((id) => benchmarks.find((benchmark) => benchmark.id === id))
+    .filter(Boolean);
+}
 
-  const game = run.games.find((item) => item.targetWord === wordSelect.value);
-  if (!game) return;
+function renderReplayComparison() {
+  const selected = getSelectedBenchmarks();
 
-  replaySummary.textContent = [
-    `Run: ${new Date(benchmark.completedAt).toLocaleString()}`,
-    `Model: ${run.modelLabel}`,
-    `Target: ${game.targetWord}`,
-    `Solved: ${game.solved ? "yes" : "no"}`,
-    `Guesses used: ${game.guessesUsed}`,
-    `Penalized guesses: ${game.penalizedGuesses}`
-  ].join(" | ");
+  if (selected.length === 0) {
+    compareStatusEl.textContent = "Select at least one run.";
+    compareTableHead.innerHTML = "";
+    compareTableBody.innerHTML = "";
+    return;
+  }
 
-  replayVisuals.innerHTML = "";
-  replayTurns.innerHTML = "";
+  compareStatusEl.textContent = "Click a word row to expand drawings and guesses.";
+  renderReplayHeader(selected);
+  renderReplayRows(selected);
+}
 
-  for (const turn of game.turns) {
-    if (turn.role === "draw" && turn.svg) {
-      const card = document.createElement("article");
-      card.className = "draw-card";
+function renderReplayHeader(selected) {
+  const columns = selected
+    .map((benchmark) => {
+      const run = benchmark.modelRuns?.[0];
+      const label = run?.modelLabel || "Unknown";
+      const time = new Date(benchmark.completedAt).toLocaleString();
+      return `<th>${label}<br><small>${time}</small></th>`;
+    })
+    .join("");
 
-      const heading = document.createElement("h3");
-      heading.textContent = `Turn ${turn.turnNumber} drawing`;
-      card.append(heading);
+  compareTableHead.innerHTML = `<tr><th>Target Word</th>${columns}</tr>`;
+}
 
-      const previewRow = document.createElement("div");
-      previewRow.className = "draw-preview-row";
+function renderReplayRows(selected) {
+  compareTableBody.innerHTML = "";
 
+  const words = collectWords(selected);
+  for (const word of words) {
+    const summaryRow = document.createElement("tr");
+    summaryRow.className = "compare-summary-row";
+    summaryRow.innerHTML = `<td>${word}</td>${selected.map((benchmark) => `<td>${formatScore(getGame(benchmark, word))}</td>`).join("")}`;
+
+    const detailsRow = document.createElement("tr");
+    detailsRow.className = "compare-details-row";
+    detailsRow.hidden = true;
+
+    const detailsCell = document.createElement("td");
+    detailsCell.colSpan = selected.length + 1;
+    detailsCell.append(renderDetailsGrid(selected, word));
+    detailsRow.append(detailsCell);
+
+    summaryRow.addEventListener("click", () => {
+      detailsRow.hidden = !detailsRow.hidden;
+    });
+
+    compareTableBody.append(summaryRow, detailsRow);
+  }
+}
+
+function collectWords(selected) {
+  const words = new Set();
+  for (const benchmark of selected) {
+    const run = benchmark.modelRuns?.[0];
+    for (const game of run?.games || []) {
+      words.add(game.targetWord);
+    }
+  }
+  return [...words].sort((a, b) => a.localeCompare(b));
+}
+
+function getGame(benchmark, word) {
+  const run = benchmark.modelRuns?.[0];
+  return run?.games?.find((game) => game.targetWord === word);
+}
+
+function formatScore(game) {
+  if (!game) return "-";
+  if (game.failed) return `failed (${game.penalizedGuesses})`;
+  if (!game.solved) return `not solved (${game.penalizedGuesses})`;
+  return `${game.guessesUsed}`;
+}
+
+function renderDetailsGrid(selected, word) {
+  const grid = document.createElement("div");
+  grid.className = "compare-detail-grid";
+
+  for (const benchmark of selected) {
+    const run = benchmark.modelRuns?.[0];
+    const game = getGame(benchmark, word);
+
+    const card = document.createElement("article");
+    card.className = "compare-detail-card";
+
+    const title = document.createElement("h3");
+    title.textContent = `${run?.modelLabel || "Unknown"} - ${new Date(benchmark.completedAt).toLocaleString()}`;
+    card.append(title);
+
+    if (!game) {
+      const p = document.createElement("p");
+      p.textContent = "No data for this word.";
+      card.append(p);
+      grid.append(card);
+      continue;
+    }
+
+    const draw = game.turns?.find((turn) => turn.role === "draw");
+    if (draw?.svg) {
       const svgImg = document.createElement("img");
       svgImg.className = "draw-preview";
-      svgImg.alt = `Turn ${turn.turnNumber} SVG`;
-      svgImg.src = toSvgDataUrl(turn.svg);
-      previewRow.append(svgImg);
+      svgImg.alt = `${word} SVG`;
+      svgImg.src = toSvgDataUrl(draw.svg);
+      card.append(svgImg);
 
       const actions = document.createElement("div");
       actions.className = "draw-actions";
       const showJpegBtn = document.createElement("button");
       showJpegBtn.type = "button";
       showJpegBtn.textContent = "Show JPEG";
-      showJpegBtn.disabled = !turn.jpgDataUrl;
+      showJpegBtn.disabled = !draw.jpgDataUrl;
       showJpegBtn.addEventListener("click", () => {
-        if (!turn.jpgDataUrl) return;
-        jpegModalImage.src = turn.jpgDataUrl;
+        if (!draw.jpgDataUrl) return;
+        jpegModalImage.src = draw.jpgDataUrl;
         jpegModal.showModal();
       });
       actions.append(showJpegBtn);
-
-      card.append(previewRow);
       card.append(actions);
-
-      const details = document.createElement("details");
-      const summary = document.createElement("summary");
-      summary.textContent = "SVG source";
-      details.append(summary);
-
-      const pre = document.createElement("pre");
-      pre.textContent = turn.svg;
-      details.append(pre);
-      card.append(details);
-      replayVisuals.append(card);
     }
 
-    const li = document.createElement("li");
-    if (turn.role === "guess") {
-      const suffix = turn.correct === true ? " (correct)" : "";
-      li.textContent = `Turn ${turn.turnNumber} - GUESS: ${turn.text}${suffix}`;
-    } else if (turn.role === "draw") {
-      li.textContent = `Turn ${turn.turnNumber} - DRAW: SVG rendered to JPEG for guesser`;
-    } else {
-      li.textContent = `Turn ${turn.turnNumber} - ${turn.role.toUpperCase()}: ${turn.text || ""}`;
+    const guessTurns = game.turns?.filter((turn) => turn.role === "guess") || [];
+    const guesses = document.createElement("ol");
+    guesses.className = "compare-guesses";
+    for (const turn of guessTurns) {
+      const li = document.createElement("li");
+      li.textContent = turn.correct ? `${turn.text} (correct)` : turn.text;
+      guesses.append(li);
     }
-    replayTurns.append(li);
+    card.append(guesses);
+
+    grid.append(card);
   }
+
+  return grid;
 }
 
 function toSvgDataUrl(svg) {
@@ -243,10 +316,6 @@ function toSvgDataUrl(svg) {
     binary += String.fromCharCode(byte);
   }
   return `data:image/svg+xml;base64,${btoa(binary)}`;
-}
-
-function findActiveBenchmark() {
-  return benchmarks.find((item) => item.id === runSelect.value);
 }
 
 function setStatus(message) {
@@ -302,7 +371,5 @@ function renderProgress(progress) {
     return;
   }
 
-  if (progress.status === "completed") {
-    progressText.textContent = `Completed: ${completed}/${total} (${percent.toFixed(1)}%) | failed: ${progress.failedGames || 0}`;
-  }
+  progressText.textContent = `Completed: ${completed}/${total} (${percent.toFixed(1)}%) | failed: ${progress.failedGames || 0}`;
 }
