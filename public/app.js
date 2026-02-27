@@ -156,7 +156,7 @@ function fillRunSelect(select, { optional }) {
     const run = benchmark.modelRuns?.[0];
     const option = document.createElement("option");
     option.value = benchmark.id;
-    option.textContent = `${new Date(benchmark.completedAt).toLocaleString()} - ${run?.modelLabel || "Unknown model"}`;
+    option.textContent = run?.modelLabel || "Unknown model";
     select.append(option);
   }
 }
@@ -275,21 +275,15 @@ function renderDetailsGrid(selected, word) {
       svgImg.className = "draw-preview";
       svgImg.alt = `${word} SVG`;
       svgImg.src = toSvgDataUrl(draw.svg);
+      if (draw.jpgDataUrl) {
+        svgImg.classList.add("clickable");
+        svgImg.title = "Click to view JPEG";
+        svgImg.addEventListener("click", () => {
+          jpegModalImage.src = draw.jpgDataUrl;
+          jpegModal.showModal();
+        });
+      }
       card.append(svgImg);
-
-      const actions = document.createElement("div");
-      actions.className = "draw-actions";
-      const showJpegBtn = document.createElement("button");
-      showJpegBtn.type = "button";
-      showJpegBtn.textContent = "Show JPEG";
-      showJpegBtn.disabled = !draw.jpgDataUrl;
-      showJpegBtn.addEventListener("click", () => {
-        if (!draw.jpgDataUrl) return;
-        jpegModalImage.src = draw.jpgDataUrl;
-        jpegModal.showModal();
-      });
-      actions.append(showJpegBtn);
-      card.append(actions);
     }
 
     const guessTurns = game.turns?.filter((turn) => turn.role === "guess") || [];
