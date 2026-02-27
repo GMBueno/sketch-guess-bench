@@ -92,7 +92,7 @@ async function fetchStatus() {
   if (!data.hasApiKey) {
     setStatus("OPENROUTER_API_KEY missing.");
   } else {
-    setStatus("Dashboard is read-only. Run benchmarks from code using /api/benchmarks/run with modelKey.");
+    setStatus("");
   }
 }
 
