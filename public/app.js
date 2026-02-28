@@ -338,9 +338,9 @@ function getBenchmarkCostUsd(benchmark) {
 }
 
 function formatUsd(value) {
-  const cost = Number(value);
+  const cost = ceilToCent(value);
   if (!Number.isFinite(cost)) return "n/a";
-  return `$${cost.toFixed(6)}`;
+  return `$${cost.toFixed(2)}`;
 }
 
 function renderSolvedVsCostChart() {
@@ -348,7 +348,7 @@ function renderSolvedVsCostChart() {
     .map((benchmark) => {
       const row = benchmark?.ranking?.[0];
       const solved = Number(row?.solvedCount);
-      const cost = Number(getBenchmarkCostUsd(benchmark));
+      const cost = ceilToCent(getBenchmarkCostUsd(benchmark));
       if (!Number.isFinite(solved) || !Number.isFinite(cost)) return null;
       return {
         id: benchmark.id,
@@ -385,14 +385,14 @@ function renderSolvedVsCostChart() {
   ].join("");
 
   const labels = [
-    ...xTicks.map((tick) => `<text x="${xAt(tick)}" y="${plot.top + plot.height + 20}" text-anchor="middle" font-size="11" fill="#4f6179">${tick.toFixed(5)}</text>`),
+    ...xTicks.map((tick) => `<text x="${xAt(tick)}" y="${plot.top + plot.height + 20}" text-anchor="middle" font-size="11" fill="#4f6179">${tick.toFixed(2)}</text>`),
     ...yTicks.map((tick) => `<text x="${plot.left - 10}" y="${yAt(tick) + 4}" text-anchor="end" font-size="11" fill="#4f6179">${Math.round(tick)}</text>`)
   ].join("");
 
   const dots = points.map((point) => {
     const x = xAt(point.cost);
     const y = yAt(point.solved);
-    const title = `${point.label}: solved ${point.solved}, cost $${point.cost.toFixed(6)}`;
+    const title = `${point.label}: solved ${point.solved}, cost $${point.cost.toFixed(2)}`;
     return `<circle cx="${x}" cy="${y}" r="5" fill="#0a7c86"><title>${title}</title></circle>`;
   }).join("");
 
@@ -412,6 +412,12 @@ function formatModelWithEffort(modelLabel, effort) {
   const safeLabel = modelLabel || "Unknown model";
   const safeEffort = effort || "medium";
   return `${safeLabel} (${safeEffort})`;
+}
+
+function ceilToCent(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return NaN;
+  return Math.ceil(number * 100) / 100;
 }
 
 function startProgressPolling() {
