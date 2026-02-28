@@ -324,16 +324,18 @@ function setStatus(message) {
 }
 
 function getBenchmarkCostUsd(benchmark) {
-  const rowCostRaw = benchmark?.ranking?.[0]?.totalCostUsd;
-  if (rowCostRaw !== null && rowCostRaw !== undefined) {
-    const rowCost = Number(rowCostRaw);
+  const row = benchmark?.ranking?.[0];
+  if (hasCostTelemetry(row)) {
+    const rowCost = Number(row?.totalCostUsd);
     if (Number.isFinite(rowCost)) return rowCost;
   }
-  const runCostRaw = benchmark?.modelRuns?.[0]?.totalCostUsd;
-  if (runCostRaw !== null && runCostRaw !== undefined) {
-    const runCost = Number(runCostRaw);
+
+  const run = benchmark?.modelRuns?.[0];
+  if (hasCostTelemetry(run)) {
+    const runCost = Number(run?.totalCostUsd);
     if (Number.isFinite(runCost)) return runCost;
   }
+
   return NaN;
 }
 
@@ -418,6 +420,14 @@ function ceilToCent(value) {
   const number = Number(value);
   if (!Number.isFinite(number)) return NaN;
   return Math.ceil(number * 100) / 100;
+}
+
+function hasCostTelemetry(record) {
+  if (!record || typeof record !== "object") return false;
+  const totalRequests = Number(record.totalRequests || 0);
+  const pricedRequests = Number(record.pricedRequests || 0);
+  const missingPriceRequests = Number(record.missingPriceRequests || 0);
+  return totalRequests > 0 || pricedRequests > 0 || missingPriceRequests > 0;
 }
 
 function startProgressPolling() {
