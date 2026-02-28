@@ -72,6 +72,7 @@ const FIXED_PROVIDER = {
 
 const DATA_DIR = path.join(__dirname, "data");
 const MODEL_RESULTS_DIR = path.join(DATA_DIR, "benchmarks");
+const TRACE_RESULTS_DIR = path.join(DATA_DIR, "openrouter_traces");
 const PUBLIC_DIR = path.join(__dirname, "public");
 const benchmarkProgress = {
   status: "idle",
@@ -205,6 +206,88 @@ app.post("/api/benchmarks/run", async (req, res) => {
   }
 });
 
+app.post("/api/benchmarks/:runId/retry-word", async (req, res) => {
+  if (!process.env.OPENROUTER_API_KEY) {
+    res.status(400).json({ error: "Missing OPENROUTER_API_KEY" });
+    return;
+  }
+  if (benchmarkProgress.status === "running") {
+    res.status(409).json({ error: "A benchmark is already running" });
+    return;
+  }
+
+  const runId = typeof req.params?.runId === "string" ? req.params.runId : "";
+  const targetWord = sanitizeOneWord(req.body?.targetWord);
+  if (!targetWord) {
+    res.status(400).json({ error: "Invalid targetWord" });
+    return;
+  }
+
+  const record = await findBenchmarkRecord(runId);
+  if (!record) {
+    res.status(404).json({ error: "Benchmark run not found" });
+    return;
+  }
+
+  const run = record.benchmark?.modelRuns?.[0];
+  if (!run || !Array.isArray(run.games)) {
+    res.status(400).json({ error: "Benchmark has no model run data" });
+    return;
+  }
+
+  const gameIndex = run.games.findIndex((game) => isSameWord(game?.targetWord, targetWord));
+  if (gameIndex === -1) {
+    res.status(404).json({ error: "Word not found in this benchmark run" });
+    return;
+  }
+
+  const model = MODELS.find((item) => item.key === run.modelKey || item.modelId === run.modelId);
+  if (!model) {
+    res.status(400).json({ error: "Model config not found for this run" });
+    return;
+  }
+
+  const effort = parseEffort(run.effort) || parseEffort(record.benchmark?.effort) || DEFAULT_EFFORT;
+  startBenchmarkProgress(runId, model, effort);
+  benchmarkProgress.totalGames = 1;
+  benchmarkProgress.completedGames = 0;
+  benchmarkProgress.failedGames = 0;
+  setActiveGame(model.label, run.games[gameIndex].targetWord);
+  try {
+    const updatedGame = await withTimeout(
+      runSingleGame({
+        runId,
+        model,
+        targetWord: run.games[gameIndex].targetWord,
+        effort
+      }),
+      GAME_TIMEOUT_MS,
+      `Game timed out after ${GAME_TIMEOUT_MS}ms`
+    );
+
+    run.games[gameIndex] = updatedGame;
+    const refreshedRun = buildModelRun({
+      model,
+      effort,
+      games: run.games
+    });
+    record.benchmark.completedAt = new Date().toISOString();
+    record.benchmark.effort = effort;
+    record.benchmark.modelRuns = [refreshedRun];
+    record.benchmark.ranking = [buildRankingRow(refreshedRun)];
+
+    record.benchmarks[record.index] = normalizeBenchmark(record.benchmark);
+    await writeModelBenchmarks(record.modelKey, record.benchmarks);
+    advanceProgress(model.label, run.games[gameIndex].targetWord, false);
+    completeBenchmarkProgress();
+    res.json(record.benchmark);
+  } catch (err) {
+    advanceProgress(model.label, run.games[gameIndex].targetWord, true);
+    failBenchmarkProgress(err?.message || "Word retry failed");
+    res.status(500).json({ error: err?.message || "Word retry failed" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
@@ -218,7 +301,7 @@ async function runBenchmark(runId, model, effort) {
       setActiveGame(model.label, targetWord);
       try {
         const game = await withTimeout(
-          runSingleGame(model, targetWord, effort),
+          runSingleGame({ runId, model, targetWord, effort }),
           GAME_TIMEOUT_MS,
           `Game timed out after ${GAME_TIMEOUT_MS}ms`
         );
@@ -231,22 +314,11 @@ async function runBenchmark(runId, model, effort) {
     }
   );
 
-  const solvedGames = games.filter((game) => game.solved);
-  const failedGames = games.filter((game) => game.failed);
-  const totalGuesses = games.reduce((sum, game) => sum + game.penalizedGuesses, 0);
-
-  const modelRun = {
-    modelKey: model.key,
-    modelLabel: model.label,
+  const modelRun = buildModelRun({
+    model,
     effort,
-    modelId: model.modelId,
-    solvedCount: solvedGames.length,
-    failedCount: failedGames.length,
-    totalWords: WORD_BANK.length,
-    totalGuesses,
-    averageGuesses: Number((totalGuesses / WORD_BANK.length).toFixed(2)),
     games
-  };
+  });
 
   return {
     id: runId,
@@ -256,62 +328,93 @@ async function runBenchmark(runId, model, effort) {
     maxHints: MAX_HINTS,
     wordBank: WORD_BANK,
     provider: FIXED_PROVIDER,
-    ranking: [
-      {
-        rank: 1,
-        modelKey: modelRun.modelKey,
-        modelLabel: modelRun.modelLabel,
-        effort,
-        totalGuesses: modelRun.totalGuesses,
-        solvedCount: modelRun.solvedCount,
-        failedCount: modelRun.failedCount,
-        totalWords: modelRun.totalWords,
-        averageGuesses: modelRun.averageGuesses
-      }
-    ],
+    ranking: [buildRankingRow(modelRun)],
     modelRuns: [modelRun]
   };
 }
 
-async function runSingleGame(model, targetWord, effort) {
+async function runSingleGame({ runId, model, targetWord, effort }) {
+  const executionId = crypto.randomUUID();
+  const traceSession = createTraceSession();
+  const traceFileRef = getTraceFileRef(runId, targetWord);
   const turns = [];
+  let outputGame = null;
+  let status = "failed";
+  let failureMessage = null;
 
-  const drawing = await generateValidDrawing({ model, targetWord, effort });
-  turns.push({
-    turnNumber: 1,
-    role: "draw",
-    svg: drawing.svg,
-    jpgDataUrl: drawing.jpgDataUrl
-  });
+  try {
+    const drawing = await generateValidDrawing({ model, targetWord, effort, traceSession });
+    turns.push({
+      turnNumber: 1,
+      role: "draw",
+      svg: drawing.svg,
+      jpgDataUrl: drawing.jpgDataUrl
+    });
 
-  const guesses = await generateOrderedGuesses({
-    model,
-    effort,
-    drawingJpgDataUrl: drawing.jpgDataUrl
-  });
+    const guesses = await generateOrderedGuesses({
+      model,
+      effort,
+      targetWord,
+      drawingJpgDataUrl: drawing.jpgDataUrl,
+      traceSession
+    });
 
-  let firstCorrectTurn = null;
-  for (let turnNumber = 1; turnNumber <= guesses.length; turnNumber += 1) {
-    const guess = guesses[turnNumber - 1];
-    const correct = firstCorrectTurn === null && isSameWord(guess, targetWord);
-    if (correct) firstCorrectTurn = turnNumber;
-    turns.push({ turnNumber, role: "guess", text: guess, correct });
+    let firstCorrectTurn = null;
+    for (let turnNumber = 1; turnNumber <= guesses.length; turnNumber += 1) {
+      const guess = guesses[turnNumber - 1];
+      const correct = firstCorrectTurn === null && isSameWord(guess, targetWord);
+      if (correct) firstCorrectTurn = turnNumber;
+      turns.push({ turnNumber, role: "guess", text: guess, correct });
+    }
+
+    const solved = firstCorrectTurn !== null;
+    const guessesUsed = solved ? firstCorrectTurn : MAX_HINTS;
+    const penalizedGuesses = solved ? guessesUsed : MAX_HINTS + 1;
+    const requestStats = summarizeTraceRequests(traceSession.requests);
+    outputGame = {
+      targetWord,
+      solved,
+      guessesUsed,
+      penalizedGuesses,
+      totalCostUsd: requestStats.totalCostUsd,
+      pricedRequests: requestStats.pricedRequests,
+      totalRequests: requestStats.totalRequests,
+      missingPriceRequests: requestStats.missingPriceRequests,
+      turns,
+      traceRef: {
+        runId,
+        targetWord,
+        executionId,
+        file: traceFileRef.relativePath
+      }
+    };
+    status = "completed";
+    return outputGame;
+  } catch (err) {
+    failureMessage = err?.message || "Game failed";
+    const requestStats = summarizeTraceRequests(traceSession.requests);
+    err.traceStats = requestStats;
+    throw err;
+  } finally {
+    try {
+      await appendGameTraceExecution({
+        runId,
+        targetWord,
+        model,
+        effort,
+        executionId,
+        status,
+        failureMessage,
+        game: outputGame,
+        traceSession
+      });
+    } catch (traceErr) {
+      console.error("Failed to persist trace execution", traceErr);
+    }
   }
-
-  const solved = firstCorrectTurn !== null;
-  const guessesUsed = solved ? firstCorrectTurn : MAX_HINTS;
-  const penalizedGuesses = solved ? guessesUsed : MAX_HINTS + 1;
-
-  return {
-    targetWord,
-    solved,
-    guessesUsed,
-    penalizedGuesses,
-    turns
-  };
 }
 
-async function generateValidDrawing({ model, targetWord, effort }) {
+async function generateValidDrawing({ model, targetWord, effort, traceSession }) {
   const maxAttempts = 4;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
@@ -319,6 +422,12 @@ async function generateValidDrawing({ model, targetWord, effort }) {
       modelId: model.modelId,
       provider: model.provider || FIXED_PROVIDER,
       effort,
+      traceSession,
+      traceMeta: {
+        phase: "draw",
+        targetWord,
+        generationAttempt: attempt
+      },
       systemPrompt: DRAWER_SYSTEM_PROMPT,
       payload: {
         targetWord,
@@ -345,7 +454,7 @@ async function generateValidDrawing({ model, targetWord, effort }) {
   };
 }
 
-async function generateOrderedGuesses({ model, drawingJpgDataUrl, effort }) {
+async function generateOrderedGuesses({ model, drawingJpgDataUrl, effort, targetWord, traceSession }) {
   const maxAttempts = 4;
   let bestGuesses = [];
 
@@ -354,6 +463,12 @@ async function generateOrderedGuesses({ model, drawingJpgDataUrl, effort }) {
       modelId: model.modelId,
       provider: model.provider || FIXED_PROVIDER,
       effort,
+      traceSession,
+      traceMeta: {
+        phase: "guess",
+        targetWord,
+        generationAttempt: attempt
+      },
       systemPrompt: GUESSER_SYSTEM_PROMPT,
       userContent: [
         {
@@ -385,29 +500,42 @@ async function generateOrderedGuesses({ model, drawingJpgDataUrl, effort }) {
   return fillMissingGuesses(bestGuesses);
 }
 
-async function sendStructuredRequest({ modelId, provider, effort, systemPrompt, payload, userContent, temperature = 0.3 }) {
+async function sendStructuredRequest({
+  modelId,
+  provider,
+  effort,
+  systemPrompt,
+  payload,
+  userContent,
+  temperature = 0.3,
+  traceSession = null,
+  traceMeta = {}
+}) {
   const maxAttempts = REQUEST_MAX_RETRIES;
   let lastError = null;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-    try {
-      const requestBody = {
-        model: modelId,
-        messages: [
-          { role: "system", content: systemPrompt },
-          {
-            role: "user",
-            content: userContent || JSON.stringify(payload || {})
-          }
-        ],
-        temperature,
-        reasoning: {
-          effort: effort || DEFAULT_EFFORT,
-          exclude: false
-        },
-        provider: provider || FIXED_PROVIDER
-      };
+    const requestId = crypto.randomUUID();
+    const requestStartedAt = new Date().toISOString();
+    let traceWritten = false;
+    const requestBody = {
+      model: modelId,
+      messages: [
+        { role: "system", content: systemPrompt },
+        {
+          role: "user",
+          content: userContent || JSON.stringify(payload || {})
+        }
+      ],
+      temperature,
+      reasoning: {
+        effort: effort || DEFAULT_EFFORT,
+        exclude: false
+      },
+      provider: provider || FIXED_PROVIDER
+    };
 
+    try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
       let response;
@@ -427,16 +555,48 @@ async function sendStructuredRequest({ modelId, provider, effort, systemPrompt, 
         clearTimeout(timeoutId);
       }
 
+      const responseText = await response.text();
+      const responseBody = safeJsonParse(responseText);
+      const responseHeaders = Object.fromEntries(response.headers.entries());
+      const responseCompletedAt = new Date().toISOString();
+      const costUsd = extractResponseCostUsd(responseBody);
+
+      appendTraceRequest(traceSession, {
+        requestId,
+        attempt,
+        requestStartedAt,
+        responseCompletedAt,
+        traceMeta,
+        request: requestBody,
+        response: {
+          status: response.status,
+          ok: response.ok,
+          openrouterRequestId: responseHeaders["x-request-id"] || responseBody?.id || null,
+          headers: responseHeaders,
+          rawBody: responseText,
+          body: responseBody || null
+        },
+        costUsd,
+        error: null
+      });
+      traceWritten = true;
+
       if (!response.ok) {
-        const errText = await response.text();
         if (attempt < maxAttempts && isRetryableStatus(response.status)) {
           await sleep(250 * attempt);
           continue;
         }
-        throw new Error(`OpenRouter error ${response.status}: ${errText}`);
+        throw new Error(`OpenRouter error ${response.status}: ${responseText}`);
       }
 
-      const data = await response.json();
+      const data = responseBody;
+      if (!data || typeof data !== "object") {
+        if (attempt < maxAttempts) {
+          await sleep(150 * attempt);
+          continue;
+        }
+        throw new Error("OpenRouter response was not valid JSON");
+      }
       const content = data?.choices?.[0]?.message?.content;
       if (!content) {
         if (attempt < maxAttempts) {
@@ -459,6 +619,19 @@ async function sendStructuredRequest({ modelId, provider, effort, systemPrompt, 
       } else {
         lastError = err;
       }
+      if (!traceWritten) {
+        appendTraceRequest(traceSession, {
+          requestId,
+          attempt,
+          requestStartedAt,
+          responseCompletedAt: new Date().toISOString(),
+          traceMeta,
+          request: requestBody,
+          response: null,
+          costUsd: null,
+          error: lastError.message || String(lastError)
+        });
+      }
       if (attempt < maxAttempts) {
         await sleep(200 * attempt);
         continue;
@@ -468,6 +641,168 @@ async function sendStructuredRequest({ modelId, provider, effort, systemPrompt, 
   }
 
   throw lastError || new Error("Unknown request error");
+}
+
+function buildModelRun({ model, effort, games }) {
+  const safeGames = Array.isArray(games) ? games : [];
+  const totalWords = safeGames.length || WORD_BANK.length;
+  const solvedGames = safeGames.filter((game) => game?.solved);
+  const failedGames = safeGames.filter((game) => game?.failed);
+  const totalGuesses = safeGames.reduce((sum, game) => sum + Number(game?.penalizedGuesses || 0), 0);
+  const totalCostUsdRaw = safeGames.reduce((sum, game) => sum + Number(game?.totalCostUsd || 0), 0);
+  const missingPriceRequests = safeGames.reduce((sum, game) => sum + Number(game?.missingPriceRequests || 0), 0);
+  const pricedRequests = safeGames.reduce((sum, game) => sum + Number(game?.pricedRequests || 0), 0);
+  const totalRequests = safeGames.reduce((sum, game) => sum + Number(game?.totalRequests || 0), 0);
+
+  return {
+    modelKey: model.key,
+    modelLabel: model.label,
+    effort,
+    modelId: model.modelId,
+    solvedCount: solvedGames.length,
+    failedCount: failedGames.length,
+    totalWords,
+    totalGuesses,
+    averageGuesses: totalWords > 0 ? Number((totalGuesses / totalWords).toFixed(2)) : 0,
+    totalCostUsd: Number(totalCostUsdRaw.toFixed(6)),
+    pricedRequests,
+    totalRequests,
+    missingPriceRequests,
+    games: safeGames
+  };
+}
+
+function buildRankingRow(modelRun) {
+  return {
+    rank: 1,
+    modelKey: modelRun.modelKey,
+    modelLabel: modelRun.modelLabel,
+    effort: modelRun.effort,
+    totalGuesses: modelRun.totalGuesses,
+    solvedCount: modelRun.solvedCount,
+    failedCount: modelRun.failedCount,
+    totalWords: modelRun.totalWords,
+    averageGuesses: modelRun.averageGuesses,
+    totalCostUsd: modelRun.totalCostUsd,
+    pricedRequests: modelRun.pricedRequests,
+    totalRequests: modelRun.totalRequests,
+    missingPriceRequests: modelRun.missingPriceRequests
+  };
+}
+
+function createTraceSession() {
+  return { requests: [] };
+}
+
+function appendTraceRequest(traceSession, event) {
+  if (!traceSession) return;
+  if (!Array.isArray(traceSession.requests)) traceSession.requests = [];
+  traceSession.requests.push(event);
+}
+
+function summarizeTraceRequests(requests) {
+  const events = Array.isArray(requests) ? requests : [];
+  const successfulResponses = events.filter((item) => item?.response?.ok);
+  const totalRequests = events.length;
+  const pricedRequests = successfulResponses.filter((item) => Number.isFinite(item?.costUsd)).length;
+  const totalCostUsdRaw = successfulResponses.reduce((sum, item) => sum + Number(item?.costUsd || 0), 0);
+  const missingPriceRequests = successfulResponses.length - pricedRequests;
+  return {
+    totalRequests,
+    pricedRequests,
+    missingPriceRequests,
+    totalCostUsd: Number(totalCostUsdRaw.toFixed(6))
+  };
+}
+
+function extractResponseCostUsd(data) {
+  if (!data || typeof data !== "object") return null;
+  const candidates = [
+    data?.usage?.cost,
+    data?.usage?.total_cost,
+    data?.usage?.cost_usd,
+    data?.total_cost,
+    data?.cost,
+    data?.metadata?.cost,
+    data?.meta?.cost,
+    data?.provider_response?.usage?.cost
+  ];
+  for (const value of candidates) {
+    const cost = Number(value);
+    if (Number.isFinite(cost) && cost >= 0) return Number(cost.toFixed(6));
+  }
+  return null;
+}
+
+function getTraceFileRef(runId, targetWord) {
+  const fileName = `${toSafeFileToken(targetWord)}.json`;
+  const relativePath = path.join("openrouter_traces", runId, fileName);
+  return {
+    fileName,
+    relativePath,
+    absolutePath: path.join(TRACE_RESULTS_DIR, runId, fileName)
+  };
+}
+
+function toSafeFileToken(value) {
+  const normalized = normalizeWord(value)
+    .replace(/[^a-z0-9-]/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^-+|-+$/g, "")
+    .replace(/^_+|_+$/g, "");
+  return normalized || "word";
+}
+
+async function appendGameTraceExecution({
+  runId,
+  targetWord,
+  model,
+  effort,
+  executionId,
+  status,
+  failureMessage,
+  game,
+  traceSession
+}) {
+  const traceRef = getTraceFileRef(runId, targetWord);
+  await fs.mkdir(path.dirname(traceRef.absolutePath), { recursive: true });
+
+  const execution = {
+    executionId,
+    startedAt: traceSession?.requests?.[0]?.requestStartedAt || new Date().toISOString(),
+    completedAt: new Date().toISOString(),
+    status,
+    failureMessage: failureMessage || null,
+    game: game || null,
+    requestStats: summarizeTraceRequests(traceSession?.requests),
+    requests: Array.isArray(traceSession?.requests) ? traceSession.requests : []
+  };
+
+  let existing = null;
+  try {
+    const raw = await fs.readFile(traceRef.absolutePath, "utf8");
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === "object") existing = parsed;
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err;
+  }
+
+  const payload = {
+    runId,
+    targetWord,
+    modelKey: model.key,
+    modelLabel: model.label,
+    modelId: model.modelId,
+    effort,
+    latestExecutionId: executionId,
+    executions: []
+  };
+
+  if (existing && Array.isArray(existing.executions)) {
+    payload.executions = existing.executions;
+  }
+  payload.executions.push(execution);
+  await fs.writeFile(traceRef.absolutePath, JSON.stringify(payload, null, 2), "utf8");
 }
 
 function sanitizeOneWord(raw) {
@@ -647,6 +982,7 @@ function sleep(ms) {
 }
 
 function buildFailedGame(targetWord, err) {
+  const traceStats = err?.traceStats || {};
   return {
     targetWord,
     solved: false,
@@ -654,6 +990,10 @@ function buildFailedGame(targetWord, err) {
     failureReason: err?.message || "Game failed",
     guessesUsed: MAX_HINTS,
     penalizedGuesses: MAX_HINTS + 1,
+    totalCostUsd: Number(traceStats.totalCostUsd || 0),
+    pricedRequests: Number(traceStats.pricedRequests || 0),
+    totalRequests: Number(traceStats.totalRequests || 0),
+    missingPriceRequests: Number(traceStats.missingPriceRequests || 0),
     turns: []
   };
 }
@@ -789,6 +1129,32 @@ async function readAllBenchmarks() {
   return all;
 }
 
+async function findBenchmarkRecord(runId) {
+  if (!runId) return null;
+  await fs.mkdir(MODEL_RESULTS_DIR, { recursive: true });
+  const entries = await fs.readdir(MODEL_RESULTS_DIR, { withFileTypes: true });
+  const files = entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+    .map((entry) => path.join(MODEL_RESULTS_DIR, entry.name));
+
+  for (const filePath of files) {
+    const raw = await fs.readFile(filePath, "utf8");
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed?.benchmarks)) continue;
+    const index = parsed.benchmarks.findIndex((benchmark) => benchmark?.id === runId);
+    if (index === -1) continue;
+    const modelKey = path.basename(filePath, ".json");
+    return {
+      modelKey,
+      filePath,
+      index,
+      benchmarks: parsed.benchmarks.map(normalizeBenchmark),
+      benchmark: normalizeBenchmark(parsed.benchmarks[index])
+    };
+  }
+  return null;
+}
+
 function parseEffort(raw) {
   const value = typeof raw === "string" ? raw.trim().toLowerCase() : DEFAULT_EFFORT;
   return ALLOWED_EFFORTS.has(value) ? value : null;
@@ -798,22 +1164,78 @@ function normalizeBenchmark(benchmark) {
   if (!benchmark || typeof benchmark !== "object") return benchmark;
   const effort = parseEffort(benchmark.effort) || DEFAULT_EFFORT;
   const modelRuns = Array.isArray(benchmark.modelRuns)
-    ? benchmark.modelRuns.map((run) => ({
-      ...run,
-      effort: parseEffort(run?.effort) || effort
-    }))
+    ? benchmark.modelRuns.map((run) => {
+      const runEffort = parseEffort(run?.effort) || effort;
+      const games = Array.isArray(run?.games) ? run.games : [];
+      const gameCost = deriveGameCostStats(games);
+      const hasCostInGames = games.some((game) =>
+        Number.isFinite(Number(game?.totalCostUsd))
+        || Number.isFinite(Number(game?.pricedRequests))
+        || Number.isFinite(Number(game?.totalRequests))
+      );
+      const totalCostUsd = Number.isFinite(Number(run?.totalCostUsd))
+        ? Number(Number(run.totalCostUsd).toFixed(6))
+        : (hasCostInGames ? gameCost.totalCostUsd : null);
+      const pricedRequests = Number.isFinite(Number(run?.pricedRequests))
+        ? Number(run.pricedRequests)
+        : (hasCostInGames ? gameCost.pricedRequests : null);
+      const totalRequests = Number.isFinite(Number(run?.totalRequests))
+        ? Number(run.totalRequests)
+        : (hasCostInGames ? gameCost.totalRequests : null);
+      const missingPriceRequests = Number.isFinite(Number(run?.missingPriceRequests))
+        ? Number(run.missingPriceRequests)
+        : (hasCostInGames ? gameCost.missingPriceRequests : null);
+      return {
+        ...run,
+        effort: runEffort,
+        totalCostUsd,
+        pricedRequests,
+        totalRequests,
+        missingPriceRequests
+      };
+    })
     : [];
+  const primaryRun = modelRuns[0] || null;
   const ranking = Array.isArray(benchmark.ranking)
-    ? benchmark.ranking.map((row) => ({
-      ...row,
-      effort: parseEffort(row?.effort) || effort
-    }))
+    ? benchmark.ranking.map((row) => {
+      const rowEffort = parseEffort(row?.effort) || effort;
+      return {
+        ...row,
+        effort: rowEffort,
+        totalCostUsd: Number.isFinite(Number(row?.totalCostUsd))
+          ? Number(Number(row.totalCostUsd).toFixed(6))
+          : (primaryRun?.totalCostUsd ?? null),
+        pricedRequests: Number.isFinite(Number(row?.pricedRequests))
+          ? Number(row.pricedRequests)
+          : (primaryRun?.pricedRequests ?? null),
+        totalRequests: Number.isFinite(Number(row?.totalRequests))
+          ? Number(row.totalRequests)
+          : (primaryRun?.totalRequests ?? null),
+        missingPriceRequests: Number.isFinite(Number(row?.missingPriceRequests))
+          ? Number(row.missingPriceRequests)
+          : (primaryRun?.missingPriceRequests ?? null)
+      };
+    })
     : [];
   return {
     ...benchmark,
     effort,
     modelRuns,
     ranking
+  };
+}
+
+function deriveGameCostStats(games) {
+  const safeGames = Array.isArray(games) ? games : [];
+  const totalCostUsdRaw = safeGames.reduce((sum, game) => sum + Number(game?.totalCostUsd || 0), 0);
+  const pricedRequests = safeGames.reduce((sum, game) => sum + Number(game?.pricedRequests || 0), 0);
+  const totalRequests = safeGames.reduce((sum, game) => sum + Number(game?.totalRequests || 0), 0);
+  const missingPriceRequests = safeGames.reduce((sum, game) => sum + Number(game?.missingPriceRequests || 0), 0);
+  return {
+    totalCostUsd: Number(totalCostUsdRaw.toFixed(6)),
+    pricedRequests,
+    totalRequests,
+    missingPriceRequests
   };
 }
 

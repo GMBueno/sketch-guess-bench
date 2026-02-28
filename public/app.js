@@ -13,6 +13,8 @@ const screenEls = {
 };
 
 const rankingBody = document.querySelector("#ranking-table tbody");
+const costChartStatus = document.getElementById("cost-chart-status");
+const costSolvedChart = document.getElementById("cost-solved-chart");
 
 const runASelect = document.getElementById("run-a");
 const runBSelect = document.getElementById("run-b");
@@ -102,6 +104,7 @@ async function loadBenchmarks() {
   benchmarks.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
 
   renderRankingTable();
+  renderSolvedVsCostChart();
   fillRunSelect(runASelect, { optional: false });
   fillRunSelect(runBSelect, { optional: true });
   fillRunSelect(runCSelect, { optional: true });
@@ -122,6 +125,9 @@ function renderRankingTable() {
     const solvedA = Number(rowA?.solvedCount || 0);
     const solvedB = Number(rowB?.solvedCount || 0);
     if (solvedB !== solvedA) return solvedB - solvedA;
+    const costA = Number(getBenchmarkCostUsd(a));
+    const costB = Number(getBenchmarkCostUsd(b));
+    if (Number.isFinite(costA) && Number.isFinite(costB) && costA !== costB) return costA - costB;
     return new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime();
   });
 
@@ -137,6 +143,7 @@ function renderRankingTable() {
       <td>${row.failedCount ?? 0}</td>
       <td>${row.totalGuesses}</td>
       <td>${row.averageGuesses}</td>
+      <td>${formatUsd(getBenchmarkCostUsd(benchmark))}</td>
     `;
     rankingBody.append(tr);
   }
@@ -314,6 +321,91 @@ function toSvgDataUrl(svg) {
 
 function setStatus(message) {
   statusEl.textContent = message;
+}
+
+function getBenchmarkCostUsd(benchmark) {
+  const rowCostRaw = benchmark?.ranking?.[0]?.totalCostUsd;
+  if (rowCostRaw !== null && rowCostRaw !== undefined) {
+    const rowCost = Number(rowCostRaw);
+    if (Number.isFinite(rowCost)) return rowCost;
+  }
+  const runCostRaw = benchmark?.modelRuns?.[0]?.totalCostUsd;
+  if (runCostRaw !== null && runCostRaw !== undefined) {
+    const runCost = Number(runCostRaw);
+    if (Number.isFinite(runCost)) return runCost;
+  }
+  return NaN;
+}
+
+function formatUsd(value) {
+  const cost = Number(value);
+  if (!Number.isFinite(cost)) return "n/a";
+  return `$${cost.toFixed(6)}`;
+}
+
+function renderSolvedVsCostChart() {
+  const points = benchmarks
+    .map((benchmark) => {
+      const row = benchmark?.ranking?.[0];
+      const solved = Number(row?.solvedCount);
+      const cost = Number(getBenchmarkCostUsd(benchmark));
+      if (!Number.isFinite(solved) || !Number.isFinite(cost)) return null;
+      return {
+        id: benchmark.id,
+        label: formatModelWithEffort(row?.modelLabel || "Unknown model", row?.effort),
+        solved,
+        cost
+      };
+    })
+    .filter(Boolean);
+
+  if (points.length === 0) {
+    costChartStatus.textContent = "No cost data yet. New runs with response traces will populate this chart.";
+    costSolvedChart.innerHTML = "";
+    return;
+  }
+
+  const minCost = Math.min(...points.map((point) => point.cost));
+  const maxCost = Math.max(...points.map((point) => point.cost));
+  const minSolved = 0;
+  const maxSolved = Math.max(...points.map((point) => point.solved), 1);
+  const plot = { left: 64, top: 20, width: 660, height: 250 };
+  const xRange = Math.max(maxCost - minCost, 1e-9);
+  const yRange = Math.max(maxSolved - minSolved, 1);
+
+  const xAt = (value) => plot.left + ((value - minCost) / xRange) * plot.width;
+  const yAt = (value) => plot.top + plot.height - ((value - minSolved) / yRange) * plot.height;
+
+  const xTicks = [0, 0.25, 0.5, 0.75, 1].map((ratio) => minCost + xRange * ratio);
+  const yTicks = Array.from({ length: 6 }, (_, i) => minSolved + (yRange * i) / 5);
+
+  const grid = [
+    ...xTicks.map((tick) => `<line x1="${xAt(tick)}" y1="${plot.top}" x2="${xAt(tick)}" y2="${plot.top + plot.height}" stroke="#edf2ef"/>`),
+    ...yTicks.map((tick) => `<line x1="${plot.left}" y1="${yAt(tick)}" x2="${plot.left + plot.width}" y2="${yAt(tick)}" stroke="#edf2ef"/>`)
+  ].join("");
+
+  const labels = [
+    ...xTicks.map((tick) => `<text x="${xAt(tick)}" y="${plot.top + plot.height + 20}" text-anchor="middle" font-size="11" fill="#4f6179">${tick.toFixed(5)}</text>`),
+    ...yTicks.map((tick) => `<text x="${plot.left - 10}" y="${yAt(tick) + 4}" text-anchor="end" font-size="11" fill="#4f6179">${Math.round(tick)}</text>`)
+  ].join("");
+
+  const dots = points.map((point) => {
+    const x = xAt(point.cost);
+    const y = yAt(point.solved);
+    const title = `${point.label}: solved ${point.solved}, cost $${point.cost.toFixed(6)}`;
+    return `<circle cx="${x}" cy="${y}" r="5" fill="#0a7c86"><title>${title}</title></circle>`;
+  }).join("");
+
+  costSolvedChart.innerHTML = `
+    <line x1="${plot.left}" y1="${plot.top + plot.height}" x2="${plot.left + plot.width}" y2="${plot.top + plot.height}" stroke="#9fb0bd"/>
+    <line x1="${plot.left}" y1="${plot.top}" x2="${plot.left}" y2="${plot.top + plot.height}" stroke="#9fb0bd"/>
+    ${grid}
+    ${labels}
+    ${dots}
+    <text x="${plot.left + plot.width / 2}" y="${plot.top + plot.height + 42}" text-anchor="middle" font-size="12" fill="#263753">Cost (USD)</text>
+    <text x="18" y="${plot.top + plot.height / 2}" text-anchor="middle" font-size="12" fill="#263753" transform="rotate(-90 18 ${plot.top + plot.height / 2})">Solved</text>
+  `;
+  costChartStatus.textContent = `${points.length} run${points.length === 1 ? "" : "s"} plotted.`;
 }
 
 function formatModelWithEffort(modelLabel, effort) {

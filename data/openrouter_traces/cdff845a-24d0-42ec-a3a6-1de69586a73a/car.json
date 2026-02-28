@@ -1,0 +1,397 @@
+{
+  "runId": "cdff845a-24d0-42ec-a3a6-1de69586a73a",
+  "targetWord": "car",
+  "modelKey": "gemini25flashlite",
+  "modelLabel": "Gemini 2.5 Flash Lite",
+  "modelId": "google/gemini-2.5-flash-lite",
+  "effort": "medium",
+  "latestExecutionId": "4622aff9-7b58-43c4-b4cf-9485e121c198",
+  "executions": [
+    {
+      "executionId": "4622aff9-7b58-43c4-b4cf-9485e121c198",
+      "startedAt": "2026-02-28T02:51:21.675Z",
+      "completedAt": "2026-02-28T02:51:45.287Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "car",
+        "solved": true,
+        "guessesUsed": 1,
+        "penalizedGuesses": 1,
+        "totalCostUsd": 0.002525,
+        "pricedRequests": 2,
+        "totalRequests": 2,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg width=\"512\" height=\"512\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- Car Body -->\n  <rect x=\"50\" y=\"220\" width=\"412\" height=\"110\" rx=\"25\" fill=\"#607D8B\" stroke=\"black\" stroke-width=\"2\"/>\n  <!-- Car Cabin -->\n  <rect x=\"150\" y=\"120\" width=\"212\" height=\"100\" rx=\"15\" fill=\"#90A4AE\" stroke=\"black\" stroke-width=\"2\"/>\n\n  <!-- Front Wheel -->\n  <circle cx=\"150\" cy=\"330\" r=\"40\" fill=\"#212121\" stroke=\"black\" stroke-width=\"2\"/>\n  <!-- Rear Wheel -->\n  <circle cx=\"360\" cy=\"330\" r=\"40\" fill=\"#212121\" stroke=\"black\" stroke-width=\"2\"/>\n\n  <!-- Front Windshield -->\n  <polygon points=\"150,120 180,220 220,220 200,120\" fill=\"#CFD8DC\" stroke=\"black\" stroke-width=\"2\"/>\n  <!-- Rear Window -->\n  <polygon points=\"320,220 360,220 372,120 340,120\" fill=\"#CFD8DC\" stroke=\"black\" stroke-width=\"2\"/>\n  <!-- Side Window -->\n  <rect x=\"230\" y=\"130\" width=\"80\" height=\"70\" fill=\"#CFD8DC\" stroke=\"black\" stroke-width=\"2\"/>\n</svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,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"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "Car",
+            "correct": true
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "Vehicle",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "Auto",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "Truck",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "Van",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "Automobile",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "Motor",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "Transport",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "Machine",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "Chassis",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "Carrier",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "Lorry",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "Bus",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "Wagon",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "Carriage",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "Toy",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "Model",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "Icon",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "Box",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "Wheels",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "cdff845a-24d0-42ec-a3a6-1de69586a73a",
+          "targetWord": "car",
+          "executionId": "4622aff9-7b58-43c4-b4cf-9485e121c198",
+          "file": "openrouter_traces/cdff845a-24d0-42ec-a3a6-1de69586a73a/car.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 2,
+        "pricedRequests": 2,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.002525
+      },
+      "requests": [
+        {
+          "requestId": "aa1f416d-ec96-432e-8b35-879a0d5b4ff7",
+          "attempt": 1,
+          "requestStartedAt": "2026-02-28T02:51:21.675Z",
+          "responseCompletedAt": "2026-02-28T02:51:33.552Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "car",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "google/gemini-2.5-flash-lite",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"car\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            },
+            "provider": {
+              "order": [
+                "google-ai-studio"
+              ],
+              "allow_fallbacks": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1772247083-kOpiQKCrMFhFXgUzc8co",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9d4c9eaa9ef05573-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Sat, 28 Feb 2026 02:51:24 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1772247083-kOpiQKCrMFhFXgUzc8co\",\"provider\":\"Google AI Studio\",\"model\":\"google/gemini-2.5-flash-lite\",\"object\":\"chat.completion\",\"created\":1772247083,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"```json\\n{\\n  \\\"svg\\\": \\\"<svg width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\">\\\\n  <!-- Car Body -->\\\\n  <rect x=\\\\\\\"50\\\\\\\" y=\\\\\\\"220\\\\\\\" width=\\\\\\\"412\\\\\\\" height=\\\\\\\"110\\\\\\\" rx=\\\\\\\"25\\\\\\\" fill=\\\\\\\"#607D8B\\\\\\\" stroke=\\\\\\\"black\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n  <!-- Car Cabin -->\\\\n  <rect x=\\\\\\\"150\\\\\\\" y=\\\\\\\"120\\\\\\\" width=\\\\\\\"212\\\\\\\" height=\\\\\\\"100\\\\\\\" rx=\\\\\\\"15\\\\\\\" fill=\\\\\\\"#90A4AE\\\\\\\" stroke=\\\\\\\"black\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n\\\\n  <!-- Front Wheel -->\\\\n  <circle cx=\\\\\\\"150\\\\\\\" cy=\\\\\\\"330\\\\\\\" r=\\\\\\\"40\\\\\\\" fill=\\\\\\\"#212121\\\\\\\" stroke=\\\\\\\"black\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n  <!-- Rear Wheel -->\\\\n  <circle cx=\\\\\\\"360\\\\\\\" cy=\\\\\\\"330\\\\\\\" r=\\\\\\\"40\\\\\\\" fill=\\\\\\\"#212121\\\\\\\" stroke=\\\\\\\"black\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n\\\\n  <!-- Front Windshield -->\\\\n  <polygon points=\\\\\\\"150,120 180,220 220,220 200,120\\\\\\\" fill=\\\\\\\"#CFD8DC\\\\\\\" stroke=\\\\\\\"black\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n  <!-- Rear Window -->\\\\n  <polygon points=\\\\\\\"320,220 360,220 372,120 340,120\\\\\\\" fill=\\\\\\\"#CFD8DC\\\\\\\" stroke=\\\\\\\"black\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n  <!-- Side Window -->\\\\n  <rect x=\\\\\\\"230\\\\\\\" y=\\\\\\\"130\\\\\\\" width=\\\\\\\"80\\\\\\\" height=\\\\\\\"70\\\\\\\" fill=\\\\\\\"#CFD8DC\\\\\\\" stroke=\\\\\\\"black\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n</svg>\\\"\\n}\\n```\",\"refusal\":null,\"reasoning\":\"**Begin Constructing a Car**\\n\\nI'm starting with a rounded rectangle, that will form the car's body. My goal is a simple, readily identifiable shape suitable for an SVG canvas.\\n\\n\\n**Refining Initial Design**\\n\\nI've simplified the car body to a single rounded rectangle for the base, with a smaller rounded rectangle on top for the cabin, aiming for clarity. I'm focusing on clean shapes for the wheels, trying to keep a balance between detail and simplicity. The next step is adjusting the shapes to see the desired appearance on the canvas and getting all the coordinates correct.\\n\\n\\n**Simplifying for Clarity**\\n\\nI'm now focusing on a more iconic side profile for the car. I've adjusted the coordinates for the body, cabin, and wheels, aiming for a cleaner, more recognizable silhouette suitable for SVG. I've simplified the shapes and their locations to achieve this goal. I'm experimenting with a rounded rectangle and a smaller rectangle on top, and also a trapezoid shape for the front and rear window.\\n\\n\\n**Adjusting and Refining Shapes**\\n\\nI'm now iterating on the SVG code, adjusting coordinates for a cleaner look. I've re-positioned the car's body and cabin and checked the proportions. The main focus is on maintaining an iconic silhouette that's easily recognizable. I'm focusing on getting the positions and shapes just right, fine-tuning until I'm satisfied.\\n\\n\\n**Adjusting Design Elements**\\n\\nI'm now revising the SVG code, focusing on the y-axis values to ensure the car sits correctly on the canvas, aligning the wheels and body. My aim is a balanced composition. I've tweaked the shape of the windows relative to the cabin to enhance the side profile. The proportions are being refined. I'm re-evaluating the shape and position of each element.\\n\\n\\n**Refining Geometric Representation**\\n\\nI'm now generating SVG code, focusing on accurate Y-axis alignment for a balanced look. The wheels are placed and now serve as the reference for the body's bottom. I'm tweaking the windows' shape and location within the cabin. My goal is a recognizable side profile. I'm focusing on the overall balance of the composition.\\n\\n\\n**Refining Coordinate Placement**\\n\\nI'm now generating SVG code, ensuring Y-axis values create balanced positioning. The wheels now define the ground level, serving as the reference for the body's bottom. I've adjusted the shape and location of the windows relative to the cabin. The goal is a clean, recognizable side profile.\\n\\n\\n**Refining Final Representation**\\n\\nI'm now satisfied with the visual, having ensured correct alignment and geometric proportions for the car's side profile. I've re-evaluated Y-axis values for balance. The final SVG code, with its color and shape definitions, creates a simple, iconic car. I have confirmed that the SVG code generates an acceptable image.\\n\\n\\n\",\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.text\",\"text\":\"**Begin Constructing a Car**\\n\\nI'm starting with a rounded rectangle, that will form the car's body. My goal is a simple, readily identifiable shape suitable for an SVG canvas.\\n\\n\\n**Refining Initial Design**\\n\\nI've simplified the car body to a single rounded rectangle for the base, with a smaller rounded rectangle on top for the cabin, aiming for clarity. I'm focusing on clean shapes for the wheels, trying to keep a balance between detail and simplicity. The next step is adjusting the shapes to see the desired appearance on the canvas and getting all the coordinates correct.\\n\\n\\n**Simplifying for Clarity**\\n\\nI'm now focusing on a more iconic side profile for the car. I've adjusted the coordinates for the body, cabin, and wheels, aiming for a cleaner, more recognizable silhouette suitable for SVG. I've simplified the shapes and their locations to achieve this goal. I'm experimenting with a rounded rectangle and a smaller rectangle on top, and also a trapezoid shape for the front and rear window.\\n\\n\\n**Adjusting and Refining Shapes**\\n\\nI'm now iterating on the SVG code, adjusting coordinates for a cleaner look. I've re-positioned the car's body and cabin and checked the proportions. The main focus is on maintaining an iconic silhouette that's easily recognizable. I'm focusing on getting the positions and shapes just right, fine-tuning until I'm satisfied.\\n\\n\\n**Adjusting Design Elements**\\n\\nI'm now revising the SVG code, focusing on the y-axis values to ensure the car sits correctly on the canvas, aligning the wheels and body. My aim is a balanced composition. I've tweaked the shape of the windows relative to the cabin to enhance the side profile. The proportions are being refined. I'm re-evaluating the shape and position of each element.\\n\\n\\n**Refining Geometric Representation**\\n\\nI'm now generating SVG code, focusing on accurate Y-axis alignment for a balanced look. The wheels are placed and now serve as the reference for the body's bottom. I'm tweaking the windows' shape and location within the cabin. My goal is a recognizable side profile. I'm focusing on the overall balance of the composition.\\n\\n\\n**Refining Coordinate Placement**\\n\\nI'm now generating SVG code, ensuring Y-axis values create balanced positioning. The wheels now define the ground level, serving as the reference for the body's bottom. I've adjusted the shape and location of the windows relative to the cabin. The goal is a clean, recognizable side profile.\\n\\n\\n**Refining Final Representation**\\n\\nI'm now satisfied with the visual, having ensured correct alignment and geometric proportions for the car's side profile. I've re-evaluated Y-axis values for balance. The final SVG code, with its color and shape definitions, creates a simple, iconic car. I have confirmed that the SVG code generates an acceptable image.\\n\\n\\n\"}],\"annotations\":[]}}],\"usage\":{\"prompt_tokens\":144,\"completion_tokens\":3417,\"total_tokens\":3561,\"cost\":0.0013812,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0013812,\"upstream_inference_prompt_cost\":0.0000144,\"upstream_inference_completions_cost\":0.0013668},\"completion_tokens_details\":{\"reasoning_tokens\":2966,\"image_tokens\":0}}}",
+            "body": {
+              "id": "gen-1772247083-kOpiQKCrMFhFXgUzc8co",
+              "provider": "Google AI Studio",
+              "model": "google/gemini-2.5-flash-lite",
+              "object": "chat.completion",
+              "created": 1772247083,
+              "choices": [
+                {
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "STOP",
+                  "index": 0,
+                  "message": {
+                    "role": "assistant",
+                    "content": "```json\n{\n  \"svg\": \"<svg width=\\\"512\\\" height=\\\"512\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n  <!-- Car Body -->\\n  <rect x=\\\"50\\\" y=\\\"220\\\" width=\\\"412\\\" height=\\\"110\\\" rx=\\\"25\\\" fill=\\\"#607D8B\\\" stroke=\\\"black\\\" stroke-width=\\\"2\\\"/>\\n  <!-- Car Cabin -->\\n  <rect x=\\\"150\\\" y=\\\"120\\\" width=\\\"212\\\" height=\\\"100\\\" rx=\\\"15\\\" fill=\\\"#90A4AE\\\" stroke=\\\"black\\\" stroke-width=\\\"2\\\"/>\\n\\n  <!-- Front Wheel -->\\n  <circle cx=\\\"150\\\" cy=\\\"330\\\" r=\\\"40\\\" fill=\\\"#212121\\\" stroke=\\\"black\\\" stroke-width=\\\"2\\\"/>\\n  <!-- Rear Wheel -->\\n  <circle cx=\\\"360\\\" cy=\\\"330\\\" r=\\\"40\\\" fill=\\\"#212121\\\" stroke=\\\"black\\\" stroke-width=\\\"2\\\"/>\\n\\n  <!-- Front Windshield -->\\n  <polygon points=\\\"150,120 180,220 220,220 200,120\\\" fill=\\\"#CFD8DC\\\" stroke=\\\"black\\\" stroke-width=\\\"2\\\"/>\\n  <!-- Rear Window -->\\n  <polygon points=\\\"320,220 360,220 372,120 340,120\\\" fill=\\\"#CFD8DC\\\" stroke=\\\"black\\\" stroke-width=\\\"2\\\"/>\\n  <!-- Side Window -->\\n  <rect x=\\\"230\\\" y=\\\"130\\\" width=\\\"80\\\" height=\\\"70\\\" fill=\\\"#CFD8DC\\\" stroke=\\\"black\\\" stroke-width=\\\"2\\\"/>\\n</svg>\"\n}\n```",
+                    "refusal": null,
+                    "reasoning": "**Begin Constructing a Car**\n\nI'm starting with a rounded rectangle, that will form the car's body. My goal is a simple, readily identifiable shape suitable for an SVG canvas.\n\n\n**Refining Initial Design**\n\nI've simplified the car body to a single rounded rectangle for the base, with a smaller rounded rectangle on top for the cabin, aiming for clarity. I'm focusing on clean shapes for the wheels, trying to keep a balance between detail and simplicity. The next step is adjusting the shapes to see the desired appearance on the canvas and getting all the coordinates correct.\n\n\n**Simplifying for Clarity**\n\nI'm now focusing on a more iconic side profile for the car. I've adjusted the coordinates for the body, cabin, and wheels, aiming for a cleaner, more recognizable silhouette suitable for SVG. I've simplified the shapes and their locations to achieve this goal. I'm experimenting with a rounded rectangle and a smaller rectangle on top, and also a trapezoid shape for the front and rear window.\n\n\n**Adjusting and Refining Shapes**\n\nI'm now iterating on the SVG code, adjusting coordinates for a cleaner look. I've re-positioned the car's body and cabin and checked the proportions. The main focus is on maintaining an iconic silhouette that's easily recognizable. I'm focusing on getting the positions and shapes just right, fine-tuning until I'm satisfied.\n\n\n**Adjusting Design Elements**\n\nI'm now revising the SVG code, focusing on the y-axis values to ensure the car sits correctly on the canvas, aligning the wheels and body. My aim is a balanced composition. I've tweaked the shape of the windows relative to the cabin to enhance the side profile. The proportions are being refined. I'm re-evaluating the shape and position of each element.\n\n\n**Refining Geometric Representation**\n\nI'm now generating SVG code, focusing on accurate Y-axis alignment for a balanced look. The wheels are placed and now serve as the reference for the body's bottom. I'm tweaking the windows' shape and location within the cabin. My goal is a recognizable side profile. I'm focusing on the overall balance of the composition.\n\n\n**Refining Coordinate Placement**\n\nI'm now generating SVG code, ensuring Y-axis values create balanced positioning. The wheels now define the ground level, serving as the reference for the body's bottom. I've adjusted the shape and location of the windows relative to the cabin. The goal is a clean, recognizable side profile.\n\n\n**Refining Final Representation**\n\nI'm now satisfied with the visual, having ensured correct alignment and geometric proportions for the car's side profile. I've re-evaluated Y-axis values for balance. The final SVG code, with its color and shape definitions, creates a simple, iconic car. I have confirmed that the SVG code generates an acceptable image.\n\n\n",
+                    "reasoning_details": [
+                      {
+                        "format": "google-gemini-v1",
+                        "index": 0,
+                        "type": "reasoning.text",
+                        "text": "**Begin Constructing a Car**\n\nI'm starting with a rounded rectangle, that will form the car's body. My goal is a simple, readily identifiable shape suitable for an SVG canvas.\n\n\n**Refining Initial Design**\n\nI've simplified the car body to a single rounded rectangle for the base, with a smaller rounded rectangle on top for the cabin, aiming for clarity. I'm focusing on clean shapes for the wheels, trying to keep a balance between detail and simplicity. The next step is adjusting the shapes to see the desired appearance on the canvas and getting all the coordinates correct.\n\n\n**Simplifying for Clarity**\n\nI'm now focusing on a more iconic side profile for the car. I've adjusted the coordinates for the body, cabin, and wheels, aiming for a cleaner, more recognizable silhouette suitable for SVG. I've simplified the shapes and their locations to achieve this goal. I'm experimenting with a rounded rectangle and a smaller rectangle on top, and also a trapezoid shape for the front and rear window.\n\n\n**Adjusting and Refining Shapes**\n\nI'm now iterating on the SVG code, adjusting coordinates for a cleaner look. I've re-positioned the car's body and cabin and checked the proportions. The main focus is on maintaining an iconic silhouette that's easily recognizable. I'm focusing on getting the positions and shapes just right, fine-tuning until I'm satisfied.\n\n\n**Adjusting Design Elements**\n\nI'm now revising the SVG code, focusing on the y-axis values to ensure the car sits correctly on the canvas, aligning the wheels and body. My aim is a balanced composition. I've tweaked the shape of the windows relative to the cabin to enhance the side profile. The proportions are being refined. I'm re-evaluating the shape and position of each element.\n\n\n**Refining Geometric Representation**\n\nI'm now generating SVG code, focusing on accurate Y-axis alignment for a balanced look. The wheels are placed and now serve as the reference for the body's bottom. I'm tweaking the windows' shape and location within the cabin. My goal is a recognizable side profile. I'm focusing on the overall balance of the composition.\n\n\n**Refining Coordinate Placement**\n\nI'm now generating SVG code, ensuring Y-axis values create balanced positioning. The wheels now define the ground level, serving as the reference for the body's bottom. I've adjusted the shape and location of the windows relative to the cabin. The goal is a clean, recognizable side profile.\n\n\n**Refining Final Representation**\n\nI'm now satisfied with the visual, having ensured correct alignment and geometric proportions for the car's side profile. I've re-evaluated Y-axis values for balance. The final SVG code, with its color and shape definitions, creates a simple, iconic car. I have confirmed that the SVG code generates an acceptable image.\n\n\n"
+                      }
+                    ],
+                    "annotations": []
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 144,
+                "completion_tokens": 3417,
+                "total_tokens": 3561,
+                "cost": 0.0013812,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0013812,
+                  "upstream_inference_prompt_cost": 0.0000144,
+                  "upstream_inference_completions_cost": 0.0013668
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 2966,
+                  "image_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.001381,
+          "error": null
+        },
+        {
+          "requestId": "c31fb229-3137-48c7-85f7-6e9725ce0589",
+          "attempt": 1,
+          "requestStartedAt": "2026-02-28T02:51:33.635Z",
+          "responseCompletedAt": "2026-02-28T02:51:45.287Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "car",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "google/gemini-2.5-flash-lite",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,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"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            },
+            "provider": {
+              "order": [
+                "google-ai-studio"
+              ],
+              "allow_fallbacks": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1772247094-7L7oYfLOcPsVO9H0tQ0v",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9d4c9ef35a665573-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Sat, 28 Feb 2026 02:51:36 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1772247094-7L7oYfLOcPsVO9H0tQ0v\",\"provider\":\"Google AI Studio\",\"model\":\"google/gemini-2.5-flash-lite\",\"object\":\"chat.completion\",\"created\":1772247094,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"```json\\n{\\n  \\\"guesses\\\": [\\n    \\\"Car\\\",\\n    \\\"Vehicle\\\",\\n    \\\"Auto\\\",\\n    \\\"Truck\\\",\\n    \\\"Van\\\",\\n    \\\"Automobile\\\",\\n    \\\"Motor\\\",\\n    \\\"Transport\\\",\\n    \\\"Machine\\\",\\n    \\\"Chassis\\\",\\n    \\\"Carrier\\\",\\n    \\\"Lorry\\\",\\n    \\\"Bus\\\",\\n    \\\"Wagon\\\",\\n    \\\"Carriage\\\",\\n    \\\"Toy\\\",\\n    \\\"Model\\\",\\n    \\\"Icon\\\",\\n    \\\"Box\\\",\\n    \\\"Wheels\\\"\\n  ]\\n}\\n```\",\"refusal\":null,\"reasoning\":\"**Initiating Guessing Sequence**\\n\\nOkay, I've got it. I understand the task: I'm acting as a guesser for a one-word game, producing 20 guesses in JSON format, ordered by confidence. I'll need to generate that JSON with a single \\\"guesses\\\" array of strings, just one word per string. Now the real fun begins!\\n\\n\\n**Refining First Guesses**\\n\\nI've formulated the initial top guesses based on the visual cues: a rectangular body, wheels, and a cabin. My primary guess is \\\"Car,\\\" as it's the most straightforward. Next are \\\"Vehicle\\\" and \\\"Auto\\\" as more general terms. I'm also considering \\\"Truck\\\" and \\\"Van\\\" because of the boxy shape. I am working through the possible variations, but now it's time to refine this list.\\n\\n\\n**Prioritizing Initial Guesses**\\n\\nI've revised the list, focusing on the visual simplicity of the image. My top guesses, \\\"Car,\\\" \\\"Vehicle,\\\" and \\\"Auto,\\\" remain strong, but I've reorganized the order to reflect the basic nature of the drawing. I'm prioritizing direct terms that capture the essence of the depicted object, before moving to more abstract interpretations.\\n\\n\\n**Generating Final Guesses**\\n\\nOkay, I've got my twenty distinct guesses now. I've focused on terms directly related to the visual representation: the rectangular body, wheels, and cabin. I've prioritized common words like \\\"Car,\\\" \\\"Vehicle,\\\" and \\\"Truck,\\\" and included synonyms and more general terms to round out the list, making sure to vary the list as much as possible. It's time to format the output.\\n\\n\\n**Finalizing Word Choice**\\n\\nI'm now generating the final list of guesses, carefully avoiding repeats and prioritizing terms based on the image's simplicity. I'm focusing on direct representations and synonyms, ensuring a diverse and well-ordered list of twenty words. I've considered shape, function, and key components.\\n\\n\\n**Finalizing Initial List**\\n\\nI've carefully assembled the twenty unique guesses, prioritizing straightforward terms. I'm focusing on the essence of the drawing: it is a car-like machine with wheels and a cabin, keeping it as simple as possible. It's now finalized and ready for the next phase.\\n\\n\\n**Generating Final List**\\n\\nI've finalized the list to include more general terms reflecting the simple style of the image. \\\"Icon,\\\" \\\"Toy,\\\" and \\\"Model\\\" are now prioritized lower in the list, after more concrete terms. I am now confident that all of the twenty guesses are valid.\\n\\n\\n**Finalizing Guesses**\\n\\nI'm now satisfied with the final list of twenty unique guesses, all single EN-US words, ready for the JSON output. I've considered the drawing's simplicity, prioritizing direct terms like \\\"Car\\\" and \\\"Vehicle,\\\" then adding related concepts and words about the style, like \\\"Icon\\\" or \\\"Model.\\\" I will now output the result.\\n\\n\\n**Refining List and Reordering**\\n\\nI've carefully re-evaluated the ordering, prioritizing terms reflecting the image's simplicity. I've considered that terms such as \\\"Icon,\\\" \\\"Toy,\\\" and \\\"Model\\\" are valid guesses, but less confident than \\\"Car\\\" or \\\"Vehicle.\\\" I'm now confident in the final list, ready to generate the JSON output.\\n\\n\\n\",\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.text\",\"text\":\"**Initiating Guessing Sequence**\\n\\nOkay, I've got it. I understand the task: I'm acting as a guesser for a one-word game, producing 20 guesses in JSON format, ordered by confidence. I'll need to generate that JSON with a single \\\"guesses\\\" array of strings, just one word per string. Now the real fun begins!\\n\\n\\n**Refining First Guesses**\\n\\nI've formulated the initial top guesses based on the visual cues: a rectangular body, wheels, and a cabin. My primary guess is \\\"Car,\\\" as it's the most straightforward. Next are \\\"Vehicle\\\" and \\\"Auto\\\" as more general terms. I'm also considering \\\"Truck\\\" and \\\"Van\\\" because of the boxy shape. I am working through the possible variations, but now it's time to refine this list.\\n\\n\\n**Prioritizing Initial Guesses**\\n\\nI've revised the list, focusing on the visual simplicity of the image. My top guesses, \\\"Car,\\\" \\\"Vehicle,\\\" and \\\"Auto,\\\" remain strong, but I've reorganized the order to reflect the basic nature of the drawing. I'm prioritizing direct terms that capture the essence of the depicted object, before moving to more abstract interpretations.\\n\\n\\n**Generating Final Guesses**\\n\\nOkay, I've got my twenty distinct guesses now. I've focused on terms directly related to the visual representation: the rectangular body, wheels, and cabin. I've prioritized common words like \\\"Car,\\\" \\\"Vehicle,\\\" and \\\"Truck,\\\" and included synonyms and more general terms to round out the list, making sure to vary the list as much as possible. It's time to format the output.\\n\\n\\n**Finalizing Word Choice**\\n\\nI'm now generating the final list of guesses, carefully avoiding repeats and prioritizing terms based on the image's simplicity. I'm focusing on direct representations and synonyms, ensuring a diverse and well-ordered list of twenty words. I've considered shape, function, and key components.\\n\\n\\n**Finalizing Initial List**\\n\\nI've carefully assembled the twenty unique guesses, prioritizing straightforward terms. I'm focusing on the essence of the drawing: it is a car-like machine with wheels and a cabin, keeping it as simple as possible. It's now finalized and ready for the next phase.\\n\\n\\n**Generating Final List**\\n\\nI've finalized the list to include more general terms reflecting the simple style of the image. \\\"Icon,\\\" \\\"Toy,\\\" and \\\"Model\\\" are now prioritized lower in the list, after more concrete terms. I am now confident that all of the twenty guesses are valid.\\n\\n\\n**Finalizing Guesses**\\n\\nI'm now satisfied with the final list of twenty unique guesses, all single EN-US words, ready for the JSON output. I've considered the drawing's simplicity, prioritizing direct terms like \\\"Car\\\" and \\\"Vehicle,\\\" then adding related concepts and words about the style, like \\\"Icon\\\" or \\\"Model.\\\" I will now output the result.\\n\\n\\n**Refining List and Reordering**\\n\\nI've carefully re-evaluated the ordering, prioritizing terms reflecting the image's simplicity. I've considered that terms such as \\\"Icon,\\\" \\\"Toy,\\\" and \\\"Model\\\" are valid guesses, but less confident than \\\"Car\\\" or \\\"Vehicle.\\\" I'm now confident in the final list, ready to generate the JSON output.\\n\\n\\n\"}],\"annotations\":[]}}],\"usage\":{\"prompt_tokens\":424,\"completion_tokens\":2755,\"total_tokens\":3179,\"cost\":0.0011444,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0011444,\"upstream_inference_prompt_cost\":0.0000424,\"upstream_inference_completions_cost\":0.001102},\"completion_tokens_details\":{\"reasoning_tokens\":2645,\"image_tokens\":0}}}",
+            "body": {
+              "id": "gen-1772247094-7L7oYfLOcPsVO9H0tQ0v",
+              "provider": "Google AI Studio",
+              "model": "google/gemini-2.5-flash-lite",
+              "object": "chat.completion",
+              "created": 1772247094,
+              "choices": [
+                {
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "STOP",
+                  "index": 0,
+                  "message": {
+                    "role": "assistant",
+                    "content": "```json\n{\n  \"guesses\": [\n    \"Car\",\n    \"Vehicle\",\n    \"Auto\",\n    \"Truck\",\n    \"Van\",\n    \"Automobile\",\n    \"Motor\",\n    \"Transport\",\n    \"Machine\",\n    \"Chassis\",\n    \"Carrier\",\n    \"Lorry\",\n    \"Bus\",\n    \"Wagon\",\n    \"Carriage\",\n    \"Toy\",\n    \"Model\",\n    \"Icon\",\n    \"Box\",\n    \"Wheels\"\n  ]\n}\n```",
+                    "refusal": null,
+                    "reasoning": "**Initiating Guessing Sequence**\n\nOkay, I've got it. I understand the task: I'm acting as a guesser for a one-word game, producing 20 guesses in JSON format, ordered by confidence. I'll need to generate that JSON with a single \"guesses\" array of strings, just one word per string. Now the real fun begins!\n\n\n**Refining First Guesses**\n\nI've formulated the initial top guesses based on the visual cues: a rectangular body, wheels, and a cabin. My primary guess is \"Car,\" as it's the most straightforward. Next are \"Vehicle\" and \"Auto\" as more general terms. I'm also considering \"Truck\" and \"Van\" because of the boxy shape. I am working through the possible variations, but now it's time to refine this list.\n\n\n**Prioritizing Initial Guesses**\n\nI've revised the list, focusing on the visual simplicity of the image. My top guesses, \"Car,\" \"Vehicle,\" and \"Auto,\" remain strong, but I've reorganized the order to reflect the basic nature of the drawing. I'm prioritizing direct terms that capture the essence of the depicted object, before moving to more abstract interpretations.\n\n\n**Generating Final Guesses**\n\nOkay, I've got my twenty distinct guesses now. I've focused on terms directly related to the visual representation: the rectangular body, wheels, and cabin. I've prioritized common words like \"Car,\" \"Vehicle,\" and \"Truck,\" and included synonyms and more general terms to round out the list, making sure to vary the list as much as possible. It's time to format the output.\n\n\n**Finalizing Word Choice**\n\nI'm now generating the final list of guesses, carefully avoiding repeats and prioritizing terms based on the image's simplicity. I'm focusing on direct representations and synonyms, ensuring a diverse and well-ordered list of twenty words. I've considered shape, function, and key components.\n\n\n**Finalizing Initial List**\n\nI've carefully assembled the twenty unique guesses, prioritizing straightforward terms. I'm focusing on the essence of the drawing: it is a car-like machine with wheels and a cabin, keeping it as simple as possible. It's now finalized and ready for the next phase.\n\n\n**Generating Final List**\n\nI've finalized the list to include more general terms reflecting the simple style of the image. \"Icon,\" \"Toy,\" and \"Model\" are now prioritized lower in the list, after more concrete terms. I am now confident that all of the twenty guesses are valid.\n\n\n**Finalizing Guesses**\n\nI'm now satisfied with the final list of twenty unique guesses, all single EN-US words, ready for the JSON output. I've considered the drawing's simplicity, prioritizing direct terms like \"Car\" and \"Vehicle,\" then adding related concepts and words about the style, like \"Icon\" or \"Model.\" I will now output the result.\n\n\n**Refining List and Reordering**\n\nI've carefully re-evaluated the ordering, prioritizing terms reflecting the image's simplicity. I've considered that terms such as \"Icon,\" \"Toy,\" and \"Model\" are valid guesses, but less confident than \"Car\" or \"Vehicle.\" I'm now confident in the final list, ready to generate the JSON output.\n\n\n",
+                    "reasoning_details": [
+                      {
+                        "format": "google-gemini-v1",
+                        "index": 0,
+                        "type": "reasoning.text",
+                        "text": "**Initiating Guessing Sequence**\n\nOkay, I've got it. I understand the task: I'm acting as a guesser for a one-word game, producing 20 guesses in JSON format, ordered by confidence. I'll need to generate that JSON with a single \"guesses\" array of strings, just one word per string. Now the real fun begins!\n\n\n**Refining First Guesses**\n\nI've formulated the initial top guesses based on the visual cues: a rectangular body, wheels, and a cabin. My primary guess is \"Car,\" as it's the most straightforward. Next are \"Vehicle\" and \"Auto\" as more general terms. I'm also considering \"Truck\" and \"Van\" because of the boxy shape. I am working through the possible variations, but now it's time to refine this list.\n\n\n**Prioritizing Initial Guesses**\n\nI've revised the list, focusing on the visual simplicity of the image. My top guesses, \"Car,\" \"Vehicle,\" and \"Auto,\" remain strong, but I've reorganized the order to reflect the basic nature of the drawing. I'm prioritizing direct terms that capture the essence of the depicted object, before moving to more abstract interpretations.\n\n\n**Generating Final Guesses**\n\nOkay, I've got my twenty distinct guesses now. I've focused on terms directly related to the visual representation: the rectangular body, wheels, and cabin. I've prioritized common words like \"Car,\" \"Vehicle,\" and \"Truck,\" and included synonyms and more general terms to round out the list, making sure to vary the list as much as possible. It's time to format the output.\n\n\n**Finalizing Word Choice**\n\nI'm now generating the final list of guesses, carefully avoiding repeats and prioritizing terms based on the image's simplicity. I'm focusing on direct representations and synonyms, ensuring a diverse and well-ordered list of twenty words. I've considered shape, function, and key components.\n\n\n**Finalizing Initial List**\n\nI've carefully assembled the twenty unique guesses, prioritizing straightforward terms. I'm focusing on the essence of the drawing: it is a car-like machine with wheels and a cabin, keeping it as simple as possible. It's now finalized and ready for the next phase.\n\n\n**Generating Final List**\n\nI've finalized the list to include more general terms reflecting the simple style of the image. \"Icon,\" \"Toy,\" and \"Model\" are now prioritized lower in the list, after more concrete terms. I am now confident that all of the twenty guesses are valid.\n\n\n**Finalizing Guesses**\n\nI'm now satisfied with the final list of twenty unique guesses, all single EN-US words, ready for the JSON output. I've considered the drawing's simplicity, prioritizing direct terms like \"Car\" and \"Vehicle,\" then adding related concepts and words about the style, like \"Icon\" or \"Model.\" I will now output the result.\n\n\n**Refining List and Reordering**\n\nI've carefully re-evaluated the ordering, prioritizing terms reflecting the image's simplicity. I've considered that terms such as \"Icon,\" \"Toy,\" and \"Model\" are valid guesses, but less confident than \"Car\" or \"Vehicle.\" I'm now confident in the final list, ready to generate the JSON output.\n\n\n"
+                      }
+                    ],
+                    "annotations": []
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 424,
+                "completion_tokens": 2755,
+                "total_tokens": 3179,
+                "cost": 0.0011444,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0011444,
+                  "upstream_inference_prompt_cost": 0.0000424,
+                  "upstream_inference_completions_cost": 0.001102
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 2645,
+                  "image_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.001144,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

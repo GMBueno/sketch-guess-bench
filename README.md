@@ -21,6 +21,18 @@ Current setup:
 Replay dashboard:
 - Shows turn-by-turn guesses
 - Shows SVG for each draw turn, with optional JPEG popup
+- Rankings now include run cost (`Cost (USD)`) and a solved-vs-cost chart
+
+Trace + rerun:
+- Every OpenRouter request/response is saved under `data/openrouter_traces/<runId>/<word>.json`
+- Each word trace file keeps an `executions` history (initial run + any retries)
+- You can rerun just one word in an existing run:
+
+```bash
+curl -s -X POST http://localhost:3000/api/benchmarks/<runId>/retry-word \
+  -H "Content-Type: application/json" \
+  -d '{"targetWord":"cat"}'
+```
 
 ## Run
 
