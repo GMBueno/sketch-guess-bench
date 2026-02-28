@@ -177,14 +177,16 @@ app.post("/api/benchmarks/run", async (req, res) => {
     });
     return;
   }
-  const effort = parseEffort(req.body?.effort);
-  if (!effort) {
+  const modelSupportsEffort = supportsEffort(model.modelId);
+  const providedEffort = parseEffort(req.body?.effort);
+  if (modelSupportsEffort && req.body?.effort !== undefined && !providedEffort) {
     res.status(400).json({
       error: "Invalid effort",
       allowedEfforts: [...ALLOWED_EFFORTS]
     });
     return;
   }
+  const effort = modelSupportsEffort ? (providedEffort || DEFAULT_EFFORT) : null;
   if (benchmarkProgress.status === "running") {
     res.status(409).json({ error: "A benchmark is already running" });
     return;
@@ -247,7 +249,10 @@ app.post("/api/benchmarks/:runId/retry-word", async (req, res) => {
     return;
   }
 
-  const effort = parseEffort(run.effort) || parseEffort(record.benchmark?.effort) || DEFAULT_EFFORT;
+  const modelSupportsEffort = supportsEffort(model.modelId);
+  const effort = modelSupportsEffort
+    ? (parseEffort(run.effort) || parseEffort(record.benchmark?.effort) || DEFAULT_EFFORT)
+    : null;
   startBenchmarkProgress(runId, model, effort);
   benchmarkProgress.totalGames = 1;
   benchmarkProgress.completedGames = 0;
@@ -528,12 +533,14 @@ async function sendStructuredRequest({
         }
       ],
       temperature,
-      reasoning: {
-        effort: effort || DEFAULT_EFFORT,
-        exclude: false
-      },
       provider: provider || FIXED_PROVIDER
     };
+    if (supportsEffort(modelId)) {
+      requestBody.reasoning = {
+        effort: effort || DEFAULT_EFFORT,
+        exclude: false
+      };
+    }
 
     try {
       const controller = new AbortController();
@@ -1020,7 +1027,9 @@ function startBenchmarkProgress(runId, model, effort) {
   benchmarkProgress.totalGames = WORD_BANK.length;
   benchmarkProgress.completedGames = 0;
   benchmarkProgress.failedGames = 0;
-  benchmarkProgress.activeModel = model?.label ? `${model.label} (${effort || DEFAULT_EFFORT})` : null;
+  benchmarkProgress.activeModel = model?.label
+    ? (supportsEffort(model?.modelId) && effort ? `${model.label} (${effort})` : model.label)
+    : null;
   benchmarkProgress.activeWord = null;
   benchmarkProgress.lastCompletedModel = null;
   benchmarkProgress.lastCompletedWord = null;
@@ -1156,16 +1165,26 @@ async function findBenchmarkRecord(runId) {
 }
 
 function parseEffort(raw) {
-  const value = typeof raw === "string" ? raw.trim().toLowerCase() : DEFAULT_EFFORT;
+  const value = typeof raw === "string" ? raw.trim().toLowerCase() : "";
   return ALLOWED_EFFORTS.has(value) ? value : null;
+}
+
+function supportsEffort(modelId) {
+  return typeof modelId === "string" && modelId.startsWith("openai/");
 }
 
 function normalizeBenchmark(benchmark) {
   if (!benchmark || typeof benchmark !== "object") return benchmark;
-  const effort = parseEffort(benchmark.effort) || DEFAULT_EFFORT;
+  const benchmarkModel = resolveBenchmarkModel(benchmark);
+  const benchmarkSupportsEffort = supportsEffort(benchmarkModel?.modelId);
+  const effort = benchmarkSupportsEffort
+    ? (parseEffort(benchmark.effort) || DEFAULT_EFFORT)
+    : null;
   const modelRuns = Array.isArray(benchmark.modelRuns)
     ? benchmark.modelRuns.map((run) => {
-      const runEffort = parseEffort(run?.effort) || effort;
+      const runModelId = typeof run?.modelId === "string" ? run.modelId : benchmarkModel?.modelId;
+      const runSupportsEffort = supportsEffort(runModelId);
+      const runEffort = runSupportsEffort ? (parseEffort(run?.effort) || effort || DEFAULT_EFFORT) : null;
       const games = Array.isArray(run?.games) ? run.games : [];
       const gameCost = deriveGameCostStats(games);
       const hasCostInGames = games.some((game) =>
@@ -1198,7 +1217,8 @@ function normalizeBenchmark(benchmark) {
   const primaryRun = modelRuns[0] || null;
   const ranking = Array.isArray(benchmark.ranking)
     ? benchmark.ranking.map((row) => {
-      const rowEffort = parseEffort(row?.effort) || effort;
+      const rowSupportsEffort = supportsEffort(primaryRun?.modelId || benchmarkModel?.modelId);
+      const rowEffort = rowSupportsEffort ? (parseEffort(row?.effort) || effort || DEFAULT_EFFORT) : null;
       return {
         ...row,
         effort: rowEffort,
@@ -1237,6 +1257,21 @@ function deriveGameCostStats(games) {
     totalRequests,
     missingPriceRequests
   };
+}
+
+function resolveBenchmarkModel(benchmark) {
+  const run = Array.isArray(benchmark?.modelRuns) ? benchmark.modelRuns[0] : null;
+  if (run?.modelId) return { modelId: run.modelId, key: run.modelKey };
+  if (run?.modelKey) {
+    const matched = MODELS.find((item) => item.key === run.modelKey);
+    if (matched) return matched;
+  }
+  const rankingRow = Array.isArray(benchmark?.ranking) ? benchmark.ranking[0] : null;
+  if (rankingRow?.modelKey) {
+    const matched = MODELS.find((item) => item.key === rankingRow.modelKey);
+    if (matched) return matched;
+  }
+  return null;
 }
 
 process.on("exit", () => {

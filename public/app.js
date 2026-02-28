@@ -138,7 +138,7 @@ function renderRankingTable() {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${new Date(benchmark.completedAt).toLocaleString()}</td>
-      <td>${formatModelWithEffort(row.modelLabel, row.effort)}</td>
+      <td>${formatModelWithEffort(row.modelLabel, row.effort, benchmark?.modelRuns?.[0]?.modelId)}</td>
       <td>${row.solvedCount}/${row.totalWords}</td>
       <td>${row.failedCount ?? 0}</td>
       <td>${row.totalGuesses}</td>
@@ -163,7 +163,7 @@ function fillRunSelect(select, { optional }) {
     const run = benchmark.modelRuns?.[0];
     const option = document.createElement("option");
     option.value = benchmark.id;
-    option.textContent = formatModelWithEffort(run?.modelLabel || "Unknown model", run?.effort);
+    option.textContent = formatModelWithEffort(run?.modelLabel || "Unknown model", run?.effort, run?.modelId);
     select.append(option);
   }
 }
@@ -195,7 +195,7 @@ function renderReplayHeader(selected) {
   const columns = selected
     .map((benchmark) => {
       const run = benchmark.modelRuns?.[0];
-      const label = formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort);
+      const label = formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort, run?.modelId);
       const time = new Date(benchmark.completedAt).toLocaleString();
       return `<th>${label}<br><small>${time}</small></th>`;
     })
@@ -265,7 +265,7 @@ function renderDetailsGrid(selected, word) {
     card.className = "compare-detail-card";
 
     const title = document.createElement("h3");
-    title.textContent = `${formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort)} - ${new Date(benchmark.completedAt).toLocaleString()}`;
+    title.textContent = `${formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort, run?.modelId)} - ${new Date(benchmark.completedAt).toLocaleString()}`;
     card.append(title);
 
     if (!game) {
@@ -354,7 +354,7 @@ function renderSolvedVsCostChart() {
       if (!Number.isFinite(solved) || !Number.isFinite(cost)) return null;
       return {
         id: benchmark.id,
-        label: formatModelWithEffort(row?.modelLabel || "Unknown model", row?.effort),
+        label: formatModelWithEffort(row?.modelLabel || "Unknown model", row?.effort, benchmark?.modelRuns?.[0]?.modelId),
         solved,
         cost
       };
@@ -410,10 +410,13 @@ function renderSolvedVsCostChart() {
   costChartStatus.textContent = `${points.length} run${points.length === 1 ? "" : "s"} plotted.`;
 }
 
-function formatModelWithEffort(modelLabel, effort) {
+function formatModelWithEffort(modelLabel, effort, modelId) {
   const safeLabel = modelLabel || "Unknown model";
-  const safeEffort = effort || "medium";
-  return `${safeLabel} (${safeEffort})`;
+  const safeEffort = typeof effort === "string" ? effort.trim() : "";
+  if (isOpenAiModelId(modelId) && safeEffort) {
+    return `${safeLabel} (${safeEffort})`;
+  }
+  return safeLabel;
 }
 
 function ceilToCent(value) {
@@ -428,6 +431,10 @@ function hasCostTelemetry(record) {
   const pricedRequests = Number(record.pricedRequests || 0);
   const missingPriceRequests = Number(record.missingPriceRequests || 0);
   return totalRequests > 0 || pricedRequests > 0 || missingPriceRequests > 0;
+}
+
+function isOpenAiModelId(modelId) {
+  return typeof modelId === "string" && modelId.startsWith("openai/");
 }
 
 function startProgressPolling() {
