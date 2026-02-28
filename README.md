@@ -12,10 +12,11 @@ Scoring:
 - Lower total guesses is better
 
 Current setup:
-- Models: `google/gemini-3-flash-preview`, `openai/gpt-5-mini` (provider: `azure`), `moonshotai/kimi-k2.5` (provider: `moonshotai/int4`), `anthropic/claude-haiku-4.5` (provider: `google-vertex`)
+- Models: `google/gemini-3-flash-preview`, `openai/gpt-5-mini` (provider: `azure`), `moonshotai/kimi-k2.5` (provider: `moonshotai/int4`), `anthropic/claude-haiku-4.5` (provider: `google-vertex`), `openai/gpt-5.1-codex-mini` (provider: `openai`), `openai/gpt-5-nano` (provider: `openai`), `google/gemini-2.5-flash-lite` (provider: `google-ai-studio`)
 - Word bank lives in `data/wordbank.js`
 - Dashboard is read-only (rankings + replay only)
 - Benchmarks run one model at a time
+- Runs include `effort` (`xhigh|high|medium|low|minimal|none`). Existing historic runs are annotated as `medium`.
 
 Replay dashboard:
 - Shows turn-by-turn guesses
@@ -29,7 +30,7 @@ export OPENROUTER_API_KEY="your_key_here"
 npm run dev
 curl -s -X POST http://localhost:3000/api/benchmarks/run \
   -H "Content-Type: application/json" \
-  -d '{"modelKey":"gpt5mini"}'
+  -d '{"modelKey":"gpt5mini","effort":"xhigh"}'
 ```
 
 Open [http://localhost:3000](http://localhost:3000).

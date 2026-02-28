@@ -132,7 +132,7 @@ function renderRankingTable() {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${new Date(benchmark.completedAt).toLocaleString()}</td>
-      <td>${row.modelLabel}</td>
+      <td>${formatModelWithEffort(row.modelLabel, row.effort)}</td>
       <td>${row.solvedCount}/${row.totalWords}</td>
       <td>${row.failedCount ?? 0}</td>
       <td>${row.totalGuesses}</td>
@@ -156,7 +156,7 @@ function fillRunSelect(select, { optional }) {
     const run = benchmark.modelRuns?.[0];
     const option = document.createElement("option");
     option.value = benchmark.id;
-    option.textContent = run?.modelLabel || "Unknown model";
+    option.textContent = formatModelWithEffort(run?.modelLabel || "Unknown model", run?.effort);
     select.append(option);
   }
 }
@@ -188,7 +188,7 @@ function renderReplayHeader(selected) {
   const columns = selected
     .map((benchmark) => {
       const run = benchmark.modelRuns?.[0];
-      const label = run?.modelLabel || "Unknown";
+      const label = formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort);
       const time = new Date(benchmark.completedAt).toLocaleString();
       return `<th>${label}<br><small>${time}</small></th>`;
     })
@@ -258,7 +258,7 @@ function renderDetailsGrid(selected, word) {
     card.className = "compare-detail-card";
 
     const title = document.createElement("h3");
-    title.textContent = `${run?.modelLabel || "Unknown"} - ${new Date(benchmark.completedAt).toLocaleString()}`;
+    title.textContent = `${formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort)} - ${new Date(benchmark.completedAt).toLocaleString()}`;
     card.append(title);
 
     if (!game) {
@@ -314,6 +314,12 @@ function toSvgDataUrl(svg) {
 
 function setStatus(message) {
   statusEl.textContent = message;
+}
+
+function formatModelWithEffort(modelLabel, effort) {
+  const safeLabel = modelLabel || "Unknown model";
+  const safeEffort = effort || "medium";
+  return `${safeLabel} (${safeEffort})`;
 }
 
 function startProgressPolling() {

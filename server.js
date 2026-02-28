@@ -18,6 +18,8 @@ const BENCHMARK_CONCURRENCY = Number(process.env.BENCHMARK_CONCURRENCY || 10);
 const REQUEST_MAX_RETRIES = 3;
 const REQUEST_TIMEOUT_MS = Number(process.env.OPENROUTER_TIMEOUT_MS || 60000);
 const GAME_TIMEOUT_MS = Number(process.env.GAME_TIMEOUT_MS || 120000);
+const DEFAULT_EFFORT = "medium";
+const ALLOWED_EFFORTS = new Set(["xhigh", "high", "medium", "low", "minimal", "none"]);
 
 const MODELS = [
   {
@@ -43,6 +45,24 @@ const MODELS = [
     label: "Claude Haiku 4.5",
     modelId: "anthropic/claude-haiku-4.5",
     provider: { order: ["google-vertex"], allow_fallbacks: false }
+  },
+  {
+    key: "gpt51codexmini",
+    label: "GPT-5.1 Codex Mini",
+    modelId: "openai/gpt-5.1-codex-mini",
+    provider: { order: ["openai"], allow_fallbacks: false }
+  },
+  {
+    key: "gpt5nano",
+    label: "GPT-5 Nano",
+    modelId: "openai/gpt-5-nano",
+    provider: { order: ["openai"], allow_fallbacks: false }
+  },
+  {
+    key: "gemini25flashlite",
+    label: "Gemini 2.5 Flash Lite",
+    modelId: "google/gemini-2.5-flash-lite",
+    provider: { order: ["google-ai-studio"], allow_fallbacks: false }
   }
 ];
 
@@ -156,15 +176,23 @@ app.post("/api/benchmarks/run", async (req, res) => {
     });
     return;
   }
+  const effort = parseEffort(req.body?.effort);
+  if (!effort) {
+    res.status(400).json({
+      error: "Invalid effort",
+      allowedEfforts: [...ALLOWED_EFFORTS]
+    });
+    return;
+  }
   if (benchmarkProgress.status === "running") {
     res.status(409).json({ error: "A benchmark is already running" });
     return;
   }
 
   const runId = crypto.randomUUID();
-  startBenchmarkProgress(runId, model);
+  startBenchmarkProgress(runId, model, effort);
   try {
-    const benchmark = await runBenchmark(runId, model);
+    const benchmark = await runBenchmark(runId, model, effort);
     const modelBenchmarks = await readModelBenchmarks(model.key);
     modelBenchmarks.unshift(benchmark);
     await writeModelBenchmarks(model.key, modelBenchmarks);
@@ -181,7 +209,7 @@ app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
 
-async function runBenchmark(runId, model) {
+async function runBenchmark(runId, model, effort) {
   const startedAt = new Date().toISOString();
   const games = await runWithConcurrency(
     WORD_BANK,
@@ -190,7 +218,7 @@ async function runBenchmark(runId, model) {
       setActiveGame(model.label, targetWord);
       try {
         const game = await withTimeout(
-          runSingleGame(model, targetWord),
+          runSingleGame(model, targetWord, effort),
           GAME_TIMEOUT_MS,
           `Game timed out after ${GAME_TIMEOUT_MS}ms`
         );
@@ -210,6 +238,7 @@ async function runBenchmark(runId, model) {
   const modelRun = {
     modelKey: model.key,
     modelLabel: model.label,
+    effort,
     modelId: model.modelId,
     solvedCount: solvedGames.length,
     failedCount: failedGames.length,
@@ -223,6 +252,7 @@ async function runBenchmark(runId, model) {
     id: runId,
     startedAt,
     completedAt: new Date().toISOString(),
+    effort,
     maxHints: MAX_HINTS,
     wordBank: WORD_BANK,
     provider: FIXED_PROVIDER,
@@ -231,6 +261,7 @@ async function runBenchmark(runId, model) {
         rank: 1,
         modelKey: modelRun.modelKey,
         modelLabel: modelRun.modelLabel,
+        effort,
         totalGuesses: modelRun.totalGuesses,
         solvedCount: modelRun.solvedCount,
         failedCount: modelRun.failedCount,
@@ -242,10 +273,10 @@ async function runBenchmark(runId, model) {
   };
 }
 
-async function runSingleGame(model, targetWord) {
+async function runSingleGame(model, targetWord, effort) {
   const turns = [];
 
-  const drawing = await generateValidDrawing({ model, targetWord });
+  const drawing = await generateValidDrawing({ model, targetWord, effort });
   turns.push({
     turnNumber: 1,
     role: "draw",
@@ -255,6 +286,7 @@ async function runSingleGame(model, targetWord) {
 
   const guesses = await generateOrderedGuesses({
     model,
+    effort,
     drawingJpgDataUrl: drawing.jpgDataUrl
   });
 
@@ -279,13 +311,14 @@ async function runSingleGame(model, targetWord) {
   };
 }
 
-async function generateValidDrawing({ model, targetWord }) {
+async function generateValidDrawing({ model, targetWord, effort }) {
   const maxAttempts = 4;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     const response = await sendStructuredRequest({
       modelId: model.modelId,
       provider: model.provider || FIXED_PROVIDER,
+      effort,
       systemPrompt: DRAWER_SYSTEM_PROMPT,
       payload: {
         targetWord,
@@ -312,7 +345,7 @@ async function generateValidDrawing({ model, targetWord }) {
   };
 }
 
-async function generateOrderedGuesses({ model, drawingJpgDataUrl }) {
+async function generateOrderedGuesses({ model, drawingJpgDataUrl, effort }) {
   const maxAttempts = 4;
   let bestGuesses = [];
 
@@ -320,6 +353,7 @@ async function generateOrderedGuesses({ model, drawingJpgDataUrl }) {
     const response = await sendStructuredRequest({
       modelId: model.modelId,
       provider: model.provider || FIXED_PROVIDER,
+      effort,
       systemPrompt: GUESSER_SYSTEM_PROMPT,
       userContent: [
         {
@@ -351,7 +385,7 @@ async function generateOrderedGuesses({ model, drawingJpgDataUrl }) {
   return fillMissingGuesses(bestGuesses);
 }
 
-async function sendStructuredRequest({ modelId, provider, systemPrompt, payload, userContent, temperature = 0.3 }) {
+async function sendStructuredRequest({ modelId, provider, effort, systemPrompt, payload, userContent, temperature = 0.3 }) {
   const maxAttempts = REQUEST_MAX_RETRIES;
   let lastError = null;
 
@@ -367,6 +401,10 @@ async function sendStructuredRequest({ modelId, provider, systemPrompt, payload,
           }
         ],
         temperature,
+        reasoning: {
+          effort: effort || DEFAULT_EFFORT,
+          exclude: false
+        },
         provider: provider || FIXED_PROVIDER
       };
 
@@ -634,7 +672,7 @@ async function withTimeout(promise, timeoutMs, message) {
   }
 }
 
-function startBenchmarkProgress(runId, model) {
+function startBenchmarkProgress(runId, model, effort) {
   benchmarkProgress.status = "running";
   benchmarkProgress.runId = runId;
   benchmarkProgress.startedAt = new Date().toISOString();
@@ -642,7 +680,7 @@ function startBenchmarkProgress(runId, model) {
   benchmarkProgress.totalGames = WORD_BANK.length;
   benchmarkProgress.completedGames = 0;
   benchmarkProgress.failedGames = 0;
-  benchmarkProgress.activeModel = model?.label || null;
+  benchmarkProgress.activeModel = model?.label ? `${model.label} (${effort || DEFAULT_EFFORT})` : null;
   benchmarkProgress.activeWord = null;
   benchmarkProgress.lastCompletedModel = null;
   benchmarkProgress.lastCompletedWord = null;
@@ -714,7 +752,7 @@ async function readModelBenchmarks(modelKey) {
   try {
     const raw = await fs.readFile(filePath, "utf8");
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed?.benchmarks) ? parsed.benchmarks : [];
+    return Array.isArray(parsed?.benchmarks) ? parsed.benchmarks.map(normalizeBenchmark) : [];
   } catch (err) {
     if (err.code === "ENOENT") return [];
     throw err;
@@ -726,7 +764,7 @@ async function writeModelBenchmarks(modelKey, benchmarks) {
   await fs.mkdir(MODEL_RESULTS_DIR, { recursive: true });
   const payload = {
     modelKey,
-    benchmarks
+    benchmarks: benchmarks.map(normalizeBenchmark)
   };
   await fs.writeFile(filePath, JSON.stringify(payload, null, 2), "utf8");
 }
@@ -743,12 +781,40 @@ async function readAllBenchmarks() {
     const raw = await fs.readFile(filePath, "utf8");
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed?.benchmarks)) {
-      all.push(...parsed.benchmarks);
+      all.push(...parsed.benchmarks.map(normalizeBenchmark));
     }
   }
 
   all.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
   return all;
+}
+
+function parseEffort(raw) {
+  const value = typeof raw === "string" ? raw.trim().toLowerCase() : DEFAULT_EFFORT;
+  return ALLOWED_EFFORTS.has(value) ? value : null;
+}
+
+function normalizeBenchmark(benchmark) {
+  if (!benchmark || typeof benchmark !== "object") return benchmark;
+  const effort = parseEffort(benchmark.effort) || DEFAULT_EFFORT;
+  const modelRuns = Array.isArray(benchmark.modelRuns)
+    ? benchmark.modelRuns.map((run) => ({
+      ...run,
+      effort: parseEffort(run?.effort) || effort
+    }))
+    : [];
+  const ranking = Array.isArray(benchmark.ranking)
+    ? benchmark.ranking.map((row) => ({
+      ...row,
+      effort: parseEffort(row?.effort) || effort
+    }))
+    : [];
+  return {
+    ...benchmark,
+    effort,
+    modelRuns,
+    ranking
+  };
 }
 
 process.on("exit", () => {
