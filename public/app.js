@@ -125,6 +125,9 @@ function renderRankingTable() {
     const solvedA = Number(rowA?.solvedCount || 0);
     const solvedB = Number(rowB?.solvedCount || 0);
     if (solvedB !== solvedA) return solvedB - solvedA;
+    const guessesA = Number(rowA?.totalGuesses || Number.POSITIVE_INFINITY);
+    const guessesB = Number(rowB?.totalGuesses || Number.POSITIVE_INFINITY);
+    if (guessesA !== guessesB) return guessesA - guessesB;
     const costA = Number(getBenchmarkCostUsd(a));
     const costB = Number(getBenchmarkCostUsd(b));
     if (Number.isFinite(costA) && Number.isFinite(costB) && costA !== costB) return costA - costB;
@@ -140,10 +143,11 @@ function renderRankingTable() {
       <td>${new Date(benchmark.completedAt).toLocaleString()}</td>
       <td>${formatModelWithEffort(row.modelLabel, row.effort, benchmark?.modelRuns?.[0]?.modelId)}</td>
       <td>${row.solvedCount}/${row.totalWords}</td>
-      <td>${row.failedCount ?? 0}</td>
+      <td>${formatUsd(getBenchmarkCostUsd(benchmark))}</td>
+      <td>${formatDuration(getBenchmarkRequestMs(benchmark))}</td>
       <td>${row.totalGuesses}</td>
       <td>${row.averageGuesses}</td>
-      <td>${formatUsd(getBenchmarkCostUsd(benchmark))}</td>
+      <td>${row.failedCount ?? 0}</td>
     `;
     rankingBody.append(tr);
   }
@@ -345,6 +349,30 @@ function formatUsd(value) {
   return `$${cost.toFixed(2)}`;
 }
 
+function getBenchmarkRequestMs(benchmark) {
+  const rowMsRaw = benchmark?.ranking?.[0]?.totalRequestMs;
+  if (rowMsRaw !== null && rowMsRaw !== undefined) {
+    const rowMs = Number(rowMsRaw);
+    if (Number.isFinite(rowMs)) return rowMs;
+  }
+  const runMsRaw = benchmark?.modelRuns?.[0]?.totalRequestMs;
+  if (runMsRaw !== null && runMsRaw !== undefined) {
+    const runMs = Number(runMsRaw);
+    if (Number.isFinite(runMs)) return runMs;
+  }
+  return NaN;
+}
+
+function formatDuration(ms) {
+  const value = Number(ms);
+  if (!Number.isFinite(value)) return "n/a";
+  const totalSeconds = Math.round(value / 1000);
+  if (totalSeconds < 60) return `${totalSeconds}s`;
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}m ${String(seconds).padStart(2, "0")}s`;
+}
+
 function renderSolvedVsCostChart() {
   const points = benchmarks
     .map((benchmark) => {
@@ -413,8 +441,11 @@ function renderSolvedVsCostChart() {
 function formatModelWithEffort(modelLabel, effort, modelId) {
   const safeLabel = modelLabel || "Unknown model";
   const safeEffort = typeof effort === "string" ? effort.trim() : "";
-  if (isOpenAiModelId(modelId) && safeEffort) {
+  if (supportsEffortModelId(modelId) && safeEffort) {
     return `${safeLabel} (${safeEffort})`;
+  }
+  if (isGemini3FlashModelId(modelId)) {
+    return `${safeLabel} (${safeEffort || "dynamic"})`;
   }
   return safeLabel;
 }
@@ -433,8 +464,14 @@ function hasCostTelemetry(record) {
   return totalRequests > 0 || pricedRequests > 0 || missingPriceRequests > 0;
 }
 
-function isOpenAiModelId(modelId) {
-  return typeof modelId === "string" && modelId.startsWith("openai/");
+function supportsEffortModelId(modelId) {
+  if (typeof modelId !== "string") return false;
+  if (modelId.startsWith("openai/")) return true;
+  return modelId === "google/gemini-3.1-flash-lite-preview";
+}
+
+function isGemini3FlashModelId(modelId) {
+  return modelId === "google/gemini-3-flash-preview";
 }
 
 function startProgressPolling() {

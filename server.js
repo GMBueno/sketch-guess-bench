@@ -17,7 +17,7 @@ const MAX_HINTS = 20;
 const BENCHMARK_CONCURRENCY = Number(process.env.BENCHMARK_CONCURRENCY || 10);
 const REQUEST_MAX_RETRIES = 3;
 const REQUEST_TIMEOUT_MS = Number(process.env.OPENROUTER_TIMEOUT_MS || 60000);
-const GAME_TIMEOUT_MS = Number(process.env.GAME_TIMEOUT_MS || 120000);
+const GAME_TIMEOUT_MS = Number(process.env.GAME_TIMEOUT_MS || 600000);
 const DEFAULT_EFFORT = "medium";
 const ALLOWED_EFFORTS = new Set(["xhigh", "high", "medium", "low", "minimal", "none"]);
 
@@ -39,6 +39,12 @@ const MODELS = [
     label: "Gemini 3 Flash",
     modelId: "google/gemini-3-flash-preview",
     provider: { order: ["google-ai-studio", "google-vertex"], allow_fallbacks: false }
+  },
+  {
+    key: "gemini31flashlite",
+    label: "Gemini 3.1 Flash Lite",
+    modelId: "google/gemini-3.1-flash-lite-preview",
+    provider: { order: ["google-ai-studio"], allow_fallbacks: false }
   },
   {
     key: "claudehaiku45",
@@ -382,6 +388,7 @@ async function runSingleGame({ runId, model, targetWord, effort }) {
       guessesUsed,
       penalizedGuesses,
       totalCostUsd: requestStats.totalCostUsd,
+      totalRequestMs: requestStats.totalRequestMs,
       pricedRequests: requestStats.pricedRequests,
       totalRequests: requestStats.totalRequests,
       missingPriceRequests: requestStats.missingPriceRequests,
@@ -567,6 +574,8 @@ async function sendStructuredRequest({
       const responseHeaders = Object.fromEntries(response.headers.entries());
       const responseCompletedAt = new Date().toISOString();
       const costUsd = extractResponseCostUsd(responseBody);
+      const measuredDurationMs = computeDurationMs(requestStartedAt, responseCompletedAt);
+      const requestDurationMs = extractResponseDurationMs(responseBody, responseHeaders) ?? measuredDurationMs;
 
       appendTraceRequest(traceSession, {
         requestId,
@@ -584,6 +593,7 @@ async function sendStructuredRequest({
           body: responseBody || null
         },
         costUsd,
+        requestDurationMs,
         error: null
       });
       traceWritten = true;
@@ -627,15 +637,17 @@ async function sendStructuredRequest({
         lastError = err;
       }
       if (!traceWritten) {
+        const responseCompletedAt = new Date().toISOString();
         appendTraceRequest(traceSession, {
           requestId,
           attempt,
           requestStartedAt,
-          responseCompletedAt: new Date().toISOString(),
+          responseCompletedAt,
           traceMeta,
           request: requestBody,
           response: null,
           costUsd: null,
+          requestDurationMs: computeDurationMs(requestStartedAt, responseCompletedAt),
           error: lastError.message || String(lastError)
         });
       }
@@ -660,6 +672,7 @@ function buildModelRun({ model, effort, games }) {
   const missingPriceRequests = safeGames.reduce((sum, game) => sum + Number(game?.missingPriceRequests || 0), 0);
   const pricedRequests = safeGames.reduce((sum, game) => sum + Number(game?.pricedRequests || 0), 0);
   const totalRequests = safeGames.reduce((sum, game) => sum + Number(game?.totalRequests || 0), 0);
+  const totalRequestMsRaw = safeGames.reduce((sum, game) => sum + Number(game?.totalRequestMs || 0), 0);
 
   return {
     modelKey: model.key,
@@ -672,6 +685,7 @@ function buildModelRun({ model, effort, games }) {
     totalGuesses,
     averageGuesses: totalWords > 0 ? Number((totalGuesses / totalWords).toFixed(2)) : 0,
     totalCostUsd: Number(totalCostUsdRaw.toFixed(6)),
+    totalRequestMs: Number(totalRequestMsRaw.toFixed(0)),
     pricedRequests,
     totalRequests,
     missingPriceRequests,
@@ -691,6 +705,7 @@ function buildRankingRow(modelRun) {
     totalWords: modelRun.totalWords,
     averageGuesses: modelRun.averageGuesses,
     totalCostUsd: modelRun.totalCostUsd,
+    totalRequestMs: modelRun.totalRequestMs,
     pricedRequests: modelRun.pricedRequests,
     totalRequests: modelRun.totalRequests,
     missingPriceRequests: modelRun.missingPriceRequests
@@ -713,12 +728,14 @@ function summarizeTraceRequests(requests) {
   const totalRequests = events.length;
   const pricedRequests = successfulResponses.filter((item) => Number.isFinite(item?.costUsd)).length;
   const totalCostUsdRaw = successfulResponses.reduce((sum, item) => sum + Number(item?.costUsd || 0), 0);
+  const totalRequestMsRaw = events.reduce((sum, item) => sum + Number(item?.requestDurationMs || 0), 0);
   const missingPriceRequests = successfulResponses.length - pricedRequests;
   return {
     totalRequests,
     pricedRequests,
     missingPriceRequests,
-    totalCostUsd: Number(totalCostUsdRaw.toFixed(6))
+    totalCostUsd: Number(totalCostUsdRaw.toFixed(6)),
+    totalRequestMs: Number(totalRequestMsRaw.toFixed(0))
   };
 }
 
@@ -739,6 +756,40 @@ function extractResponseCostUsd(data) {
     if (Number.isFinite(cost) && cost >= 0) return Number(cost.toFixed(6));
   }
   return null;
+}
+
+function extractResponseDurationMs(data, headers) {
+  const headerCandidates = [
+    headers?.["x-openrouter-processing-ms"],
+    headers?.["x-openrouter-latency-ms"],
+    headers?.["openrouter-processing-ms"]
+  ];
+  for (const value of headerCandidates) {
+    const duration = Number(value);
+    if (Number.isFinite(duration) && duration >= 0) return Math.round(duration);
+  }
+
+  if (!data || typeof data !== "object") return null;
+  const bodyCandidates = [
+    data?.usage?.total_duration_ms,
+    data?.usage?.duration_ms,
+    data?.duration_ms,
+    data?.latency_ms,
+    data?.processing_ms,
+    data?.metadata?.duration_ms
+  ];
+  for (const value of bodyCandidates) {
+    const duration = Number(value);
+    if (Number.isFinite(duration) && duration >= 0) return Math.round(duration);
+  }
+  return null;
+}
+
+function computeDurationMs(startIso, endIso) {
+  const start = Date.parse(startIso);
+  const end = Date.parse(endIso);
+  if (!Number.isFinite(start) || !Number.isFinite(end)) return 0;
+  return Math.max(0, Math.round(end - start));
 }
 
 function getTraceFileRef(runId, targetWord) {
@@ -998,6 +1049,7 @@ function buildFailedGame(targetWord, err) {
     guessesUsed: MAX_HINTS,
     penalizedGuesses: MAX_HINTS + 1,
     totalCostUsd: Number(traceStats.totalCostUsd || 0),
+    totalRequestMs: Number(traceStats.totalRequestMs || 0),
     pricedRequests: Number(traceStats.pricedRequests || 0),
     totalRequests: Number(traceStats.totalRequests || 0),
     missingPriceRequests: Number(traceStats.missingPriceRequests || 0),
@@ -1170,7 +1222,9 @@ function parseEffort(raw) {
 }
 
 function supportsEffort(modelId) {
-  return typeof modelId === "string" && modelId.startsWith("openai/");
+  if (typeof modelId !== "string") return false;
+  if (modelId.startsWith("openai/")) return true;
+  return modelId === "google/gemini-3.1-flash-lite-preview";
 }
 
 function normalizeBenchmark(benchmark) {
@@ -1191,6 +1245,7 @@ function normalizeBenchmark(benchmark) {
         Number.isFinite(Number(game?.totalCostUsd))
         || Number.isFinite(Number(game?.pricedRequests))
         || Number.isFinite(Number(game?.totalRequests))
+        || Number.isFinite(Number(game?.totalRequestMs))
       );
       const totalCostUsd = Number.isFinite(Number(run?.totalCostUsd))
         ? Number(Number(run.totalCostUsd).toFixed(6))
@@ -1204,10 +1259,14 @@ function normalizeBenchmark(benchmark) {
       const missingPriceRequests = Number.isFinite(Number(run?.missingPriceRequests))
         ? Number(run.missingPriceRequests)
         : (hasCostInGames ? gameCost.missingPriceRequests : null);
+      const totalRequestMs = Number.isFinite(Number(run?.totalRequestMs))
+        ? Number(run.totalRequestMs)
+        : (hasCostInGames ? gameCost.totalRequestMs : null);
       return {
         ...run,
         effort: runEffort,
         totalCostUsd,
+        totalRequestMs,
         pricedRequests,
         totalRequests,
         missingPriceRequests
@@ -1225,6 +1284,9 @@ function normalizeBenchmark(benchmark) {
         totalCostUsd: Number.isFinite(Number(row?.totalCostUsd))
           ? Number(Number(row.totalCostUsd).toFixed(6))
           : (primaryRun?.totalCostUsd ?? null),
+        totalRequestMs: Number.isFinite(Number(row?.totalRequestMs))
+          ? Number(row.totalRequestMs)
+          : (primaryRun?.totalRequestMs ?? null),
         pricedRequests: Number.isFinite(Number(row?.pricedRequests))
           ? Number(row.pricedRequests)
           : (primaryRun?.pricedRequests ?? null),
@@ -1248,11 +1310,13 @@ function normalizeBenchmark(benchmark) {
 function deriveGameCostStats(games) {
   const safeGames = Array.isArray(games) ? games : [];
   const totalCostUsdRaw = safeGames.reduce((sum, game) => sum + Number(game?.totalCostUsd || 0), 0);
+  const totalRequestMsRaw = safeGames.reduce((sum, game) => sum + Number(game?.totalRequestMs || 0), 0);
   const pricedRequests = safeGames.reduce((sum, game) => sum + Number(game?.pricedRequests || 0), 0);
   const totalRequests = safeGames.reduce((sum, game) => sum + Number(game?.totalRequests || 0), 0);
   const missingPriceRequests = safeGames.reduce((sum, game) => sum + Number(game?.missingPriceRequests || 0), 0);
   return {
     totalCostUsd: Number(totalCostUsdRaw.toFixed(6)),
+    totalRequestMs: Number(totalRequestMsRaw.toFixed(0)),
     pricedRequests,
     totalRequests,
     missingPriceRequests
