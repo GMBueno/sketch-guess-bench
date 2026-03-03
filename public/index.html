@@ -67,28 +67,16 @@
 
       <section id="screen-replay" class="screen card" hidden>
         <h2>Replay</h2>
-        <p class="section-note">Pick one run/model and optionally add up to two others for side-by-side comparison.</p>
-        <div class="compare-controls">
-          <div>
-            <label for="run-a">Run A</label>
-            <select id="run-a"></select>
-          </div>
-          <div>
-            <label for="run-b">Run B (optional)</label>
-            <select id="run-b"></select>
-          </div>
-          <div>
-            <label for="run-c">Run C (optional)</label>
-            <select id="run-c"></select>
-          </div>
-        </div>
-
+        <p class="section-note">Start with the best run in Run A. Use + in the table header to add up to two comparison runs.</p>
         <div id="compare-status"></div>
+        <h3 class="replay-table-title">Word-by-Word Comparison</h3>
 
-        <table id="compare-table">
-          <thead></thead>
-          <tbody></tbody>
-        </table>
+        <div class="compare-table-wrap">
+          <table id="compare-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </section>
 
       <section id="screen-about" class="screen card" hidden>

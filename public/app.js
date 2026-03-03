@@ -16,9 +16,6 @@ const rankingBody = document.querySelector("#ranking-table tbody");
 const costChartStatus = document.getElementById("cost-chart-status");
 const costSolvedChart = document.getElementById("cost-solved-chart");
 
-const runASelect = document.getElementById("run-a");
-const runBSelect = document.getElementById("run-b");
-const runCSelect = document.getElementById("run-c");
 const compareStatusEl = document.getElementById("compare-status");
 const compareTableHead = document.querySelector("#compare-table thead");
 const compareTableBody = document.querySelector("#compare-table tbody");
@@ -29,12 +26,17 @@ const jpegModalClose = document.getElementById("jpeg-modal-close");
 
 let benchmarks = [];
 let progressPoller = null;
+const replaySlots = [
+  { slot: "A", active: true, runId: "" },
+  { slot: "B", active: false, runId: "" },
+  { slot: "C", active: false, runId: "" }
+];
 
 window.render_game_to_text = () => {
-  const selected = getSelectedBenchmarks();
+  const selected = getSelectedRuns();
   return JSON.stringify({
     mode: "replay-compare",
-    selectedRunIds: selected.map((item) => item.id)
+    selectedRunIds: selected.map((item) => item.benchmark.id)
   });
 };
 
@@ -50,9 +52,8 @@ goRankingsBtn.addEventListener("click", () => {
   switchScreen("rankings");
 });
 
-runASelect.addEventListener("change", renderReplayComparison);
-runBSelect.addEventListener("change", renderReplayComparison);
-runCSelect.addEventListener("change", renderReplayComparison);
+compareTableHead.addEventListener("click", handleReplayHeaderClick);
+compareTableHead.addEventListener("change", handleReplayHeaderChange);
 
 jpegModalClose.addEventListener("click", () => {
   jpegModal.close();
@@ -105,14 +106,7 @@ async function loadBenchmarks() {
 
   renderRankingTable();
   renderSolvedVsCostChart();
-  fillRunSelect(runASelect, { optional: false });
-  fillRunSelect(runBSelect, { optional: true });
-  fillRunSelect(runCSelect, { optional: true });
-
-  if (benchmarks.length > 0) runASelect.value = benchmarks[0].id;
-  runBSelect.value = "";
-  runCSelect.value = "";
-
+  initializeReplaySlots();
   renderReplayComparison();
 }
 
@@ -153,57 +147,61 @@ function renderRankingTable() {
   }
 }
 
-function fillRunSelect(select, { optional }) {
-  select.innerHTML = "";
-
-  if (optional) {
-    const none = document.createElement("option");
-    none.value = "";
-    none.textContent = "None";
-    select.append(none);
-  }
-
-  for (const benchmark of benchmarks) {
-    const run = benchmark.modelRuns?.[0];
-    const option = document.createElement("option");
-    option.value = benchmark.id;
-    option.textContent = formatModelWithEffort(run?.modelLabel || "Unknown model", run?.effort, run?.modelId);
-    select.append(option);
-  }
-}
-
-function getSelectedBenchmarks() {
-  const selectedIds = [runASelect.value, runBSelect.value, runCSelect.value].filter(Boolean);
-  const uniqueIds = [...new Set(selectedIds)];
-  return uniqueIds
-    .map((id) => benchmarks.find((benchmark) => benchmark.id === id))
+function getSelectedRuns() {
+  return replaySlots
+    .filter((slot) => slot.active && slot.runId)
+    .map((slot) => {
+      const benchmark = benchmarks.find((entry) => entry.id === slot.runId);
+      if (!benchmark) return null;
+      return { slot: slot.slot, benchmark };
+    })
     .filter(Boolean);
 }
 
 function renderReplayComparison() {
-  const selected = getSelectedBenchmarks();
+  const selected = getSelectedRuns();
+  renderReplayHeader();
 
   if (selected.length === 0) {
-    compareStatusEl.textContent = "Select at least one run.";
-    compareTableHead.innerHTML = "";
+    compareStatusEl.textContent = "Select at least one run in the header.";
     compareTableBody.innerHTML = "";
     return;
   }
 
   compareStatusEl.textContent = "Click a word row to expand drawings and guesses.";
-  renderReplayHeader(selected);
   renderReplayRows(selected);
 }
 
-function renderReplayHeader(selected) {
-  const columns = selected
-    .map((benchmark) => {
-      const run = benchmark.modelRuns?.[0];
-      const label = formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort, run?.modelId);
-      const time = new Date(benchmark.completedAt).toLocaleString();
-      return `<th>${label}<br><small>${time}</small></th>`;
-    })
-    .join("");
+function renderReplayHeader() {
+  const usedRunIds = new Set(
+    replaySlots.filter((slot) => slot.active && slot.runId).map((slot) => slot.runId)
+  );
+  const columns = replaySlots.map((slot) => {
+    if (!slot.active) {
+      return `<th class="compare-add-col"><button type="button" class="add-run-btn" data-action="add" data-slot="${slot.slot}">+ Add Run</button></th>`;
+    }
+
+    const benchmark = benchmarks.find((entry) => entry.id === slot.runId) || null;
+    const run = benchmark?.modelRuns?.[0];
+    const label = formatModelWithEffort(run?.modelLabel || "Select a run", run?.effort, run?.modelId);
+    const time = benchmark ? new Date(benchmark.completedAt).toLocaleString() : "No run selected";
+    const options = buildReplaySelectOptions(slot, usedRunIds);
+    const removeDisabled = replaySlots.filter((item) => item.active).length <= 1;
+    const removeButton = removeDisabled
+      ? ""
+      : `<button type="button" class="remove-run-btn" data-action="remove" data-slot="${slot.slot}" aria-label="Remove Run ${slot.slot}">X</button>`;
+
+    return `<th class="compare-run-col">
+      <div class="run-header-top">
+        <span class="run-slot">Run ${slot.slot}</span>
+        ${removeButton}
+      </div>
+      <select class="header-run-select" data-action="select" data-slot="${slot.slot}">
+        ${options}
+      </select>
+      <small>${label}<br>${time}</small>
+    </th>`;
+  }).join("");
 
   compareTableHead.innerHTML = `<tr><th>Target Word</th>${columns}</tr>`;
 }
@@ -215,7 +213,7 @@ function renderReplayRows(selected) {
   for (const word of words) {
     const summaryRow = document.createElement("tr");
     summaryRow.className = "compare-summary-row";
-    summaryRow.innerHTML = `<td>${word}</td>${selected.map((benchmark) => `<td>${formatScore(getGame(benchmark, word))}</td>`).join("")}`;
+    summaryRow.innerHTML = `<td>${word}</td>${selected.map((selectedRun) => `<td>${formatScore(getGame(selectedRun.benchmark, word))}</td>`).join("")}`;
 
     const detailsRow = document.createElement("tr");
     detailsRow.className = "compare-details-row";
@@ -234,10 +232,98 @@ function renderReplayRows(selected) {
   }
 }
 
+function initializeReplaySlots() {
+  const availableIds = new Set(benchmarks.map((benchmark) => benchmark.id));
+  for (const slot of replaySlots) {
+    if (slot.runId && !availableIds.has(slot.runId)) {
+      slot.runId = "";
+    }
+  }
+
+  const activeCount = replaySlots.filter((slot) => slot.active).length;
+  if (activeCount === 0) {
+    replaySlots[0].active = true;
+  }
+
+  if (!replaySlots[0].runId && benchmarks.length > 0) {
+    replaySlots[0].runId = getBestReplayBenchmarkId();
+  }
+}
+
+function getBestReplayBenchmarkId() {
+  if (benchmarks.length === 0) return "";
+  const sorted = [...benchmarks].sort((a, b) => {
+    const rowA = a.ranking?.[0];
+    const rowB = b.ranking?.[0];
+    const solvedA = Number(rowA?.solvedCount || 0);
+    const solvedB = Number(rowB?.solvedCount || 0);
+    if (solvedB !== solvedA) return solvedB - solvedA;
+    const guessesA = Number(rowA?.totalGuesses || Number.POSITIVE_INFINITY);
+    const guessesB = Number(rowB?.totalGuesses || Number.POSITIVE_INFINITY);
+    if (guessesA !== guessesB) return guessesA - guessesB;
+    return new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime();
+  });
+  return sorted[0]?.id || "";
+}
+
+function buildReplaySelectOptions(slot, usedRunIds) {
+  const options = [];
+  options.push(`<option value="">Select run...</option>`);
+  for (const benchmark of benchmarks) {
+    const run = benchmark.modelRuns?.[0];
+    const label = formatModelWithEffort(run?.modelLabel || "Unknown model", run?.effort, run?.modelId);
+    const selected = benchmark.id === slot.runId;
+    const disabled = !selected && usedRunIds.has(benchmark.id);
+    options.push(
+      `<option value="${benchmark.id}"${selected ? " selected" : ""}${disabled ? " disabled" : ""}>${label}</option>`
+    );
+  }
+  return options.join("");
+}
+
+function handleReplayHeaderClick(event) {
+  const button = event.target.closest("button[data-action]");
+  if (!button) return;
+  const action = button.dataset.action;
+  const slot = button.dataset.slot;
+  if (!slot) return;
+  const targetSlot = replaySlots.find((item) => item.slot === slot);
+  if (!targetSlot) return;
+
+  if (action === "add") {
+    targetSlot.active = true;
+    if (!targetSlot.runId) {
+      const used = new Set(replaySlots.filter((item) => item.active).map((item) => item.runId).filter(Boolean));
+      const candidate = benchmarks.find((benchmark) => !used.has(benchmark.id));
+      targetSlot.runId = candidate?.id || "";
+    }
+    renderReplayComparison();
+    return;
+  }
+
+  if (action === "remove") {
+    const activeSlots = replaySlots.filter((item) => item.active);
+    if (activeSlots.length <= 1) return;
+    targetSlot.active = false;
+    targetSlot.runId = "";
+    renderReplayComparison();
+  }
+}
+
+function handleReplayHeaderChange(event) {
+  const select = event.target.closest("select[data-action='select']");
+  if (!select) return;
+  const slot = select.dataset.slot;
+  const targetSlot = replaySlots.find((item) => item.slot === slot);
+  if (!targetSlot) return;
+  targetSlot.runId = select.value || "";
+  renderReplayComparison();
+}
+
 function collectWords(selected) {
   const words = new Set();
-  for (const benchmark of selected) {
-    const run = benchmark.modelRuns?.[0];
+  for (const selectedRun of selected) {
+    const run = selectedRun.benchmark.modelRuns?.[0];
     for (const game of run?.games || []) {
       words.add(game.targetWord);
     }
@@ -261,15 +347,15 @@ function renderDetailsGrid(selected, word) {
   const grid = document.createElement("div");
   grid.className = "compare-detail-grid";
 
-  for (const benchmark of selected) {
-    const run = benchmark.modelRuns?.[0];
-    const game = getGame(benchmark, word);
+  for (const selectedRun of selected) {
+    const run = selectedRun.benchmark.modelRuns?.[0];
+    const game = getGame(selectedRun.benchmark, word);
 
     const card = document.createElement("article");
     card.className = "compare-detail-card";
 
     const title = document.createElement("h3");
-    title.textContent = `${formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort, run?.modelId)} - ${new Date(benchmark.completedAt).toLocaleString()}`;
+    title.textContent = `Run ${selectedRun.slot} · ${formatModelWithEffort(run?.modelLabel || "Unknown", run?.effort, run?.modelId)} - ${new Date(selectedRun.benchmark.completedAt).toLocaleString()}`;
     card.append(title);
 
     if (!game) {
