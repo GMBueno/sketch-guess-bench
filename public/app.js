@@ -5,6 +5,18 @@ const progressBar = document.getElementById("progress-bar");
 const goRankingsBtn = document.getElementById("go-rankings");
 
 const navButtons = [...document.querySelectorAll(".nav-btn")];
+const ROUTE_TO_SCREEN = {
+  "/": "home",
+  "/rankings": "rankings",
+  "/replays": "replay",
+  "/about": "about"
+};
+const SCREEN_TO_ROUTE = {
+  home: "/",
+  rankings: "/rankings",
+  replay: "/replays",
+  about: "/about"
+};
 const screenEls = {
   home: document.getElementById("screen-home"),
   rankings: document.getElementById("screen-rankings"),
@@ -43,13 +55,14 @@ window.render_game_to_text = () => {
 window.advanceTime = () => {};
 
 for (const button of navButtons) {
-  button.addEventListener("click", () => {
-    switchScreen(button.dataset.screen);
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigateToScreen(button.dataset.screen);
   });
 }
 
 goRankingsBtn.addEventListener("click", () => {
-  switchScreen("rankings");
+  navigateToScreen("rankings");
 });
 
 compareTableHead.addEventListener("click", handleReplayHeaderClick);
@@ -75,8 +88,25 @@ async function init() {
     startProgressPolling();
   }
 
-  switchScreen("home");
+  switchScreen(getScreenFromPath(location.pathname));
 }
+
+function navigateToScreen(name) {
+  const route = SCREEN_TO_ROUTE[name] || "/";
+  if (location.pathname !== route) {
+    history.pushState({ screen: name }, "", route);
+  }
+  switchScreen(name);
+}
+
+function getScreenFromPath(pathname) {
+  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+  return ROUTE_TO_SCREEN[normalizedPath] || "home";
+}
+
+window.addEventListener("popstate", () => {
+  switchScreen(getScreenFromPath(location.pathname));
+});
 
 function switchScreen(name) {
   for (const [key, el] of Object.entries(screenEls)) {

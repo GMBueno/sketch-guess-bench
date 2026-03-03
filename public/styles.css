@@ -21,6 +21,7 @@ body {
   color: var(--ink);
   background: var(--bg-2);
   position: relative;
+  overflow-x: hidden;
 }
 
 body::before {
@@ -96,9 +97,25 @@ header p {
 }
 
 .nav-btn {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: #fff;
   color: var(--ink);
   border: 1px solid var(--line);
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.nav-btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
 }
 
 .nav-btn.active {
@@ -260,6 +277,7 @@ select {
   gap: 12px;
 }
 
+.ranking-table-wrap,
 .compare-table-wrap {
   width: 100%;
   max-width: 100%;
@@ -268,6 +286,7 @@ select {
   -webkit-overflow-scrolling: touch;
 }
 
+#ranking-table,
 #compare-table {
   min-width: 760px;
 }
@@ -502,7 +521,7 @@ select {
     font-size: 0.88rem;
   }
 
-  .navbar {
-    max-width: 100%;
+  .layout {
+    width: min(1120px, 100vw - 20px);
   }
 }

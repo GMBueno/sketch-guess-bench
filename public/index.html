@@ -15,10 +15,10 @@
   <body>
     <main class="layout">
       <nav class="card navbar" aria-label="Main navigation">
-        <button class="nav-btn active" data-screen="home">Home</button>
-        <button class="nav-btn" data-screen="rankings">Rankings</button>
-        <button class="nav-btn" data-screen="replay">Replay</button>
-        <button class="nav-btn" data-screen="about">About</button>
+        <a class="nav-btn active" data-screen="home" href="/">Home</a>
+        <a class="nav-btn" data-screen="rankings" href="/rankings">Rankings</a>
+        <a class="nav-btn" data-screen="replay" href="/replays">Replays</a>
+        <a class="nav-btn" data-screen="about" href="/about">About</a>
       </nav>
 
       <section id="screen-home" class="screen card">
@@ -43,21 +43,23 @@
 
       <section id="screen-rankings" class="screen card" hidden>
         <h2>Rankings</h2>
-        <table id="ranking-table">
-          <thead>
-            <tr>
-              <th>Run Time</th>
-              <th>Model</th>
-              <th>Solved</th>
-              <th>Cost (USD)</th>
-              <th>Req Time</th>
-              <th>Total Guesses</th>
-              <th>Avg Guesses</th>
-              <th>Failed</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        <div class="ranking-table-wrap">
+          <table id="ranking-table">
+            <thead>
+              <tr>
+                <th>Run Time</th>
+                <th>Model</th>
+                <th>Solved</th>
+                <th>Cost (USD)</th>
+                <th>Req Time</th>
+                <th>Total Guesses</th>
+                <th>Avg Guesses</th>
+                <th>Failed</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
         <article class="chart-card">
           <h3>Solved vs Cost</h3>
           <p id="cost-chart-status" class="section-note"></p>
