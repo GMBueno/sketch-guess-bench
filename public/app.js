@@ -5,6 +5,18 @@ const progressBar = document.getElementById("progress-bar");
 const goRankingsBtn = document.getElementById("go-rankings");
 
 const navButtons = [...document.querySelectorAll(".nav-btn")];
+const STATIC_BENCHMARK_MODEL_KEYS = [
+  "claudehaiku45",
+  "gemini25flash",
+  "gemini25flashlite",
+  "gemini3flash",
+  "gemini31flashlite",
+  "gpt5mini",
+  "gpt5nano",
+  "gpt51codexmini",
+  "kimik25"
+];
+const APP_BASE_PATH = getAppBasePath();
 const ROUTE_TO_SCREEN = {
   "/": "home",
   "/rankings": "rankings",
@@ -79,6 +91,7 @@ jpegModal.addEventListener("click", (event) => {
 init();
 
 async function init() {
+  updateNavLinks();
   await fetchStatus();
   await loadBenchmarks();
   await refreshProgressOnce();
@@ -92,7 +105,7 @@ async function init() {
 }
 
 function navigateToScreen(name) {
-  const route = SCREEN_TO_ROUTE[name] || "/";
+  const route = toAppPath(SCREEN_TO_ROUTE[name] || "/");
   if (location.pathname !== route) {
     history.pushState({ screen: name }, "", route);
   }
@@ -100,7 +113,8 @@ function navigateToScreen(name) {
 }
 
 function getScreenFromPath(pathname) {
-  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+  const withoutBase = stripBasePath(pathname);
+  const normalizedPath = withoutBase === "/" ? "/" : withoutBase.replace(/\/+$/, "");
   return ROUTE_TO_SCREEN[normalizedPath] || "home";
 }
 
@@ -119,19 +133,18 @@ function switchScreen(name) {
 }
 
 async function fetchStatus() {
-  const response = await fetch("/api/status");
-  const data = await response.json();
-
-  if (!data.hasApiKey) {
-    setStatus("OPENROUTER_API_KEY missing.");
-  } else {
+  const data = await fetchJson("/api/status");
+  if (!data) {
     setStatus("");
+    return;
   }
+
+  setStatus(data.hasApiKey ? "" : "OPENROUTER_API_KEY missing.");
 }
 
 async function loadBenchmarks() {
-  const response = await fetch("/api/benchmarks");
-  benchmarks = await response.json();
+  const apiBenchmarks = await fetchJson("/api/benchmarks");
+  benchmarks = Array.isArray(apiBenchmarks) ? apiBenchmarks : await loadStaticBenchmarks();
   benchmarks.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
 
   renderRankingTable();
@@ -604,11 +617,65 @@ async function refreshProgressOnce() {
 
 async function fetchProgress() {
   try {
-    const response = await fetch("/api/benchmarks/progress");
+    const response = await fetch(toAppPath("/api/benchmarks/progress"));
     if (!response.ok) return null;
     return await response.json();
   } catch {
     return null;
+  }
+}
+
+async function fetchJson(path) {
+  try {
+    const response = await fetch(toAppPath(path));
+    if (!response.ok) return null;
+    return await response.json();
+  } catch {
+    return null;
+  }
+}
+
+async function loadStaticBenchmarks() {
+  const files = await Promise.all(
+    STATIC_BENCHMARK_MODEL_KEYS.map(async (modelKey) => {
+      try {
+        const response = await fetch(toAppPath(`/data/benchmarks/${modelKey}.json`));
+        if (!response.ok) return [];
+        const parsed = await response.json();
+        return Array.isArray(parsed?.benchmarks) ? parsed.benchmarks : [];
+      } catch {
+        return [];
+      }
+    })
+  );
+  return files.flat();
+}
+
+function getAppBasePath() {
+  if (!location.hostname.endsWith("github.io")) return "";
+  const parts = location.pathname.split("/").filter(Boolean);
+  return parts.length > 0 ? `/${parts[0]}` : "";
+}
+
+function stripBasePath(pathname) {
+  if (!APP_BASE_PATH) return pathname || "/";
+  if (pathname === APP_BASE_PATH) return "/";
+  if (pathname.startsWith(`${APP_BASE_PATH}/`)) {
+    return pathname.slice(APP_BASE_PATH.length) || "/";
+  }
+  return pathname || "/";
+}
+
+function toAppPath(path) {
+  if (!path || path === "/") return APP_BASE_PATH || "/";
+  return `${APP_BASE_PATH}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+function updateNavLinks() {
+  for (const button of navButtons) {
+    const screen = button.dataset.screen;
+    const route = SCREEN_TO_ROUTE[screen] || "/";
+    button.setAttribute("href", toAppPath(route));
   }
 }
 
