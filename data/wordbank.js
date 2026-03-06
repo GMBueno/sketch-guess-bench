@@ -18,5 +18,12 @@ export const WORD_BANK = [
   "vivid",
   "build",
   "time",
-  "chaotic"
+  "chaotic",
+  "sloth",
+  "gorilla",
+  "leopard",
+  "sequoia",
+  "drive",
+  "Pantheon",
+  ""
 ];

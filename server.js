@@ -69,6 +69,12 @@ const MODELS = [
     label: "Gemini 2.5 Flash Lite",
     modelId: "google/gemini-2.5-flash-lite",
     provider: { order: ["google-ai-studio"], allow_fallbacks: false }
+  },
+  {
+    key: "gemini25flash",
+    label: "Gemini 2.5 Flash",
+    modelId: "google/gemini-2.5-flash",
+    provider: { order: ["google-ai-studio"], allow_fallbacks: false }
   }
 ];
 
