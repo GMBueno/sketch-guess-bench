@@ -160,6 +160,9 @@ function getModelGlyph(model: string) {
   if (normalized.includes("claude")) return "C";
   if (normalized.includes("kimi")) return "K";
   if (normalized.includes("grok")) return "X";
+  if (normalized.includes("deepseek")) return "D";
+  if (normalized.includes("glm")) return "Z";
+  if (normalized.includes("minimax")) return "M";
   return "A";
 }
 
@@ -170,7 +173,23 @@ function getModelGlyphClasses(model: string) {
   if (normalized.includes("claude")) return "border-orange-400/30 bg-orange-400/10 text-orange-200";
   if (normalized.includes("kimi")) return "border-fuchsia-400/30 bg-fuchsia-400/10 text-fuchsia-200";
   if (normalized.includes("grok")) return "border-neutral-300/20 bg-neutral-300/10 text-neutral-200";
+  if (normalized.includes("deepseek")) return "border-cyan-400/30 bg-cyan-400/10 text-cyan-200";
+  if (normalized.includes("glm")) return "border-violet-400/30 bg-violet-400/10 text-violet-200";
+  if (normalized.includes("minimax")) return "border-rose-400/30 bg-rose-400/10 text-rose-200";
   return "border-white/10 bg-white/[0.04] text-neutral-200";
+}
+
+function getModelLogo(model: string) {
+  const normalized = model.toLowerCase();
+  if (normalized.includes("gemini")) return "/assets/logos/gemini.svg";
+  if (normalized.includes("gpt") || normalized.includes("openai")) return "/assets/logos/openai.svg";
+  if (normalized.includes("claude")) return "/assets/logos/claude.svg";
+  if (normalized.includes("deepseek")) return "/assets/logos/deepseek.svg";
+  if (normalized.includes("grok")) return "/assets/logos/grok.svg";
+  if (normalized.includes("kimi")) return "/assets/logos/kimi.svg";
+  if (normalized.includes("glm")) return "/assets/logos/glm.svg";
+  if (normalized.includes("minimax")) return "/assets/logos/minimax.svg";
+  return null;
 }
 
 function formatChartTooltipValue(value: ValueType, kind: "percent" | "usd" | "seconds") {
@@ -269,9 +288,15 @@ export function DashboardView({ section }: { section: SectionKey }) {
                           {String(index + 1).padStart(2, "0")}
                         </div>
                         <div className="flex min-w-0 items-center gap-3">
-                          <div className={cn("flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>
-                            {getModelGlyph(row.model)}
-                          </div>
+                          {getModelLogo(row.model) ? (
+                            <div className="flex h-5 w-5 shrink-0 items-center justify-center">
+                              <img src={getModelLogo(row.model) || ""} alt="" className="h-5 w-5 object-contain" />
+                            </div>
+                          ) : (
+                            <div className={cn("flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>
+                              {getModelGlyph(row.model)}
+                            </div>
+                          )}
                           <div className="min-w-0">
                             <div className="truncate text-sm font-medium text-white sm:text-base">{row.model}</div>
                           </div>
