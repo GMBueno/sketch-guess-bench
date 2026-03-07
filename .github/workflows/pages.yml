@@ -24,22 +24,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Prepare static site
-        run: |
-          mkdir -p dist
-          cp -R public/. dist/
-          mkdir -p dist/data
-          cp -R data/benchmarks dist/data/
-          cp dist/index.html dist/404.html
-          touch dist/.nojekyll
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Generate visualizer data
+        run: bun run generate:visualizer-data
+
+      - name: Build visualizer
+        env:
+          GITHUB_ACTIONS: true
+        run: bun run build:visualizer
+
+      - name: Preserve static export settings
+        run: touch visualizer/out/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: visualizer/out
 
       - name: Deploy
         id: deployment
