@@ -3,7 +3,7 @@
 Current repo structure:
 
 - `bench/`: benchmark runner and HTTP API
-- `visualizer/`: frontend assets and generated visualizer data
+- `visualizer/`: Bun-managed Next.js app and generated visualizer data
 - `data/`: source-of-truth benchmark outputs and OpenRouter traces
 - `original_bench/`, `original_visualizer/`: reference-only donor projects
 
@@ -26,20 +26,35 @@ Trace + rerun:
 - Each word trace file keeps an `executions` history
 - Existing runs are stored in `data/benchmarks`
 
-Run the current benchmark app:
+Run the benchmark runner:
 
 ```bash
+cd /Users/gmb/playground/bench_drawing
+bun install
+
 cd bench
-npm install
 export OPENROUTER_API_KEY="your_key_here"
-npm run dev
+bun run dev
 ```
 
 Generate visualizer data:
 
 ```bash
-cd bench
-npm run generate:visualizer-data
+cd /Users/gmb/playground/bench_drawing
+bun run generate:visualizer-data
 ```
 
-The current static frontend assets live in `visualizer/public` and are served by the benchmark server.
+Run the visualizer:
+
+```bash
+cd /Users/gmb/playground/bench_drawing
+bun run dev:visualizer
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+Notes:
+
+- The current visualizer is a real Next.js app in `visualizer/`
+- Legacy static files from the pre-restructure UI were preserved in `visualizer/public_legacy`
+- Root workspace scripts are Bun-first
