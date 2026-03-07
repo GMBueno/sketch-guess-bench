@@ -201,20 +201,18 @@ export function DashboardView({ section }: { section: SectionKey }) {
   const { rankings, metadata } = benchmarkData as BenchmarkPayload;
   const { runs } = replayData as ReplayPayload;
 
-  const [selectedModels, setSelectedModels] = useState<string[]>(rankings.map((row) => row.model));
   const [selectedRunId, setSelectedRunId] = useState<string>(runs[0]?.runId || "");
   const [selectedWord, setSelectedWord] = useState<string>(runs[0]?.games[0]?.targetWord || "");
 
-  const filteredRankings = useMemo(() => rankings.filter((row) => selectedModels.includes(row.model)), [rankings, selectedModels]);
   const sortedRankings = useMemo(
     () =>
-      filteredRankings.slice().sort((a, b) => {
+      rankings.slice().sort((a, b) => {
         if (b.correct !== a.correct) return b.correct - a.correct;
         if (a.totalGuesses !== b.totalGuesses) return a.totalGuesses - b.totalGuesses;
         if (a.totalCost !== b.totalCost) return a.totalCost - b.totalCost;
         return String(b.completedAt || "").localeCompare(String(a.completedAt || ""));
       }),
-    [filteredRankings]
+    [rankings]
   );
   const selectedRun = useMemo(() => runs.find((run) => run.runId === selectedRunId) || runs[0] || null, [runs, selectedRunId]);
   const selectedGame = useMemo(() => {
@@ -222,30 +220,26 @@ export function DashboardView({ section }: { section: SectionKey }) {
     return selectedRun.games.find((game) => game.targetWord === selectedWord) || selectedRun.games[0] || null;
   }, [selectedRun, selectedWord]);
   const costData = useMemo(
-    () => [...filteredRankings].sort((a, b) => a.totalCost - b.totalCost).map((row) => ({ model: row.model, value: Number(row.totalCost.toFixed(4)) })),
-    [filteredRankings]
+    () => [...rankings].sort((a, b) => a.totalCost - b.totalCost).map((row) => ({ model: row.model, value: Number(row.totalCost.toFixed(4)) })),
+    [rankings]
   );
   const speedData = useMemo(
-    () => [...filteredRankings].sort((a, b) => a.averageDuration - b.averageDuration).map((row) => ({ model: row.model, value: Number((row.averageDuration / 1000).toFixed(2)) })),
-    [filteredRankings]
+    () => [...rankings].sort((a, b) => a.averageDuration - b.averageDuration).map((row) => ({ model: row.model, value: Number((row.averageDuration / 1000).toFixed(2)) })),
+    [rankings]
   );
   const valueMatrixData = useMemo(
-    () => filteredRankings.map((row) => ({ model: row.model, totalCost: Number(row.totalCost.toFixed(4)), successRate: Number(row.successRate.toFixed(1)) })),
-    [filteredRankings]
+    () => rankings.map((row) => ({ model: row.model, totalCost: Number(row.totalCost.toFixed(4)), successRate: Number(row.successRate.toFixed(1)) })),
+    [rankings]
   );
   const speedMatrixData = useMemo(
-    () => filteredRankings.map((row) => ({ model: row.model, durationSeconds: Number((row.averageDuration / 1000).toFixed(2)), successRate: Number(row.successRate.toFixed(1)), totalCost: Number(row.totalCost.toFixed(4)) })),
-    [filteredRankings]
+    () => rankings.map((row) => ({ model: row.model, durationSeconds: Number((row.averageDuration / 1000).toFixed(2)), successRate: Number(row.successRate.toFixed(1)), totalCost: Number(row.totalCost.toFixed(4)) })),
+    [rankings]
   );
 
   const handleRunChange = (runId: string) => {
     setSelectedRunId(runId);
     const run = runs.find((item) => item.runId === runId);
     if (run?.games?.[0]?.targetWord) setSelectedWord(run.games[0].targetWord);
-  };
-
-  const toggleModel = (model: string) => {
-    setSelectedModels((current) => (current.includes(model) ? current.filter((item) => item !== model) : [...current, model]));
   };
 
   return (
@@ -257,31 +251,6 @@ export function DashboardView({ section }: { section: SectionKey }) {
           <div>Published Runs: {rankings.length}</div>
           <div>Last Sync: {formatDate(metadata.timestamp)}</div>
         </div>
-
-        <Card className="mb-8 rounded-[28px]">
-          <CardHeader>
-            <CardDescription>Filters</CardDescription>
-            <CardTitle>Visible Models</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {rankings.map((row) => {
-                const active = selectedModels.includes(row.model);
-                return (
-                  <Button
-                    key={row.runId}
-                    type="button"
-                    variant={active ? "default" : "outline"}
-                    className={cn(active && "bg-[#EF0044] text-white hover:bg-[#EF0044]/90")}
-                    onClick={() => toggleModel(row.model)}
-                  >
-                    {row.model}
-                  </Button>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
 
         {section === "ranking" ? (
           <div className="mx-auto w-full max-w-5xl">
