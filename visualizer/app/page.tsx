@@ -135,6 +135,12 @@ const CHART_COLORS = [
   "#22d3ee",
 ];
 
+const RANK_STYLES = [
+  { text: "text-emerald-400", fill: "#34d399", track: "bg-emerald-500/15" },
+  { text: "text-sky-300", fill: "#7dd3fc", track: "bg-sky-400/15" },
+  { text: "text-orange-300", fill: "#fdba74", track: "bg-orange-400/15" },
+];
+
 function formatUsd(value: number) {
   return `$${value.toFixed(4)}`;
 }
@@ -159,6 +165,30 @@ function formatDuration(ms: number) {
 
 function getBarColor(index: number) {
   return CHART_COLORS[index % CHART_COLORS.length];
+}
+
+function getRankStyle(index: number) {
+  return RANK_STYLES[index] || { text: "text-neutral-500", fill: "#737373", track: "bg-white/[0.05]" };
+}
+
+function getModelGlyph(model: string) {
+  const normalized = model.toLowerCase();
+  if (normalized.includes("gemini")) return "G";
+  if (normalized.includes("gpt") || normalized.includes("openai")) return "O";
+  if (normalized.includes("claude")) return "C";
+  if (normalized.includes("kimi")) return "K";
+  if (normalized.includes("grok")) return "X";
+  return "A";
+}
+
+function getModelGlyphClasses(model: string) {
+  const normalized = model.toLowerCase();
+  if (normalized.includes("gemini")) return "border-sky-400/30 bg-sky-400/10 text-sky-200";
+  if (normalized.includes("gpt") || normalized.includes("openai")) return "border-emerald-400/30 bg-emerald-400/10 text-emerald-200";
+  if (normalized.includes("claude")) return "border-orange-400/30 bg-orange-400/10 text-orange-200";
+  if (normalized.includes("kimi")) return "border-fuchsia-400/30 bg-fuchsia-400/10 text-fuchsia-200";
+  if (normalized.includes("grok")) return "border-neutral-300/20 bg-neutral-300/10 text-neutral-200";
+  return "border-white/10 bg-white/[0.04] text-neutral-200";
 }
 
 function formatChartTooltipValue(value: ValueType, kind: "percent" | "usd" | "seconds") {
@@ -201,8 +231,14 @@ export default function HomePage() {
     return selectedRun.games.find((game) => game.targetWord === selectedWord) || selectedRun.games[0] || null;
   }, [selectedRun, selectedWord]);
 
-  const rankingsChartData = useMemo(
-    () => [...filteredRankings].sort((a, b) => b.successRate - a.successRate).map((row) => ({ model: row.model, successRate: Number(row.successRate.toFixed(1)) })),
+  const sortedRankings = useMemo(
+    () =>
+      filteredRankings.slice().sort((a, b) => {
+        if (b.correct !== a.correct) return b.correct - a.correct;
+        if (a.totalGuesses !== b.totalGuesses) return a.totalGuesses - b.totalGuesses;
+        if (a.totalCost !== b.totalCost) return a.totalCost - b.totalCost;
+        return String(b.completedAt || "").localeCompare(String(a.completedAt || ""));
+      }),
     [filteredRankings]
   );
   const costData = useMemo(
@@ -281,21 +317,40 @@ export default function HomePage() {
               <Card>
                 <CardHeader>
                   <CardDescription>Rankings</CardDescription>
-                  <CardTitle>Accuracy Distribution</CardTitle>
+                  <CardTitle>Published Leaderboard</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-[620px] sm:h-[560px]">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={rankingsChartData} layout="vertical" margin={{ top: 8, right: 24, left: 8, bottom: 8 }}>
-                        <CartesianGrid horizontal={false} stroke="rgba(255,255,255,0.05)" />
-                        <XAxis type="number" domain={[0, 100]} tick={{ fill: "#737373", fontSize: 11 }} />
-                        <YAxis type="category" dataKey="model" tick={{ fill: "#a3a3a3", fontSize: 11 }} width={140} />
-                        <Tooltip formatter={(value: ValueType) => [formatChartTooltipValue(value, "percent"), "Solved"]} contentStyle={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 12 }} />
-                        <Bar dataKey="successRate" radius={[999, 999, 999, 999]} barSize={24}>
-                          {rankingsChartData.map((entry, index) => <Cell key={entry.model} fill={getBarColor(index)} />)}
-                        </Bar>
-                      </BarChart>
-                    </ResponsiveContainer>
+                  <div className="space-y-3">
+                    {sortedRankings.map((row, index) => {
+                      const style = getRankStyle(index);
+                      return (
+                        <div key={row.runId} className="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-3 py-3 sm:grid-cols-[64px_minmax(220px,320px)_minmax(0,1fr)_64px] sm:gap-4 sm:px-4">
+                          <div className={cn("text-xl font-semibold tabular-nums sm:text-2xl", style.text)}>
+                            {String(index + 1).padStart(2, "0")}
+                          </div>
+                          <div className="flex min-w-0 items-center gap-3">
+                            <div className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>
+                              {getModelGlyph(row.model)}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="truncate text-sm font-medium text-white sm:text-base">{row.model}</div>
+                              <div className="mt-1 text-xs text-neutral-500">{row.correct}/{row.totalTests} solved · {row.totalGuesses} guesses</div>
+                            </div>
+                          </div>
+                          <div className="col-span-2 sm:col-span-1">
+                            <div className={cn("h-4 w-full overflow-hidden rounded-full", style.track)}>
+                              <div
+                                className="h-full rounded-full transition-[width]"
+                                style={{ width: `${Math.max(0, Math.min(100, row.successRate))}%`, backgroundColor: style.fill }}
+                              />
+                            </div>
+                          </div>
+                          <div className={cn("justify-self-end text-sm font-medium tabular-nums sm:text-base", style.text)}>
+                            {row.successRate.toFixed(0)}%
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>
