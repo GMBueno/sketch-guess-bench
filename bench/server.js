@@ -5,7 +5,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
-import { WORD_BANK } from "./data/wordbank.js";
+import { WORD_BANK } from "../data/wordbank.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -82,10 +82,10 @@ const FIXED_PROVIDER = {
   allow_fallbacks: false
 };
 
-const DATA_DIR = path.join(__dirname, "data");
+const DATA_DIR = path.join(__dirname, "..", "data");
 const MODEL_RESULTS_DIR = path.join(DATA_DIR, "benchmarks");
 const TRACE_RESULTS_DIR = path.join(DATA_DIR, "openrouter_traces");
-const PUBLIC_DIR = path.join(__dirname, "public");
+const PUBLIC_DIR = path.join(__dirname, "..", "visualizer", "public");
 const benchmarkProgress = {
   status: "idle",
   runId: null,
