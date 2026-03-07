@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 9% 8%;
+  --card-foreground: 0 0% 98%;
+  --primary: 345 100% 47%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 5% 15%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 5% 15%;
+  --muted-foreground: 240 5% 65%;
+  --accent: 345 100% 47%;
+  --accent-foreground: 0 0% 100%;
+  --border: 240 5% 16%;
+  --input: 240 5% 16%;
+  --ring: 345 100% 47%;
+  --radius: 1rem;
+}
+
+* {
+  @apply border-border;
+}
+
+html, body {
+  @apply bg-background text-foreground;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  @apply min-h-screen antialiased;
+  overflow-x: hidden;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px),
+    radial-gradient(circle at top, rgba(239,0,68,0.16), transparent 30%);
+  background-size: 36px 36px, 36px 36px, auto;
+}
+
+.stencil-text {
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.glass-card {
+  @apply border border-white/10 bg-white/[0.04] backdrop-blur-md;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}

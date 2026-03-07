@@ -1,0 +1,16 @@
+{
+  "name": "sketchguess-bench-runner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun server.js",
+    "dev": "bun --watch server.js",
+    "generate:visualizer-data": "bun scripts/generate_visualizer_data.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^4.21.2",
+    "playwright": "^1.58.2"
+  }
+}

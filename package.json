@@ -1,0 +1,16 @@
+{
+  "name": "sketchguess-bench-workspace",
+  "private": true,
+  "workspaces": [
+    "bench",
+    "visualizer"
+  ],
+  "packageManager": "bun@1.2.0",
+  "scripts": {
+    "dev": "cd bench && bun run dev",
+    "dev:bench": "cd bench && bun run dev",
+    "dev:visualizer": "cd visualizer && bun run dev",
+    "build:visualizer": "cd visualizer && bun run build",
+    "generate:visualizer-data": "cd bench && bun run generate:visualizer-data"
+  }
+}
