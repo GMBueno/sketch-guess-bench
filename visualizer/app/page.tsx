@@ -136,9 +136,9 @@ const CHART_COLORS = [
 ];
 
 const RANK_STYLES = [
-  { text: "text-emerald-400", fill: "#34d399", track: "bg-emerald-500/15" },
-  { text: "text-sky-300", fill: "#7dd3fc", track: "bg-sky-400/15" },
-  { text: "text-orange-300", fill: "#fdba74", track: "bg-orange-400/15" },
+  { text: "text-emerald-400", fill: "#34d399", track: "bg-white/[0.05]" },
+  { text: "text-sky-300", fill: "#7dd3fc", track: "bg-white/[0.05]" },
+  { text: "text-orange-300", fill: "#fdba74", track: "bg-white/[0.05]" },
 ];
 
 function formatUsd(value: number) {
@@ -295,13 +295,6 @@ export default function HomePage() {
           </CardContent>
         </Card>
 
-        <section className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          <MetricCard label="Total Models" value={String(metadata.totalModels)} hint={`${metadata.totalTestsRun} tasks evaluated`} />
-          <MetricCard label="Solved" value={String(metadata.overallCorrect)} hint="Across all published runs" />
-          <MetricCard label="Total Cost" value={formatUsdShort(metadata.totalCost)} hint="Summed across published runs" />
-          <MetricCard label="Request Time" value={formatDuration(metadata.totalRequestMs)} hint="Aggregate provider response time" />
-        </section>
-
         <section className="mt-8 grid gap-4 xl:grid-cols-[1fr_320px]">
           <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as TabKey)} className="min-w-0">
             <TabsList className="flex flex-wrap gap-x-6 gap-y-2 border-b border-white/10 pb-3">
@@ -324,21 +317,20 @@ export default function HomePage() {
                     {sortedRankings.map((row, index) => {
                       const style = getRankStyle(index);
                       return (
-                        <div key={row.runId} className="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-3 py-3 sm:grid-cols-[64px_minmax(220px,320px)_minmax(0,1fr)_64px] sm:gap-4 sm:px-4">
-                          <div className={cn("text-xl font-semibold tabular-nums sm:text-2xl", style.text)}>
+                        <div key={row.runId} className="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-3 rounded-2xl px-2 py-0 sm:grid-cols-[64px_minmax(220px,320px)_minmax(0,1fr)_64px] sm:gap-0 sm:px-4">
+                          <div className={cn("text-md font-semibold tabular-nums sm:text-md", style.text)}>
                             {String(index + 1).padStart(2, "0")}
                           </div>
                           <div className="flex min-w-0 items-center gap-3">
-                            <div className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>
+                            <div className={cn("flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>
                               {getModelGlyph(row.model)}
                             </div>
                             <div className="min-w-0">
                               <div className="truncate text-sm font-medium text-white sm:text-base">{row.model}</div>
-                              <div className="mt-1 text-xs text-neutral-500">{row.correct}/{row.totalTests} solved · {row.totalGuesses} guesses</div>
                             </div>
                           </div>
                           <div className="col-span-2 sm:col-span-1">
-                            <div className={cn("h-4 w-full overflow-hidden rounded-full", style.track)}>
+                            <div className={cn("h-3 w-full overflow-hidden rounded-full", style.track)}>
                               <div
                                 className="h-full rounded-full transition-[width]"
                                 style={{ width: `${Math.max(0, Math.min(100, row.successRate))}%`, backgroundColor: style.fill }}
@@ -642,28 +634,6 @@ export default function HomePage() {
             </TabsContent>
           </Tabs>
 
-          <Card className="h-fit xl:sticky xl:top-6">
-            <CardHeader>
-              <CardDescription>Filter Models</CardDescription>
-              <CardTitle className="text-lg">Visible Runs</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="mb-3 flex gap-2">
-                <Button variant="outline" size="sm" className="flex-1" onClick={() => setSelectedModels(rankings.map((row) => row.model))}>All</Button>
-                <Button variant="outline" size="sm" className="flex-1" onClick={() => setSelectedModels([])}>Clear</Button>
-              </div>
-              <ScrollArea className="h-[280px] pr-2">
-                <div className="space-y-2">
-                  {rankings.map((row) => (
-                    <label key={row.runId} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-neutral-300">
-                      <input type="checkbox" checked={selectedModels.includes(row.model)} onChange={() => toggleModel(row.model)} className="h-4 w-4 rounded border-white/20 bg-transparent accent-[#EF0044]" />
-                      <span className="truncate">{row.model}</span>
-                    </label>
-                  ))}
-                </div>
-              </ScrollArea>
-            </CardContent>
-          </Card>
         </section>
       </div>
     </main>
