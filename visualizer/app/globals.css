@@ -29,8 +29,13 @@ html, body {
   @apply bg-background text-foreground;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   @apply min-h-screen antialiased;
+  overflow-x: hidden;
   background-image:
     linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -46,6 +51,14 @@ body {
 
 .glass-card {
   @apply border border-white/10 bg-white/[0.04] backdrop-blur-md;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .noise-overlay {
