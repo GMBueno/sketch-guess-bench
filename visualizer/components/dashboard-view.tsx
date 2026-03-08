@@ -4,8 +4,6 @@ import { useMemo, useState } from "react";
 import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 import type { TooltipProps } from "recharts";
 import {
-  Bar,
-  BarChart,
   CartesianGrid,
   Cell,
   ResponsiveContainer,
@@ -220,6 +218,53 @@ function MatrixTooltip({ active, payload }: TooltipProps<ValueType, NameType>) {
   );
 }
 
+function MetricRows({
+  rows,
+  valueFormatter,
+  fillPercent,
+}: {
+  rows: RankingRow[];
+  valueFormatter: (row: RankingRow) => string;
+  fillPercent: (row: RankingRow) => number;
+}) {
+  return (
+    <div className="space-y-3">
+      {rows.map((row, index) => {
+        const style = getRankStyle(index);
+        return (
+          <div key={row.runId} className="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-3 rounded-2xl px-2 py-0 sm:grid-cols-[64px_minmax(220px,320px)_minmax(0,1fr)_84px] sm:gap-0 sm:px-4">
+            <div className={cn("text-md font-semibold tabular-nums sm:text-md", style.text)}>
+              {String(index + 1).padStart(2, "0")}
+            </div>
+            <div className="flex min-w-0 items-center gap-3">
+              {getModelLogo(row.model) ? (
+                <div className="flex h-5 w-5 shrink-0 items-center justify-center">
+                  <img src={getModelLogo(row.model) || ""} alt="" className="h-5 w-5 object-contain" />
+                </div>
+              ) : (
+                <div className={cn("flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>
+                  {getModelGlyph(row.model)}
+                </div>
+              )}
+              <div className="min-w-0">
+                <div className="truncate text-sm font-medium text-white sm:text-base">{row.model}</div>
+              </div>
+            </div>
+            <div className="col-span-2 sm:col-span-1">
+              <div className={cn("h-3 w-full overflow-hidden rounded-full", style.track)}>
+                <div className="h-full rounded-full transition-[width]" style={{ width: `${Math.max(0, Math.min(100, fillPercent(row)))}%`, backgroundColor: style.fill }} />
+              </div>
+            </div>
+            <div className={cn("justify-self-end text-sm font-medium tabular-nums sm:text-base", style.text)}>
+              {valueFormatter(row)}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function DashboardView({ section }: { section: SectionKey }) {
   const { rankings, metadata } = benchmarkData as BenchmarkPayload;
   const [tableSort, setTableSort] = useState<{ key: TableSortKey; direction: SortDirection }>({
@@ -244,12 +289,12 @@ export function DashboardView({ section }: { section: SectionKey }) {
   );
 
   const costData = useMemo(
-    () => [...rankings].sort((a, b) => a.totalCost - b.totalCost).map((row) => ({ model: row.model, value: Number(row.totalCost.toFixed(4)) })),
+    () => [...rankings].sort((a, b) => a.totalCost - b.totalCost),
     [rankings]
   );
 
   const speedData = useMemo(
-    () => [...rankings].sort((a, b) => a.averageDuration - b.averageDuration).map((row) => ({ model: row.model, value: Number((row.averageDuration / 1000).toFixed(2)) })),
+    () => [...rankings].sort((a, b) => a.totalRequestMs - b.totalRequestMs),
     [rankings]
   );
 
@@ -323,38 +368,11 @@ export function DashboardView({ section }: { section: SectionKey }) {
           <div className="mx-auto w-full max-w-5xl">
             <Card>
               <CardHeader>
-                <CardDescription>Rankings</CardDescription>
-                <CardTitle>Published Leaderboard</CardTitle>
+                <CardTitle>Accuracy Distribution</CardTitle>
+                <CardDescription>Success rate based on wordbank.</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  {sortedRankings.map((row, index) => {
-                    const style = getRankStyle(index);
-                    return (
-                      <div key={row.runId} className="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-3 rounded-2xl px-2 py-0 sm:grid-cols-[64px_minmax(220px,320px)_minmax(0,1fr)_64px] sm:gap-0 sm:px-4">
-                        <div className={cn("text-md font-semibold tabular-nums sm:text-md", style.text)}>{String(index + 1).padStart(2, "0")}</div>
-                        <div className="flex min-w-0 items-center gap-3">
-                          {getModelLogo(row.model) ? (
-                            <div className="flex h-5 w-5 shrink-0 items-center justify-center">
-                              <img src={getModelLogo(row.model) || ""} alt="" className="h-5 w-5 object-contain" />
-                            </div>
-                          ) : (
-                            <div className={cn("flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>{getModelGlyph(row.model)}</div>
-                          )}
-                          <div className="min-w-0">
-                            <div className="truncate text-sm font-medium text-white sm:text-base">{row.model}</div>
-                          </div>
-                        </div>
-                        <div className="col-span-2 sm:col-span-1">
-                          <div className={cn("h-3 w-full overflow-hidden rounded-full", style.track)}>
-                            <div className="h-full rounded-full transition-[width]" style={{ width: `${Math.max(0, Math.min(100, row.successRate))}%`, backgroundColor: style.fill }} />
-                          </div>
-                        </div>
-                        <div className={cn("justify-self-end text-sm font-medium tabular-nums sm:text-base", style.text)}>{row.successRate.toFixed(0)}%</div>
-                      </div>
-                    );
-                  })}
-                </div>
+                <MetricRows rows={sortedRankings} valueFormatter={(row) => `${row.successRate.toFixed(0)}%`} fillPercent={(row) => row.successRate} />
               </CardContent>
             </Card>
           </div>
@@ -404,51 +422,45 @@ export function DashboardView({ section }: { section: SectionKey }) {
         ) : null}
 
         {section === "cost" ? (
+          <div className="mx-auto w-full max-w-5xl">
           <Card>
             <CardHeader>
-              <CardDescription>Cost</CardDescription>
-              <CardTitle>Benchmark Cost</CardTitle>
+              <CardTitle>Cost Efficiency</CardTitle>
+              <CardDescription>Total cost per full benchmark run (lower is better)</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-[620px] sm:h-[560px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={costData} layout="vertical" margin={{ top: 8, right: 24, left: 8, bottom: 8 }}>
-                    <CartesianGrid horizontal={false} stroke="rgba(255,255,255,0.05)" />
-                    <XAxis type="number" tick={{ fill: "#737373", fontSize: 11 }} />
-                    <YAxis type="category" dataKey="model" tick={{ fill: "#a3a3a3", fontSize: 11 }} width={140} />
-                    <Tooltip formatter={(value: ValueType) => [formatChartTooltipValue(value, "usd"), "Cost"]} contentStyle={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 12 }} />
-                    <Bar dataKey="value" radius={[999, 999, 999, 999]} barSize={24}>
-                      {costData.map((entry, index) => <Cell key={entry.model} fill={getBarColor(index)} />)}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+              <MetricRows
+                rows={costData}
+                valueFormatter={(row) => formatUsdShort(row.totalCost)}
+                fillPercent={(row) => {
+                  const maxCost = costData.at(-1)?.totalCost || 1;
+                  return maxCost > 0 ? (row.totalCost / maxCost) * 100 : 0;
+                }}
+              />
             </CardContent>
           </Card>
+          </div>
         ) : null}
 
         {section === "speed" ? (
+          <div className="mx-auto w-full max-w-5xl">
           <Card>
             <CardHeader>
-              <CardDescription>Speed</CardDescription>
-              <CardTitle>Average Request Speed</CardTitle>
+              <CardTitle>Duration</CardTitle>
+              <CardDescription>Total time per full benchmark run (lower is better)</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-[620px] sm:h-[560px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={speedData} layout="vertical" margin={{ top: 8, right: 24, left: 8, bottom: 8 }}>
-                    <CartesianGrid horizontal={false} stroke="rgba(255,255,255,0.05)" />
-                    <XAxis type="number" tick={{ fill: "#737373", fontSize: 11 }} />
-                    <YAxis type="category" dataKey="model" tick={{ fill: "#a3a3a3", fontSize: 11 }} width={140} />
-                    <Tooltip formatter={(value: ValueType) => [formatChartTooltipValue(value, "seconds"), "Avg seconds"]} contentStyle={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 12 }} />
-                    <Bar dataKey="value" radius={[999, 999, 999, 999]} barSize={24}>
-                      {speedData.map((entry, index) => <Cell key={entry.model} fill={getBarColor(index)} />)}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+              <MetricRows
+                rows={speedData}
+                valueFormatter={(row) => `${(row.totalRequestMs / 1000).toFixed(1)}s`}
+                fillPercent={(row) => {
+                  const maxTime = speedData.at(-1)?.totalRequestMs || 1;
+                  return maxTime > 0 ? (row.totalRequestMs / maxTime) * 100 : 0;
+                }}
+              />
             </CardContent>
           </Card>
+          </div>
         ) : null}
 
         {section === "matrix" ? (
