@@ -5,6 +5,7 @@ import {
   ImageIcon,
 } from "lucide-react";
 import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
+import type { TooltipProps } from "recharts";
 import {
   Bar,
   BarChart,
@@ -104,6 +105,17 @@ interface ReplayPayload {
   runs: ReplayRun[];
 }
 
+interface MatrixPoint {
+  runId: string;
+  model: string;
+  rank: number;
+  successRate: number;
+  totalCost: number;
+  log2Cost?: number;
+  durationSeconds: number;
+  log2DurationSeconds?: number;
+}
+
 const CHART_COLORS = [
   "#7dd3fc",
   "#EF0044",
@@ -122,6 +134,11 @@ const RANK_STYLES = [
   { text: "text-sky-300", fill: "#7dd3fc", track: "bg-white/[0.05]" },
   { text: "text-orange-300", fill: "#fdba74", track: "bg-white/[0.05]" },
 ];
+
+const COST_AXIS_LABELS = [0.05, 0.1, 0.2, 0.4, 0.8, 1.6, 3.2];
+const COST_AXIS_TICKS = COST_AXIS_LABELS.map((value) => Math.log2(value));
+const SPEED_AXIS_LABELS = [2, 4, 8, 16, 32, 64, 128];
+const SPEED_AXIS_TICKS = SPEED_AXIS_LABELS.map((value) => Math.log2(value));
 
 function formatUsd(value: number) {
   return `$${value.toFixed(4)}`;
@@ -200,10 +217,6 @@ function formatChartTooltipValue(value: ValueType, kind: "percent" | "usd" | "se
   return `${numeric}s`;
 }
 
-function getTooltipLabel(payload?: Array<{ payload?: { model?: string } }>) {
-  return payload?.[0]?.payload?.model || "";
-}
-
 function MetricCard({ label, value, hint }: { label: string; value: string; hint: string }) {
   return (
     <Card className="rounded-2xl">
@@ -213,6 +226,48 @@ function MetricCard({ label, value, hint }: { label: string; value: string; hint
         <div className="mt-2 text-xs text-neutral-400">{hint}</div>
       </CardContent>
     </Card>
+  );
+}
+
+function MatrixLogoPoint(props: {
+  cx?: number;
+  cy?: number;
+  payload?: MatrixPoint;
+}) {
+  const { cx, cy, payload } = props;
+  if (typeof cx !== "number" || typeof cy !== "number" || !payload) return null;
+
+  const logo = getModelLogo(payload.model);
+  if (!logo) {
+    return (
+      <g>
+        <circle cx={cx} cy={cy} r={11} fill="rgba(10,10,10,0.92)" stroke="rgba(255,255,255,0.18)" />
+        <text x={cx} y={cy + 4} textAnchor="middle" fontSize="10" fontWeight="700" fill="#e5e5e5">
+          {getModelGlyph(payload.model)}
+        </text>
+      </g>
+    );
+  }
+
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={12} fill="rgba(10,10,10,0.92)" stroke="rgba(255,255,255,0.18)" />
+      <image href={logo} x={cx - 9} y={cy - 9} width={18} height={18} preserveAspectRatio="xMidYMid meet" />
+    </g>
+  );
+}
+
+function MatrixTooltip({ active, payload }: TooltipProps<ValueType, NameType>) {
+  const point = payload?.[0]?.payload as MatrixPoint | undefined;
+  if (!active || !point) return null;
+
+  return (
+    <div className="rounded-xl border border-white/10 bg-[#0a0a0a] px-3 py-2 text-xs text-neutral-200 shadow-2xl">
+      <div className="font-medium text-white">#{point.rank}: {point.model}</div>
+      <div className="mt-1">ACC: {point.successRate.toFixed(1)}%</div>
+      <div>COST: {formatUsdShort(point.totalCost)}</div>
+      <div>TIME: {point.durationSeconds.toFixed(1)}s</div>
+    </div>
   );
 }
 
@@ -233,6 +288,13 @@ export function DashboardView({ section }: { section: SectionKey }) {
       }),
     [rankings]
   );
+  const rankingPositionByRunId = useMemo(
+    () =>
+      new Map(
+        sortedRankings.map((row, index) => [row.runId, index + 1])
+      ),
+    [sortedRankings]
+  );
   const selectedRun = useMemo(() => runs.find((run) => run.runId === selectedRunId) || runs[0] || null, [runs, selectedRunId]);
   const selectedGame = useMemo(() => {
     if (!selectedRun) return null;
@@ -247,12 +309,30 @@ export function DashboardView({ section }: { section: SectionKey }) {
     [rankings]
   );
   const valueMatrixData = useMemo(
-    () => rankings.map((row) => ({ model: row.model, totalCost: Number(row.totalCost.toFixed(4)), successRate: Number(row.successRate.toFixed(1)) })),
-    [rankings]
+    () =>
+      rankings.map((row) => ({
+        runId: row.runId,
+        model: row.model,
+        rank: rankingPositionByRunId.get(row.runId) || 0,
+        totalCost: Number(row.totalCost.toFixed(4)),
+        log2Cost: Math.log2(Math.max(row.totalCost, 0.0001)),
+        successRate: Number(row.successRate.toFixed(1)),
+        durationSeconds: Number((row.averageDuration / 1000).toFixed(1)),
+      })),
+    [rankings, rankingPositionByRunId]
   );
   const speedMatrixData = useMemo(
-    () => rankings.map((row) => ({ model: row.model, durationSeconds: Number((row.averageDuration / 1000).toFixed(2)), successRate: Number(row.successRate.toFixed(1)), totalCost: Number(row.totalCost.toFixed(4)) })),
-    [rankings]
+    () =>
+      rankings.map((row) => ({
+        runId: row.runId,
+        model: row.model,
+        rank: rankingPositionByRunId.get(row.runId) || 0,
+        durationSeconds: Number((row.averageDuration / 1000).toFixed(1)),
+        log2DurationSeconds: Math.log2(Math.max(row.averageDuration / 1000, 0.0001)),
+        successRate: Number(row.successRate.toFixed(1)),
+        totalCost: Number(row.totalCost.toFixed(4)),
+      })),
+    [rankings, rankingPositionByRunId]
   );
 
   const handleRunChange = (runId: string) => {
@@ -408,7 +488,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
         ) : null}
 
         {section === "matrix" ? (
-          <div className="grid gap-6 xl:grid-cols-2">
+          <div className="space-y-6">
             <Card>
               <CardHeader>
                 <CardDescription>Matrix</CardDescription>
@@ -419,10 +499,20 @@ export function DashboardView({ section }: { section: SectionKey }) {
                   <ResponsiveContainer width="100%" height="100%">
                     <ScatterChart margin={{ top: 8, right: 20, bottom: 8, left: 0 }}>
                       <CartesianGrid stroke="rgba(255,255,255,0.05)" />
-                      <XAxis dataKey="totalCost" tick={{ fill: "#737373", fontSize: 11 }} />
+                      <XAxis
+                        dataKey="log2Cost"
+                        type="number"
+                        domain={[Math.log2(0.05), Math.log2(3.2)]}
+                        ticks={COST_AXIS_TICKS}
+                        tickFormatter={(value) => formatUsdShort(2 ** Number(value))}
+                        tick={{ fill: "#737373", fontSize: 11 }}
+                        label={{ value: "TOTAL COST ($) LOG2 SCALE", position: "insideBottom", offset: -4, fill: "#737373", fontSize: 11 }}
+                      />
                       <YAxis dataKey="successRate" tick={{ fill: "#737373", fontSize: 11 }} domain={[0, 100]} />
-                      <Tooltip contentStyle={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 12 }} formatter={(value: ValueType, name: NameType) => name === "totalCost" ? [formatChartTooltipValue(value, "usd"), "Cost"] : [formatChartTooltipValue(value, "percent"), "Solved"]} labelFormatter={(_, payload) => getTooltipLabel(payload as Array<{ payload?: { model?: string } }> | undefined)} />
-                      <Scatter data={valueMatrixData}>{valueMatrixData.map((entry, index) => <Cell key={entry.model} fill={getBarColor(index)} />)}</Scatter>
+                      <Tooltip cursor={false} content={<MatrixTooltip />} />
+                      <Scatter data={valueMatrixData} shape={<MatrixLogoPoint />}>
+                        {valueMatrixData.map((entry, index) => <Cell key={entry.runId} fill={getBarColor(index)} />)}
+                      </Scatter>
                     </ScatterChart>
                   </ResponsiveContainer>
                 </div>
@@ -438,10 +528,20 @@ export function DashboardView({ section }: { section: SectionKey }) {
                   <ResponsiveContainer width="100%" height="100%">
                     <ScatterChart margin={{ top: 8, right: 20, bottom: 8, left: 0 }}>
                       <CartesianGrid stroke="rgba(255,255,255,0.05)" />
-                      <XAxis dataKey="durationSeconds" tick={{ fill: "#737373", fontSize: 11 }} />
+                      <XAxis
+                        dataKey="log2DurationSeconds"
+                        type="number"
+                        domain={[Math.log2(2), Math.log2(128)]}
+                        ticks={SPEED_AXIS_TICKS}
+                        tickFormatter={(value) => `${2 ** Number(value)}s`}
+                        tick={{ fill: "#737373", fontSize: 11 }}
+                        label={{ value: "AVERAGE REQUEST TIME (S) LOG2 SCALE", position: "insideBottom", offset: -4, fill: "#737373", fontSize: 11 }}
+                      />
                       <YAxis dataKey="successRate" tick={{ fill: "#737373", fontSize: 11 }} domain={[0, 100]} />
-                      <Tooltip contentStyle={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 12 }} formatter={(value: ValueType, name: NameType) => name === "durationSeconds" ? [formatChartTooltipValue(value, "seconds"), "Avg seconds"] : name === "successRate" ? [formatChartTooltipValue(value, "percent"), "Solved"] : [formatChartTooltipValue(value, "usd"), "Cost"]} labelFormatter={(_, payload) => getTooltipLabel(payload as Array<{ payload?: { model?: string } }> | undefined)} />
-                      <Scatter data={speedMatrixData}>{speedMatrixData.map((entry, index) => <Cell key={entry.model} fill={getBarColor(index)} />)}</Scatter>
+                      <Tooltip cursor={false} content={<MatrixTooltip />} />
+                      <Scatter data={speedMatrixData} shape={<MatrixLogoPoint />}>
+                        {speedMatrixData.map((entry, index) => <Cell key={entry.runId} fill={getBarColor(index)} />)}
+                      </Scatter>
                     </ScatterChart>
                   </ResponsiveContainer>
                 </div>
