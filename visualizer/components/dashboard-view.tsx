@@ -1,9 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {
-  ImageIcon,
-} from "lucide-react";
 import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 import type { TooltipProps } from "recharts";
 import {
@@ -20,21 +17,12 @@ import {
 } from "recharts";
 
 import benchmarkData from "../data/benchmark-results.json";
-import replayData from "../data/replay-data.json";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-export type SectionKey = "ranking" | "table" | "cost" | "speed" | "matrix" | "replay";
+export type SectionKey = "ranking" | "table" | "cost" | "speed" | "matrix";
 type TableSortKey = "rank" | "model" | "solved" | "failed" | "guesses" | "cost" | "time" | "completed";
 type SortDirection = "asc" | "desc";
 
@@ -71,40 +59,6 @@ interface BenchmarkPayload {
     totalRequestMs: number;
     testSuite: string;
   };
-}
-
-interface ReplayGame {
-  targetWord: string;
-  solved: boolean;
-  guessesUsed: number;
-  penalizedGuesses: number;
-  totalCostUsd: number;
-  totalRequestMs: number;
-  totalRequests: number;
-  svgPath: string | null;
-  guesses: string[];
-}
-
-interface ReplayRun {
-  model: string;
-  modelId: string | null;
-  runId: string;
-  completedAt: string | null;
-  solvedCount: number;
-  failedCount: number;
-  totalWords: number;
-  totalGuesses: number;
-  averageGuesses: number;
-  totalCostUsd: number;
-  totalRequestMs: number;
-  totalRequests: number;
-  games: ReplayGame[];
-  wordBank: string[];
-}
-
-interface ReplayPayload {
-  generatedAt: string;
-  runs: ReplayRun[];
 }
 
 interface MatrixPoint {
@@ -228,23 +182,7 @@ function formatChartTooltipValue(value: ValueType, kind: "percent" | "usd" | "se
   return `${numeric}s`;
 }
 
-function MetricCard({ label, value, hint }: { label: string; value: string; hint: string }) {
-  return (
-    <Card className="rounded-2xl">
-      <CardContent className="p-4">
-        <div className="text-[10px] uppercase tracking-[0.25em] text-neutral-500">{label}</div>
-        <div className="mt-3 text-3xl font-semibold text-white">{value}</div>
-        <div className="mt-2 text-xs text-neutral-400">{hint}</div>
-      </CardContent>
-    </Card>
-  );
-}
-
-function MatrixLogoPoint(props: {
-  cx?: number;
-  cy?: number;
-  payload?: MatrixPoint;
-}) {
+function MatrixLogoPoint(props: { cx?: number; cy?: number; payload?: MatrixPoint }) {
   const { cx, cy, payload } = props;
   if (typeof cx !== "number" || typeof cy !== "number" || !payload) return null;
 
@@ -284,10 +222,6 @@ function MatrixTooltip({ active, payload }: TooltipProps<ValueType, NameType>) {
 
 export function DashboardView({ section }: { section: SectionKey }) {
   const { rankings, metadata } = benchmarkData as BenchmarkPayload;
-  const { runs } = replayData as ReplayPayload;
-
-  const [selectedRunId, setSelectedRunId] = useState<string>(runs[0]?.runId || "");
-  const [selectedWord, setSelectedWord] = useState<string>(runs[0]?.games[0]?.targetWord || "");
   const [tableSort, setTableSort] = useState<{ key: TableSortKey; direction: SortDirection }>({
     key: "rank",
     direction: "asc",
@@ -303,89 +237,65 @@ export function DashboardView({ section }: { section: SectionKey }) {
       }),
     [rankings]
   );
+
   const rankingPositionByRunId = useMemo(
-    () =>
-      new Map(
-        sortedRankings.map((row, index) => [row.runId, index + 1])
-      ),
+    () => new Map(sortedRankings.map((row, index) => [row.runId, index + 1])),
     [sortedRankings]
   );
-  const selectedRun = useMemo(() => runs.find((run) => run.runId === selectedRunId) || runs[0] || null, [runs, selectedRunId]);
-  const selectedGame = useMemo(() => {
-    if (!selectedRun) return null;
-    return selectedRun.games.find((game) => game.targetWord === selectedWord) || selectedRun.games[0] || null;
-  }, [selectedRun, selectedWord]);
+
   const costData = useMemo(
     () => [...rankings].sort((a, b) => a.totalCost - b.totalCost).map((row) => ({ model: row.model, value: Number(row.totalCost.toFixed(4)) })),
     [rankings]
   );
+
   const speedData = useMemo(
     () => [...rankings].sort((a, b) => a.averageDuration - b.averageDuration).map((row) => ({ model: row.model, value: Number((row.averageDuration / 1000).toFixed(2)) })),
     [rankings]
   );
-  const valueMatrixData = useMemo(
-    () =>
-      rankings.map((row) => ({
-        runId: row.runId,
-        model: row.model,
-        rank: rankingPositionByRunId.get(row.runId) || 0,
-        totalCost: Number(row.totalCost.toFixed(4)),
-        log2Cost: Math.log2(Math.max(row.totalCost, 0.0001)),
-        successRate: Number(row.successRate.toFixed(1)),
-        durationSeconds: Number((row.averageDuration / 1000).toFixed(1)),
-      })),
-    [rankings, rankingPositionByRunId]
-  );
-  const speedMatrixData = useMemo(
-    () =>
-      rankings.map((row) => ({
-        runId: row.runId,
-        model: row.model,
-        rank: rankingPositionByRunId.get(row.runId) || 0,
-        durationSeconds: Number((row.averageDuration / 1000).toFixed(1)),
-        log2DurationSeconds: Math.log2(Math.max(row.averageDuration / 1000, 0.0001)),
-        successRate: Number(row.successRate.toFixed(1)),
-        totalCost: Number(row.totalCost.toFixed(4)),
-      })),
-    [rankings, rankingPositionByRunId]
-  );
-  const tableRows = useMemo(() => {
-    const rows = sortedRankings.map((row, index) => ({
-      ...row,
-      rank: index + 1,
-    }));
 
+  const valueMatrixData = useMemo(
+    () => rankings.map((row) => ({
+      runId: row.runId,
+      model: row.model,
+      rank: rankingPositionByRunId.get(row.runId) || 0,
+      totalCost: Number(row.totalCost.toFixed(4)),
+      log2Cost: Math.log2(Math.max(row.totalCost, 0.0001)),
+      successRate: Number(row.successRate.toFixed(1)),
+      durationSeconds: Number((row.averageDuration / 1000).toFixed(1)),
+    })),
+    [rankings, rankingPositionByRunId]
+  );
+
+  const speedMatrixData = useMemo(
+    () => rankings.map((row) => ({
+      runId: row.runId,
+      model: row.model,
+      rank: rankingPositionByRunId.get(row.runId) || 0,
+      durationSeconds: Number((row.averageDuration / 1000).toFixed(1)),
+      log2DurationSeconds: Math.log2(Math.max(row.averageDuration / 1000, 0.0001)),
+      successRate: Number(row.successRate.toFixed(1)),
+      totalCost: Number(row.totalCost.toFixed(4)),
+    })),
+    [rankings, rankingPositionByRunId]
+  );
+
+  const tableRows = useMemo(() => {
+    const rows = sortedRankings.map((row, index) => ({ ...row, rank: index + 1 }));
     return rows.slice().sort((a, b) => {
       const direction = tableSort.direction === "asc" ? 1 : -1;
-
       switch (tableSort.key) {
-        case "rank":
-          return (a.rank - b.rank) * direction;
-        case "model":
-          return a.model.localeCompare(b.model) * direction;
-        case "solved":
-          return (a.correct - b.correct) * direction;
-        case "failed":
-          return (a.errors - b.errors) * direction;
-        case "guesses":
-          return (a.totalGuesses - b.totalGuesses) * direction;
-        case "cost":
-          return (a.totalCost - b.totalCost) * direction;
-        case "time":
-          return (a.totalRequestMs - b.totalRequestMs) * direction;
-        case "completed":
-          return String(a.completedAt || "").localeCompare(String(b.completedAt || "")) * direction;
-        default:
-          return 0;
+        case "rank": return (a.rank - b.rank) * direction;
+        case "model": return a.model.localeCompare(b.model) * direction;
+        case "solved": return (a.correct - b.correct) * direction;
+        case "failed": return (a.errors - b.errors) * direction;
+        case "guesses": return (a.totalGuesses - b.totalGuesses) * direction;
+        case "cost": return (a.totalCost - b.totalCost) * direction;
+        case "time": return (a.totalRequestMs - b.totalRequestMs) * direction;
+        case "completed": return String(a.completedAt || "").localeCompare(String(b.completedAt || "")) * direction;
+        default: return 0;
       }
     });
   }, [sortedRankings, tableSort]);
-
-  const handleRunChange = (runId: string) => {
-    setSelectedRunId(runId);
-    const run = runs.find((item) => item.runId === runId);
-    if (run?.games?.[0]?.targetWord) setSelectedWord(run.games[0].targetWord);
-  };
 
   const handleTableSort = (key: TableSortKey) => {
     setTableSort((current) => ({
@@ -422,18 +332,14 @@ export function DashboardView({ section }: { section: SectionKey }) {
                     const style = getRankStyle(index);
                     return (
                       <div key={row.runId} className="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-3 rounded-2xl px-2 py-0 sm:grid-cols-[64px_minmax(220px,320px)_minmax(0,1fr)_64px] sm:gap-0 sm:px-4">
-                        <div className={cn("text-md font-semibold tabular-nums sm:text-md", style.text)}>
-                          {String(index + 1).padStart(2, "0")}
-                        </div>
+                        <div className={cn("text-md font-semibold tabular-nums sm:text-md", style.text)}>{String(index + 1).padStart(2, "0")}</div>
                         <div className="flex min-w-0 items-center gap-3">
                           {getModelLogo(row.model) ? (
                             <div className="flex h-5 w-5 shrink-0 items-center justify-center">
                               <img src={getModelLogo(row.model) || ""} alt="" className="h-5 w-5 object-contain" />
                             </div>
                           ) : (
-                            <div className={cn("flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>
-                              {getModelGlyph(row.model)}
-                            </div>
+                            <div className={cn("flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-sm font-semibold", getModelGlyphClasses(row.model))}>{getModelGlyph(row.model)}</div>
                           )}
                           <div className="min-w-0">
                             <div className="truncate text-sm font-medium text-white sm:text-base">{row.model}</div>
@@ -463,9 +369,9 @@ export function DashboardView({ section }: { section: SectionKey }) {
             <CardContent>
               <ScrollArea className="w-full whitespace-nowrap">
                 <div className="min-w-[980px]">
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
                         <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("rank")}>Rank{getSortMarker("rank")}</TableHead>
                         <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("model")}>Model{getSortMarker("model")}</TableHead>
                         <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("solved")}>Solved{getSortMarker("solved")}</TableHead>
@@ -474,9 +380,9 @@ export function DashboardView({ section }: { section: SectionKey }) {
                         <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("cost")}>Cost{getSortMarker("cost")}</TableHead>
                         <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("time")}>Time{getSortMarker("time")}</TableHead>
                         <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("completed")}>Completed{getSortMarker("completed")}</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
                       {tableRows.map((row) => (
                         <TableRow key={row.runId} className="bg-white/[0.03] text-neutral-200">
                           <TableCell className="rounded-l-xl text-neutral-400">#{row.rank}</TableCell>
@@ -557,15 +463,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
                   <ResponsiveContainer width="100%" height="100%">
                     <ScatterChart margin={{ top: 8, right: 20, bottom: 8, left: 0 }}>
                       <CartesianGrid stroke="rgba(255,255,255,0.05)" />
-                      <XAxis
-                        dataKey="log2Cost"
-                        type="number"
-                        domain={[Math.log2(0.05), Math.log2(3.2)]}
-                        ticks={COST_AXIS_TICKS}
-                        tickFormatter={(value) => formatUsdShort(2 ** Number(value))}
-                        tick={{ fill: "#737373", fontSize: 11 }}
-                        label={{ value: "TOTAL COST ($) LOG2 SCALE", position: "insideBottom", offset: -4, fill: "#737373", fontSize: 11 }}
-                      />
+                      <XAxis dataKey="log2Cost" type="number" domain={[Math.log2(0.05), Math.log2(3.2)]} ticks={COST_AXIS_TICKS} tickFormatter={(value) => formatUsdShort(2 ** Number(value))} tick={{ fill: "#737373", fontSize: 11 }} label={{ value: "TOTAL COST ($) LOG2 SCALE", position: "insideBottom", offset: -4, fill: "#737373", fontSize: 11 }} />
                       <YAxis dataKey="successRate" tick={{ fill: "#737373", fontSize: 11 }} domain={[0, 100]} />
                       <Tooltip cursor={false} content={<MatrixTooltip />} />
                       <Scatter data={valueMatrixData} shape={<MatrixLogoPoint />}>
@@ -586,15 +484,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
                   <ResponsiveContainer width="100%" height="100%">
                     <ScatterChart margin={{ top: 8, right: 20, bottom: 8, left: 0 }}>
                       <CartesianGrid stroke="rgba(255,255,255,0.05)" />
-                      <XAxis
-                        dataKey="log2DurationSeconds"
-                        type="number"
-                        domain={[Math.log2(2), Math.log2(128)]}
-                        ticks={SPEED_AXIS_TICKS}
-                        tickFormatter={(value) => `${2 ** Number(value)}s`}
-                        tick={{ fill: "#737373", fontSize: 11 }}
-                        label={{ value: "AVERAGE REQUEST TIME (S) LOG2 SCALE", position: "insideBottom", offset: -4, fill: "#737373", fontSize: 11 }}
-                      />
+                      <XAxis dataKey="log2DurationSeconds" type="number" domain={[Math.log2(2), Math.log2(128)]} ticks={SPEED_AXIS_TICKS} tickFormatter={(value) => `${2 ** Number(value)}s`} tick={{ fill: "#737373", fontSize: 11 }} label={{ value: "AVERAGE REQUEST TIME (S) LOG2 SCALE", position: "insideBottom", offset: -4, fill: "#737373", fontSize: 11 }} />
                       <YAxis dataKey="successRate" tick={{ fill: "#737373", fontSize: 11 }} domain={[0, 100]} />
                       <Tooltip cursor={false} content={<MatrixTooltip />} />
                       <Scatter data={speedMatrixData} shape={<MatrixLogoPoint />}>
@@ -605,130 +495,6 @@ export function DashboardView({ section }: { section: SectionKey }) {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        ) : null}
-
-        {section === "replay" && selectedRun ? (
-          <div className="grid gap-6 xl:grid-cols-[0.34fr_0.66fr]">
-            <Card>
-              <CardHeader>
-                <CardDescription>Replay Controls</CardDescription>
-                <CardTitle>Inspect A Published Run</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Run</div>
-                <Select value={selectedRun.runId} onValueChange={handleRunChange}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select run" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {runs.map((run) => (
-                      <SelectItem key={run.runId} value={run.runId}>
-                        {run.model} · {new Date(run.completedAt || "").toLocaleDateString()}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
-                <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-                  <MetricCard label="Solved" value={`${selectedRun.solvedCount}/${selectedRun.totalWords}`} hint={`${selectedRun.failedCount} failed`} />
-                  <MetricCard label="Guesses" value={String(selectedRun.totalGuesses)} hint={`${selectedRun.averageGuesses.toFixed(2)} avg / word`} />
-                  <MetricCard label="Cost" value={formatUsdShort(selectedRun.totalCostUsd)} hint={`${selectedRun.totalRequests} total requests`} />
-                  <MetricCard label="Req Time" value={formatDuration(selectedRun.totalRequestMs)} hint={selectedRun.model} />
-                </div>
-
-                <div className="mt-5">
-                  <div className="mb-3 text-xs uppercase tracking-[0.2em] text-neutral-500">Words</div>
-                  <ScrollArea className="h-[340px] pr-2">
-                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-2">
-                      {selectedRun.games.map((game) => (
-                        <Button key={game.targetWord} type="button" variant={selectedGame?.targetWord === game.targetWord ? "default" : "outline"} className={cn("h-auto justify-start px-3 py-3 text-left", selectedGame?.targetWord === game.targetWord && "bg-[#EF0044] text-white hover:opacity-90")} onClick={() => setSelectedWord(game.targetWord)}>
-                          <div>
-                            <div className="font-medium">{game.targetWord}</div>
-                            <div className="mt-1 text-xs opacity-70">{game.solved ? "solved" : "missed"} · {game.penalizedGuesses} guesses</div>
-                          </div>
-                        </Button>
-                      ))}
-                    </div>
-                  </ScrollArea>
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardDescription>Selected Word</CardDescription>
-                  <CardTitle>{selectedGame?.targetWord}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm text-neutral-400">
-                    <span>{selectedGame?.solved ? "Solved" : "Missed"} · {selectedGame?.penalizedGuesses ?? 0} guesses · {formatUsd(selectedGame?.totalCostUsd || 0)}</span>
-                    <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs uppercase tracking-[0.2em]">{formatDuration(selectedGame?.totalRequestMs || 0)}</span>
-                  </div>
-                  <div className="grid gap-6 lg:grid-cols-[0.48fr_0.52fr]">
-                    <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
-                      <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-neutral-500"><ImageIcon className="h-4 w-4" />Saved Drawing</div>
-                      <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-950 p-4">
-                        {selectedGame?.svgPath ? (
-                          <img
-                            src={selectedGame.svgPath}
-                            alt={`${selectedGame.targetWord} drawing`}
-                            className="h-full w-full object-contain"
-                          />
-                        ) : (
-                          <div className="text-sm text-neutral-500">No SVG saved</div>
-                        )}
-                      </div>
-                    </div>
-                    <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                      <div className="mb-3 text-xs uppercase tracking-[0.2em] text-neutral-500">Guess Order</div>
-                      <div className="flex flex-wrap gap-2">
-                        {(selectedGame?.guesses || []).map((guess, index) => {
-                          const matched = guess.toLowerCase() === (selectedGame?.targetWord || "").toLowerCase();
-                          return <span key={`${guess}-${index}`} className={cn("rounded-full border px-3 py-1 text-xs", matched ? "border-green-500/40 bg-green-500/10 text-green-300" : "border-white/10 bg-white/[0.04] text-neutral-300")}>{index + 1}. {guess}</span>;
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardDescription>Run Table</CardDescription>
-                  <CardTitle>{selectedRun.model}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ScrollArea className="w-full whitespace-nowrap">
-                    <div className="min-w-[760px]">
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead>Word</TableHead>
-                            <TableHead>Status</TableHead>
-                            <TableHead>Guesses</TableHead>
-                            <TableHead>Cost</TableHead>
-                            <TableHead>Req Time</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {selectedRun.games.map((game) => (
-                            <TableRow key={game.targetWord} className={cn("cursor-pointer bg-white/[0.03] text-neutral-200", selectedGame?.targetWord === game.targetWord && "bg-[#EF0044]/10")} onClick={() => setSelectedWord(game.targetWord)}>
-                              <TableCell className="rounded-l-xl text-white">{game.targetWord}</TableCell>
-                              <TableCell className={game.solved ? "text-green-400" : "text-red-400"}>{game.solved ? "Solved" : "Missed"}</TableCell>
-                              <TableCell>{game.penalizedGuesses}</TableCell>
-                              <TableCell>{formatUsd(game.totalCostUsd)}</TableCell>
-                              <TableCell className="rounded-r-xl">{formatDuration(game.totalRequestMs)}</TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
-                  </ScrollArea>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         ) : null}
       </div>

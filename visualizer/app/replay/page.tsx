@@ -1,5 +1,5 @@
-import { DashboardView } from "@/components/dashboard-view";
+import { ReplayView } from "@/components/replay-view";
 
 export default function ReplayPage() {
-  return <DashboardView section="replay" />;
+  return <ReplayView />;
 }
