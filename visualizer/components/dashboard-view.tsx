@@ -141,6 +141,7 @@ const COST_AXIS_LABELS = [0.05, 0.1, 0.2, 0.4, 0.8, 1.6, 3.2];
 const COST_AXIS_TICKS = COST_AXIS_LABELS.map((value) => Math.log2(value));
 const SPEED_AXIS_LABELS = [2, 4, 8, 16, 32, 64, 128];
 const SPEED_AXIS_TICKS = SPEED_AXIS_LABELS.map((value) => Math.log2(value));
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 function formatUsd(value: number) {
   return `$${value.toFixed(4)}`;
@@ -208,14 +209,14 @@ function getModelGlyphClasses(model: string) {
 
 function getModelLogo(model: string) {
   const normalized = model.toLowerCase();
-  if (normalized.includes("gemini")) return "/assets/logos/gemini.svg";
-  if (normalized.includes("gpt") || normalized.includes("openai")) return "/assets/logos/openai.svg";
-  if (normalized.includes("claude")) return "/assets/logos/claude.svg";
-  if (normalized.includes("deepseek")) return "/assets/logos/deepseek.svg";
-  if (normalized.includes("grok")) return "/assets/logos/grok.svg";
-  if (normalized.includes("kimi")) return "/assets/logos/kimi.svg";
-  if (normalized.includes("glm")) return "/assets/logos/glm.svg";
-  if (normalized.includes("minimax")) return "/assets/logos/minimax.svg";
+  if (normalized.includes("gemini")) return `${BASE_PATH}/assets/logos/gemini.svg`;
+  if (normalized.includes("gpt") || normalized.includes("openai")) return `${BASE_PATH}/assets/logos/openai.svg`;
+  if (normalized.includes("claude")) return `${BASE_PATH}/assets/logos/claude.svg`;
+  if (normalized.includes("deepseek")) return `${BASE_PATH}/assets/logos/deepseek.svg`;
+  if (normalized.includes("grok")) return `${BASE_PATH}/assets/logos/grok.svg`;
+  if (normalized.includes("kimi")) return `${BASE_PATH}/assets/logos/kimi.svg`;
+  if (normalized.includes("glm")) return `${BASE_PATH}/assets/logos/glm.svg`;
+  if (normalized.includes("minimax")) return `${BASE_PATH}/assets/logos/minimax.svg`;
   return null;
 }
 

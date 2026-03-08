@@ -5,6 +5,9 @@ const repoName = "sketch-guess-bench";
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? `/${repoName}` : "",
+  },
   images: {
     unoptimized: true,
   },
