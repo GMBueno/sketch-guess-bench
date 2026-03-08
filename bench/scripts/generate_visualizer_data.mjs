@@ -8,6 +8,13 @@ const ROOT_DIR = path.resolve(__dirname, "..", "..");
 const BENCHMARK_DIR = path.join(ROOT_DIR, "data", "benchmarks");
 const TRACE_DIR = path.join(ROOT_DIR, "data", "openrouter_traces");
 const VISUALIZER_DATA_DIR = path.join(ROOT_DIR, "visualizer", "data");
+const VISUALIZER_REPLAY_ASSET_DIR = path.join(
+  ROOT_DIR,
+  "visualizer",
+  "public",
+  "replay_assets",
+  "svgs"
+);
 const BENCHMARK_OUTPUT_PATH = path.join(VISUALIZER_DATA_DIR, "benchmark-results.json");
 const REPLAY_OUTPUT_PATH = path.join(VISUALIZER_DATA_DIR, "replay-data.json");
 
@@ -223,6 +230,33 @@ function buildMetadata(rankings) {
   };
 }
 
+function sanitizeSvgFileSegment(value) {
+  return String(value || "item")
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "item";
+}
+
+async function resetReplaySvgDir() {
+  await fs.rm(VISUALIZER_REPLAY_ASSET_DIR, { recursive: true, force: true });
+  await fs.mkdir(VISUALIZER_REPLAY_ASSET_DIR, { recursive: true });
+}
+
+async function writeReplaySvg(runId, targetWord, svg) {
+  if (typeof svg !== "string" || !svg.trim()) return null;
+
+  const safeRunId = sanitizeSvgFileSegment(runId);
+  const safeWord = sanitizeSvgFileSegment(targetWord);
+  const runDir = path.join(VISUALIZER_REPLAY_ASSET_DIR, safeRunId);
+  const fileName = `${safeWord}.svg`;
+  const filePath = path.join(runDir, fileName);
+
+  await fs.mkdir(runDir, { recursive: true });
+  await fs.writeFile(filePath, svg, "utf8");
+
+  return `/replay_assets/svgs/${safeRunId}/${fileName}`;
+}
+
 async function buildReplayRuns(benchmarks, rankingByRunId) {
   const runs = [];
 
@@ -236,6 +270,7 @@ async function buildReplayRuns(benchmarks, rankingByRunId) {
         const guesses = (game.turns || [])
           .filter((turn) => turn.role === "guess" && typeof turn.text === "string")
           .map((turn) => turn.text);
+        const svgPath = await writeReplaySvg(benchmark.id, game.targetWord, drawTurn?.svg);
 
         return {
           targetWord: game.targetWord,
@@ -245,7 +280,7 @@ async function buildReplayRuns(benchmarks, rankingByRunId) {
           totalCostUsd: numberOrZero(game.totalCostUsd),
           totalRequestMs: await deriveGameTimingMs(game),
           totalRequests: numberOrZero(game.totalRequests),
-          svg: drawTurn?.svg || null,
+          svgPath,
           guesses,
           traceRef: game.traceRef || null,
         };
@@ -285,6 +320,7 @@ async function main() {
   const rankings = sortRankings(await Promise.all(benchmarks.map(toRankingEntry)));
   const rankingByRunId = new Map(rankings.map((ranking) => [ranking.runId, ranking]));
   const metadata = buildMetadata(rankings);
+  await resetReplaySvgDir();
   const replay = {
     generatedAt: metadata.timestamp,
     runs: await buildReplayRuns(benchmarks, rankingByRunId),

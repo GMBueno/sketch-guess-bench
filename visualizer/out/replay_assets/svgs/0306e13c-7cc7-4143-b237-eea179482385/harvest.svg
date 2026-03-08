@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background sky -->
+  <defs>
+    <linearGradient id="skyGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#AEE3FF"/>
+      <stop offset="1" stop-color="#D6F0FF"/>
+    </linearGradient>
+    <linearGradient id="groundGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#F6E0B3"/>
+      <stop offset="1" stop-color="#E1B86B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#skyGrad)"/>
+
+  <!-- Sun setting -->
+  <circle cx="420" cy="110" r="64" fill="#FFD36E" opacity="0.95"/>
+
+  <!-- Ground / field -->
+  <rect x="0" y="280" width="512" height="232" fill="url(#groundGrad)"/>
+
+  <!-- Furrows -->
+  <g stroke="#C88F3A" stroke-width="6" fill="none" opacity="0.9">
+    <path d="M0 360 Q 128 340 256 360 T 512 360"/>
+    <path d="M0 392 Q 128 372 256 392 T 512 392"/>
+    <path d="M0 424 Q 128 404 256 424 T 512 424"/>
+  </g>
+
+  <!-- Bundle of wheat -->
+  <g transform="translate(256,360)">
+    <!-- helper: each stalk group contains stem and grains; will be rotated per stalk -->
+    <!-- Stalk template - rotated copies -->
+
+    <!-- leftmost stalk -->
+    <g transform="rotate(-30)">
+      <path d="M0 0 C-6 -36 -6 -72 0 -120" stroke="#7A4A25" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="10" cy="-24" rx="12" ry="8" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-6" cy="-48" rx="11" ry="7.5" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="12" cy="-72" rx="12" ry="8" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-4" cy="-96" rx="10" ry="7" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="10" cy="-112" rx="8" ry="5.5" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+    </g>
+
+    <!-- left-center stalk -->
+    <g transform="rotate(-12)">
+      <path d="M0 0 C-4 -34 -4 -68 0 -130" stroke="#7A4A25" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="12" cy="-18" rx="13" ry="9" fill="#F3CF6A" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-5" cy="-42" rx="12" ry="8" fill="#F3CF6A" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="11" cy="-66" rx="12" ry="8" fill="#F3CF6A" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-3" cy="-90" rx="11" ry="7.5" fill="#F3CF6A" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="9" cy="-114" rx="9" ry="6" fill="#F3CF6A" stroke="#C99C3B" stroke-width="1"/>
+    </g>
+
+    <!-- center stalk (upright) -->
+    <g transform="rotate(0)">
+      <path d="M0 0 C2 -36 2 -72 0 -132" stroke="#7A4A25" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="10" cy="-20" rx="13" ry="9" fill="#FFD780" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-10" cy="-44" rx="13" ry="9" fill="#FFD780" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="10" cy="-68" rx="13" ry="9" fill="#FFD780" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-8" cy="-92" rx="12" ry="8" fill="#FFD780" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="10" cy="-116" rx="9" ry="6" fill="#FFD780" stroke="#C99C3B" stroke-width="1"/>
+    </g>
+
+    <!-- right-center stalk -->
+    <g transform="rotate(14)">
+      <path d="M0 0 C6 -36 6 -72 0 -126" stroke="#7A4A25" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="-10" cy="-22" rx="12" ry="8" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="8" cy="-46" rx="11" ry="7.5" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-10" cy="-70" rx="12" ry="8" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="9" cy="-94" rx="10" ry="7" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-8" cy="-118" rx="8" ry="5.5" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+    </g>
+
+    <!-- rightmost stalk -->
+    <g transform="rotate(30)">
+      <path d="M0 0 C8 -34 8 -68 0 -120" stroke="#7A4A25" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="-12" cy="-24" rx="12" ry="8" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="6" cy="-48" rx="11" ry="7.5" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-10" cy="-72" rx="12" ry="8" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="6" cy="-96" rx="10" ry="7" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+      <ellipse cx="-12" cy="-112" rx="8" ry="5.5" fill="#F2C85F" stroke="#C99C3B" stroke-width="1"/>
+    </g>
+
+    <!-- tying band / rope around stems -->
+    <g transform="translate(0,10)">
+      <path d="M-60 10 C-40 30 40 30 60 10 C40 18 -40 18 -60 10" fill="#8B4A2D" stroke="#6A2F1E" stroke-width="2"/>
+      <!-- small knot to suggest tied bundle -->
+      <path d="M-8 6 C-4 -4 4 -4 8 6 C6 10 2 12 -2 10 C-6 8 -8 6 -8 6" fill="#7A3924" stroke="#5A2417" stroke-width="1"/>
+    </g>
+
+    <!-- shadow of bundle on ground -->
+    <ellipse cx="0" cy="22" rx="78" ry="18" fill="#000" opacity="0.12"/>
+  </g>
+
+</svg>

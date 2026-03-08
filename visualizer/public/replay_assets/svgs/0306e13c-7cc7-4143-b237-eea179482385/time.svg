@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#f7f7f8" />
+
+  <!-- Clock (top) -->
+  <g transform="translate(0,0)">
+    <circle cx="256" cy="100" r="64" fill="#fffef8" stroke="#3b3b3b" stroke-width="6" />
+    <!-- ticks -->
+    <line x1="256" y1="36" x2="256" y2="52" stroke="#3b3b3b" stroke-width="4" stroke-linecap="round" />
+    <line x1="320" y1="100" x2="304" y2="100" stroke="#3b3b3b" stroke-width="4" stroke-linecap="round" />
+    <line x1="256" y1="164" x2="256" y2="148" stroke="#3b3b3b" stroke-width="4" stroke-linecap="round" />
+    <line x1="192" y1="100" x2="208" y2="100" stroke="#3b3b3b" stroke-width="4" stroke-linecap="round" />
+    <!-- hands -->
+    <line x1="256" y1="100" x2="296" y2="76" stroke="#2b2b2b" stroke-width="6" stroke-linecap="round" />
+    <line x1="256" y1="100" x2="236" y2="124" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round" />
+    <circle cx="256" cy="100" r="6" fill="#2b2b2b" />
+  </g>
+
+  <!-- Hourglass (center) -->
+  <g>
+    <!-- frame bars -->
+    <rect x="150" y="188" width="212" height="14" rx="6" fill="#8b6b3a" />
+    <rect x="150" y="390" width="212" height="14" rx="6" fill="#8b6b3a" />
+    <!-- vertical posts -->
+    <rect x="166" y="200" width="12" height="190" rx="6" fill="#6b4e2d" />
+    <rect x="334" y="200" width="12" height="190" rx="6" fill="#6b4e2d" />
+
+    <!-- glass outline (two triangles forming hourglass) -->
+    <polygon points="176,220 336,220 256,300" fill="#eaf6ff" fill-opacity="0.6" stroke="#4b8bbf" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="256,300 336,380 176,380" fill="#eaf6ff" fill-opacity="0.6" stroke="#4b8bbf" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- top remaining sand (small wedge) -->
+    <polygon points="216,230 296,230 256,264" fill="#e2b07a" />
+    <!-- falling sand grain -->
+    <circle cx="256" cy="285" r="4" fill="#e2b07a" />
+    <!-- bottom sand pile -->
+    <path d="M216 360 C236 345, 276 345, 296 360 C276 372, 236 372, 216 360 Z" fill="#e2b07a" />
+
+    <!-- subtle inner glass highlight -->
+    <path d="M184 224 C222 260, 222 340, 184 368" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6" stroke-linecap="round" />
+  </g>
+
+</svg>

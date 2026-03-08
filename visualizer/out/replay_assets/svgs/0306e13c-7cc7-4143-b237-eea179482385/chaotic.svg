@@ -1,0 +1,68 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0%' stop-color='#fff7d6'/>
+      <stop offset='50%' stop-color='#f0f7ff'/>
+      <stop offset='100%' stop-color='#f7eefc'/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width='512' height='512' fill='url(#bg)' />
+
+  <!-- scattered blocks -->
+  <g opacity='0.9'>
+    <rect x='30' y='40' width='100' height='80' rx='8' fill='#ff6b6b' transform='rotate(-18 80 80)' opacity='0.85'/>
+    <rect x='380' y='60' width='120' height='70' rx='10' fill='#4d96ff' transform='rotate(22 440 95)' opacity='0.8'/>
+    <rect x='240' y='380' width='140' height='90' rx='12' fill='#ffd166' transform='rotate(-28 310 425)' opacity='0.85'/>
+    <rect x='120' y='260' width='90' height='110' rx='14' fill='#6be585' transform='rotate(36 165 315)' opacity='0.85'/>
+  </g>
+
+  <!-- overlapping circles -->
+  <g opacity='0.7'>
+    <circle cx='120' cy='420' r='28' fill='#ff9f43' />
+    <circle cx='160' cy='440' r='22' fill='#7b61ff' />
+    <circle cx='200' cy='400' r='18' fill='#2dd4bf' />
+    <circle cx='420' cy='420' r='26' fill='#ff6bcb' />
+    <circle cx='420' cy='360' r='20' fill='#4d96ff' />
+  </g>
+
+  <!-- chaotic scribbles (curved) -->
+  <g stroke-linecap='round' stroke-linejoin='round' fill='none'>
+    <path d='M50 260 C120 200, 160 340, 220 280 C280 220, 300 360, 360 300 C420 240, 460 380, 500 320' stroke='#2f2f2f' stroke-width='6' opacity='0.9'/>
+    <path d='M60 220 C130 180, 170 300, 230 250 C290 200, 320 330, 380 280 C440 230, 480 350, 500 300' stroke='#ff3d3d' stroke-width='4' opacity='0.8'/>
+    <path d='M20 320 C80 280, 140 360, 200 330 C260 300, 300 380, 360 350 C420 320, 460 410, 500 360' stroke='#2ec4b6' stroke-width='5' opacity='0.85'/>
+    <path d='M100 40 C140 120, 80 180, 140 200 C200 220, 180 120, 260 160 C340 200, 300 80, 380 120' stroke='#6a5cff' stroke-width='5' opacity='0.9'/>
+  </g>
+
+  <!-- zigzags and sharp strokes -->
+  <g stroke-linecap='square' fill='none' opacity='0.9'>
+    <polyline points='10,80 40,100 20,140 60,160 40,200 80,220 60,260 100,280' stroke='#ffb86b' stroke-width='6'/>
+    <polyline points='480,120 440,140 460,180 420,200 440,240 400,260 420,300' stroke='#8affc1' stroke-width='6'/>
+    <polyline points='260,10 280,60 240,90 300,120 260,160 320,190 280,220' stroke='#ffd6f0' stroke-width='6'/>
+  </g>
+
+  <!-- scattered small marks -->
+  <g>
+    <circle cx='260' cy='260' r='6' fill='#2f2f2f' opacity='0.9'/>
+    <circle cx='290' cy='240' r='5' fill='#ff6b6b' opacity='0.9'/>
+    <circle cx='310' cy='280' r='4' fill='#4d96ff' opacity='0.9'/>
+    <circle cx='230' cy='300' r='5' fill='#ffd166' opacity='0.9'/>
+    <circle cx='340' cy='220' r='6' fill='#6be585' opacity='0.9'/>
+  </g>
+
+  <!-- translucent overlapping shapes for clutter -->
+  <g opacity='0.5'>
+    <ellipse cx='360' cy='160' rx='110' ry='40' fill='#ff7b7b' transform='rotate(-25 360 160)' />
+    <ellipse cx='150' cy='150' rx='90' ry='36' fill='#7bdff6' transform='rotate(18 150 150)' />
+    <ellipse cx='260' cy='360' rx='140' ry='50' fill='#ffd9a2' transform='rotate(8 260 360)' />
+  </g>
+
+  <!-- central tangled knot -->
+  <g stroke-linecap='round' stroke-linejoin='round' fill='none'>
+    <path d='M200 200 C220 180, 260 210, 240 230 C220 250, 280 260, 300 230 C320 200, 260 180, 280 160 C300 140, 220 120, 200 140 C180 160, 240 190, 200 200' stroke='#1f1f1f' stroke-width='8' opacity='0.95' />
+    <path d='M210 210 C230 190, 270 220, 250 240 C230 260, 290 270, 310 240' stroke='#ffde59' stroke-width='6' opacity='0.9'/>
+    <path d='M190 230 C210 210, 250 240, 230 260 C210 280, 270 290, 290 260' stroke='#7a7aff' stroke-width='6' opacity='0.9'/>
+  </g>
+
+</svg>

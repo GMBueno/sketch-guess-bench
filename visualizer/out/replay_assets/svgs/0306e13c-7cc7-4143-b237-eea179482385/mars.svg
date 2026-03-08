@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#02030a"/>
+      <stop offset="1" stop-color="#071428"/>
+    </linearGradient>
+    <radialGradient id="planetGrad" cx="40%" cy="35%" r="60%">
+      <stop offset="0" stop-color="#ff7a4f"/>
+      <stop offset="0.6" stop-color="#d84a2c"/>
+      <stop offset="1" stop-color="#7f2418"/>
+    </radialGradient>
+    <radialGradient id="craterGrad" cx="30%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#7a2a21"/>
+      <stop offset="1" stop-color="#3f120d"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#bgGrad)" />
+
+  <!-- Stars -->
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="40" cy="60" r="1.6" opacity="0.9"/>
+    <circle cx="80" cy="120" r="1.2" opacity="0.7"/>
+    <circle cx="140" cy="40" r="1.8" opacity="0.9"/>
+    <circle cx="220" cy="90" r="1.1" opacity="0.6"/>
+    <circle cx="460" cy="50" r="1.4" opacity="0.8"/>
+    <circle cx="430" cy="160" r="1.0" opacity="0.6"/>
+    <circle cx="360" cy="30" r="1.3" opacity="0.7"/>
+    <circle cx="280" cy="120" r="1.0" opacity="0.6"/>
+  </g>
+
+  <!-- Mars: main disc -->
+  <g>
+    <circle cx="312" cy="270" r="160" fill="url(#planetGrad)" />
+
+    <!-- Surface darker regions -->
+    <path d="M210 220 C240 190, 300 180, 340 210 C380 240, 360 280, 320 300 C280 320, 230 300, 210 260 Z"
+          fill="#6f2318" opacity="0.55"/>
+    <path d="M360 310 C390 300, 420 320, 408 350 C396 380, 352 370, 338 340 C324 310, 342 320, 360 310 Z"
+          fill="#6a1e14" opacity="0.45"/>
+    <path d="M240 330 C270 320, 300 340, 280 360 C260 380, 220 370, 230 345 C240 320, 230 330, 240 330 Z"
+          fill="#5d1a12" opacity="0.4"/>
+
+    <!-- Craters -->
+    <g fill="url(#craterGrad)" stroke="#4a100b" stroke-width="2" opacity="0.95">
+      <circle cx="360" cy="240" r="22"/>
+      <circle cx="260" cy="300" r="30"/>
+      <circle cx="320" cy="200" r="16"/>
+      <circle cx="210" cy="290" r="14"/>
+    </g>
+
+    <!-- Subtle rim highlight -->
+    <circle cx="312" cy="270" r="160" fill="none" stroke="#ffb79a" stroke-opacity="0.12" stroke-width="6"/>
+  </g>
+
+  <!-- Two small moons (irregular grey shapes) -->
+  <g>
+    <g transform="translate(80,80) scale(1)">
+      <ellipse cx="0" cy="0" rx="18" ry="14" fill="#bdbfc3"/>
+      <circle cx="-6" cy="-2" r="3" fill="#8d8f94"/>
+      <circle cx="4" cy="3" r="2" fill="#8d8f94"/>
+    </g>
+
+    <g transform="translate(430,120) scale(1.1)">
+      <ellipse cx="0" cy="0" rx="12" ry="10" fill="#c7c9cc"/>
+      <circle cx="-3" cy="-1" r="2" fill="#989a9d"/>
+      <circle cx="3" cy="3" r="1.4" fill="#989a9d"/>
+    </g>
+  </g>
+
+</svg>

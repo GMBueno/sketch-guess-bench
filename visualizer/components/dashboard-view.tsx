@@ -81,7 +81,7 @@ interface ReplayGame {
   totalCostUsd: number;
   totalRequestMs: number;
   totalRequests: number;
-  svg: string | null;
+  svgPath: string | null;
   guesses: string[];
 }
 
@@ -670,7 +670,15 @@ export function DashboardView({ section }: { section: SectionKey }) {
                     <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
                       <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-neutral-500"><ImageIcon className="h-4 w-4" />Saved Drawing</div>
                       <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-950 p-4">
-                        {selectedGame?.svg ? <div className="h-full w-full [&>svg]:h-full [&>svg]:w-full" dangerouslySetInnerHTML={{ __html: selectedGame.svg }} /> : <div className="text-sm text-neutral-500">No SVG saved</div>}
+                        {selectedGame?.svgPath ? (
+                          <img
+                            src={selectedGame.svgPath}
+                            alt={`${selectedGame.targetWord} drawing`}
+                            className="h-full w-full object-contain"
+                          />
+                        ) : (
+                          <div className="text-sm text-neutral-500">No SVG saved</div>
+                        )}
                       </div>
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
