@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: "/cost", label: "Cost" },
   { href: "/speed", label: "Speed" },
   { href: "/replay", label: "Replay" },
+  { href: "/matrix", label: "Matrix" },
   { href: "/table", label: "Table" },
   { href: "/about", label: "About" },
 ];

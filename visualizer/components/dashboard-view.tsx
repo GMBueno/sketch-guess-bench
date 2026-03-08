@@ -125,6 +125,10 @@ function formatDuration(ms: number) {
   return `${minutes}m ${seconds}s`;
 }
 
+function formatDurationSeconds(ms: number) {
+  return `${(ms / 1000).toFixed(1)}s`;
+}
+
 function getBarColor(index: number) {
   return CHART_COLORS[index % CHART_COLORS.length];
 }
@@ -381,8 +385,8 @@ export function DashboardView({ section }: { section: SectionKey }) {
         {section === "table" ? (
           <Card>
             <CardHeader>
-              <CardDescription>Table</CardDescription>
-              <CardTitle>Run Detail Table</CardTitle>
+              <CardTitle>Full Table</CardTitle>
+              <CardDescription>Detailed per-run data</CardDescription>
             </CardHeader>
             <CardContent>
               <ScrollArea className="w-full whitespace-nowrap">
@@ -409,7 +413,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
                           <TableCell className="text-red-400">{row.errors}</TableCell>
                           <TableCell>{row.totalGuesses}</TableCell>
                           <TableCell>{formatUsdShort(row.totalCost)}</TableCell>
-                          <TableCell>{formatDuration(row.totalRequestMs)}</TableCell>
+                          <TableCell>{formatDurationSeconds(row.totalRequestMs)}</TableCell>
                           <TableCell className="rounded-r-xl text-neutral-400">{formatDate(row.completedAt)}</TableCell>
                         </TableRow>
                       ))}
@@ -467,8 +471,8 @@ export function DashboardView({ section }: { section: SectionKey }) {
           <div className="space-y-6">
             <Card>
               <CardHeader>
-                <CardDescription>Matrix</CardDescription>
                 <CardTitle>Value Matrix</CardTitle>
+                <CardDescription>Top-left is BEST: High Accuracy, Low Cost</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[420px] sm:h-[500px]">
@@ -488,8 +492,8 @@ export function DashboardView({ section }: { section: SectionKey }) {
             </Card>
             <Card>
               <CardHeader>
-                <CardDescription>Matrix</CardDescription>
-                <CardTitle>Speed Matrix</CardTitle>
+                <CardTitle>Time Matrix</CardTitle>
+                <CardDescription>Top-left is BEST: High Accuracy, Fast</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[420px] sm:h-[500px]">
