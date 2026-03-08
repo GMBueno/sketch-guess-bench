@@ -42,7 +42,7 @@ export default function HomePage() {
               <p>One model is given a hidden word and draws as SVG. The same model, but a different instance, is given a rendered JPEG of that SVG and guesses what that is (the hidden word).</p>
               <ul className="list-disc list-inside">
                 <li>Guesser has 20 tries.</li>
-                <li>Wordbank has 50 words and runs only once.</li>
+                <li>Wordbank has 100 words and runs each word only once per run.</li>
                 <li>Accuracy is measured by how many drawings it got right.</li>
                 <li>We also measure cost, time, and avg guesses.</li>
               </ul>
@@ -52,7 +52,7 @@ export default function HomePage() {
           <Card className="rounded-[28px]">
             <CardHeader>
               <CardDescription>Examples</CardDescription>
-              <CardTitle className="text-white">Gemini 3 Flash (dynamic)</CardTitle>
+              <CardTitle className="text-white">Gemini 3 Flash</CardTitle>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="rocket" className="w-full">
