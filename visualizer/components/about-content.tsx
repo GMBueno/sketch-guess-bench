@@ -10,16 +10,11 @@ export function AboutContent() {
             <CardTitle className="text-3xl text-white sm:text-4xl">SketchBench</CardTitle>
           </CardHeader>
           <CardContent className="space-y-5 text-sm leading-7 text-neutral-300 sm:text-base">
-            <div>
-              <div className="text-lg font-medium text-white">Visual Reasoning Benchmark</div>
-              <p>One model draws a hidden word as SVG. The guesser model sees a rendered JPEG and returns ordered guesses.</p>
-            </div>
-            <p>SketchBench tests if models can both depict and infer concepts through drawings. It tracks solved words, failures, and guess efficiency.</p>
-            <p>SketchGuess Bench measures visual world modeling and visual understanding together. A drawer model must transform a concept into a compact SVG, and a guesser model must recover that concept from a rasterized image. This setup probes abstraction, depiction quality, and inference quality in one loop.</p>
-            <p><span className="font-medium text-white">Motivation:</span> text-only benchmarks miss whether models can represent grounded concepts visually. This benchmark adds a lightweight visual channel while keeping runs cheap and repeatable.</p>
-            <p><span className="font-medium text-white">Pros:</span> easy to run, low cost, interpretable per-word replay, and direct side-by-side model comparison.</p>
-            <p><span className="font-medium text-white">Cons:</span> scoring depends on wordbank composition, visual style priors can bias outcomes, and OOD svgs.</p>
-            <p className="uppercase tracking-[0.18em] text-neutral-500">Dashboard is read-only.</p>
+            <p>In development.</p>
+            <p>Wordbank is expanding and will be updated soon.</p>
+            <p>We will have a private set of words for benchmarking and keep the replay with the public set (20 words).</p>
+            <p>Dashboard is read-only.</p>
+            <p>Contact me at x.com/gmbueno</p>
           </CardContent>
         </Card>
       </div>
