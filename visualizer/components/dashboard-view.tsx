@@ -91,7 +91,7 @@ const RANK_STYLES = [
 
 const COST_AXIS_LABELS = [0.05, 0.1, 0.2, 0.4, 0.8, 1.6, 3.2];
 const COST_AXIS_TICKS = COST_AXIS_LABELS.map((value) => Math.log2(value));
-const SPEED_AXIS_LABELS = [2, 4, 8, 16, 32, 64, 128];
+const SPEED_AXIS_LABELS = [64, 128, 256, 512, 1024, 2048, 4096];
 const SPEED_AXIS_TICKS = SPEED_AXIS_LABELS.map((value) => Math.log2(value));
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -273,6 +273,53 @@ function MetricRows({
   );
 }
 
+function MatrixLegend({
+  rows,
+  activeRunId,
+  onHover,
+  onLeave,
+  onClick,
+}: {
+  rows: RankingRow[];
+  activeRunId: string | null;
+  onHover: (runId: string) => void;
+  onLeave: () => void;
+  onClick: (runId: string) => void;
+}) {
+  return (
+    <div className="mt-4 grid gap-x-4 gap-y-2 sm:grid-cols-2 xl:grid-cols-3">
+      {rows.map((row, index) => {
+        const isActive = activeRunId === row.runId;
+        const isDimmed = Boolean(activeRunId) && !isActive;
+        return (
+          <button
+            key={row.runId}
+            type="button"
+            onMouseEnter={() => onHover(row.runId)}
+            onMouseLeave={onLeave}
+            onClick={() => onClick(row.runId)}
+            className={cn(
+              "flex items-center gap-2 text-left text-xs text-neutral-400 transition hover:text-white",
+              isDimmed && "opacity-35"
+            )}
+          >
+            <div className={cn("flex h-6 w-6 shrink-0 items-center justify-center rounded-full border", isActive ? "border-amber-400/70" : "border-transparent")}>
+              {getModelLogo(row.model) ? (
+                <img src={getModelLogo(row.model) || ""} alt="" className="h-4 w-4 object-contain" />
+              ) : (
+                <span className="text-[10px] font-semibold text-neutral-200">{getModelGlyph(row.model)}</span>
+              )}
+            </div>
+            <span className="truncate">
+              #{String(index + 1).padStart(2, "0")} {row.model}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export function DashboardView({ section }: { section: SectionKey }) {
   const { rankings, metadata } = benchmarkData as BenchmarkPayload;
   const [tableSort, setTableSort] = useState<{ key: TableSortKey; direction: SortDirection }>({
@@ -318,7 +365,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
       totalCost: Number(row.totalCost.toFixed(4)),
       log2Cost: Math.log2(Math.max(row.totalCost, 0.0001)),
       successRate: Number(row.successRate.toFixed(1)),
-      durationSeconds: Number((row.averageDuration / 1000).toFixed(1)),
+      durationSeconds: Number((row.totalRequestMs / 1000).toFixed(1)),
     })),
     [rankings, rankingPositionByRunId]
   );
@@ -328,8 +375,8 @@ export function DashboardView({ section }: { section: SectionKey }) {
       runId: row.runId,
       model: row.model,
       rank: rankingPositionByRunId.get(row.runId) || 0,
-      durationSeconds: Number((row.averageDuration / 1000).toFixed(1)),
-      log2DurationSeconds: Math.log2(Math.max(row.averageDuration / 1000, 0.0001)),
+      durationSeconds: Number((row.totalRequestMs / 1000).toFixed(1)),
+      log2DurationSeconds: Math.log2(Math.max(row.totalRequestMs / 1000, 0.0001)),
       successRate: Number(row.successRate.toFixed(1)),
       totalCost: Number(row.totalCost.toFixed(4)),
     })),
@@ -498,46 +545,13 @@ export function DashboardView({ section }: { section: SectionKey }) {
                     </ScatterChart>
                   </ResponsiveContainer>
                 </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Legend</CardTitle>
-                <CardDescription>Ordered by accuracy. Hover to preview, click to pin highlight.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-                  {sortedRankings.map((row, index) => {
-                    const isActive = activeValueMatrixRunId === row.runId;
-                    const isDimmed = Boolean(activeValueMatrixRunId) && !isActive;
-                    return (
-                      <button
-                        key={row.runId}
-                        type="button"
-                        onMouseEnter={() => setValueMatrixHoveredRunId(row.runId)}
-                        onMouseLeave={() => setValueMatrixHoveredRunId(null)}
-                        onClick={() => setValueMatrixPinnedRunId((current) => current === row.runId ? null : row.runId)}
-                        className={cn(
-                          "flex items-center gap-3 rounded-2xl border px-3 py-3 text-left transition",
-                          isActive ? "border-amber-400/60 bg-amber-400/10" : "border-white/10 bg-white/[0.03] hover:border-white/20",
-                          isDimmed && "opacity-35"
-                        )}
-                      >
-                        <div className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full border", isActive ? "border-amber-400/70" : "border-white/10")}>
-                          {getModelLogo(row.model) ? (
-                            <img src={getModelLogo(row.model) || ""} alt="" className="h-5 w-5 object-contain" />
-                          ) : (
-                            <span className="text-xs font-semibold text-neutral-200">{getModelGlyph(row.model)}</span>
-                          )}
-                        </div>
-                        <div className="min-w-0">
-                          <div className="text-xs uppercase tracking-[0.18em] text-neutral-500">#{String(index + 1).padStart(2, "0")}</div>
-                          <div className="truncate text-sm text-white">{row.model}</div>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                <MatrixLegend
+                  rows={sortedRankings}
+                  activeRunId={activeValueMatrixRunId}
+                  onHover={setValueMatrixHoveredRunId}
+                  onLeave={() => setValueMatrixHoveredRunId(null)}
+                  onClick={(runId) => setValueMatrixPinnedRunId((current) => current === runId ? null : runId)}
+                />
               </CardContent>
             </Card>
             <Card>
@@ -550,7 +564,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
                   <ResponsiveContainer width="100%" height="100%">
                     <ScatterChart margin={{ top: 8, right: 20, bottom: 8, left: 0 }}>
                       <CartesianGrid stroke="rgba(255,255,255,0.05)" />
-                      <XAxis dataKey="log2DurationSeconds" type="number" domain={[Math.log2(2), Math.log2(128)]} ticks={SPEED_AXIS_TICKS} tickFormatter={(value) => `${2 ** Number(value)}s`} tick={{ fill: "#737373", fontSize: 11 }} label={{ value: "AVERAGE REQUEST TIME (S) LOG2 SCALE", position: "insideBottom", offset: -4, fill: "#737373", fontSize: 11 }} />
+                      <XAxis dataKey="log2DurationSeconds" type="number" domain={[Math.log2(64), Math.log2(4096)]} ticks={SPEED_AXIS_TICKS} tickFormatter={(value) => `${2 ** Number(value)}s`} tick={{ fill: "#737373", fontSize: 11 }} label={{ value: "TOTAL REQUEST TIME (S) LOG2 SCALE", position: "insideBottom", offset: -4, fill: "#737373", fontSize: 11 }} />
                       <YAxis dataKey="successRate" tick={{ fill: "#737373", fontSize: 11 }} domain={[0, 100]} />
                       <Tooltip cursor={false} content={<MatrixTooltip />} />
                       <Scatter data={speedMatrixData} shape={(props: any) => <MatrixLogoPoint {...props} activeRunId={activeSpeedMatrixRunId} />}>
@@ -559,46 +573,13 @@ export function DashboardView({ section }: { section: SectionKey }) {
                     </ScatterChart>
                   </ResponsiveContainer>
                 </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Legend</CardTitle>
-                <CardDescription>Ordered by accuracy. Hover to preview, click to pin highlight.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-                  {sortedRankings.map((row, index) => {
-                    const isActive = activeSpeedMatrixRunId === row.runId;
-                    const isDimmed = Boolean(activeSpeedMatrixRunId) && !isActive;
-                    return (
-                      <button
-                        key={`speed-${row.runId}`}
-                        type="button"
-                        onMouseEnter={() => setSpeedMatrixHoveredRunId(row.runId)}
-                        onMouseLeave={() => setSpeedMatrixHoveredRunId(null)}
-                        onClick={() => setSpeedMatrixPinnedRunId((current) => current === row.runId ? null : row.runId)}
-                        className={cn(
-                          "flex items-center gap-3 rounded-2xl border px-3 py-3 text-left transition",
-                          isActive ? "border-amber-400/60 bg-amber-400/10" : "border-white/10 bg-white/[0.03] hover:border-white/20",
-                          isDimmed && "opacity-35"
-                        )}
-                      >
-                        <div className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full border", isActive ? "border-amber-400/70" : "border-white/10")}>
-                          {getModelLogo(row.model) ? (
-                            <img src={getModelLogo(row.model) || ""} alt="" className="h-5 w-5 object-contain" />
-                          ) : (
-                            <span className="text-xs font-semibold text-neutral-200">{getModelGlyph(row.model)}</span>
-                          )}
-                        </div>
-                        <div className="min-w-0">
-                          <div className="text-xs uppercase tracking-[0.18em] text-neutral-500">#{String(index + 1).padStart(2, "0")}</div>
-                          <div className="truncate text-sm text-white">{row.model}</div>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                <MatrixLegend
+                  rows={sortedRankings}
+                  activeRunId={activeSpeedMatrixRunId}
+                  onHover={setSpeedMatrixHoveredRunId}
+                  onLeave={() => setSpeedMatrixHoveredRunId(null)}
+                  onClick={(runId) => setSpeedMatrixPinnedRunId((current) => current === runId ? null : runId)}
+                />
               </CardContent>
             </Card>
           </div>
