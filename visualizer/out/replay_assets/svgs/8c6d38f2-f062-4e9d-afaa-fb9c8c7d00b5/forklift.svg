@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#e9eef2" />
+
+  <!-- Ground -->
+  <rect y="420" width="512" height="92" fill="#d0d0d0" />
+
+  <!-- Shadow under forklift -->
+  <ellipse cx="280" cy="440" rx="160" ry="20" fill="#bdbdbd" opacity="0.35" />
+
+  <!-- Mast -->
+  <rect x="100" y="120" width="40" height="320" rx="6" fill="#4a4a4a" />
+  <!-- Mast inner rails -->
+  <rect x="110" y="120" width="8" height="320" rx="3" fill="#323232" />
+  <rect x="124" y="120" width="8" height="320" rx="3" fill="#323232" />
+
+  <!-- Fork carriage -->
+  <rect x="140" y="312" width="140" height="44" rx="6" fill="#3a3a3a" />
+  <rect x="168" y="320" width="12" height="28" rx="3" fill="#222" opacity="0.3" />
+  <rect x="232" y="320" width="12" height="28" rx="3" fill="#222" opacity="0.3" />
+
+  <!-- Fork tines (two prongs) -->
+  <rect x="10" y="332" width="130" height="16" rx="4" fill="#2e2e2e" />
+  <rect x="10" y="356" width="130" height="16" rx="4" fill="#2e2e2e" />
+  <!-- Fork tips slightly rounded using path to show thickness -->
+  <path d="M10 332 q-6 0 -6 6 v-6 h6z" fill="#2e2e2e" opacity="0" />
+
+  <!-- Body of forklift -->
+  <rect x="220" y="260" width="200" height="100" rx="12" fill="#f4b400" stroke="#c58b00" stroke-width="4" />
+
+  <!-- Cabin / counterweight area -->
+  <polygon points="300,260 300,210 380,210 424,260" fill="#2b3d4a" opacity="0.95" />
+  <rect x="320" y="236" width="60" height="28" rx="4" fill="#22313a" opacity="0.6" />
+  <!-- Seat inside cabin -->
+  <rect x="332" y="266" width="34" height="26" rx="4" fill="#1f2b33" />
+
+  <!-- Headlight -->
+  <circle cx="420" cy="300" r="10" fill="#ffd26b" stroke="#c58b00" stroke-width="2" />
+
+  <!-- Wheels -->
+  <g>
+    <circle cx="170" cy="400" r="44" fill="#222" stroke="#000" stroke-width="3" />
+    <circle cx="170" cy="400" r="20" fill="#666" />
+    <circle cx="360" cy="400" r="44" fill="#222" stroke="#000" stroke-width="3" />
+    <circle cx="360" cy="400" r="20" fill="#666" />
+  </g>
+
+  <!-- Overlap shading to show wheel behind body -->
+  <rect x="220" y="300" width="40" height="60" fill="#e0a800" opacity="0.18" />
+
+  <!-- Lift chains/links from carriage to top of mast -->
+  <line x1="150" y1="312" x2="120" y2="140" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round" />
+  <line x1="170" y1="312" x2="140" y2="140" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Small details on forks (edge highlight) -->
+  <rect x="10" y="332" width="130" height="4" fill="#4b4b4b" opacity="0.12" />
+  <rect x="10" y="356" width="130" height="4" fill="#4b4b4b" opacity="0.12" />
+
+  <!-- Simple bumper/step -->
+  <rect x="208" y="340" width="20" height="28" rx="4" fill="#c49b00" opacity="0.9" />
+
+</svg>

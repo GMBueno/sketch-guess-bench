@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff9f0"/>
+      <stop offset="1" stop-color="#f3e8ff"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd24d"/>
+      <stop offset="1" stop-color="#c28a00"/>
+    </linearGradient>
+    <radialGradient id="gem" cx="50%" cy="30%" r="60%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#880000"/>
+    </radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  <!-- cloak/gown -->
+  <path d="M256 200 C200 260 160 340 140 420 L372 420 C352 340 312 260 256 200 Z" fill="#6a0dad" stroke="#4b0073" stroke-width="6" />
+  <!-- shoulders -->
+  <ellipse cx="256" cy="200" rx="120" ry="40" fill="#7b1fa2" opacity="0.9"/>
+  <!-- torso trim -->
+  <path d="M256 220 L200 360 L312 360 Z" fill="#4e0073" opacity="0.6" />
+  <!-- head -->
+  <circle cx="256" cy="120" r="48" fill="#f8d2b1" stroke="#e0a87a" stroke-width="2"/>
+  <!-- hair -->
+  <path d="M204 110 C196 140 196 180 220 200 C220 220 292 220 292 200 C316 180 316 140 308 110 C280 120 232 120 204 110 Z" fill="#3b2b2a"/>
+  <!-- eyes -->
+  <ellipse cx="238" cy="120" rx="4" ry="6" fill="#2b2b2b"/>
+  <ellipse cx="274" cy="120" rx="4" ry="6" fill="#2b2b2b"/>
+  <!-- mouth -->
+  <path d="M244 140 Q256 150 268 140" stroke="#8b3b3b" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- crown -->
+  <g transform="translate(0,-18)">
+    <polygon points="210,84 236,60 256,92 276,60 302,84 256,68" fill="url(#gold)" stroke="#b07700" stroke-width="4" stroke-linejoin="round"/>
+    <!-- jewels -->
+    <circle cx="236" cy="60" r="6" fill="#4dd0e1" stroke="#2a9aa5" stroke-width="2"/>
+    <circle cx="256" cy="68" r="6" fill="#ff8a80" stroke="#c75a5a" stroke-width="2"/>
+    <circle cx="276" cy="60" r="6" fill="#ffd54f" stroke="#c79a00" stroke-width="2"/>
+  </g>
+  <!-- scepter -->
+  <g transform="rotate(-20 380 300)">
+    <rect x="360" y="260" width="8" height="160" fill="#b8860b" stroke="#7a4f02" stroke-width="2" rx="4"/>
+    <circle cx="364" cy="252" r="14" fill="#ffd24d" stroke="#b07700" stroke-width="3"/>
+    <circle cx="364" cy="252" r="6" fill="#fff" opacity="0.6"/>
+  </g>
+  <!-- small brooch -->
+  <circle cx="256" cy="240" r="12" fill="#ff8a80" stroke="#c75a5a" stroke-width="3"/>
+</svg>

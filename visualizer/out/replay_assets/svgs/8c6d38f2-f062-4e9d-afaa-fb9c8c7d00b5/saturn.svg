@@ -1,0 +1,50 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'>
+  <defs>
+    <radialGradient id='bg' cx='50%' cy='35%'>
+      <stop offset='0%' stop-color='#0b2340'/>
+      <stop offset='60%' stop-color='#071426'/>
+      <stop offset='100%' stop-color='#000000'/>
+    </radialGradient>
+    <radialGradient id='planet' cx='35%' cy='35%'>
+      <stop offset='0%' stop-color='#ffdca8'/>
+      <stop offset='50%' stop-color='#e0b37a'/>
+      <stop offset='100%' stop-color='#a56f3e'/>
+    </radialGradient>
+    <linearGradient id='ring' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#b78a4d'/>
+      <stop offset='50%' stop-color='#d6b07a'/>
+      <stop offset='100%' stop-color='#8f6231'/>
+    </linearGradient>
+    <clipPath id='planetClip'>
+      <circle cx='256' cy='256' r='110'/>
+    </clipPath>
+  </defs>
+
+  <!-- background -->
+  <rect width='100%' height='100%' fill='url(#bg)'/>
+
+  <!-- ring (behind the planet) -->
+  <g transform='rotate(-22 256 256)'>
+    <ellipse cx='256' cy='256' rx='230' ry='90' fill='none' stroke='url(#ring)' stroke-width='56' stroke-linecap='round' stroke-linejoin='round' opacity='0.85'/>
+  </g>
+
+  <!-- planet body -->
+  <circle cx='256' cy='256' r='110' fill='url(#planet)'/>
+
+  <!-- subtle banding on the planet (clipped) -->
+  <g clip-path='url(#planetClip)' opacity='0.6' transform='rotate(-10 256 256)'>
+    <ellipse cx='256' cy='256' rx='140' ry='40' fill='#000' opacity='0.05'/>
+    <ellipse cx='256' cy='242' rx='140' ry='28' fill='#000' opacity='0.04'/>
+    <ellipse cx='256' cy='270' rx='120' ry='20' fill='#000' opacity='0.03'/>
+  </g>
+
+  <!-- front portion of the ring to cross in front of the planet -->
+  <g transform='rotate(-22 256 256)'>
+    <ellipse cx='256' cy='256' rx='230' ry='90' fill='none' stroke='#f5e6c8' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' opacity='0.95'/>
+  </g>
+
+  <!-- soft shadow on lower side of ring for depth -->
+  <g transform='rotate(-22 256 256)' opacity='0.35'>
+    <ellipse cx='256' cy='304' rx='230' ry='90' fill='none' stroke='#000000' stroke-width='30' />
+  </g>
+</svg>

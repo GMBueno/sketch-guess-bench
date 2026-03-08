@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="80%">
+      <stop offset="0%" stop-color="#071027" />
+      <stop offset="50%" stop-color="#000011" />
+      <stop offset="100%" stop-color="#000000" />
+    </radialGradient>
+
+    <radialGradient id="holeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" />
+      <stop offset="70%" stop-color="#020204" />
+      <stop offset="100%" stop-color="#06060a" />
+    </radialGradient>
+
+    <linearGradient id="diskGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffd86b" />
+      <stop offset="45%" stop-color="#ff8a00" />
+      <stop offset="100%" stop-color="#ff2d6f" />
+    </linearGradient>
+
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge>
+        <feMergeNode in="b" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="thinGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" />
+
+  <!-- Stars -->
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="40" cy="60" r="1.8" opacity="0.9" />
+    <circle cx="90" cy="30" r="1.2" opacity="0.8" />
+    <circle cx="130" cy="110" r="1.6" opacity="0.9" />
+    <circle cx="200" cy="40" r="1.2" opacity="0.7" />
+    <circle cx="320" cy="80" r="1.4" opacity="0.8" />
+    <circle cx="420" cy="50" r="1.6" opacity="0.9" />
+    <circle cx="470" cy="120" r="1.0" opacity="0.7" />
+    <circle cx="60" cy="360" r="1.4" opacity="0.7" />
+    <circle cx="140" cy="300" r="1.1" opacity="0.6" />
+    <circle cx="220" cy="420" r="1.7" opacity="0.9" />
+    <circle cx="300" cy="320" r="1.2" opacity="0.7" />
+    <circle cx="380" cy="380" r="1.3" opacity="0.7" />
+    <circle cx="460" cy="300" r="1.0" opacity="0.6" />
+  </g>
+
+  <!-- Accretion disk glow (large diffuse) -->
+  <g filter="url(#softGlow)" opacity="0.95">
+    <ellipse cx="256" cy="256" rx="185" ry="60" fill="url(#diskGrad)" transform="rotate(20 256 256)" opacity="0.35" />
+    <ellipse cx="256" cy="256" rx="155" ry="48" fill="url(#diskGrad)" transform="rotate(20 256 256)" opacity="0.6" />
+    <ellipse cx="256" cy="256" rx="120" ry="36" fill="#fff5d6" transform="rotate(20 256 256)" opacity="0.45" />
+  </g>
+
+  <!-- Sharper rings of the disk -->
+  <g filter="url(#thinGlow)">
+    <ellipse cx="256" cy="256" rx="185" ry="60" fill="none" stroke="#ffcc66" stroke-width="6" transform="rotate(20 256 256)" opacity="0.6" stroke-linecap="round" />
+    <ellipse cx="256" cy="256" rx="145" ry="46" fill="none" stroke="#ff7a00" stroke-width="8" transform="rotate(20 256 256)" opacity="0.9" stroke-linecap="round" />
+    <ellipse cx="256" cy="256" rx="102" ry="32" fill="none" stroke="#fff1c8" stroke-width="6" transform="rotate(20 256 256)" opacity="0.9" stroke-linecap="round" />
+  </g>
+
+  <!-- Curved light bending streaks -->
+  <g stroke="#ffffff" stroke-opacity="0.25" fill="none" stroke-linecap="round" stroke-width="3" filter="url(#thinGlow)">
+    <path d="M120 190 C180 160, 220 150, 256 150" transform="rotate(-12 256 256)" />
+    <path d="M360 320 C300 350, 260 360, 230 360" transform="rotate(10 256 256)" />
+    <path d="M420 200 C360 210, 320 220, 290 225" transform="rotate(18 256 256)" />
+  </g>
+
+  <!-- Subtle warped ring to suggest lensing -->
+  <ellipse cx="256" cy="256" rx="210" ry="68" fill="none" stroke="#0b0d14" stroke-width="24" opacity="0.25" transform="rotate(20 256 256)" />
+
+  <!-- Central black hole (event horizon) -->
+  <g>
+    <circle cx="256" cy="256" r="72" fill="url(#holeGrad)" />
+    <!-- inner subtle rim highlight -->
+    <ellipse cx="256" cy="256" rx="110" ry="34" fill="none" stroke="#1b0b00" stroke-width="6" opacity="0.4" transform="rotate(20 256 256)" />
+  </g>
+
+  <!-- Small bright spots on disk to suggest hot matter -->
+  <g filter="url(#thinGlow)" opacity="0.9">
+    <circle cx="370" cy="225" r="6" fill="#fff3b0" opacity="0.9" transform="rotate(20 256 256)" />
+    <circle cx="320" cy="190" r="5" fill="#ffd280" opacity="0.9" transform="rotate(20 256 256)" />
+    <circle cx="210" cy="295" r="4.2" fill="#ffb46b" opacity="0.85" transform="rotate(20 256 256)" />
+  </g>
+
+</svg>

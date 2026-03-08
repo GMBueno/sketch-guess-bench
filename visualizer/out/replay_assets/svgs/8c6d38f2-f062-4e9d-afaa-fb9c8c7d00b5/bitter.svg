@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="100%" height="100%" fill="#f7f1e1" />
+
+  <!-- shadow under cup -->
+  <ellipse cx="256" cy="410" rx="120" ry="18" fill="#000" opacity="0.08" />
+
+  <!-- saucer -->
+  <ellipse cx="256" cy="380" rx="150" ry="28" fill="#efefef" stroke="#e0e0e0" stroke-width="2" />
+
+  <!-- cup body -->
+  <rect x="156" y="300" width="200" height="120" rx="20" ry="20" fill="#ffffff" stroke="#d0d0d0" stroke-width="4" />
+
+  <!-- cup rim outline -->
+  <ellipse cx="256" cy="320" rx="102" ry="40" fill="none" stroke="#d0d0d0" stroke-width="4" />
+
+  <!-- coffee surface -->
+  <ellipse cx="256" cy="320" rx="82" ry="34" fill="#3b2b22" />
+
+  <!-- handle (outer) -->
+  <path d="M356 330 a40 40 0 1 0 0 80" stroke="#d0d0d0" stroke-width="6" fill="none" stroke-linecap="round" />
+  <!-- handle (inner white) -->
+  <path d="M356 335 a30 30 0 1 0 0 70" stroke="#ffffff" stroke-width="10" fill="none" stroke-linecap="round" />
+
+  <!-- steam -->
+  <path d="M220 250 C216 230, 228 210, 234 190" stroke="#bdbdbd" stroke-width="6" fill="none" stroke-linecap="round" />
+  <path d="M256 245 C252 225, 266 205, 270 185" stroke="#bdbdbd" stroke-width="6" fill="none" stroke-linecap="round" />
+  <path d="M292 248 C288 228, 304 208, 308 188" stroke="#bdbdbd" stroke-width="6" fill="none" stroke-linecap="round" />
+
+  <!-- small drop and ripple on coffee to suggest strong flavor -->
+  <circle cx="220" cy="322" r="6" fill="#2f1f18" opacity="0.9" />
+  <ellipse cx="220" cy="330" rx="18" ry="6" fill="#000" opacity="0.04" />
+
+  <!-- face showing dislike (grimace) -->
+  <g transform="translate(360,160)">
+    <circle cx="0" cy="0" r="36" fill="#ffd9b3" stroke="#e0b88a" stroke-width="3" />
+    <!-- eyes: squinting -->
+    <path d="M-16 -6 q8 -10 16 0" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round" />
+    <path d="M-8 -6 q8 -10 16 0" transform="translate(-4,0)" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round" />
+    <!-- frowning mouth -->
+    <path d="M-18 12 q18 18 36 0" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round" />
+    <!-- small wrinkle lines between eyes for displeasure -->
+    <path d="M-6 -14 q6 6 12 0" stroke="#e09973" stroke-width="3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- subtle bitter indicator: a tiny jagged line near cup to suggest strong taste -->
+  <path d="M300 340 l8 -6 l-6 -6 l10 -4" stroke="#6b3f2e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+</svg>

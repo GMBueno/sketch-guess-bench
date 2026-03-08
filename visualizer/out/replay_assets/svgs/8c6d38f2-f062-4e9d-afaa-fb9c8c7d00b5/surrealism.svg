@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5e6ff"/>
+      <stop offset="1" stop-color="#e6fff5"/>
+    </linearGradient>
+    <pattern id="checks" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#cfe8ff"/>
+      <rect width="20" height="20" fill="#ffffff"/>
+      <rect x="20" y="20" width="20" height="20" fill="#ffffff"/>
+    </pattern>
+    <radialGradient id="iris" cx="50%" cy="40%" r="60%">
+      <stop offset="0" stop-color="#6ec6ff"/>
+      <stop offset="1" stop-color="#004a7f"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- tilted checker ground -->
+  <g transform="translate(0,280) skewX(-20)">
+    <rect x="-80" y="0" width="680" height="260" fill="url(#checks)" opacity="0.95"/>
+  </g>
+
+  <!-- sinuous branch -->
+  <path d="M120 220 C160 200,220 190,300 210" stroke="#5b371e" stroke-width="14" stroke-linecap="round" fill="none"/>
+
+  <!-- melting clock draped over branch -->
+  <g transform="translate(210,195) rotate(-15)">
+    <path d="M-80,0 C-100,60 -20,110 60,90 C120,75 120,20 90,-10 C40,-40 -10,-20 -40,-10 C-60,-5 -70,-20 -80,0 Z" fill="#fff4b2" stroke="#4a3a21" stroke-width="3"/>
+    <!-- drips -->
+    <path d="M20,60 C18,90 8,110 18,130 C28,150 40,142 44,128 C48,115 40,100 34,90" fill="#fff4b2" stroke="#4a3a21" stroke-width="2"/>
+    <path d="M-40,50 C-42,70 -38,90 -30,110 C-18,135 -4,128 0,112 C4,98 -4,88 -10,80" fill="#fff4b2" stroke="#4a3a21" stroke-width="2"/>
+  </g>
+
+  <!-- floating eye -->
+  <g transform="translate(400,90) rotate(-10)">
+    <ellipse rx="60" ry="36" fill="#ffffff" stroke="#333" stroke-width="3"/>
+    <ellipse cx="0" cy="0" rx="26" ry="26" fill="url(#iris)"/>
+    <circle cx="0" cy="0" r="10" fill="#000"/>
+    <circle cx="-8" cy="-6" r="4" fill="#fff" opacity="0.95"/>
+  </g>
+
+  <!-- floating skewed cube -->
+  <g transform="translate(120,120) rotate(20)">
+    <polygon points="0,0 60,15 60,75 0,60" fill="#ffd1dc" stroke="#9b6b6b" stroke-width="2"/>
+    <polygon points="60,15 120,0 120,60 60,75" fill="#ffdbe8" stroke="#9b6b6b" stroke-width="2"/>
+    <polygon points="0,0 60,15 120,0 60,-15" fill="#ffe4f0" stroke="#9b6b6b" stroke-width="2"/>
+  </g>
+
+  <!-- stairs leading to an arch (nowhere) -->
+  <g transform="translate(360,320) rotate(-10)">
+    <rect x="0" y="0" width="120" height="20" fill="#7f6f60"/>
+    <rect x="10" y="-30" width="110" height="20" fill="#8b7b6a"/>
+    <rect x="20" y="-60" width="100" height="20" fill="#a08978"/>
+    <rect x="30" y="-90" width="90" height="20" fill="#b59c8a"/>
+    <path d="M75,-110 a30,20 0 0,1 30,20 v30 h-120 v-30 a30,20 0 0,1 30,-20 z" fill="#fff4d6" stroke="#5b4b3b" stroke-width="3" opacity="0.98"/>
+  </g>
+
+  <!-- small surreal fish floating -->
+  <g transform="translate(260,240) rotate(-20)">
+    <path d="M-30,0 q30,-20 60,0 q-30,20 -60,0" fill="#9fe0ff" stroke="#3c94a8" stroke-width="2"/>
+    <polygon points="60,0 80,-12 80,12" fill="#9fe0ff" stroke="#3c94a8" stroke-width="2"/>
+  </g>
+
+  <!-- little floating lights -->
+  <g fill="#fff" opacity="0.9">
+    <circle cx="70" cy="60" r="3"/>
+    <circle cx="110" cy="40" r="2.5"/>
+    <circle cx="450" cy="30" r="3"/>
+    <circle cx="330" cy="140" r="2.5"/>
+  </g>
+
+</svg>

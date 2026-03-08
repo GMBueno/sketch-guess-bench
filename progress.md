@@ -36,3 +36,4 @@ Original prompt: tem um jogo na tv brasileira que é assim: duas pessoas jogando
 - Added accent/case-insensitive normalization for correctness checks (e.g., `Brasília` == `brasilia`).
 - Updated token validation regex to accept Unicode letters (accented words) for clues/guesses.
 - Aligned duplicate-guess tracking and fallback logic to normalized words.
+- Fixed GitHub Pages custom-domain export: visualizer base path is now opt-in via `NEXT_PUBLIC_BASE_PATH` instead of automatically forcing `/sketch-guess-bench` on every Actions build.

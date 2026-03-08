@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="baseGlow" cx="50%" cy="90%" r="60%">
+      <stop offset="0%" stop-color="#00fff0" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#8b5cff" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="beamGrad" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#00fff0" stop-opacity="0.45" />
+      <stop offset="50%" stop-color="#8b5cff" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#3fb0ff" stop-opacity="0.18" />
+    </linearGradient>
+    <linearGradient id="faceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9ff" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#c8a0ff" stop-opacity="0.18" />
+    </linearGradient>
+    <linearGradient id="edgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7fffdc" />
+      <stop offset="100%" stop-color="#d47bff" />
+    </linearGradient>
+    <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" />
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="100%" height="100%" fill="#071025" />
+
+  <!-- base glow -->
+  <ellipse cx="256" cy="440" rx="140" ry="28" fill="#000" opacity="0.45" />
+  <ellipse cx="256" cy="408" rx="90" ry="30" fill="url(#baseGlow)" filter="url(#softBlur)" opacity="0.9" />
+
+  <!-- projector body -->
+  <g>
+    <rect x="186" y="374" width="140" height="60" rx="20" fill="#1a1f2b" />
+    <ellipse cx="256" cy="374" rx="70" ry="22" fill="#121523" />
+    <ellipse cx="256" cy="376" rx="48" ry="14" fill="#0ff5df" opacity="0.08" />
+    <ellipse cx="256" cy="370" rx="36" ry="10" fill="#2a2f3d" />
+    <circle cx="256" cy="378" r="12" fill="#092431" stroke="#00fff0" stroke-opacity="0.25" stroke-width="2" />
+  </g>
+
+  <!-- holographic beam -->
+  <polygon points="176,374 336,374 312,112 200,112" fill="url(#beamGrad)" opacity="0.5" />
+  <polygon points="188,374 324,374 304,120 208,120" fill="#9ff" opacity="0.06" />
+
+  <!-- subtle scan lines inside beam -->
+  <g stroke="#ffffff" stroke-opacity="0.06" stroke-width="2">
+    <line x1="200" y1="130" x2="304" y2="130" />
+    <line x1="196" y1="150" x2="308" y2="150" />
+    <line x1="192" y1="170" x2="312" y2="170" />
+    <line x1="190" y1="190" x2="314" y2="190" />
+    <line x1="188" y1="210" x2="316" y2="210" />
+    <line x1="188" y1="230" x2="316" y2="230" />
+    <line x1="190" y1="250" x2="314" y2="250" />
+    <line x1="194" y1="270" x2="310" y2="270" />
+  </g>
+
+  <!-- floating holographic cube (transparent faces + glowing edges) -->
+  <g transform="translate(0,0)">
+    <!-- coordinates for cube faces -->
+    <!-- top face -->
+    <polygon points="260,120 332,120 292,150 220,150" fill="url(#faceGrad)" fill-opacity="0.22" />
+    <!-- right face -->
+    <polygon points="332,120 332,192 292,222 292,150" fill="url(#faceGrad)" fill-opacity="0.14" />
+    <!-- left face -->
+    <polygon points="260,120 220,150 220,222 260,192" fill="url(#faceGrad)" fill-opacity="0.14" />
+    <!-- front face -->
+    <polygon points="220,150 292,150 292,222 220,222" fill="url(#faceGrad)" fill-opacity="0.10" />
+
+    <!-- edges -->
+    <polyline points="260,120 332,120 332,192 292,222 220,222 220,150 260,120" fill="none" stroke="url(#edgeGrad)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.95" />
+    <line x1="260" y1="120" x2="220" y2="150" stroke="url(#edgeGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.95" />
+    <line x1="332" y1="120" x2="292" y2="150" stroke="url(#edgeGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.95" />
+    <line x1="292" y1="150" x2="292" y2="222" stroke="url(#edgeGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.95" />
+
+    <!-- faint inner edges for holographic wireframe effect -->
+    <polyline points="246,136 318,136 318,208 278,238 206,238 206,166 246,136" fill="none" stroke="#bff" stroke-opacity="0.12" stroke-width="1.8" />
+  </g>
+
+  <!-- small floating particles / sparkles -->
+  <g>
+    <circle cx="240" cy="160" r="4" fill="#ffffff" fill-opacity="0.9" opacity="0.8" />
+    <circle cx="288" cy="142" r="3" fill="#ffb3ff" fill-opacity="0.8" opacity="0.7" />
+    <circle cx="270" cy="200" r="3.5" fill="#7fffdc" fill-opacity="0.8" opacity="0.75" />
+    <circle cx="230" cy="220" r="2.5" fill="#cfe8ff" fill-opacity="0.85" opacity="0.7" />
+    <circle cx="300" cy="180" r="2" fill="#fff" fill-opacity="0.9" opacity="0.7" />
+  </g>
+
+</svg>

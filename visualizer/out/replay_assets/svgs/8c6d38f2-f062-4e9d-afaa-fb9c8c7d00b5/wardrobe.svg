@@ -1,0 +1,55 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wood" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#d1a87f"/>
+      <stop offset="1" stop-color="#b07a4a"/>
+    </linearGradient>
+    <linearGradient id="door" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#e6b78f"/>
+      <stop offset="1" stop-color="#c89061"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- outer cabinet -->
+  <rect x="56" y="48" width="400" height="416" rx="18" fill="url(#wood)" stroke="#6b3f20" stroke-width="6" filter="url(#shadow)"/>
+  <rect x="76" y="72" width="360" height="360" rx="12" fill="#8b5f3a"/>
+
+  <!-- doors -->
+  <g>
+    <rect x="86" y="82" width="170" height="340" rx="8" fill="url(#door)" stroke="#7a5131" stroke-width="4"/>
+    <rect x="256" y="82" width="170" height="340" rx="8" fill="url(#door)" stroke="#7a5131" stroke-width="4"/>
+    <!-- central gap between doors -->
+    <rect x="252" y="82" width="8" height="340" fill="#7a5131"/>
+  </g>
+
+  <!-- handles -->
+  <rect x="220" y="210" width="8" height="60" rx="4" fill="#222" opacity="0.95"/>
+  <rect x="284" y="210" width="8" height="60" rx="4" fill="#222" opacity="0.95"/>
+
+  <!-- interior rail and hanging clothes visible through the gap -->
+  <g>
+    <rect x="110" y="120" width="292" height="6" rx="3" fill="#3a2b20"/>
+
+    <!-- hangers and clothing shapes -->
+    <g transform="translate(140,130)">
+      <!-- hanger and red shirt -->
+      <path d="M0,10 C0,0 35,0 35,10" fill="none" stroke="#b85a34" stroke-width="4" stroke-linecap="round"/>
+      <path d="M10,10 L10,60 C10,80 60,80 60,60 L60,10" fill="#d9534f" stroke="#9a4039" stroke-width="3"/>
+
+      <!-- hanger and blue jacket -->
+      <path d="M40,10 C40,0 75,0 75,10" fill="none" stroke="#b85a34" stroke-width="4" stroke-linecap="round" transform="translate(30,0)"/>
+      <path d="M90,10 L82,50 C82,70 132,70 132,50 L124,10" fill="#4a90e2" stroke="#2f65a8" stroke-width="3"/>
+
+      <!-- hanger and green dress -->
+      <path d="M130,10 C130,0 165,0 165,10" fill="none" stroke="#b85a34" stroke-width="4" stroke-linecap="round" transform="translate(10,0)"/>
+      <path d="M141,10 L136,60 C136,78 180,78 180,60 L176,10" fill="#6bbf63" stroke="#2f8a3e" stroke-width="3"/>
+    </g>
+  </g>
+
+  <!-- top and base trim -->
+  <rect x="56" y="40" width="400" height="18" rx="6" fill="#7a5131"/>
+  <rect x="56" y="456" width="400" height="20" rx="6" fill="#7a5131"/>
+</svg>

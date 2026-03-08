@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6fbff" />
+      <stop offset="1" stop-color="#eef6ff" />
+    </linearGradient>
+    <linearGradient id="flaskGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a0e9ff" />
+      <stop offset="1" stop-color="#4fb3c6" />
+    </linearGradient>
+    <linearGradient id="liquidGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6de0b8" />
+      <stop offset="1" stop-color="#2fbd8b" />
+    </linearGradient>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" />
+
+  <!-- Flask -->
+  <g>
+    <path d="M100 360 L220 360 L180 220 L180 160 L140 160 L140 220 Z" fill="url(#flaskGrad)" stroke="#2b7f8e" stroke-width="6" stroke-linejoin="round" />
+    <path d="M120 340 L200 340 L175 250 L145 250 Z" fill="url(#liquidGrad)" opacity="0.95" />
+    <circle cx="160" cy="230" r="6" fill="#9ef0c7" />
+    <circle cx="170" cy="200" r="5" fill="#9ef0c7" />
+    <circle cx="150" cy="180" r="4" fill="#9ef0c7" />
+    <path d="M150 200 C160 190 180 185 200 200" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.12" fill="none" />
+  </g>
+
+  <!-- Atom symbol -->
+  <g transform="translate(0,0)">
+    <g stroke="#39424a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="340" cy="150" rx="80" ry="30" transform="rotate(25 340 150)" />
+      <ellipse cx="340" cy="150" rx="80" ry="30" transform="rotate(-25 340 150)" />
+      <ellipse cx="340" cy="150" rx="50" ry="70" transform="rotate(90 340 150)" />
+    </g>
+    <circle cx="340" cy="150" r="14" fill="#ffd76b" stroke="#f2a600" stroke-width="3" />
+    <circle cx="415" cy="185" r="8" fill="#8fbfff" stroke="#275f9a" stroke-width="2" />
+    <circle cx="270" cy="130" r="8" fill="#8fbfff" stroke="#275f9a" stroke-width="2" />
+    <circle cx="340" cy="80" r="8" fill="#8fbfff" stroke="#275f9a" stroke-width="2" />
+  </g>
+
+  <!-- Microscope (stylized) -->
+  <g>
+    <rect x="320" y="360" width="150" height="18" rx="9" fill="#5b6470" />
+    <path d="M360 360 L405 320 L440 330 L410 350 Z" fill="#6d7480" stroke="#3e444a" stroke-width="3" stroke-linejoin="round" />
+    <rect x="395" y="324" width="46" height="8" rx="3" fill="#2f9fd6" opacity="0.9" />
+    <rect x="405" y="334" width="24" height="6" rx="2" fill="#e8f5ff" opacity="0.95" transform="rotate(-8 417 337)" />
+    <circle cx="446" cy="322" r="14" fill="#3b3f46" stroke="#2a2e33" stroke-width="3" />
+    <rect x="365" y="292" width="18" height="10" rx="4" fill="#3b3f46" transform="rotate(-20 374 297)" />
+    <path d="M370 300 L325 340" stroke="#3b3f46" stroke-width="8" stroke-linecap="round" />
+  </g>
+
+</svg>

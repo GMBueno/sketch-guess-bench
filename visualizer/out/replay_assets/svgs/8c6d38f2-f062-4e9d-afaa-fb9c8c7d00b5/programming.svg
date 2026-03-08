@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eaf2ff" />
+      <stop offset="1" stop-color="#d6e9ff" />
+    </linearGradient>
+    <linearGradient id="screenGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f1724" />
+      <stop offset="1" stop-color="#08101a" />
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bg)" />
+
+  <!-- Subtle glowing panel behind laptop -->
+  <ellipse cx="256" cy="360" rx="190" ry="40" fill="#cfe6ff" opacity="0.4" filter="url(#soft)" />
+
+  <!-- Laptop screen -->
+  <g transform="translate(56,64)">
+    <rect x="0" y="0" width="400" height="240" rx="14" fill="#2b3440" />
+    <rect x="12" y="12" width="376" height="216" rx="8" fill="url(#screenGlow)" />
+
+    <!-- Code-like blocks: rectangles suggest lines of code -->
+    <g transform="translate(28,28)">
+      <rect x="0" y="0" width="220" height="12" rx="6" fill="#36d07a" opacity="0.95" />
+      <rect x="0" y="28" width="300" height="12" rx="6" fill="#2ad0ff" opacity="0.9" />
+      <rect x="0" y="56" width="180" height="12" rx="6" fill="#9be25c" opacity="0.95" />
+      <rect x="0" y="84" width="260" height="12" rx="6" fill="#4ee0b3" opacity="0.9" />
+      <rect x="0" y="112" width="320" height="12" rx="6" fill="#35d07a" opacity="0.95" />
+      <rect x="0" y="140" width="140" height="12" rx="6" fill="#6ee0ff" opacity="0.9" />
+
+      <!-- small square blocks representing tokens -->
+      <rect x="240" y="4" width="12" height="12" rx="2" fill="#ffd76b" />
+      <rect x="260" y="4" width="12" height="12" rx="2" fill="#ffd76b" />
+      <rect x="220" y="32" width="10" height="10" rx="2" fill="#ffd76b" />
+      <rect x="140" y="88" width="10" height="10" rx="2" fill="#ffd76b" />
+
+      <!-- visual indentation blocks -->
+      <rect x="40" y="28" width="12" height="12" rx="3" fill="#d4ffd9" opacity="0.7" />
+      <rect x="60" y="56" width="12" height="12" rx="3" fill="#d4ffd9" opacity="0.7" />
+
+    </g>
+
+    <!-- Cursor arrow on screen -->
+    <g transform="translate(300,140)">
+      <polygon points="0,0 16,24 10,24 10,40 0,40" fill="#ffffff" opacity="0.95" transform="rotate(-20)" />
+      <polygon points="0,0 10,10 6,10 6,0" fill="#0b1020" opacity="0.5" transform="rotate(-20) translate(6,-3)" />
+    </g>
+  </g>
+
+  <!-- Laptop base -->
+  <g transform="translate(24,320)">
+    <rect x="0" y="0" width="464" height="120" rx="14" fill="#bfc8d6" />
+    <rect x="14" y="12" width="436" height="80" rx="8" fill="#dfe6ef" />
+
+    <!-- keyboard keys suggestion: grid of small rounded rects -->
+    <g transform="translate(32,24)">
+      <!-- 12 columns x 3 rows simplified to visual keys -->
+      <!-- Row 1 -->
+      <g fill="#c7d2df">
+        <rect x="0" y="0" width="22" height="12" rx="3" />
+        <rect x="28" y="0" width="22" height="12" rx="3" />
+        <rect x="56" y="0" width="22" height="12" rx="3" />
+        <rect x="84" y="0" width="22" height="12" rx="3" />
+        <rect x="112" y="0" width="22" height="12" rx="3" />
+        <rect x="140" y="0" width="22" height="12" rx="3" />
+        <rect x="168" y="0" width="22" height="12" rx="3" />
+        <rect x="196" y="0" width="22" height="12" rx="3" />
+      </g>
+      <!-- Row 2 -->
+      <g transform="translate(0,18)" fill="#c7d2df">
+        <rect x="10" y="0" width="22" height="12" rx="3" />
+        <rect x="38" y="0" width="22" height="12" rx="3" />
+        <rect x="66" y="0" width="22" height="12" rx="3" />
+        <rect x="94" y="0" width="22" height="12" rx="3" />
+        <rect x="122" y="0" width="22" height="12" rx="3" />
+        <rect x="150" y="0" width="22" height="12" rx="3" />
+        <rect x="178" y="0" width="22" height="12" rx="3" />
+      </g>
+      <!-- Row 3 (space/trackpad area suggestion) -->
+      <rect x="40" y="40" width="160" height="14" rx="6" fill="#aeb8c6" />
+    </g>
+
+    <!-- trackpad -->
+    <rect x="196" y="68" width="72" height="36" rx="6" fill="#9aa7b6" />
+  </g>
+
+  <!-- Coffee cup to the left of laptop -->
+  <g transform="translate(46,388)">
+    <ellipse cx="0" cy="6" rx="24" ry="8" fill="#fffdf8" />
+    <rect x="-24" y="6" width="48" height="34" rx="6" fill="#fffdf8" />
+    <rect x="22" y="12" width="12" height="18" rx="6" fill="#fffdf8" />
+    <ellipse cx="0" cy="10" rx="21" ry="5" fill="#f3e6d6" />
+    <!-- steam -->
+    <path d="M-6,-6 C-6,-18 -2,-18 0,-10" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9" />
+    <path d="M6,-8 C6,-20 10,-20 12,-12" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9" />
+  </g>
+
+  <!-- Gear icon on the top-right to suggest settings / development -->
+  <g transform="translate(430,120)">
+    <circle cx="0" cy="0" r="22" fill="#f4f6f9" stroke="#c8d0db" stroke-width="1" />
+    <!-- teeth: draw 8 small rectangles rotated -->
+    <g fill="#d1dbe6">
+      <rect x="-4" y="-34" width="8" height="14" rx="2" transform="rotate(0)" />
+      <rect x="-4" y="20" width="8" height="14" rx="2" transform="rotate(0)" />
+      <rect x="20" y="-4" width="14" height="8" rx="2" transform="rotate(0)" />
+      <rect x="-34" y="-4" width="14" height="8" rx="2" transform="rotate(0)" />
+      <rect x="22" y="22" width="10" height="10" rx="2" transform="rotate(45 22 22)" />
+      <rect x="-32" y="22" width="10" height="10" rx="2" transform="rotate(-45 -32 22)" />
+      <rect x="22" y="-32" width="10" height="10" rx="2" transform="rotate(-45 22 -32)" />
+      <rect x="-32" y="-32" width="10" height="10" rx="2" transform="rotate(45 -32 -32)" />
+    </g>
+    <circle cx="0" cy="0" r="10" fill="#ffffff" stroke="#c5cfe0" stroke-width="2" />
+  </g>
+
+</svg>

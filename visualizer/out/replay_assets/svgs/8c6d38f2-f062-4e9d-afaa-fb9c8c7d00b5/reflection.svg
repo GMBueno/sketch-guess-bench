@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#a6ddff"/>
+      <stop offset="60%" stop-color="#7fc8ff"/>
+      <stop offset="100%" stop-color="#6fb8e6"/>
+    </linearGradient>
+    <linearGradient id="mountainGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#6a7bd8"/>
+      <stop offset="100%" stop-color="#4156a3"/>
+    </linearGradient>
+    <linearGradient id="waterTop" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#7fc8ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0f5c8a" stop-opacity="0.25"/>
+    </linearGradient>
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" />
+    </filter>
+    <clipPath id="lowerClip">
+      <rect x="0" y="320" width="512" height="192"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background sky -->
+  <rect width="512" height="512" fill="url(#skyGrad)" />
+
+  <!-- Distant sun -->
+  <circle cx="380" cy="80" r="40" fill="#FFD76B" />
+
+  <!-- Mountains and foreground shapes (above water) -->
+  <g id="scene">
+    <polygon points="20,300 140,120 260,220 360,100 492,300" fill="url(#mountainGrad)" stroke="#2d3d83" stroke-opacity="0.2" stroke-width="2"/>
+    <!-- smaller hill left -->
+    <ellipse cx="100" cy="300" rx="100" ry="28" fill="#4a6fb3" opacity="0.9" />
+    <!-- trees -->
+    <g transform="translate(70,230)">
+      <rect x="18" y="60" width="8" height="20" fill="#5a3a24" />
+      <polygon points="0,80 44,80 22,40" fill="#114d2e" />
+    </g>
+    <g transform="translate(320,240)">
+      <rect x="18" y="60" width="8" height="20" fill="#5a3a24" />
+      <polygon points="0,80 44,80 22,40" fill="#0f5c2f" />
+    </g>
+  </g>
+
+  <!-- Water surface (a subtle horizontal seam) -->
+  <rect x="0" y="318" width="512" height="6" fill="#eaf6ff" opacity="0.35" />
+
+  <!-- Water plane (lower area) -->
+  <rect x="0" y="320" width="512" height="192" fill="url(#waterTop)" />
+
+  <!-- Reflected scene (inverted, blurred and faded) -->
+  <g transform="translate(0,640) scale(1,-1)" opacity="0.45" filter="url(#softBlur)" clip-path="url(#lowerClip)">
+    <!-- mirrored sun -->
+    <circle cx="380" cy="80" r="40" fill="#FFD76B" />
+    <!-- mirrored mountains -->
+    <polygon points="20,300 140,120 260,220 360,100 492,300" fill="url(#mountainGrad)" stroke="#2d3d83" stroke-opacity="0.15" stroke-width="2"/>
+    <ellipse cx="100" cy="300" rx="100" ry="28" fill="#4a6fb3" opacity="0.85" />
+    <!-- mirrored trees -->
+    <g transform="translate(70,230)">
+      <rect x="18" y="60" width="8" height="20" fill="#5a3a24" />
+      <polygon points="0,80 44,80 22,40" fill="#114d2e" />
+    </g>
+    <g transform="translate(320,240)">
+      <rect x="18" y="60" width="8" height="20" fill="#5a3a24" />
+      <polygon points="0,80 44,80 22,40" fill="#0f5c2f" />
+    </g>
+  </g>
+
+  <!-- Gentle ripples on the water to indicate reflection -->
+  <g clip-path="url(#lowerClip)" opacity="0.22">
+    <path d="M0 340 C80 338 160 346 240 344 C320 342 400 350 512 348" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6" />
+    <path d="M0 364 C90 362 150 370 230 368 C310 366 390 374 512 372" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.45" />
+    <path d="M0 392 C70 390 170 398 240 396 C310 394 410 402 512 400" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.35" />
+    <path d="M0 424 C80 422 160 430 240 428 C320 426 400 434 512 432" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.25" />
+  </g>
+
+  <!-- Slight dark gradient over lower area to deepen the reflection -->
+  <rect x="0" y="320" width="512" height="192" fill="black" opacity="0.06" />
+</svg>

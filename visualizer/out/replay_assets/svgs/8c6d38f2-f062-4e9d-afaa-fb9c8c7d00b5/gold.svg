@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="100%" height="100%" fill="#0a2430"/>
+  <defs>
+    <linearGradient id="goldBar" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffd34d"/>
+      <stop offset="0.5" stop-color="#ffb84d"/>
+      <stop offset="1" stop-color="#b78600"/>
+    </linearGradient>
+    <radialGradient id="coinGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#fff8e0"/>
+      <stop offset="0.25" stop-color="#ffed7f"/>
+      <stop offset="1" stop-color="#c58b00"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- subtle ground shadow -->
+  <ellipse cx="330" cy="360" rx="110" ry="28" fill="#000" opacity="0.35"/>
+
+  <!-- gold bar, slightly tilted -->
+  <g transform="rotate(-12 200 180)">
+    <rect x="120" y="120" width="260" height="120" rx="20" ry="20" fill="url(#goldBar)" stroke="#8b5f00" stroke-width="4"/>
+    <rect x="125" y="125" width="250" height="20" rx="10" ry="10" fill="rgba(255,255,255,0.35)"/>
+    <ellipse cx="320" cy="200" rx="50" ry="18" fill="rgba(255,255,255,0.15)" />
+  </g>
+
+  <!-- stack of gold coins -->
+  <g transform="translate(320,300)">
+    <g transform="translate(0,40)">
+      <ellipse cx="0" cy="120" rx="62" ry="16" fill="#000" opacity="0.25"/>
+    </g>
+    <g>
+      <circle cx="0" cy="0" r="48" fill="url(#coinGrad)" stroke="#a06e00" stroke-width="4"/>
+      <ellipse cx="-14" cy="-16" rx="22" ry="10" fill="rgba(255,255,255,0.6)"/>
+    </g>
+    <g transform="translate(10,60)">
+      <circle cx="0" cy="0" r="40" fill="url(#coinGrad)" stroke="#a06e00" stroke-width="4"/>
+      <ellipse cx="-10" cy="-12" rx="18" ry="8" fill="rgba(255,255,255,0.5)"/>
+    </g>
+    <g transform="translate(-18,48) rotate(-8)">
+      <circle cx="0" cy="0" r="36" fill="url(#coinGrad)" stroke="#a06e00" stroke-width="3"/>
+      <ellipse cx="-8" cy="-10" rx="16" ry="7" fill="rgba(255,255,255,0.45)"/>
+    </g>
+  </g>
+
+  <!-- sparkles to suggest shine -->
+  <g fill="#fff8b3" opacity="0.95">
+    <polygon points="88,60 96,72 110,76 96,80 88,92 80,80 66,76 80,72" transform="translate(360,120) scale(0.9)"/>
+    <polygon points="88,60 96,72 110,76 96,80 88,92 80,80 66,76 80,72" transform="translate(420,180) scale(0.6)"/>
+    <polygon points="88,60 96,72 110,76 96,80 88,92 80,80 66,76 80,72" transform="translate(220,140) scale(0.7) rotate(30 88 76)"/>
+    <circle cx="240" cy="120" r="6" fill="#fff" opacity="0.9"/>
+  </g>
+</svg>

@@ -39,8 +39,6 @@ jobs:
         run: bun run generate:visualizer-data
 
       - name: Build visualizer
-        env:
-          GITHUB_ACTIONS: true
         run: bun run build:visualizer
 
       - name: Preserve static export settings

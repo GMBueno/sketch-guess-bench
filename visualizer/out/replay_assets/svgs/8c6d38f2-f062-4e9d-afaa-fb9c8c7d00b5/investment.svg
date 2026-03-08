@@ -1,0 +1,72 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'>
+  <defs>
+    <linearGradient id='bgGrad' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0' stop-color='#f7fbff'/>
+      <stop offset='1' stop-color='#e6f2ff'/>
+    </linearGradient>
+    <linearGradient id='coinGrad' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0' stop-color='#ffe48c'/>
+      <stop offset='1' stop-color='#d99e1a'/>
+    </linearGradient>
+    <linearGradient id='barGrad' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0' stop-color='#7bd389'/>
+      <stop offset='1' stop-color='#2ea45a'/>
+    </linearGradient>
+    <filter id='softShadow' x='-50%' y='-50%' width='200%' height='200%'>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='6' result='blur'/>
+      <feOffset in='blur' dx='0' dy='6' result='off'/>
+      <feMerge>
+        <feMergeNode in='off'/>
+        <feMergeNode in='SourceGraphic'/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect x='0' y='0' width='512' height='512' fill='url(#bgGrad)' />
+
+  <!-- coins stack -->
+  <g transform='translate(100,0)' filter='url(#softShadow)'>
+    <!-- shadow ellipse under stack -->
+    <ellipse cx='0' cy='445' rx='70' ry='16' fill='rgba(0,0,0,0.08)' />
+
+    <!-- coins (ellipses stacked) -->
+    <ellipse cx='0' cy='420' rx='48' ry='14' fill='url(#coinGrad)' stroke='#b27d12' stroke-width='2'/>
+    <ellipse cx='0' cy='400' rx='48' ry='14' fill='url(#coinGrad)' stroke='#b27d12' stroke-width='2'/>
+    <ellipse cx='0' cy='380' rx='48' ry='14' fill='url(#coinGrad)' stroke='#b27d12' stroke-width='2'/>
+    <ellipse cx='0' cy='362' rx='48' ry='14' fill='url(#coinGrad)' stroke='#b27d12' stroke-width='2'/>
+    <ellipse cx='0' cy='346' rx='48' ry='14' fill='url(#coinGrad)' stroke='#b27d12' stroke-width='2'/>
+
+    <!-- top highlights -->
+    <ellipse cx='-10' cy='338' rx='22' ry='6' fill='rgba(255,255,255,0.45)' />
+    <ellipse cx='-8' cy='358' rx='18' ry='4' fill='rgba(255,255,255,0.25)' />
+  </g>
+
+  <!-- ascending bars (bar chart) -->
+  <g transform='translate(0,0)'>
+    <!-- baseline -->
+    <rect x='180' y='450' width='180' height='6' rx='3' fill='#dfeff0' />
+
+    <!-- bars -->
+    <rect x='200' y='360' width='48' height='90' rx='6' fill='url(#barGrad)' />
+    <rect x='268' y='300' width='48' height='150' rx='6' fill='url(#barGrad)' opacity='0.95' />
+    <rect x='336' y='220' width='48' height='230' rx='6' fill='url(#barGrad)' opacity='0.9' />
+    <rect x='404' y='150' width='48' height='300' rx='6' fill='url(#barGrad)' opacity='0.88' />
+  </g>
+
+  <!-- upward arrow indicating growth -->
+  <g stroke-linecap='round' stroke-linejoin='round'>
+    <path d='M120 430 C180 360, 260 300, 430 120' fill='none' stroke='#ff9f2e' stroke-width='18' stroke-opacity='0.95' />
+    <!-- arrow head -->
+    <polygon points='430,120 408,140 444,142' fill='#ff9f2e' stroke='#d46f00' stroke-width='2'/>
+    <!-- subtle highlight on arrow -->
+    <path d='M132 418 C188 360, 270 308, 420 140' fill='none' stroke='rgba(255,255,255,0.18)' stroke-width='6' stroke-linecap='round' />
+  </g>
+
+  <!-- small coin near bars to suggest investment allocation -->
+  <g transform='translate(320,360)'>
+    <ellipse cx='0' cy='0' rx='28' ry='8' fill='url(#coinGrad)' stroke='#b27d12' stroke-width='2'/>
+    <ellipse cx='-8' cy='-8' rx='12' ry='4' fill='rgba(255,255,255,0.35)' />
+  </g>
+
+</svg>

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#bfe9ff" />
+      <stop offset="100%" stop-color="#e6f7ff" />
+    </linearGradient>
+    <linearGradient id="water" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#5aa6d8" />
+      <stop offset="100%" stop-color="#2b7fb3" />
+    </linearGradient>
+    <linearGradient id="houseGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff7ea" />
+      <stop offset="100%" stop-color="#ffe0b2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect x="0" y="0" width="512" height="320" fill="url(#sky)" />
+
+  <!-- Distant clouds -->
+  <ellipse cx="380" cy="80" rx="70" ry="24" fill="#ffffff" opacity="0.6" />
+  <ellipse cx="320" cy="100" rx="48" ry="18" fill="#ffffff" opacity="0.5" />
+
+  <!-- Row of narrow canal houses -->
+  <!-- House 1 -->
+  <g transform="translate(36,120)">
+    <rect x="0" y="0" width="68" height="200" rx="4" fill="#ef9a9a" stroke="#7a3737" stroke-width="2" />
+    <path d="M0 0 L34 -36 L68 0 Z" fill="#c94b4b" stroke="#7a3737" stroke-width="2" />
+    <rect x="14" y="28" width="14" height="18" rx="2" fill="#ffe" opacity="0.95" />
+    <rect x="40" y="28" width="14" height="18" rx="2" fill="#ffe" opacity="0.9" />
+  </g>
+
+  <!-- House 2 -->
+  <g transform="translate(116,110)">
+    <rect x="0" y="0" width="60" height="210" rx="4" fill="#ffd54f" stroke="#a37b2a" stroke-width="2" />
+    <path d="M0 0 L30 -44 L60 0 Z" fill="#f4b400" stroke="#a37b2a" stroke-width="2" />
+    <rect x="12" y="36" width="14" height="20" rx="2" fill="#fff" opacity="0.9" />
+    <rect x="34" y="36" width="14" height="20" rx="2" fill="#fff" opacity="0.9" />
+  </g>
+
+  <!-- House 3 (narrow) -->
+  <g transform="translate(196,100)">
+    <rect x="0" y="0" width="54" height="220" rx="3" fill="#a5d6a7" stroke="#3a6f46" stroke-width="2" />
+    <path d="M0 0 L27 -50 L54 0 Z" fill="#7cc47a" stroke="#3a6f46" stroke-width="2" />
+    <rect x="10" y="32" width="12" height="18" rx="2" fill="#fff" opacity="0.9" />
+    <rect x="30" y="32" width="12" height="18" rx="2" fill="#fff" opacity="0.9" />
+  </g>
+
+  <!-- House 4 -->
+  <g transform="translate(270,118)">
+    <rect x="0" y="0" width="66" height="202" rx="4" fill="#90caf9" stroke="#2b5f88" stroke-width="2" />
+    <path d="M0 0 L33 -40 L66 0 Z" fill="#5aa0e0" stroke="#2b5f88" stroke-width="2" />
+    <rect x="14" y="30" width="14" height="18" rx="2" fill="#fff" opacity="0.95" />
+    <rect x="38" y="30" width="14" height="18" rx="2" fill="#fff" opacity="0.95" />
+  </g>
+
+  <!-- House 5 -->
+  <g transform="translate(352,112)">
+    <rect x="0" y="0" width="64" height="208" rx="4" fill="#d1c4e9" stroke="#6f4a8a" stroke-width="2" />
+    <path d="M0 0 L32 -42 L64 0 Z" fill="#b39ddb" stroke="#6f4a8a" stroke-width="2" />
+    <rect x="12" y="34" width="14" height="18" rx="2" fill="#fff" opacity="0.95" />
+    <rect x="36" y="34" width="14" height="18" rx="2" fill="#fff" opacity="0.95" />
+  </g>
+
+  <!-- Canal water -->
+  <rect x="0" y="320" width="512" height="192" fill="url(#water)" />
+  <!-- Reflections -->
+  <g opacity="0.18">
+    <rect x="40" y="340" width="40" height="6" rx="3" fill="#ffffff" />
+    <rect x="120" y="360" width="36" height="6" rx="3" fill="#ffffff" />
+    <rect x="200" y="350" width="44" height="6" rx="3" fill="#ffffff" />
+    <rect x="280" y="370" width="38" height="6" rx="3" fill="#ffffff" />
+    <rect x="360" y="345" width="46" height="6" rx="3" fill="#ffffff" />
+  </g>
+
+  <!-- Stone bridge arch -->
+  <g>
+    <path d="M48 320 C160 260, 352 260, 464 320 L464 344 C352 288, 160 288, 48 344 Z" fill="#bda27e" stroke="#8c6b4d" stroke-width="3" />
+    <!-- Bridge railing -->
+    <rect x="60" y="304" width="392" height="12" fill="#6b4f3d" />
+    <!-- vertical posts -->
+    <g stroke="#4a3629" stroke-width="3">
+      <line x1="92" y1="304" x2="92" y2="288" />
+      <line x1="140" y1="304" x2="140" y2="288" />
+      <line x1="188" y1="304" x2="188" y2="288" />
+      <line x1="236" y1="304" x2="236" y2="288" />
+      <line x1="284" y1="304" x2="284" y2="288" />
+      <line x1="332" y1="304" x2="332" y2="288" />
+      <line x1="380" y1="304" x2="380" y2="288" />
+      <line x1="428" y1="304" x2="428" y2="288" />
+    </g>
+  </g>
+
+  <!-- Bicycle silhouette on bridge (stylized) -->
+  <g transform="translate(120,288) scale(1)" stroke="#1b1b1b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- wheels -->
+    <circle cx="0" cy="24" r="18" />
+    <circle cx="72" cy="24" r="18" />
+    <!-- frame -->
+    <path d="M0 24 L28 12 L52 28 L28 28" />
+    <path d="M28 12 L44 6" />
+    <path d="M44 6 L54 6" />
+    <path d="M52 28 L64 12" />
+    <path d="M34 16 L34 4" />
+  </g>
+
+  <!-- Small tulip by canal (stylized) -->
+  <g transform="translate(420,360)">
+    <path d="M0 0 C6 -12, 18 -12, 24 0 C18 -4, 12 -4, 0 0 Z" fill="#ff6f61" stroke="#b33b30" stroke-width="1" />
+    <rect x="10" y="0" width="3" height="36" rx="1.5" fill="#4caf50" />
+    <path d="M6 12 C2 18, 0 28, 6 36" fill="#4caf50" />
+    <path d="M20 12 C24 18, 26 28, 20 36" fill="#4caf50" />
+  </g>
+
+  <!-- Foreground bank shadow -->
+  <path d="M0 320 C90 300, 422 300, 512 320 L512 512 L0 512 Z" fill="#000000" opacity="0.06" />
+</svg>
