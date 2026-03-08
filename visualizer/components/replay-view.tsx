@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 
 import replayData from "../data/replay-data.json";
 import { cn } from "@/lib/utils";
@@ -56,6 +56,11 @@ const SLOT_IDS: SlotId[] = ["a", "b", "c"];
 
 function formatRunLabel(run: ReplayRun) {
   return run.model;
+}
+
+function formatPct(value: number, total: number) {
+  if (!total) return "0%";
+  return `${Math.round((value / total) * 100)}%`;
 }
 
 function getStatusClass(solved: boolean) {
@@ -135,7 +140,7 @@ export function ReplayView() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-[140px]">Word</TableHead>
+                      <TableHead className="w-[140px] align-top pt-6">Word</TableHead>
                       {SLOT_IDS.map((slotId, index) => {
                         const runId = selectedRunIds[slotId];
                         const run = runs.find((item) => item.runId === runId) || null;
@@ -166,9 +171,15 @@ export function ReplayView() {
                                     ))}
                                   </SelectContent>
                                 </Select>
+                                <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-normal normal-case tracking-normal text-neutral-500">
+                                  <span>accuracy {formatPct(run.solvedCount, run.totalWords)}</span>
+                                  <span>cost ${run.totalCostUsd.toFixed(2)}</span>
+                                  <span>speed {Math.round(run.totalRequestMs / 1000)}s</span>
+                                  <span>avg guesses {run.averageGuesses.toFixed(2)}</span>
+                                </div>
                               </div>
                             ) : canShowAdd ? (
-                              <div className="flex h-full items-center">
+                              <div className="flex h-full items-start pt-6">
                                 <Button type="button" variant="outline" onClick={addRun}>+ Add Run</Button>
                               </div>
                             ) : null}
@@ -180,10 +191,9 @@ export function ReplayView() {
                       <TableHead />
                       {selectedRuns.map(({ slotId }) => (
                         <TableHead key={`${slotId}-headers`}>
-                          <div className="grid grid-cols-[1fr_1fr_1fr] gap-3 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
+                          <div className="grid grid-cols-[1fr_1fr] gap-3 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                             <span>Status</span>
                             <span>Guesses</span>
-                            <span>Run</span>
                           </div>
                         </TableHead>
                       ))}
@@ -193,7 +203,7 @@ export function ReplayView() {
                     {wordOrder.map((word) => {
                       const expanded = expandedWord === word;
                       return (
-                        <>
+                        <Fragment key={word}>
                           <TableRow key={word} className={cn("cursor-pointer bg-white/[0.03] text-neutral-200", expanded && "bg-white/[0.05]")} onClick={() => setExpandedWord((current) => current === word ? null : word)}>
                             <TableCell className="font-medium text-white">{word}</TableCell>
                             {selectedRuns.map(({ slotId, run }) => {
@@ -201,10 +211,9 @@ export function ReplayView() {
                               return (
                                 <TableCell key={`${slotId}-${word}`}>
                                   {game ? (
-                                    <div className="grid grid-cols-[1fr_1fr_1fr] gap-3 text-sm">
+                                    <div className="grid grid-cols-[1fr_1fr] gap-3 text-sm">
                                       <span className={getStatusClass(game.solved)}>{game.solved ? "Solved" : "Missed"}</span>
                                       <span>{game.penalizedGuesses}</span>
-                                      <span className="truncate text-neutral-500">{run.model}</span>
                                     </div>
                                   ) : (
                                     <span className="text-neutral-600">n/a</span>
@@ -221,8 +230,8 @@ export function ReplayView() {
                                 return (
                                   <TableCell key={`${slotId}-${word}-expanded`} className="align-top">
                                     {game ? (
-                                      <div className="grid gap-4 py-2 lg:grid-cols-[180px_minmax(0,1fr)]">
-                                        <div className="rounded-2xl border border-white/10 bg-neutral-950 p-3">
+                                      <div className="grid items-start gap-4 py-2 lg:grid-cols-[180px_minmax(0,1fr)]">
+                                        <div className="self-start rounded-2xl border border-white/10 bg-neutral-950 p-3">
                                           <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-black/20">
                                             {game.svgPath ? (
                                               <img src={game.svgPath} alt={`${word} drawing`} className="h-full w-full object-contain" />
@@ -246,7 +255,7 @@ export function ReplayView() {
                               })}
                             </TableRow>
                           ) : null}
-                        </>
+                        </Fragment>
                       );
                     })}
                   </TableBody>
