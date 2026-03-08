@@ -71,6 +71,15 @@ function buildRunMap(run: ReplayRun) {
   return new Map(run.games.map((game) => [game.targetWord, game]));
 }
 
+function compactRunSlots(runIds: Record<SlotId, string | null>) {
+  const ordered = SLOT_IDS.map((slotId) => runIds[slotId]).filter(Boolean) as string[];
+  return {
+    a: ordered[0] || null,
+    b: ordered[1] || null,
+    c: ordered[2] || null,
+  } satisfies Record<SlotId, string | null>;
+}
+
 export function ReplayView() {
   const { runs } = replayData as ReplayPayload;
   const [selectedRunIds, setSelectedRunIds] = useState<Record<SlotId, string | null>>({
@@ -122,7 +131,7 @@ export function ReplayView() {
 
   const removeRun = (slotId: SlotId) => {
     if (slotId === "a") return;
-    setSelectedRunIds((current) => ({ ...current, [slotId]: null }));
+    setSelectedRunIds((current) => compactRunSlots({ ...current, [slotId]: null }));
   };
 
   return (
@@ -140,7 +149,7 @@ export function ReplayView() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-[140px] align-top pt-6">Word</TableHead>
+                      <TableHead rowSpan={2} className="w-[140px] align-bottom pb-4">Word</TableHead>
                       {SLOT_IDS.map((slotId, index) => {
                         const runId = selectedRunIds[slotId];
                         const run = runs.find((item) => item.runId === runId) || null;
@@ -172,7 +181,7 @@ export function ReplayView() {
                                   </SelectContent>
                                 </Select>
                                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-normal normal-case tracking-normal text-neutral-500">
-                                  <span>accuracy {formatPct(run.solvedCount, run.totalWords)}</span>
+                                  <span>acc {formatPct(run.solvedCount, run.totalWords)}</span>
                                   <span>cost ${run.totalCostUsd.toFixed(2)}</span>
                                   <span>speed {Math.round(run.totalRequestMs / 1000)}s</span>
                                   <span>avg guesses {run.averageGuesses.toFixed(2)}</span>
@@ -188,7 +197,6 @@ export function ReplayView() {
                       })}
                     </TableRow>
                     <TableRow>
-                      <TableHead />
                       {selectedRuns.map(({ slotId }) => (
                         <TableHead key={`${slotId}-headers`}>
                           <div className="grid grid-cols-[1fr_1fr] gap-3 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
