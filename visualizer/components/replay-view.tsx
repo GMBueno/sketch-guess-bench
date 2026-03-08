@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ImageIcon } from "lucide-react";
 
 import replayData from "../data/replay-data.json";
 import { cn } from "@/lib/utils";
@@ -51,175 +50,211 @@ interface ReplayPayload {
   runs: ReplayRun[];
 }
 
-function formatUsd(value: number) {
-  return `$${value.toFixed(4)}`;
+type SlotId = "a" | "b" | "c";
+
+const SLOT_IDS: SlotId[] = ["a", "b", "c"];
+
+function formatRunLabel(run: ReplayRun) {
+  return run.model;
 }
 
-function formatUsdShort(value: number) {
-  return `$${value.toFixed(2)}`;
+function getStatusClass(solved: boolean) {
+  return solved ? "text-green-400" : "text-red-400";
 }
 
-function formatDuration(ms: number) {
-  if (!ms) return "0s";
-  const totalSeconds = Math.round(ms / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  if (minutes === 0) return `${seconds}s`;
-  return `${minutes}m ${seconds}s`;
-}
-
-function MetricCard({ label, value, hint }: { label: string; value: string; hint: string }) {
-  return (
-    <Card className="rounded-2xl">
-      <CardContent className="p-4">
-        <div className="text-[10px] uppercase tracking-[0.25em] text-neutral-500">{label}</div>
-        <div className="mt-3 text-3xl font-semibold text-white">{value}</div>
-        <div className="mt-2 text-xs text-neutral-400">{hint}</div>
-      </CardContent>
-    </Card>
-  );
+function buildRunMap(run: ReplayRun) {
+  return new Map(run.games.map((game) => [game.targetWord, game]));
 }
 
 export function ReplayView() {
   const { runs } = replayData as ReplayPayload;
-  const [selectedRunId, setSelectedRunId] = useState<string>(runs[0]?.runId || "");
-  const [selectedWord, setSelectedWord] = useState<string>(runs[0]?.games[0]?.targetWord || "");
+  const [selectedRunIds, setSelectedRunIds] = useState<Record<SlotId, string | null>>({
+    a: runs[0]?.runId || null,
+    b: null,
+    c: null,
+  });
+  const [expandedWord, setExpandedWord] = useState<string | null>(runs[0]?.games[0]?.targetWord || null);
 
-  const selectedRun = useMemo(() => runs.find((run) => run.runId === selectedRunId) || runs[0] || null, [runs, selectedRunId]);
-  const selectedGame = useMemo(() => {
-    if (!selectedRun) return null;
-    return selectedRun.games.find((game) => game.targetWord === selectedWord) || selectedRun.games[0] || null;
-  }, [selectedRun, selectedWord]);
+  const activeSlots = SLOT_IDS.filter((slotId) => selectedRunIds[slotId]);
+  const selectedRuns = activeSlots
+    .map((slotId) => ({
+      slotId,
+      run: runs.find((item) => item.runId === selectedRunIds[slotId]) || null,
+    }))
+    .filter((entry): entry is { slotId: SlotId; run: ReplayRun } => Boolean(entry.run));
 
-  const handleRunChange = (runId: string) => {
-    setSelectedRunId(runId);
-    const run = runs.find((item) => item.runId === runId);
-    if (run?.games?.[0]?.targetWord) setSelectedWord(run.games[0].targetWord);
+  const wordOrder = selectedRuns[0]?.run.wordBank || [];
+  const runMaps = useMemo(
+    () => new Map(selectedRuns.map(({ slotId, run }) => [slotId, buildRunMap(run)])),
+    [selectedRuns]
+  );
+
+  const availableRunOptions = (slotId: SlotId) =>
+    runs.filter((run) => {
+      const takenElsewhere = SLOT_IDS.some(
+        (otherSlotId) => otherSlotId !== slotId && selectedRunIds[otherSlotId] === run.runId
+      );
+      return !takenElsewhere;
+    });
+
+  const handleRunChange = (slotId: SlotId, runId: string) => {
+    setSelectedRunIds((current) => ({ ...current, [slotId]: runId }));
+    if (!expandedWord) {
+      const run = runs.find((item) => item.runId === runId);
+      setExpandedWord(run?.games[0]?.targetWord || null);
+    }
   };
 
-  if (!selectedRun) return null;
+  const addRun = () => {
+    const emptySlot = SLOT_IDS.find((slotId) => !selectedRunIds[slotId]);
+    if (!emptySlot) return;
+    const firstAvailable = runs.find(
+      (run) => !Object.values(selectedRunIds).includes(run.runId)
+    );
+    if (!firstAvailable) return;
+    setSelectedRunIds((current) => ({ ...current, [emptySlot]: firstAvailable.runId }));
+  };
+
+  const removeRun = (slotId: SlotId) => {
+    if (slotId === "a") return;
+    setSelectedRunIds((current) => ({ ...current, [slotId]: null }));
+  };
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
       <div className="noise-overlay" />
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="grid gap-6 xl:grid-cols-[0.34fr_0.66fr]">
-          <Card>
-            <CardHeader>
-              <CardDescription>Replay Controls</CardDescription>
-              <CardTitle>Inspect A Published Run</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Run</div>
-              <Select value={selectedRun.runId} onValueChange={handleRunChange}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select run" />
-                </SelectTrigger>
-                <SelectContent>
-                  {runs.map((run) => (
-                    <SelectItem key={run.runId} value={run.runId}>
-                      {run.model} · {new Date(run.completedAt || "").toLocaleDateString()}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+        <Card className="rounded-[28px]">
+          <CardHeader>
+            <CardDescription>Replay</CardDescription>
+            <CardTitle>Run Comparison</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="min-w-[880px]">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[140px]">Word</TableHead>
+                      {SLOT_IDS.map((slotId, index) => {
+                        const runId = selectedRunIds[slotId];
+                        const run = runs.find((item) => item.runId === runId) || null;
+                        const canRemove = slotId !== "a" && Boolean(run);
+                        const canShowAdd = !run && index === activeSlots.length && activeSlots.length < 3;
 
-              <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-                <MetricCard label="Solved" value={`${selectedRun.solvedCount}/${selectedRun.totalWords}`} hint={`${selectedRun.failedCount} failed`} />
-                <MetricCard label="Guesses" value={String(selectedRun.totalGuesses)} hint={`${selectedRun.averageGuesses.toFixed(2)} avg / word`} />
-                <MetricCard label="Cost" value={formatUsdShort(selectedRun.totalCostUsd)} hint={`${selectedRun.totalRequests} total requests`} />
-                <MetricCard label="Req Time" value={formatDuration(selectedRun.totalRequestMs)} hint={selectedRun.model} />
-              </div>
-
-              <div className="mt-5">
-                <div className="mb-3 text-xs uppercase tracking-[0.2em] text-neutral-500">Words</div>
-                <ScrollArea className="h-[340px] pr-2">
-                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-2">
-                    {selectedRun.games.map((game) => (
-                      <Button key={game.targetWord} type="button" variant={selectedGame?.targetWord === game.targetWord ? "default" : "outline"} className={cn("h-auto justify-start px-3 py-3 text-left", selectedGame?.targetWord === game.targetWord && "bg-[#EF0044] text-white hover:opacity-90")} onClick={() => setSelectedWord(game.targetWord)}>
-                        <div>
-                          <div className="font-medium">{game.targetWord}</div>
-                          <div className="mt-1 text-xs opacity-70">{game.solved ? "solved" : "missed"} · {game.penalizedGuesses} guesses</div>
-                        </div>
-                      </Button>
-                    ))}
-                  </div>
-                </ScrollArea>
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardDescription>Selected Word</CardDescription>
-                <CardTitle>{selectedGame?.targetWord}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm text-neutral-400">
-                  <span>{selectedGame?.solved ? "Solved" : "Missed"} · {selectedGame?.penalizedGuesses ?? 0} guesses · {formatUsd(selectedGame?.totalCostUsd || 0)}</span>
-                  <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs uppercase tracking-[0.2em]">{formatDuration(selectedGame?.totalRequestMs || 0)}</span>
-                </div>
-                <div className="grid gap-6 lg:grid-cols-[0.48fr_0.52fr]">
-                  <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
-                    <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-neutral-500"><ImageIcon className="h-4 w-4" />Saved Drawing</div>
-                    <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-950 p-4">
-                      {selectedGame?.svgPath ? (
-                        <img src={selectedGame.svgPath} alt={`${selectedGame.targetWord} drawing`} className="h-full w-full object-contain" />
-                      ) : (
-                        <div className="text-sm text-neutral-500">No SVG saved</div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                    <div className="mb-3 text-xs uppercase tracking-[0.2em] text-neutral-500">Guess Order</div>
-                    <div className="flex flex-wrap gap-2">
-                      {(selectedGame?.guesses || []).map((guess, index) => {
-                        const matched = guess.toLowerCase() === (selectedGame?.targetWord || "").toLowerCase();
-                        return <span key={`${guess}-${index}`} className={cn("rounded-full border px-3 py-1 text-xs", matched ? "border-green-500/40 bg-green-500/10 text-green-300" : "border-white/10 bg-white/[0.04] text-neutral-300")}>{index + 1}. {guess}</span>;
+                        return (
+                          <TableHead key={slotId} className="min-w-[240px] align-top">
+                            {run ? (
+                              <div className="space-y-3">
+                                <div className="flex items-center justify-between gap-2">
+                                  <div className="text-xs uppercase tracking-[0.18em] text-neutral-500">Run {slotId.toUpperCase()}</div>
+                                  {canRemove ? (
+                                    <button type="button" className="text-xs uppercase tracking-[0.18em] text-neutral-500 transition-colors hover:text-white" onClick={() => removeRun(slotId)}>
+                                      Remove
+                                    </button>
+                                  ) : null}
+                                </div>
+                                <Select value={run.runId} onValueChange={(value) => handleRunChange(slotId, value)}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select run" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {availableRunOptions(slotId).map((option) => (
+                                      <SelectItem key={option.runId} value={option.runId}>
+                                        {formatRunLabel(option)}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            ) : canShowAdd ? (
+                              <div className="flex h-full items-center">
+                                <Button type="button" variant="outline" onClick={addRun}>+ Add Run</Button>
+                              </div>
+                            ) : null}
+                          </TableHead>
+                        );
                       })}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardDescription>Run Table</CardDescription>
-                <CardTitle>{selectedRun.model}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ScrollArea className="w-full whitespace-nowrap">
-                  <div className="min-w-[760px]">
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>Word</TableHead>
-                          <TableHead>Status</TableHead>
-                          <TableHead>Guesses</TableHead>
-                          <TableHead>Cost</TableHead>
-                          <TableHead>Req Time</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {selectedRun.games.map((game) => (
-                          <TableRow key={game.targetWord} className={cn("cursor-pointer bg-white/[0.03] text-neutral-200", selectedGame?.targetWord === game.targetWord && "bg-[#EF0044]/10")} onClick={() => setSelectedWord(game.targetWord)}>
-                            <TableCell className="rounded-l-xl text-white">{game.targetWord}</TableCell>
-                            <TableCell className={game.solved ? "text-green-400" : "text-red-400"}>{game.solved ? "Solved" : "Missed"}</TableCell>
-                            <TableCell>{game.penalizedGuesses}</TableCell>
-                            <TableCell>{formatUsd(game.totalCostUsd)}</TableCell>
-                            <TableCell className="rounded-r-xl">{formatDuration(game.totalRequestMs)}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableHead />
+                      {selectedRuns.map(({ slotId }) => (
+                        <TableHead key={`${slotId}-headers`}>
+                          <div className="grid grid-cols-[1fr_1fr_1fr] gap-3 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
+                            <span>Status</span>
+                            <span>Guesses</span>
+                            <span>Run</span>
+                          </div>
+                        </TableHead>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {wordOrder.map((word) => {
+                      const expanded = expandedWord === word;
+                      return (
+                        <>
+                          <TableRow key={word} className={cn("cursor-pointer bg-white/[0.03] text-neutral-200", expanded && "bg-white/[0.05]")} onClick={() => setExpandedWord((current) => current === word ? null : word)}>
+                            <TableCell className="font-medium text-white">{word}</TableCell>
+                            {selectedRuns.map(({ slotId, run }) => {
+                              const game = runMaps.get(slotId)?.get(word);
+                              return (
+                                <TableCell key={`${slotId}-${word}`}>
+                                  {game ? (
+                                    <div className="grid grid-cols-[1fr_1fr_1fr] gap-3 text-sm">
+                                      <span className={getStatusClass(game.solved)}>{game.solved ? "Solved" : "Missed"}</span>
+                                      <span>{game.penalizedGuesses}</span>
+                                      <span className="truncate text-neutral-500">{run.model}</span>
+                                    </div>
+                                  ) : (
+                                    <span className="text-neutral-600">n/a</span>
+                                  )}
+                                </TableCell>
+                              );
+                            })}
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </div>
-                </ScrollArea>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+                          {expanded ? (
+                            <TableRow key={`${word}-expanded`} className="bg-black/20 text-neutral-200">
+                              <TableCell className="align-top text-neutral-500">Details</TableCell>
+                              {selectedRuns.map(({ slotId }) => {
+                                const game = runMaps.get(slotId)?.get(word);
+                                return (
+                                  <TableCell key={`${slotId}-${word}-expanded`} className="align-top">
+                                    {game ? (
+                                      <div className="grid gap-4 py-2 lg:grid-cols-[180px_minmax(0,1fr)]">
+                                        <div className="rounded-2xl border border-white/10 bg-neutral-950 p-3">
+                                          <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-black/20">
+                                            {game.svgPath ? (
+                                              <img src={game.svgPath} alt={`${word} drawing`} className="h-full w-full object-contain" />
+                                            ) : (
+                                              <div className="text-xs text-neutral-500">No SVG saved</div>
+                                            )}
+                                          </div>
+                                        </div>
+                                        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-sm leading-6 text-neutral-300">
+                                          {game.guesses.map((guess, index) => {
+                                            const matched = guess.toLowerCase() === word.toLowerCase();
+                                            return (
+                                              <div key={`${guess}-${index}`} className={cn(matched && "text-green-300")}>{index + 1}. {guess}</div>
+                                            );
+                                          })}
+                                        </div>
+                                      </div>
+                                    ) : null}
+                                  </TableCell>
+                                );
+                              })}
+                            </TableRow>
+                          ) : null}
+                        </>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+            </ScrollArea>
+          </CardContent>
+        </Card>
       </div>
     </main>
   );
