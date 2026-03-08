@@ -35,6 +35,8 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export type SectionKey = "ranking" | "table" | "cost" | "speed" | "matrix" | "replay";
+type TableSortKey = "rank" | "model" | "solved" | "failed" | "guesses" | "cost" | "time" | "completed";
+type SortDirection = "asc" | "desc";
 
 interface RankingRow {
   model: string;
@@ -150,7 +152,15 @@ function formatUsdShort(value: number) {
 
 function formatDate(value: string | null) {
   if (!value) return "n/a";
-  return new Date(value).toLocaleString();
+  return new Date(value).toLocaleString("en-GB", {
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
 }
 
 function formatDuration(ms: number) {
@@ -277,6 +287,10 @@ export function DashboardView({ section }: { section: SectionKey }) {
 
   const [selectedRunId, setSelectedRunId] = useState<string>(runs[0]?.runId || "");
   const [selectedWord, setSelectedWord] = useState<string>(runs[0]?.games[0]?.targetWord || "");
+  const [tableSort, setTableSort] = useState<{ key: TableSortKey; direction: SortDirection }>({
+    key: "rank",
+    direction: "asc",
+  });
 
   const sortedRankings = useMemo(
     () =>
@@ -334,11 +348,54 @@ export function DashboardView({ section }: { section: SectionKey }) {
       })),
     [rankings, rankingPositionByRunId]
   );
+  const tableRows = useMemo(() => {
+    const rows = sortedRankings.map((row, index) => ({
+      ...row,
+      rank: index + 1,
+    }));
+
+    return rows.slice().sort((a, b) => {
+      const direction = tableSort.direction === "asc" ? 1 : -1;
+
+      switch (tableSort.key) {
+        case "rank":
+          return (a.rank - b.rank) * direction;
+        case "model":
+          return a.model.localeCompare(b.model) * direction;
+        case "solved":
+          return (a.correct - b.correct) * direction;
+        case "failed":
+          return (a.errors - b.errors) * direction;
+        case "guesses":
+          return (a.totalGuesses - b.totalGuesses) * direction;
+        case "cost":
+          return (a.totalCost - b.totalCost) * direction;
+        case "time":
+          return (a.totalRequestMs - b.totalRequestMs) * direction;
+        case "completed":
+          return String(a.completedAt || "").localeCompare(String(b.completedAt || "")) * direction;
+        default:
+          return 0;
+      }
+    });
+  }, [sortedRankings, tableSort]);
 
   const handleRunChange = (runId: string) => {
     setSelectedRunId(runId);
     const run = runs.find((item) => item.runId === runId);
     if (run?.games?.[0]?.targetWord) setSelectedWord(run.games[0].targetWord);
+  };
+
+  const handleTableSort = (key: TableSortKey) => {
+    setTableSort((current) => ({
+      key,
+      direction: current.key === key && current.direction === "asc" ? "desc" : "asc",
+    }));
+  };
+
+  const getSortMarker = (key: TableSortKey) => {
+    if (tableSort.key !== key) return "";
+    return tableSort.direction === "asc" ? " ↑" : " ↓";
   };
 
   return (
@@ -405,29 +462,29 @@ export function DashboardView({ section }: { section: SectionKey }) {
             <CardContent>
               <ScrollArea className="w-full whitespace-nowrap">
                 <div className="min-w-[980px]">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Rank</TableHead>
-                        <TableHead>Model</TableHead>
-                        <TableHead>Solved</TableHead>
-                        <TableHead>Failed</TableHead>
-                        <TableHead>Guesses</TableHead>
-                        <TableHead>Cost</TableHead>
-                        <TableHead>Avg Req</TableHead>
-                        <TableHead>Completed</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {sortedRankings.map((row, index) => (
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                        <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("rank")}>Rank{getSortMarker("rank")}</TableHead>
+                        <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("model")}>Model{getSortMarker("model")}</TableHead>
+                        <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("solved")}>Solved{getSortMarker("solved")}</TableHead>
+                        <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("failed")}>Failed{getSortMarker("failed")}</TableHead>
+                        <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("guesses")}>Guesses{getSortMarker("guesses")}</TableHead>
+                        <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("cost")}>Cost{getSortMarker("cost")}</TableHead>
+                        <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("time")}>Time{getSortMarker("time")}</TableHead>
+                        <TableHead className="cursor-pointer select-none" onClick={() => handleTableSort("completed")}>Completed{getSortMarker("completed")}</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                      {tableRows.map((row) => (
                         <TableRow key={row.runId} className="bg-white/[0.03] text-neutral-200">
-                          <TableCell className="rounded-l-xl text-neutral-400">#{index + 1}</TableCell>
+                          <TableCell className="rounded-l-xl text-neutral-400">#{row.rank}</TableCell>
                           <TableCell className="font-medium text-white">{row.model}</TableCell>
                           <TableCell className="text-green-400">{row.correct}/{row.totalTests}</TableCell>
                           <TableCell className="text-red-400">{row.errors}</TableCell>
                           <TableCell>{row.totalGuesses}</TableCell>
-                          <TableCell>{formatUsd(row.totalCost)}</TableCell>
-                          <TableCell>{formatDuration(row.averageDuration)}</TableCell>
+                          <TableCell>{formatUsdShort(row.totalCost)}</TableCell>
+                          <TableCell>{formatDuration(row.totalRequestMs)}</TableCell>
                           <TableCell className="rounded-r-xl text-neutral-400">{formatDate(row.completedAt)}</TableCell>
                         </TableRow>
                       ))}
