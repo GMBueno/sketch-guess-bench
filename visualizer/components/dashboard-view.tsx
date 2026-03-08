@@ -15,6 +15,7 @@ import {
 } from "recharts";
 
 import benchmarkData from "../data/benchmark-results.json";
+import { ModelFilterBar, useVisibleRunIds } from "@/components/model-filter-bar";
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -321,7 +322,7 @@ function MatrixLegend({
 }
 
 export function DashboardView({ section }: { section: SectionKey }) {
-  const { rankings, metadata } = benchmarkData as BenchmarkPayload;
+  const { rankings } = benchmarkData as BenchmarkPayload;
   const [tableSort, setTableSort] = useState<{ key: TableSortKey; direction: SortDirection }>({
     key: "rank",
     direction: "asc",
@@ -331,7 +332,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
   const [speedMatrixPinnedRunId, setSpeedMatrixPinnedRunId] = useState<string | null>(null);
   const [speedMatrixHoveredRunId, setSpeedMatrixHoveredRunId] = useState<string | null>(null);
 
-  const sortedRankings = useMemo(
+  const allSortedRankings = useMemo(
     () =>
       rankings.slice().sort((a, b) => {
         if (b.correct !== a.correct) return b.correct - a.correct;
@@ -342,23 +343,38 @@ export function DashboardView({ section }: { section: SectionKey }) {
     [rankings]
   );
 
+  const filterOptions = useMemo(
+    () => allSortedRankings.map((row) => ({
+      runId: row.runId,
+      model: row.model,
+    })),
+    [allSortedRankings]
+  );
+
+  const modelFilter = useVisibleRunIds(filterOptions);
+
+  const visibleRankings = useMemo(
+    () => allSortedRankings.filter((row) => modelFilter.selectedSet.has(row.runId)),
+    [allSortedRankings, modelFilter.selectedSet]
+  );
+
   const rankingPositionByRunId = useMemo(
-    () => new Map(sortedRankings.map((row, index) => [row.runId, index + 1])),
-    [sortedRankings]
+    () => new Map(visibleRankings.map((row, index) => [row.runId, index + 1])),
+    [visibleRankings]
   );
 
   const costData = useMemo(
-    () => [...rankings].sort((a, b) => a.totalCost - b.totalCost),
-    [rankings]
+    () => [...visibleRankings].sort((a, b) => a.totalCost - b.totalCost),
+    [visibleRankings]
   );
 
   const speedData = useMemo(
-    () => [...rankings].sort((a, b) => a.totalRequestMs - b.totalRequestMs),
-    [rankings]
+    () => [...visibleRankings].sort((a, b) => a.totalRequestMs - b.totalRequestMs),
+    [visibleRankings]
   );
 
   const valueMatrixData = useMemo(
-    () => rankings.map((row) => ({
+    () => visibleRankings.map((row) => ({
       runId: row.runId,
       model: row.model,
       rank: rankingPositionByRunId.get(row.runId) || 0,
@@ -367,11 +383,11 @@ export function DashboardView({ section }: { section: SectionKey }) {
       successRate: Number(row.successRate.toFixed(1)),
       durationSeconds: Number((row.totalRequestMs / 1000).toFixed(1)),
     })),
-    [rankings, rankingPositionByRunId]
+    [visibleRankings, rankingPositionByRunId]
   );
 
   const speedMatrixData = useMemo(
-    () => rankings.map((row) => ({
+    () => visibleRankings.map((row) => ({
       runId: row.runId,
       model: row.model,
       rank: rankingPositionByRunId.get(row.runId) || 0,
@@ -380,13 +396,13 @@ export function DashboardView({ section }: { section: SectionKey }) {
       successRate: Number(row.successRate.toFixed(1)),
       totalCost: Number(row.totalCost.toFixed(4)),
     })),
-    [rankings, rankingPositionByRunId]
+    [visibleRankings, rankingPositionByRunId]
   );
   const activeValueMatrixRunId = valueMatrixHoveredRunId || valueMatrixPinnedRunId;
   const activeSpeedMatrixRunId = speedMatrixHoveredRunId || speedMatrixPinnedRunId;
 
   const tableRows = useMemo(() => {
-    const rows = sortedRankings.map((row, index) => ({ ...row, rank: index + 1 }));
+    const rows = visibleRankings.map((row, index) => ({ ...row, rank: index + 1 }));
     return rows.slice().sort((a, b) => {
       const direction = tableSort.direction === "asc" ? 1 : -1;
       switch (tableSort.key) {
@@ -401,7 +417,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
         default: return 0;
       }
     });
-  }, [sortedRankings, tableSort]);
+  }, [visibleRankings, tableSort]);
 
   const handleTableSort = (key: TableSortKey) => {
     setTableSort((current) => ({
@@ -419,11 +435,13 @@ export function DashboardView({ section }: { section: SectionKey }) {
     <main className="relative min-h-screen overflow-x-hidden">
       <div className="noise-overlay" />
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.2em] text-neutral-500">
-          <div>Models: {metadata.totalModels}</div>
-          <div>Published Runs: {rankings.length}</div>
-          <div>Last Sync: {formatDate(metadata.timestamp)}</div>
-        </div>
+        <ModelFilterBar
+          options={filterOptions}
+          selectedRunIds={modelFilter.selectedRunIds}
+          onToggle={modelFilter.toggleRunId}
+          onSelectAll={modelFilter.selectAll}
+          onClear={modelFilter.clear}
+        />
 
         {section === "ranking" ? (
           <div className="mx-auto w-full max-w-5xl">
@@ -433,7 +451,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
                 <CardDescription>Success rate based on wordbank.</CardDescription>
               </CardHeader>
               <CardContent>
-                <MetricRows rows={sortedRankings} valueFormatter={(row) => `${row.successRate.toFixed(0)}%`} fillPercent={(row) => row.successRate} />
+                <MetricRows rows={visibleRankings} valueFormatter={(row) => `${row.successRate.toFixed(0)}%`} fillPercent={(row) => row.successRate} />
               </CardContent>
             </Card>
           </div>
@@ -546,7 +564,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
                   </ResponsiveContainer>
                 </div>
                 <MatrixLegend
-                  rows={sortedRankings}
+                  rows={visibleRankings}
                   activeRunId={activeValueMatrixRunId}
                   onHover={setValueMatrixHoveredRunId}
                   onLeave={() => setValueMatrixHoveredRunId(null)}
@@ -574,7 +592,7 @@ export function DashboardView({ section }: { section: SectionKey }) {
                   </ResponsiveContainer>
                 </div>
                 <MatrixLegend
-                  rows={sortedRankings}
+                  rows={visibleRankings}
                   activeRunId={activeSpeedMatrixRunId}
                   onHover={setSpeedMatrixHoveredRunId}
                   onLeave={() => setSpeedMatrixHoveredRunId(null)}

@@ -1,8 +1,9 @@
 "use client";
 
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 
 import replayData from "../data/replay-data.json";
+import { ModelFilterBar, useVisibleRunIds } from "@/components/model-filter-bar";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -83,18 +84,50 @@ function compactRunSlots(runIds: Record<SlotId, string | null>) {
 
 export function ReplayView() {
   const { runs } = replayData as ReplayPayload;
+  const sortedRuns = useMemo(
+    () =>
+      runs.slice().sort((a, b) => {
+        if (b.solvedCount !== a.solvedCount) return b.solvedCount - a.solvedCount;
+        if (a.totalGuesses !== b.totalGuesses) return a.totalGuesses - b.totalGuesses;
+        return a.model.localeCompare(b.model);
+      }),
+    [runs]
+  );
+  const filterOptions = useMemo(
+    () => sortedRuns.map((run) => ({
+      runId: run.runId,
+      model: run.model,
+    })),
+    [sortedRuns]
+  );
+  const modelFilter = useVisibleRunIds(filterOptions);
+  const visibleRuns = useMemo(
+    () => sortedRuns.filter((run) => modelFilter.selectedSet.has(run.runId)),
+    [sortedRuns, modelFilter.selectedSet]
+  );
   const [selectedRunIds, setSelectedRunIds] = useState<Record<SlotId, string | null>>({
-    a: runs[0]?.runId || null,
+    a: sortedRuns[0]?.runId || null,
     b: null,
     c: null,
   });
-  const [expandedWord, setExpandedWord] = useState<string | null>(runs[0]?.games[0]?.targetWord || null);
+  const [expandedWord, setExpandedWord] = useState<string | null>(sortedRuns[0]?.games[0]?.targetWord || null);
+
+  useEffect(() => {
+    setSelectedRunIds((current) => {
+      const next = compactRunSlots({
+        a: visibleRuns.some((run) => run.runId === current.a) ? current.a : visibleRuns[0]?.runId || null,
+        b: visibleRuns.some((run) => run.runId === current.b) ? current.b : null,
+        c: visibleRuns.some((run) => run.runId === current.c) ? current.c : null,
+      });
+      return next;
+    });
+  }, [visibleRuns]);
 
   const activeSlots = SLOT_IDS.filter((slotId) => selectedRunIds[slotId]);
   const selectedRuns = activeSlots
     .map((slotId) => ({
       slotId,
-      run: runs.find((item) => item.runId === selectedRunIds[slotId]) || null,
+      run: visibleRuns.find((item) => item.runId === selectedRunIds[slotId]) || null,
     }))
     .filter((entry): entry is { slotId: SlotId; run: ReplayRun } => Boolean(entry.run));
 
@@ -105,7 +138,7 @@ export function ReplayView() {
   );
 
   const availableRunOptions = (slotId: SlotId) =>
-    runs.filter((run) => {
+    visibleRuns.filter((run) => {
       const takenElsewhere = SLOT_IDS.some(
         (otherSlotId) => otherSlotId !== slotId && selectedRunIds[otherSlotId] === run.runId
       );
@@ -115,7 +148,7 @@ export function ReplayView() {
   const handleRunChange = (slotId: SlotId, runId: string) => {
     setSelectedRunIds((current) => ({ ...current, [slotId]: runId }));
     if (!expandedWord) {
-      const run = runs.find((item) => item.runId === runId);
+      const run = visibleRuns.find((item) => item.runId === runId);
       setExpandedWord(run?.games[0]?.targetWord || null);
     }
   };
@@ -123,7 +156,7 @@ export function ReplayView() {
   const addRun = () => {
     const emptySlot = SLOT_IDS.find((slotId) => !selectedRunIds[slotId]);
     if (!emptySlot) return;
-    const firstAvailable = runs.find(
+    const firstAvailable = visibleRuns.find(
       (run) => !Object.values(selectedRunIds).includes(run.runId)
     );
     if (!firstAvailable) return;
@@ -139,6 +172,13 @@ export function ReplayView() {
     <main className="relative min-h-screen overflow-x-hidden">
       <div className="noise-overlay" />
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <ModelFilterBar
+          options={filterOptions}
+          selectedRunIds={modelFilter.selectedRunIds}
+          onToggle={modelFilter.toggleRunId}
+          onSelectAll={modelFilter.selectAll}
+          onClear={modelFilter.clear}
+        />
         <Card className="rounded-[28px]">
           <CardHeader>
             <CardDescription>Replay</CardDescription>
