@@ -53,6 +53,7 @@ interface ReplayPayload {
 type SlotId = "a" | "b" | "c";
 
 const SLOT_IDS: SlotId[] = ["a", "b", "c"];
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 function formatRunLabel(run: ReplayRun) {
   return run.model;
@@ -242,7 +243,7 @@ export function ReplayView() {
                                         <div className="self-start rounded-2xl border border-white/10 bg-neutral-950 p-3">
                                           <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-black/20">
                                             {game.svgPath ? (
-                                              <img src={game.svgPath} alt={`${word} drawing`} className="h-full w-full object-contain" />
+                                              <img src={`${BASE_PATH}${game.svgPath}`} alt={`${word} drawing`} className="h-full w-full object-contain" />
                                             ) : (
                                               <div className="text-xs text-neutral-500">No SVG saved</div>
                                             )}
