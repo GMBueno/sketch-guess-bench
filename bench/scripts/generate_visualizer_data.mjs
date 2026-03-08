@@ -153,6 +153,23 @@ async function readBenchmarks() {
   return benchmarks;
 }
 
+function getRunTotalWords(benchmark) {
+  return numberOrZero(benchmark?.modelRuns?.[0]?.totalWords);
+}
+
+function filterBenchmarksForVisualizer(benchmarks) {
+  const maxTotalWords = benchmarks.reduce(
+    (max, benchmark) => Math.max(max, getRunTotalWords(benchmark)),
+    0
+  );
+
+  if (maxTotalWords <= 0) {
+    return benchmarks;
+  }
+
+  return benchmarks.filter((benchmark) => getRunTotalWords(benchmark) === maxTotalWords);
+}
+
 async function toRankingEntry(benchmark) {
   const run = benchmark?.modelRuns?.[0];
   const totalTests = numberOrZero(run?.totalWords);
@@ -316,7 +333,8 @@ async function buildReplayRuns(benchmarks, rankingByRunId) {
 }
 
 async function main() {
-  const benchmarks = await readBenchmarks();
+  const allBenchmarks = await readBenchmarks();
+  const benchmarks = filterBenchmarksForVisualizer(allBenchmarks);
   const rankings = sortRankings(await Promise.all(benchmarks.map(toRankingEntry)));
   const rankingByRunId = new Map(rankings.map((ranking) => [ranking.runId, ranking]));
   const metadata = buildMetadata(rankings);
