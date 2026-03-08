@@ -891,7 +891,19 @@ function sanitizeSvg(raw) {
   const end = value.lastIndexOf("</svg>");
   if (start === -1 || end === -1 || end <= start) return "";
 
-  return value.slice(start, end + "</svg>".length).trim();
+  return normalizeSvgMarkup(value.slice(start, end + "</svg>".length).trim());
+}
+
+function normalizeSvgMarkup(svg) {
+  if (typeof svg !== "string") return "";
+
+  return svg
+    .replace(/\\"/g, "\"")
+    .replace(/\\'/g, "'")
+    .replace(/\\n/g, "\n")
+    .replace(/\\r/g, "\r")
+    .replace(/\\t/g, "\t")
+    .trim();
 }
 
 function isSafeSvg(svg) {
@@ -962,10 +974,45 @@ async function svgToJpegDataUrl(svg) {
   const page = await browser.newPage({ viewport: { width: 512, height: 512 } });
 
   try {
+    const parseCheck = await page.evaluate((svgText) => {
+      const doc = new DOMParser().parseFromString(svgText, "image/svg+xml");
+      return {
+        hasParserError: Boolean(doc.querySelector("parsererror"))
+      };
+    }, svg);
+
+    if (parseCheck.hasParserError) {
+      throw new Error("SVG XML parse failed");
+    }
+
     await page.setContent(
       `<html><body style="margin:0;background:#fff"><img id="stage" src="data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}" style="width:512px;height:512px;display:block"/></body></html>`,
       { waitUntil: "domcontentloaded" }
     );
+
+    const imageInfo = await page.locator("#stage").evaluate(async (img) => {
+      try {
+        await img.decode();
+      } catch (err) {
+        return {
+          complete: img.complete,
+          naturalWidth: img.naturalWidth,
+          naturalHeight: img.naturalHeight,
+          decodeError: err instanceof Error ? err.message : String(err)
+        };
+      }
+
+      return {
+        complete: img.complete,
+        naturalWidth: img.naturalWidth,
+        naturalHeight: img.naturalHeight,
+        decodeError: null
+      };
+    });
+
+    if (!imageInfo.complete || imageInfo.naturalWidth === 0 || imageInfo.naturalHeight === 0) {
+      throw new Error(`SVG image decode failed${imageInfo.decodeError ? `: ${imageInfo.decodeError}` : ""}`);
+    }
 
     const jpgBuffer = await page.locator("#stage").screenshot({
       type: "jpeg",
