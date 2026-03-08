@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f6f2e8"/>
+      <stop offset="100%" stop-color="#dfeaf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Dome (classical architecture) -->
+  <ellipse cx="256" cy="150" rx="170" ry="90" fill="#c96c4a" stroke="#8b3c2a" stroke-width="4"/>
+  <path d="M86,150 A170,90 0 0 1 426,150" stroke="rgba(255,255,255,0.25)" fill="none" stroke-width="3"/>
+  <path d="M106,170 A150,80 0 0 1 406,170" stroke="rgba(255,255,255,0.18)" fill="none" stroke-width="2"/>
+  <circle cx="256" cy="86" r="16" fill="#f3e0c8" stroke="#8b3c2a" stroke-width="3"/>
+  <rect x="246" y="102" width="20" height="36" fill="#f3e0c8" stroke="#8b3c2a" stroke-width="3" rx="3"/>
+
+  <!-- Building base -->
+  <rect x="96" y="210" width="320" height="220" fill="#efe1cf" stroke="#bfa889" stroke-width="4" rx="6"/>
+  <rect x="86" y="420" width="340" height="12" fill="#d8c5a8"/>
+  <rect x="96" y="436" width="320" height="8" fill="#cdb88f"/>
+
+  <!-- Arches (portico) -->
+  <g fill="#d8c5a2" stroke="#bfa889" stroke-width="4">
+    <path d="M100,420 A56,56 0 0 1 212,420 L212,430 L100,430 Z"/>
+    <path d="M200,420 A56,56 0 0 1 312,420 L312,430 L200,430 Z"/>
+    <path d="M300,420 A56,56 0 0 1 412,420 L412,430 L300,430 Z"/>
+  </g>
+
+  <!-- Columns -->
+  <g fill="#efe1cf" stroke="#bfa889" stroke-width="3">
+    <rect x="107" y="260" width="18" height="120" rx="4"/>
+    <rect x="187" y="260" width="18" height="120" rx="4"/>
+    <rect x="267" y="260" width="18" height="120" rx="4"/>
+    <rect x="347" y="260" width="18" height="120" rx="4"/>
+    <!-- capitals -->
+    <rect x="99" y="246" width="30" height="14" rx="3"/>
+    <rect x="179" y="246" width="30" height="14" rx="3"/>
+    <rect x="259" y="246" width="30" height="14" rx="3"/>
+    <rect x="339" y="246" width="30" height="14" rx="3"/>
+    <!-- bases -->
+    <rect x="99" y="380" width="30" height="8" rx="2"/>
+    <rect x="179" y="380" width="30" height="8" rx="2"/>
+    <rect x="259" y="380" width="30" height="8" rx="2"/>
+    <rect x="339" y="380" width="30" height="8" rx="2"/>
+  </g>
+
+  <!-- Painter's palette and brush (art) -->
+  <g transform="translate(64,388)">
+    <circle cx="16" cy="64" r="44" fill="#6b4a2b" stroke="#4b3018" stroke-width="4"/>
+    <path d="M44,48 a24,18 0 1,0 -36,0 a14,10 0 0,0 10,12 a8,6 0 0,0 18,0 a14,10 0 0,0 8,-12 z" fill="#6b4a2b"/>
+    <circle cx="12" cy="38" r="6" fill="#f1c21b"/>
+    <circle cx="38" cy="56" r="6" fill="#3b6b2a"/>
+    <circle cx="28" cy="28" r="6" fill="#8b2b2b"/>
+    <g transform="rotate(-30 16 64)">
+      <rect x="60" y="8" width="6" height="110" fill="#3b2b20" stroke="#2b1d14" stroke-width="1.5" rx="3"/>
+      <polygon points="60,8 66,8 64,0" fill="#b56a3c" stroke="#8b3c2a" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- Laurel branches (symbol of classical/humanist revival) -->
+  <g fill="#5b7a38" stroke="#3f5a28" stroke-width="1">
+    <g transform="translate(40,130) rotate(-30)">
+      <ellipse cx="0" cy="0" rx="12" ry="6"/>
+      <ellipse cx="18" cy="10" rx="12" ry="6" transform="rotate(10)"/>
+      <ellipse cx="34" cy="22" rx="12" ry="6" transform="rotate(20)"/>
+      <ellipse cx="48" cy="36" rx="12" ry="6" transform="rotate(30)"/>
+      <ellipse cx="58" cy="52" rx="12" ry="6" transform="rotate(40)"/>
+    </g>
+    <g transform="translate(472,130) scale(-1,1) rotate(-30)">
+      <ellipse cx="0" cy="0" rx="12" ry="6"/>
+      <ellipse cx="18" cy="10" rx="12" ry="6" transform="rotate(10)"/>
+      <ellipse cx="34" cy="22" rx="12" ry="6" transform="rotate(20)"/>
+      <ellipse cx="48" cy="36" rx="12" ry="6" transform="rotate(30)"/>
+      <ellipse cx="58" cy="52" rx="12" ry="6" transform="rotate(40)"/>
+    </g>
+  </g>
+</svg>

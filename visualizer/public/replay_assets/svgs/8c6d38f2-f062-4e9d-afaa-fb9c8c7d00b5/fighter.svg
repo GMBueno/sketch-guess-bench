@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background sky -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#77c9ff" />
+      <stop offset="100%" stop-color="#2b9cff" />
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#cfd6db" />
+      <stop offset="100%" stop-color="#9aa6ad" />
+    </linearGradient>
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#sky)" />
+
+  <!-- Contrails / motion lines -->
+  <g opacity="0.85" transform="translate(0,0)">
+    <rect x="-40" y="220" width="220" height="12" fill="#ffffff" opacity="0.25" rx="6" transform="rotate(-6 70 226)" />
+    <rect x="-40" y="240" width="180" height="10" fill="#ffffff" opacity="0.18" rx="5" transform="rotate(-6 50 245)" />
+    <rect x="-40" y="200" width="260" height="8" fill="#ffffff" opacity="0.12" rx="4" transform="rotate(-6 90 204)" />
+  </g>
+
+  <!-- Fighter jet group -->
+  <g transform="translate(256,220) rotate(-6)">
+    <!-- shadow under plane -->
+    <ellipse cx="0" cy="52" rx="90" ry="18" fill="#000" opacity="0.14" filter="url(#softShadow)" />
+
+    <!-- left wing -->
+    <path d="M-160,20 L-40,6 L-10,34 L-80,60 Z" fill="url(#metal)" stroke="#6f7b7f" stroke-width="2" />
+    <!-- right wing -->
+    <path d="M160,20 L40,6 L10,34 L80,60 Z" fill="url(#metal)" stroke="#6f7b7f" stroke-width="2" />
+
+    <!-- fuselage -->
+    <path d="M-110,-12 C-60,-28 60,-28 110,-12 C120,0 120,24 110,40 C40,80 -40,80 -110,40 C-120,24 -120,0 -110,-12 Z" fill="url(#metal)" stroke="#6f7b7f" stroke-width="2" />
+
+    <!-- nose cone -->
+    <path d="M110,-12 L170,0 L110,12 z" fill="#7f8b8f" stroke="#6f7b7f" stroke-width="2" />
+
+    <!-- cockpit canopy -->
+    <ellipse cx="0" cy="-8" rx="28" ry="14" fill="#234a6b" opacity="0.95" stroke="#173746" stroke-width="2" />
+
+    <!-- vertical tails -->
+    <path d="M-52,10 L-70,-36 L-40,-34 Z" fill="#a9b4b8" stroke="#6f7b7f" stroke-width="2" />
+    <path d="M52,10 L70,-36 L40,-34 Z" fill="#a9b4b8" stroke="#6f7b7f" stroke-width="2" />
+
+    <!-- small fins near engines -->
+    <path d="M-30,44 L-10,30 L-2,36 L-22,56 Z" fill="#9aa6ad" stroke="#6f7b7f" stroke-width="1.5" />
+    <path d="M30,44 L10,30 L2,36 L22,56 Z" fill="#9aa6ad" stroke="#6f7b7f" stroke-width="1.5" />
+
+    <!-- engine nozzles -->
+    <ellipse cx="-68" cy="84" rx="14" ry="8" fill="#4b4f52" />
+    <ellipse cx="68" cy="84" rx="14" ry="8" fill="#4b4f52" />
+
+    <!-- subtle panel lines -->
+    <path d="M-80,10 L-40,0" stroke="#8a9498" stroke-width="1" opacity="0.6"/>
+    <path d="M80,10 L40,0" stroke="#8a9498" stroke-width="1" opacity="0.6"/>
+
+    <!-- speed streak at nose -->
+    <path d="M170,0 L220,-6 L220,6 Z" fill="#ffd680" opacity="0.12" />
+  </g>
+
+</svg>

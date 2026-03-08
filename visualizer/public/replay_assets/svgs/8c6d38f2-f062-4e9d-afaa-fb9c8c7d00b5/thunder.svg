@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b2340" />
+      <stop offset="100%" stop-color="#071427" />
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#6b6b6b" />
+      <stop offset="100%" stop-color="#3c3c3c" />
+    </linearGradient>
+    <linearGradient id="boltGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff06a" />
+      <stop offset="60%" stop-color="#ffd24a" />
+      <stop offset="100%" stop-color="#ff9f1c" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" />
+
+  <!-- distant subtle cloud shadow -->
+  <ellipse cx="256" cy="300" rx="140" ry="40" fill="rgba(0,0,0,0.12)" />
+
+  <!-- main cloud -->
+  <g transform="translate(0, -20)">
+    <path d="M120 300
+             c-30 0 -50 -28 -40 -58
+             c10 -34 46 -48 80 -36
+             c6 -40 48 -68 92 -56
+             c10 -30 56 -46 92 -18
+             c34 -8 80 10 92 46
+             c18 44 -6 86 -52 92
+             H120z"
+          fill="url(#cloudGrad)" />
+    <!-- soft top bumps to make cloud rounder -->
+    <circle cx="160" cy="230" r="28" fill="url(#cloudGrad)" />
+    <circle cx="220" cy="200" r="36" fill="url(#cloudGrad)" />
+    <circle cx="310" cy="190" r="48" fill="url(#cloudGrad)" />
+    <circle cx="380" cy="220" r="34" fill="url(#cloudGrad)" />
+  </g>
+
+  <!-- lightning bolt with glow -->
+  <g filter="url(#glow)">
+    <path d="M320 270
+             L260 360
+             L300 360
+             L240 460
+             L360 340
+             L320 340
+             L360 270
+             Z"
+          fill="url(#boltGrad)" stroke="#d37a00" stroke-width="3" stroke-linejoin="round" />
+  </g>
+
+  <!-- small spark lines near bolt tip -->
+  <g opacity="0.85" stroke="#ffd96b" stroke-width="2" stroke-linecap="round">
+    <path d="M352 264 L372 248" />
+    <path d="M344 280 L368 292" />
+  </g>
+
+</svg>

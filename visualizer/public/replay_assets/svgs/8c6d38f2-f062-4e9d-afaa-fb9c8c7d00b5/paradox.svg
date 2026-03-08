@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#7fb3d5"/>
+      <stop offset="1" stop-color="#2e86ab"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#9ad0c9"/>
+      <stop offset="1" stop-color="#2f9687"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#caa3e6"/>
+      <stop offset="1" stop-color="#7a4ea8"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="100%" height="100%" fill="#f6f7fb"/>
+
+  <!-- Penrose-like impossible triangle: three thick bands -->
+  <!-- Left band (AB) -->
+  <g filter="url(#shadow)">
+    <g transform="translate(176,248) rotate(118)">
+      <rect x="-172" y="-36" width="344" height="72" rx="14" fill="url(#g1)" stroke="#1f3a47" stroke-opacity="0.7" stroke-width="4"/>
+    </g>
+
+    <!-- Bottom band (BC) -->
+    <g transform="translate(256,400) rotate(0)">
+      <rect x="-160" y="-36" width="320" height="72" rx="14" fill="url(#g2)" stroke="#163a35" stroke-opacity="0.7" stroke-width="4"/>
+    </g>
+
+    <!-- Right band (CA) -->
+    <g transform="translate(336,248) rotate(-62)">
+      <rect x="-172" y="-36" width="344" height="72" rx="14" fill="url(#g3)" stroke="#3b2650" stroke-opacity="0.7" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- Overlap cuts to create impossible effect -->
+  <!-- At corner between left and bottom: make bottom appear above left -->
+  <g>
+    <path d="M176,248 L256,400 L220,381 L151,260 Z" fill="#2f9687" stroke="#163a35" stroke-opacity="0.7" stroke-width="2"/>
+    <path d="M176,248 L256,400 L293,360 L211,248 Z" fill="#7fb3d5" opacity="0.95" stroke="#1f3a47" stroke-opacity="0.6" stroke-width="2"/>
+  </g>
+
+  <!-- At corner between bottom and right: make right appear above bottom -->
+  <g>
+    <path d="M256,400 L336,248 L312,220 L260,360 Z" fill="#7a4ea8" stroke="#3b2650" stroke-opacity="0.7" stroke-width="2"/>
+    <path d="M336,248 L256,400 L293,360 L346,260 Z" fill="#9ad0c9" opacity="0.95" stroke="#163a35" stroke-opacity="0.6" stroke-width="2"/>
+  </g>
+
+  <!-- At corner between right and left: make left appear above right -->
+  <g>
+    <path d="M336,248 L176,248 L220,236 L312,220 Z" fill="#caa3e6" stroke="#3b2650" stroke-opacity="0.7" stroke-width="2"/>
+    <path d="M176,248 L336,248 L293,281 L211,260 Z" fill="#7fb3d5" opacity="0.95" stroke="#1f3a47" stroke-opacity="0.6" stroke-width="2"/>
+  </g>
+
+  <!-- central negative space to emphasize the impossible loop -->
+  <polygon points="256,160 216,240 296,240" fill="#f6f7fb"/>
+
+  <!-- subtle inner highlight lines -->
+  <g stroke="#ffffff" stroke-opacity="0.12" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M142,292 L210,264"/>
+    <path d="M370,292 L302,264"/>
+    <path d="M170,220 L242,208"/>
+  </g>
+
+</svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="gSky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#87CEEB"/>
+      <stop offset="1" stop-color="#B9E0FF"/>
+    </linearGradient>
+    <linearGradient id="gField" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#9DC95A"/>
+      <stop offset="1" stop-color="#6EA02E"/>
+    </linearGradient>
+    <linearGradient id="gSoil" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#D9A24A"/>
+      <stop offset="1" stop-color="#C07A2E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect x="0" y="0" width="512" height="300" fill="url(#gSky)" />
+  <!-- Sun -->
+  <circle cx="420" cy="80" r="44" fill="#FFD54F" />
+
+  <!-- Rolling hills -->
+  <path d="M0 260 C120 200 220 220 320 200 C420 180 520 230 512 300 L512 512 L0 512 Z" fill="#7DB75B" />
+  <path d="M0 300 C120 260 220 280 320 260 C420 240 520 290 512 360 L512 512 L0 512 Z" fill="#6EA02E" opacity="0.9" />
+
+  <!-- Plowed field foreground with rows -->
+  <rect x="0" y="320" width="512" height="192" fill="url(#gField)" />
+  <g stroke="#8B5A2B" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.9">
+    <path d="M-20 380 C90 370 170 390 270 380 C370 370 450 390 540 380" />
+    <path d="M-20 420 C90 410 170 430 270 420 C370 410 450 430 540 420" />
+    <path d="M-20 460 C90 450 170 470 270 460 C370 450 450 470 540 460" />
+  </g>
+
+  <!-- Barn -->
+  <g transform="translate(60,220)">
+    <rect x="0" y="30" width="140" height="120" fill="#C73B3B" stroke="#8C2B2B" stroke-width="4" rx="4" />
+    <polygon points="-10,30 70, -30 150,30" fill="#9B2F2F" stroke="#7A2323" stroke-width="3" />
+    <rect x="50" y="80" width="40" height="70" fill="#5C2A1F" stroke="#412014" stroke-width="3" />
+    <rect x="18" y="58" width="26" height="22" fill="#FFDFA6" opacity="0.9" stroke="#7A4F2E" stroke-width="2" />
+  </g>
+
+  <!-- Hay bale (rolled) -->
+  <g transform="translate(360,360)">
+    <ellipse cx="0" cy="0" rx="52" ry="40" fill="#E6B55B" stroke="#C28B38" stroke-width="6" />
+    <ellipse cx="-4" cy="-2" rx="38" ry="28" fill="none" stroke="#C28B38" stroke-width="4" />
+    <ellipse cx="-8" cy="0" rx="18" ry="12" fill="none" stroke="#C28B38" stroke-width="3" />
+  </g>
+
+  <!-- Foreground wheat stalks -->
+  <g stroke="#8C5A1A" stroke-width="4" fill="none" stroke-linecap="round">
+    <!-- stalk 1 -->
+    <path d="M110 420 C110 380 120 360 130 340" />
+    <g fill="#F2C15A" stroke="#B8862B" stroke-width="1">
+      <ellipse cx="134" cy="344" rx="8" ry="12" transform="rotate(20 134 344)" />
+      <ellipse cx="126" cy="356" rx="8" ry="12" transform="rotate(10 126 356)" />
+      <ellipse cx="118" cy="368" rx="8" ry="12" transform="rotate(-5 118 368)" />
+      <ellipse cx="110" cy="380" rx="8" ry="12" transform="rotate(-20 110 380)" />
+    </g>
+    <!-- stalk 2 -->
+    <path d="M150 430 C150 390 160 370 170 350" />
+    <g fill="#F2C15A" stroke="#B8862B" stroke-width="1">
+      <ellipse cx="174" cy="354" rx="7" ry="10" transform="rotate(18 174 354)" />
+      <ellipse cx="166" cy="366" rx="7" ry="10" transform="rotate(8 166 366)" />
+      <ellipse cx="158" cy="378" rx="7" ry="10" transform="rotate(-6 158 378)" />
+    </g>
+    <!-- stalk 3 -->
+    <path d="M200 440 C200 400 210 380 220 360" />
+    <g fill="#F2C15A" stroke="#B8862B" stroke-width="1">
+      <ellipse cx="224" cy="364" rx="6" ry="9" transform="rotate(16 224 364)" />
+      <ellipse cx="216" cy="376" rx="6" ry="9" transform="rotate(4 216 376)" />
+      <ellipse cx="208" cy="388" rx="6" ry="9" transform="rotate(-12 208 388)" />
+    </g>
+  </g>
+
+  <!-- Scattered grain/harvest accents -->
+  <g fill="#F0C36A" stroke="#C28B38" stroke-width="1">
+    <ellipse cx="300" cy="430" rx="10" ry="6" transform="rotate(-15 300 430)" />
+    <ellipse cx="260" cy="450" rx="12" ry="7" transform="rotate(8 260 450)" />
+    <ellipse cx="340" cy="470" rx="9" ry="5" transform="rotate(-10 340 470)" />
+  </g>
+
+</svg>

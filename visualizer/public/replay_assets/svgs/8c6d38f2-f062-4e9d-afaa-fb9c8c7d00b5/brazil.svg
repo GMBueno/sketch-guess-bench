@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Green background -->
+  <rect width="512" height="512" fill="#009b3a" />
+  <!-- Yellow diamond -->
+  <polygon points="256,64 448,256 256,448 64,256" fill="#ffdf00" />
+  <!-- Blue circle -->
+  <circle cx="256" cy="256" r="120" fill="#002776" />
+
+  <!-- Clip to the circle for band and stars -->
+  <clipPath id="clipCircle">
+    <circle cx="256" cy="256" r="120" />
+  </clipPath>
+
+  <!-- White curved band across the blue circle (clipped to circle) -->
+  <ellipse cx="256" cy="256" rx="160" ry="30" fill="#ffffff" transform="rotate(-20 256 256)" clip-path="url(#clipCircle)" />
+
+  <!-- Stars inside the blue circle, drawn with a unit star polygon scaled/transformed -->
+  <g clip-path="url(#clipCircle)" fill="#ffffff" stroke="none">
+    <!-- unit 5-point star polygon centered at origin; reuse with transforms -->
+    <!-- points: outer/inner alternating -->
+    <defs>
+      <polygon id="star" points="0,-1 0.2939,-0.40451 0.95106,-0.30902 0.47553,0.15451 0.58779,0.80902 0,0.5 -0.58779,0.80902 -0.47553,0.15451 -0.95106,-0.30902 -0.2939,-0.40451" />
+    </defs>
+
+    <!-- Place several stars with different sizes and positions -->
+    <use href="#star" transform="translate(286 216) scale(12)" />
+    <use href="#star" transform="translate(236 246) scale(10)" />
+    <use href="#star" transform="translate(316 266) scale(8)" />
+    <use href="#star" transform="translate(196 286) scale(10)" />
+    <use href="#star" transform="translate(256 316) scale(9)" />
+    <use href="#star" transform="translate(216 196) scale(6)" />
+  </g>
+</svg>

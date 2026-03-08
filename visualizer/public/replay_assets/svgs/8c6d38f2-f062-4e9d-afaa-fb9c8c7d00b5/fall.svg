@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFEEDB"/>
+      <stop offset="60%" stop-color="#FFD6A6"/>
+      <stop offset="100%" stop-color="#FFEDE0"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.2" cy="0.15" r="0.3">
+      <stop offset="0%" stop-color="#FFF7CC" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FFF7CC" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.2"/>
+    </filter>
+  </defs>
+
+  <!-- background sky -->
+  <rect width="100%" height="100%" fill="url(#sky)"/>
+  <circle cx="102" cy="54" r="110" fill="url(#sun)"/>
+
+  <!-- ground -->
+  <ellipse cx="256" cy="460" rx="300" ry="70" fill="#6B4F2B" opacity="0.12"/>
+  <rect x="0" y="420" width="512" height="92" fill="#EDE1C8"/>
+
+  <!-- tree trunk -->
+  <path d="M110 420 C120 340 130 300 140 250 C150 200 170 160 210 140 C230 130 248 132 260 150" stroke="#6B3E1E" stroke-width="28" stroke-linecap="round" fill="none"/>
+
+  <!-- branches -->
+  <path d="M220 150 C260 140 320 120 360 160" stroke="#6B3E1E" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <path d="M200 170 C250 180 300 200 340 210" stroke="#6B3E1E" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <path d="M180 200 C220 210 260 230 300 240" stroke="#6B3E1E" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+  <!-- leaf shape definition (reused via use -> path replicated with transforms) -->
+  <g id="leaf" fill="#E07B2C" stroke="#8C3E16" stroke-width="1" transform="translate(-10,-20)">
+    <path d="M20 4 C32 10 40 24 28 40 C16 24 24 10 36 4 C28 10 20 4 20 4 Z"/>
+  </g>
+
+  <!-- leaves attached to tree (still) -->
+  <g transform="translate(300,160)">
+    <use href="#leaf" transform="scale(1.6) rotate(-15)" fill="#D94E2A"/>
+    <use href="#leaf" transform="translate(-40,10) scale(1.2) rotate(10)" fill="#E79A2F"/>
+    <use href="#leaf" transform="translate(-10,28) scale(1.1) rotate(-40)" fill="#C94C2A"/>
+  </g>
+
+  <!-- falling leaves (mid-air) -->
+  <g filter="url(#soft)">
+    <use href="#leaf" transform="translate(360,210) scale(1.0) rotate(25)" fill="#F29D2F" opacity="0.95"/>
+    <use href="#leaf" transform="translate(320,260) scale(0.9) rotate(-45)" fill="#D94E2A" opacity="0.95"/>
+    <use href="#leaf" transform="translate(280,300) scale(0.85) rotate(10)" fill="#E7B03E" opacity="0.95"/>
+    <use href="#leaf" transform="translate(200,320) scale(1.1) rotate(-80)" fill="#C85A2E" opacity="0.95"/>
+    <use href="#leaf" transform="translate(140,330) scale(0.9) rotate(15)" fill="#F2A84B" opacity="0.95"/>
+  </g>
+
+  <!-- motion lines to imply falling -->
+  <g stroke="#8C3E16" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5">
+    <path d="M350 200 q-12 24 -8 48"/>
+    <path d="M320 250 q-10 20 -14 40"/>
+    <path d="M280 290 q6 18 0 36"/>
+    <path d="M210 310 q-8 20 -20 36"/>
+  </g>
+
+  <!-- pile of leaves on ground -->
+  <g transform="translate(150,430)">
+    <path d="M0 0 C40 -30 120 -20 160 0 C180 10 160 30 120 26 C80 22 40 40 0 30 Z" fill="#C94C2A"/>
+    <path d="M40 -6 C70 -28 140 -18 170 6 C190 22 160 40 120 34 C84 29 56 36 40 28 Z" fill="#E79A2F"/>
+    <path d="M90 -2 C120 -22 190 -8 220 10 C240 24 200 40 160 36 C128 33 100 36 90 28 Z" fill="#F2B24B" opacity="0.95"/>
+  </g>
+
+  <!-- small scattered leaves on ground -->
+  <g>
+    <use href="#leaf" transform="translate(310,452) scale(0.6) rotate(120)" fill="#D94E2A"/>
+    <use href="#leaf" transform="translate(360,440) scale(0.5) rotate(-20)" fill="#E7B03E"/>
+    <use href="#leaf" transform="translate(250,470) scale(0.55) rotate(40)" fill="#C85A2E"/>
+  </g>
+</svg>

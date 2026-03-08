@@ -1,0 +1,79 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'>
+  <defs>
+    <radialGradient id='bgGrad' cx='50%' cy='30%' r='70%'>
+      <stop offset='0%' stop-color='#f7fbf7'/>
+      <stop offset='100%' stop-color='#e9f2ee'/>
+    </radialGradient>
+    <linearGradient id='billGrad' x1='0' x2='1' y1='0' y2='1'>
+      <stop offset='0' stop-color='#49b36a'/>
+      <stop offset='1' stop-color='#2f8a4a'/>
+    </linearGradient>
+    <linearGradient id='billEdge' x1='0' x2='1'>
+      <stop offset='0' stop-color='rgba(0,0,0,0.12)'/>
+      <stop offset='1' stop-color='rgba(255,255,255,0.06)'/>
+    </linearGradient>
+    <linearGradient id='coinGrad' x1='0' x2='1'>
+      <stop offset='0' stop-color='#ffd86b'/>
+      <stop offset='1' stop-color='#f5b400'/>
+    </linearGradient>
+    <filter id='softShadow' x='-50%' y='-50%' width='200%' height='200%'>
+      <feDropShadow dx='0' dy='6' stdDeviation='8' flood-color='#000' flood-opacity='0.18'/>
+    </filter>
+  </defs>
+
+  <rect width='100%' height='100%' fill='url(#bgGrad)' />
+
+  <!-- Back bill -->
+  <g transform='translate(66,160) rotate(-8)'>
+    <rect x='0' y='0' width='380' height='200' rx='20' fill='url(#billGrad)' stroke='#1f6b3f' stroke-width='6' filter='url(#softShadow)'/>
+    <rect x='18' y='18' width='344' height='164' rx='14' fill='none' stroke='url(#billEdge)' stroke-width='4' opacity='0.7'/>
+    <ellipse cx='190' cy='100' rx='54' ry='40' fill='#c9f1d2' opacity='0.9'/>
+    <circle cx='190' cy='100' r='6' fill='#8bd38e' opacity='0.95'/>
+  </g>
+
+  <!-- Middle bill -->
+  <g transform='translate(86,140) rotate(6)'>
+    <rect x='0' y='0' width='380' height='200' rx='20' fill='url(#billGrad)' stroke='#1f6b3f' stroke-width='6' />
+    <rect x='18' y='18' width='344' height='164' rx='14' fill='none' stroke='url(#billEdge)' stroke-width='4' opacity='0.8'/>
+    <ellipse cx='190' cy='100' rx='54' ry='40' fill='#c9f1d2' opacity='0.95'/>
+    <circle cx='190' cy='100' r='6' fill='#8bd38e' opacity='0.95'/>
+  </g>
+
+  <!-- Top bill -->
+  <g transform='translate(106,120) rotate(-2)'>
+    <rect x='0' y='0' width='380' height='200' rx='20' fill='url(#billGrad)' stroke='#1f6b3f' stroke-width='6' />
+    <rect x='18' y='18' width='344' height='164' rx='14' fill='none' stroke='url(#billEdge)' stroke-width='4' opacity='0.95'/>
+    <ellipse cx='190' cy='100' rx='54' ry='40' fill='#d6f7dd' opacity='1'/>
+    <circle cx='190' cy='100' r='6' fill='#7fd07f' opacity='1'/>
+  </g>
+
+  <!-- Coins -->
+  <g transform='translate(330,220)'>
+    <g transform='translate(0,0)'>
+      <ellipse cx='0' cy='62' rx='56' ry='16' fill='rgba(0,0,0,0.12)' opacity='0.6' />
+      <circle cx='0' cy='0' r='46' fill='url(#coinGrad)' stroke='#b37f00' stroke-width='4' filter='url(#softShadow)' />
+      <circle cx='-16' cy='-10' r='10' fill='rgba(255,255,255,0.75)' opacity='0.9'/>
+      <path d='M -24 10 C -10 6, 10 6, 24 10' fill='none' stroke='rgba(0,0,0,0.08)' stroke-width='4' opacity='0.6' />
+    </g>
+
+    <g transform='translate(62,18) rotate(-18)'>
+      <ellipse cx='0' cy='62' rx='46' ry='14' fill='rgba(0,0,0,0.10)' opacity='0.5' />
+      <circle cx='0' cy='0' r='36' fill='url(#coinGrad)' stroke='#b37f00' stroke-width='3' />
+      <circle cx='-10' cy='-6' r='7' fill='rgba(255,255,255,0.7)' />
+    </g>
+
+    <g transform='translate(-58,34) rotate(12)'>
+      <ellipse cx='0' cy='62' rx='42' ry='12' fill='rgba(0,0,0,0.08)' opacity='0.45' />
+      <circle cx='0' cy='0' r='30' fill='url(#coinGrad)' stroke='#b37f00' stroke-width='3' />
+      <circle cx='-8' cy='-4' r='6' fill='rgba(255,255,255,0.75)' />
+    </g>
+  </g>
+
+  <!-- Small accents: little sparkles to imply value -->
+  <g fill='#fff' opacity='0.9'>
+    <rect x='420' y='72' width='6' height='18' rx='3' transform='rotate(25 423 81)' opacity='0.55'/>
+    <rect x='452' y='110' width='5' height='12' rx='2.5' transform='rotate(-30 454 116)' opacity='0.5'/>
+    <rect x='380' y='62' width='4' height='14' rx='2' transform='rotate(10 382 69)' opacity='0.4'/>
+  </g>
+
+</svg>

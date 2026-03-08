@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6b26b"/>
+      <stop offset="100%" stop-color="#e97431"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffd7a8"/>
+      <stop offset="100%" stop-color="#ffb87a"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#faf8f5"/>
+
+  <!-- outer mitochondrial shape -->
+  <g transform="translate(0,0)">
+    <path d="M120,256 C120,150 200,80 256,80 C312,80 392,150 392,256 C392,362 312,432 256,432 C200,432 120,362 120,256 Z"
+          fill="url(#g1)" stroke="#8b4b25" stroke-width="8"/>
+
+    <!-- inner membrane (slightly inset outline) -->
+    <path d="M145,256 C145,165 210,110 256,110 C302,110 367,165 367,256 C367,347 302,402 256,402 C210,402 145,347 145,256 Z"
+          fill="none" stroke="#c76a32" stroke-width="6"/>
+
+    <!-- cristae folds (wavy ribbons) -->
+    <path d="M150,210 C185,195 210,205 245,218 C280,231 310,215 345,210" fill="none" stroke="#ffd9b0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <path d="M150,240 C185,225 210,235 245,248 C280,261 310,245 345,240" fill="none" stroke="#ffd9b0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <path d="M150,270 C185,255 210,265 245,278 C280,291 310,275 345,270" fill="none" stroke="#ffd9b0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <path d="M150,300 C185,285 210,295 245,308 C280,321 310,305 345,300" fill="none" stroke="#ffd9b0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+
+    <!-- shorter inner folds toward ends -->
+    <path d="M165,187 C200,177 230,185 255,190" fill="none" stroke="#ffe6c9" stroke-width="10" stroke-linecap="round"/>
+    <path d="M170,325 C205,315 235,323 260,328" fill="none" stroke="#ffe6c9" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- small matrix granules -->
+    <g fill="#f7e1c9" opacity="0.95">
+      <circle cx="200" cy="230" r="6"/>
+      <circle cx="225" cy="260" r="5"/>
+      <circle cx="190" cy="285" r="4"/>
+      <circle cx="300" cy="240" r="5"/>
+      <circle cx="270" cy="300" r="4"/>
+    </g>
+
+    <!-- subtle inner shadow to suggest volume -->
+    <ellipse cx="256" cy="260" rx="110" ry="140" fill="rgba(0,0,0,0.03)" />
+  </g>
+</svg>

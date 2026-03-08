@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect x="0" y="0" width="512" height="512" fill="#d0eaff" />
+  <!-- Sun -->
+  <circle cx="460" cy="60" r="36" fill="#ffd66b" opacity="0.9" />
+
+  <!-- Ground -->
+  <rect x="0" y="380" width="512" height="132" fill="#e6e6e6" />
+  <!-- Ground shadow line -->
+  <rect x="0" y="376" width="512" height="8" fill="#d0d0d0" />
+
+  <!-- Crane tower -->
+  <rect x="60" y="100" width="40" height="280" fill="#ffcc33" stroke="#cc9900" stroke-width="4" rx="2" />
+  <!-- Tower base triangle -->
+  <polygon points="50,380 110,380 80,330" fill="#ffcc33" stroke="#cc9900" stroke-width="4" />
+  <!-- Tower rungs -->
+  <g stroke="#cc9900" stroke-width="3">
+    <line x1="66" y1="140" x2="94" y2="140" />
+    <line x1="66" y1="170" x2="94" y2="170" />
+    <line x1="66" y1="200" x2="94" y2="200" />
+    <line x1="66" y1="230" x2="94" y2="230" />
+    <line x1="66" y1="260" x2="94" y2="260" />
+    <line x1="66" y1="290" x2="94" y2="290" />
+  </g>
+
+  <!-- Crane jib -->
+  <polygon points="80,120 340,98 345,108 85,130" fill="#ffcc33" stroke="#cc9900" stroke-width="4" />
+  <!-- Crane counterweight -->
+  <rect x="30" y="110" width="22" height="22" fill="#cc9900" />
+
+  <!-- Cable and hook -->
+  <line x1="340" y1="105" x2="340" y2="250" stroke="#333" stroke-width="4" />
+  <circle cx="340" cy="258" r="8" fill="#333" />
+
+  <!-- Beam being lifted -->
+  <rect x="260" y="274" width="180" height="22" rx="3" fill="#666" stroke="#333" stroke-width="3" />
+  <!-- Small connector from hook to beam -->
+  <line x1="340" y1="266" x2="340" y2="274" stroke="#222" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Partially built brick wall (right) -->
+  <g>
+    <!-- bricks color and strokes -->
+    <!-- 4 rows, 4 columns, alternate offset -->
+    <!-- Row 0 -->
+    <rect x="340" y="268" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="380" y="268" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="420" y="268" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="460" y="268" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <!-- Row 1 (no offset) -->
+    <rect x="320" y="296" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="360" y="296" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="400" y="296" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="440" y="296" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <!-- Row 2 (offset) -->
+    <rect x="340" y="324" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="380" y="324" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="420" y="324" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="460" y="324" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <!-- Row 3 (no offset) -->
+    <rect x="320" y="352" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="360" y="352" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="400" y="352" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="440" y="352" width="40" height="28" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+  </g>
+
+  <!-- Small stack of spare bricks (left) -->
+  <g>
+    <rect x="140" y="360" width="40" height="24" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="140" y="332" width="40" height="24" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+    <rect x="140" y="304" width="40" height="24" fill="#c14a3a" stroke="#8b2b1f" stroke-width="2" />
+  </g>
+
+  <!-- Small tool (hammer silhouette) near spare bricks -->
+  <g transform="translate(190,360) rotate(-25)">
+    <rect x="0" y="0" width="4" height="40" fill="#6b6b6b" />
+    <rect x="-8" y="-10" width="20" height="14" rx="2" fill="#333" />
+  </g>
+
+  <!-- Subtle shadows -->
+  <ellipse cx="340" cy="299" rx="90" ry="12" fill="#000" opacity="0.06" />
+  <ellipse cx="380" cy="420" rx="120" ry="18" fill="#000" opacity="0.04" />
+</svg>

@@ -1,0 +1,403 @@
+{
+  "runId": "31309801-9a06-4751-9df1-9f72d95f16ca",
+  "targetWord": "checkmate",
+  "modelKey": "gemini31flashlite",
+  "modelLabel": "Gemini 3.1 Flash Lite",
+  "modelId": "google/gemini-3.1-flash-lite-preview",
+  "effort": "minimal",
+  "latestExecutionId": "3c44f403-f3e5-4911-8e44-df528a2ecd82",
+  "executions": [
+    {
+      "executionId": "3c44f403-f3e5-4911-8e44-df528a2ecd82",
+      "startedAt": "2026-03-08T04:28:23.426Z",
+      "completedAt": "2026-03-08T04:28:27.484Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "checkmate",
+        "solved": false,
+        "guessesUsed": 20,
+        "penalizedGuesses": 21,
+        "totalCostUsd": 0.000957,
+        "totalRequestMs": 3935,
+        "pricedRequests": 2,
+        "totalRequests": 2,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><rect x='64' y='64' width='384' height='384' fill='#f0d9b5'/><path d='M64 64h192v192H64zM256 256h192v192H256z' fill='#b58863'/><path d='M256 64h192v192H256zM64 256h192v192H64z' fill='#b58863'/><path d='M220 180h72v152h-72z' fill='#000'/><circle cx='256' cy='150' r='30' fill='#000'/><path d='M200 350h112v20h-112z' fill='#000'/><path d='M350 150h40v40h-40z' fill='#fff' stroke='#000' stroke-width='4'/><path d='M360 160h20v20h-20z' fill='#000'/></svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,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"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "information",
+            "correct": false
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "sign",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "symbol",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "pawn",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "chess",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "icon",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "kiosk",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "letter",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "i",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "marker",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "direction",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "guide",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "post",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "button",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "abstract",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "shape",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "game",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "piece",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "map",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "indicator",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "31309801-9a06-4751-9df1-9f72d95f16ca",
+          "targetWord": "checkmate",
+          "executionId": "3c44f403-f3e5-4911-8e44-df528a2ecd82",
+          "file": "openrouter_traces/31309801-9a06-4751-9df1-9f72d95f16ca/checkmate.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 2,
+        "pricedRequests": 2,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.000957,
+        "totalRequestMs": 3935
+      },
+      "requests": [
+        {
+          "requestId": "44490ffd-42ca-4404-8b6c-fa63f34a61ee",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-08T04:28:23.426Z",
+          "responseCompletedAt": "2026-03-08T04:28:25.126Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "checkmate",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "google/gemini-3.1-flash-lite-preview",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"checkmate\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "google-ai-studio"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "minimal",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1772944105-fQ7GPf3hOAzH8kZQxDgt",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9d8f17d1696aaf70-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Sun, 08 Mar 2026 04:28:26 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n{\"id\":\"gen-1772944105-fQ7GPf3hOAzH8kZQxDgt\",\"object\":\"chat.completion\",\"created\":1772944105,\"model\":\"google/gemini-3.1-flash-lite-preview-20260303\",\"provider\":\"Google AI Studio\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"svg\\\": \\\"<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><rect x='64' y='64' width='384' height='384' fill='#f0d9b5'/><path d='M64 64h192v192H64zM256 256h192v192H256z' fill='#b58863'/><path d='M256 64h192v192H256zM64 256h192v192H64z' fill='#b58863'/><path d='M220 180h72v152h-72z' fill='#000'/><circle cx='256' cy='150' r='30' fill='#000'/><path d='M200 350h112v20h-112z' fill='#000'/><path d='M350 150h40v40h-40z' fill='#fff' stroke='#000' stroke-width='4'/><path d='M360 160h20v20h-20z' fill='#000'/></svg>\\\" }\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgG+Pvb7BYJ+G25C1y5i9gjXbLPmHmSznOHzs9yys4c+W7XWdqg8u3s/ueK0XLxT1/+Q\",\"format\":\"google-gemini-v1\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":145,\"completion_tokens\":338,\"total_tokens\":483,\"cost\":0.00054325,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00054325,\"upstream_inference_prompt_cost\":0.00003625,\"upstream_inference_completions_cost\":0.000507},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1772944105-fQ7GPf3hOAzH8kZQxDgt",
+              "object": "chat.completion",
+              "created": 1772944105,
+              "model": "google/gemini-3.1-flash-lite-preview-20260303",
+              "provider": "Google AI Studio",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "STOP",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{ \"svg\": \"<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><rect x='64' y='64' width='384' height='384' fill='#f0d9b5'/><path d='M64 64h192v192H64zM256 256h192v192H256z' fill='#b58863'/><path d='M256 64h192v192H256zM64 256h192v192H64z' fill='#b58863'/><path d='M220 180h72v152h-72z' fill='#000'/><circle cx='256' cy='150' r='30' fill='#000'/><path d='M200 350h112v20h-112z' fill='#000'/><path d='M350 150h40v40h-40z' fill='#fff' stroke='#000' stroke-width='4'/><path d='M360 160h20v20h-20z' fill='#000'/></svg>\" }",
+                    "refusal": null,
+                    "reasoning": null,
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "EjQKMgG+Pvb7BYJ+G25C1y5i9gjXbLPmHmSznOHzs9yys4c+W7XWdqg8u3s/ueK0XLxT1/+Q",
+                        "format": "google-gemini-v1",
+                        "index": 0
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 145,
+                "completion_tokens": 338,
+                "total_tokens": 483,
+                "cost": 0.00054325,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00054325,
+                  "upstream_inference_prompt_cost": 0.00003625,
+                  "upstream_inference_completions_cost": 0.000507
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 0,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.000543,
+          "requestDurationMs": 1700,
+          "error": null
+        },
+        {
+          "requestId": "9ab70803-ea27-456a-9f83-d1dbb8ce1e71",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-08T04:28:25.248Z",
+          "responseCompletedAt": "2026-03-08T04:28:27.483Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "checkmate",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "google/gemini-3.1-flash-lite-preview",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,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"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "google-ai-studio"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "minimal",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1772944107-4LchdiPdplAOCWGFyOtT",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9d8f17dcc80eaf70-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Sun, 08 Mar 2026 04:28:29 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1772944107-4LchdiPdplAOCWGFyOtT\",\"object\":\"chat.completion\",\"created\":1772944107,\"model\":\"google/gemini-3.1-flash-lite-preview-20260303\",\"provider\":\"Google AI Studio\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"guesses\\\": [\\\"information\\\", \\\"sign\\\", \\\"symbol\\\", \\\"pawn\\\", \\\"chess\\\", \\\"icon\\\", \\\"kiosk\\\", \\\"letter\\\", \\\"i\\\", \\\"marker\\\", \\\"direction\\\", \\\"guide\\\", \\\"post\\\", \\\"button\\\", \\\"abstract\\\", \\\"shape\\\", \\\"game\\\", \\\"piece\\\", \\\"map\\\", \\\"indicator\\\"] }\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgG+Pvb7QyxgQX5HtcZSQZ4cyaCJiwBrP/tul3L/t7EVC81MI4JeJ16gOQAu/i8ZCuNu\",\"format\":\"google-gemini-v1\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":1255,\"completion_tokens\":67,\"total_tokens\":1322,\"cost\":0.00041425,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00041425,\"upstream_inference_prompt_cost\":0.00031375,\"upstream_inference_completions_cost\":0.0001005},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1772944107-4LchdiPdplAOCWGFyOtT",
+              "object": "chat.completion",
+              "created": 1772944107,
+              "model": "google/gemini-3.1-flash-lite-preview-20260303",
+              "provider": "Google AI Studio",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "STOP",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{ \"guesses\": [\"information\", \"sign\", \"symbol\", \"pawn\", \"chess\", \"icon\", \"kiosk\", \"letter\", \"i\", \"marker\", \"direction\", \"guide\", \"post\", \"button\", \"abstract\", \"shape\", \"game\", \"piece\", \"map\", \"indicator\"] }",
+                    "refusal": null,
+                    "reasoning": null,
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "EjQKMgG+Pvb7QyxgQX5HtcZSQZ4cyaCJiwBrP/tul3L/t7EVC81MI4JeJ16gOQAu/i8ZCuNu",
+                        "format": "google-gemini-v1",
+                        "index": 0
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 1255,
+                "completion_tokens": 67,
+                "total_tokens": 1322,
+                "cost": 0.00041425,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00041425,
+                  "upstream_inference_prompt_cost": 0.00031375,
+                  "upstream_inference_completions_cost": 0.0001005
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 0,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.000414,
+          "requestDurationMs": 2235,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

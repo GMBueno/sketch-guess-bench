@@ -1,0 +1,417 @@
+{
+  "runId": "8c6d38f2-f062-4e9d-afaa-fb9c8c7d00b5",
+  "targetWord": "whisper",
+  "modelKey": "gpt5mini",
+  "modelLabel": "GPT-5 Mini",
+  "modelId": "openai/gpt-5-mini",
+  "effort": "medium",
+  "latestExecutionId": "7af986b6-84cb-45f2-97fb-f82fd1f61d37",
+  "executions": [
+    {
+      "executionId": "7af986b6-84cb-45f2-97fb-f82fd1f61d37",
+      "startedAt": "2026-03-08T04:50:16.026Z",
+      "completedAt": "2026-03-08T04:50:40.440Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "whisper",
+        "solved": true,
+        "guessesUsed": 13,
+        "penalizedGuesses": 13,
+        "totalCostUsd": 0.0051,
+        "totalRequestMs": 24056,
+        "pricedRequests": 2,
+        "totalRequests": 2,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <rect width=\"100%\" height=\"100%\" fill=\"#f7f7f9\"/>\n  <!-- left person whispering -->\n  <g transform=\"translate(120,260)\">\n    <ellipse cx=\"0\" cy=\"0\" rx=\"70\" ry=\"90\" fill=\"#e6eaea\"/>\n    <circle cx=\"-20\" cy=\"-10\" r=\"8\" fill=\"#c4c6c6\"/>\n    <path d=\"M-5,15 C20,10 40,30 40,50 C10,60 -10,50 -5,15\" fill=\"#dfe3e3\"/>\n    <path d=\"M-10,-20 C10,-30 40,-10 40,10\" stroke=\"#bfc3c3\" stroke-width=\"6\" fill=\"none\" stroke-linecap=\"round\"/>\n    <path d=\"M50,20 C70,5 80,15 75,35 C70,50 55,55 45,40 C35,30 40,25 50,20\" fill=\"#e6eaea\" stroke=\"#cfcfcf\" stroke-width=\"2\"/>\n  </g>\n\n  <!-- right person listening (mirrored) -->\n  <g transform=\"translate(360,260) scale(-1,1)\">\n    <ellipse cx=\"0\" cy=\"0\" rx=\"70\" ry=\"90\" fill=\"#f0f2f3\"/>\n    <circle cx=\"-20\" cy=\"-10\" r=\"8\" fill=\"#c4c6c6\"/>\n    <path d=\"M-5,15 C20,10 40,30 40,50 C10,60 -10,50 -5,15\" fill=\"#e9ecec\"/>\n    <path d=\"M70,-5 C78,0 78,20 70,30 C66,24 66,4 70,-5\" fill=\"#dfe3e3\"/>\n  </g>\n\n  <!-- faint whispered sound lines -->\n  <g stroke=\"#9ea3a3\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" opacity=\"0.6\">\n    <path d=\"M190,230 C240,210 280,210 310,230\" stroke-dasharray=\"6 8\" opacity=\"0.5\"/>\n    <path d=\"M195,250 C245,235 285,235 315,250\" stroke-dasharray=\"4 10\" opacity=\"0.35\" stroke-width=\"2.5\"/>\n    <path d=\"M200,270 C250,260 290,260 320,270\" stroke-dasharray=\"2 12\" opacity=\"0.2\" stroke-width=\"2\"/>\n  </g>\n\n  <ellipse cx=\"256\" cy=\"320\" rx=\"220\" ry=\"100\" fill=\"#ffffff\" opacity=\"0.03\"/>\n</svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAIAAgADASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAIDBAEFBgj/xAA4EAEAAgECBAQDBQYHAQEAAAAAAQIDBBESITFBBRNRYSJxgQYjMkKRFBVSobHRJDM0YsHh8FNy/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8A/XwDQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACnJqcVOW/FPsptrLflpEfPmJrYPPnVZp/NEfQjVZo/NE/QNegMddZb81In5cl2PU4r8t+GfcNXACgAAAAAAAAAAAAAAAAAAAAAAjN6x7ozkntAasFXmW9TzLeomrRXGSe8JRes+wqQAAAAAAAAAAAAAAAAAAAAAAAAKdTnjFG0c7T0gEs+auKOfOe0MObNfLPOdo9IQtabWm1p3mXBm0AEAAAAWYc18U8p3j0luwZq5Y5cp7w812tpraLVnaYFleqKdNnjLG08rR1hcNAAAAAAAAAAAAAAAAAI3tw/MHbWiqq1ps5M7zvLggAIAAAAlW01W1tFlDsTtO8CrxGluL5pCgAAAAAAAAAAAAAAAAAAEzERvPSAV6jLGKm/eekPOtM2tNrTvMp58k5ck27dlYzaACAAAAAAAAO1tNbRas7TD0dPljLTfvHWHmrMGScWSLdu4sr0giYmN46SDQAAAAAAAAAAAAADl7cMe6mZ3neXbzxTuiIACAAAAAAAAOxO07wupbij3UJUnhncVcAKAAAAAAAAAAAAAAAAM+uycNIpHW3X5NDzdRfzMtrdukCVWAMgAAAAAAAAAAAN2hycVJpPWvT5NDzdPfy81bdukvSGoAhmzYsMb5Mla+3cVMQx5a5cPmYvijadu28sdbeJZbRPDjw137g3uRek24YtWbem/NXq9PXUY4pa1qxvv8ADKGm0WDBfjpFpt6zIJZ9Vgw24cmSKztvttMpafPiz1m2K28RO08tncmHFktxXxUtPTeY3SpSlI2pWtY9IjYGW3iGmreaza28TtPwtEZcc4fN4o4Nt9/Z22LHad7Y6TPvDtqVmk0msTWY2225Ahjz4ck7Uy0tPpE81jN+waWLxeMe0xO/KZS1ePNkrXyM3lzE/qC9DLO0beqrSTq+K1dTWm0RytHdCdRhvntjjJXjidthEwBAAAAAAAAAAAAFuKd429E1NJ2tErhYACgAAAAAAAAAAAAAIai3BhtPfbaHmNviFtqVr6zuxDNABAAAGHxPxPBoZil62vktG8Vj095BuHzGX7Qau1p8vHipHblMyrp47r4nnbHb50/sD6seBpvtDbfbUaeNvWk/8S9fR6zTauu+DLFp716TH0BoAAAAbL6m2PS0vXHbJaeW0erG2+H23pavpO4sc0dtZe82z1rSkxyr3TyaPT5M05b04rT6zyXg05Wta1itaxWI6REOgADlr1r+K1a/OQdCJiY3id4lV+04ePg4vi326T1BaOXtFazaekRvKvDqMeW3DSZ3235wC0RyZKY4ib2iIl2l63jelotHsBedqzLz9VosOfe23Bf+KG7NPKIVCVHDSaYq0m03mI23nukAgAAAAAAAAAAAAvpO9YlQtwzymBYmAKAAAAAAAAAAAAAAxeIT97WPSGZfrZ/xE+0QoGKAAMnimtrotP5nDxXtO1a+rW8j7T4b302PLWN4xzPF9e6Dzv31r+Pi46bfw8Ebf3ejTDpfG8NM+WtqZMfw2is/+5Pnn0P2Zw3ppsmW0TEZJjh+nci1u0+g0eCvDj0+OPeY3n9ZWX0+nyRtfBjtHvWFoqPM1PgmiyxPBW2G3rWeX6S8bW+GazQz51Zm1K84yUnaY/s+sJ5xtIPB8J8a3mMOtmPSMn9/7veeB454TWtZ1OkptEc70j+sO/ZzxGZmNHmtv/8AO0/0B7wADT4fP3to9YZl+inbUR7xIRvnl1JnaJlTk01MmSb3m0+2/JcNqcOa2S+3k3rXb8Up5q3tTal+Cd+uyYCGGlsdZi2S15mesuZMOLJbivTedtuqwAiIiIiI2iOhtG++0bgAADlq1tG1qxaPeClK0jalYrHtDoDLq8M3yxauW9J27dEo3isRM7zt19UskxN52ndERTi1FL5PLmtqX9JhcAgAAAAADF4xr6+H6XzZrx3tO1K79ZfN/v8A8S8zi8ym38PBG393qfbHBfJpMWasTNcVp4vaJ25/yfLJR9z4Pr6+IaXzYrwXrO1679JbXh/Y/Bkx6TLmtExXLaOH3iN+f83uAAKCzD+KfkrTxfjFWgCgAAAAAAAAAAAAAPP1n+pt9P6KV+tj/ET8oUDFAAHJiJiYmImJ6xLoDJ+7NDx8f7NTf67fp0aoiIiIiIiI6RDoAAAAA+T8b0s6LxDixb1pb46THafR9Y8b7V030eLJtzrk2/WP+geloM8anR4s8fmrz+ff+a95X2XmZ8NmJ32jJMR/J6oC7R/6mv1/opXaHnqI27RIR6ATyjdylptG81mvzG3Ry8WmPhmIn5Ox0AHJpWbRaY5x0dByLVmZiJiZh2ZiImZ7EREdIgBytotG8dC9orG87/SHQCGbX6iMOGYidrzyhpef4zPw4o95n+glQ8NtvS9ZnpO7WweGz97aP9rdWlazMxG0yJHQtvt8M7SV32+Lbf2AAAAAAAtEWiYmImJ6xLD+6PDfM4/2Sm/znb9OjcAViKxEREREdIgAAABLH+OEU8X44FWgCgAAAAAAAAAAAAAMXiEfe1n1hmbfEK70rb0nZiGb0AEAAAAVZclq22jZDzb+sGf/ADJQBbGae8Qspetuk8/RmAa0b0pes1vWtqz1iY3hDFk3+G30lZaYrWbTO0RG8g5SlKVitK1rWOkRG0KMuq+PytPXzcnfaeVfnKqIy674pm2LT9ojrf8A6a8OLHipFMdYrCCj9lvl56nNa3+yk7VP2HBWYth48N46Wpad4agNXeD6vJljJp9RMTmxbbz/ABR2l6DxtFvHjkbfmwTv+r2RuACgAAAAAAw+MV3x47ekzH/v0blWsxedp7Ujr1j5iV5vhv8An2//AD/zDeyeGUnbJeY7xDWJAAAFWXJt8NfrIJ3vWvWeauc09oiFQJqzzb+sfoliyWtbadlKeD/MgGgAUAAAAWYfxT8la3DHKZFTAFAAAAAAAAAAAAAAQ1FePDaO+28PMes83UU8vNavbrAzVYAgAAACjPHx7+sK1+eu9d/RQAAAnl4sukyUj8XDMR7oJYp2vHvyBPRXrk0uOa9qxEx6TC5jzVnSZpz0iZxWn7ysdveGutotWLVmJiecTCDoK9RlrhxTe3PtER1mfRRPwuvH4tnydseKKfrO712PwjTW0+k+9j73JM3yfOezYjYAoAAAAAAAAjNKxS0ViI3nefmpaFN42tMCVEARDNfhrtHWWdPLO95/RAQAAWYI+P6K1+Cu1d/UFgAoAAAAvpG1YVUje0QuFgAKAAAAAAAAAAAAAAM+ux8VIvHWvX5NBMRMbT0kK8kWajHOLJNe3ZWMAAAACjJimJ3rzheAyDVMRPWIlzy6fwgzO1raZ5RLTFax0rDoExExMTG8SyeRnwTM6W1ZpM7+Xft8pa1mnxzlyRXt3QZqU8SyVjh0dK79LWyRt+nVr0Xh3BljPqskZssfhiI2rT5R/wAvQiIiNo6A1gAqgAAAAAAAAACGWN439EwGcSvXhnZEZZrVtE84lFrcmtZ61gMZRp8un8MJRWI6RECYpx4pmd7coXAKAAAAAlSvFOwJ4o2jf1TAaAAAAAAAAAAAAAAAAAAV6jFGWm3eOkvOtE1tNbRtMPVU6nBGWN45Wj+Yljzx21Zraa2jaYcGQAAAAAAHa1m1orWN5kCsTa0VrG8y9HT4oxY9u89ZR02CMUbzztP8lw1IACgAAAAAAAAAAAAAOXrxR7qZjadpXo3pxc+4lUjsxtO0uCAAAAAAAOxG87QBEbztC6leGPdylOHn3SFgAKAAAAAAAAAAAAAAAAAAAAhmxUy12t17Sw5sN8U843r6w9EEseSPQyabFfntwz7KbaO35bxPz5CYyi6dLmj8sT9SNLmn8sR9RMUjVXR2/NeI+XNdj02KnPbin3Fxkw4b5Z5RtX1luw4qYq7V695TBZAAUAAAAAAAAAAAAAAAAABy1YtHNVas16rgGcXTSs+yM457SJisT8u3oeXb0BAWRjnvKUUrHuGK61m3RbWsV6OgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/2Q=="
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "communication",
+            "correct": false
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "conversation",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "connection",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "sharing",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "dialogue",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "talking",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "exchange",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "transfer",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "signal",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "link",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "network",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "pollination",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "whisper",
+            "correct": true
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "telepathy",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "transmission",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "interaction",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "empathy",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "bridge",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "partnership",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "broadcast",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "8c6d38f2-f062-4e9d-afaa-fb9c8c7d00b5",
+          "targetWord": "whisper",
+          "executionId": "7af986b6-84cb-45f2-97fb-f82fd1f61d37",
+          "file": "openrouter_traces/8c6d38f2-f062-4e9d-afaa-fb9c8c7d00b5/whisper.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 2,
+        "pricedRequests": 2,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.0051,
+        "totalRequestMs": 24056
+      },
+      "requests": [
+        {
+          "requestId": "2a111cc0-7872-46e9-a0e2-dbc5e107dad7",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-08T04:50:16.026Z",
+          "responseCompletedAt": "2026-03-08T04:50:32.607Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "whisper",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5-mini",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"whisper\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "azure"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1772945418-cqeDOhq1VLVhFg7krvFV",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9d8f37dd990ff21f-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Sun, 08 Mar 2026 04:50:18 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1772945418-cqeDOhq1VLVhFg7krvFV\",\"object\":\"chat.completion\",\"created\":1772945418,\"model\":\"openai/gpt-5-mini-2025-08-07\",\"provider\":\"Azure\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"svg\\\": \\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\">\\\\n  <rect width=\\\\\\\"100%\\\\\\\" height=\\\\\\\"100%\\\\\\\" fill=\\\\\\\"#f7f7f9\\\\\\\"/>\\\\n  <!-- left person whispering -->\\\\n  <g transform=\\\\\\\"translate(120,260)\\\\\\\">\\\\n    <ellipse cx=\\\\\\\"0\\\\\\\" cy=\\\\\\\"0\\\\\\\" rx=\\\\\\\"70\\\\\\\" ry=\\\\\\\"90\\\\\\\" fill=\\\\\\\"#e6eaea\\\\\\\"/>\\\\n    <circle cx=\\\\\\\"-20\\\\\\\" cy=\\\\\\\"-10\\\\\\\" r=\\\\\\\"8\\\\\\\" fill=\\\\\\\"#c4c6c6\\\\\\\"/>\\\\n    <path d=\\\\\\\"M-5,15 C20,10 40,30 40,50 C10,60 -10,50 -5,15\\\\\\\" fill=\\\\\\\"#dfe3e3\\\\\\\"/>\\\\n    <path d=\\\\\\\"M-10,-20 C10,-30 40,-10 40,10\\\\\\\" stroke=\\\\\\\"#bfc3c3\\\\\\\" stroke-width=\\\\\\\"6\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n    <path d=\\\\\\\"M50,20 C70,5 80,15 75,35 C70,50 55,55 45,40 C35,30 40,25 50,20\\\\\\\" fill=\\\\\\\"#e6eaea\\\\\\\" stroke=\\\\\\\"#cfcfcf\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n  </g>\\\\n\\\\n  <!-- right person listening (mirrored) -->\\\\n  <g transform=\\\\\\\"translate(360,260) scale(-1,1)\\\\\\\">\\\\n    <ellipse cx=\\\\\\\"0\\\\\\\" cy=\\\\\\\"0\\\\\\\" rx=\\\\\\\"70\\\\\\\" ry=\\\\\\\"90\\\\\\\" fill=\\\\\\\"#f0f2f3\\\\\\\"/>\\\\n    <circle cx=\\\\\\\"-20\\\\\\\" cy=\\\\\\\"-10\\\\\\\" r=\\\\\\\"8\\\\\\\" fill=\\\\\\\"#c4c6c6\\\\\\\"/>\\\\n    <path d=\\\\\\\"M-5,15 C20,10 40,30 40,50 C10,60 -10,50 -5,15\\\\\\\" fill=\\\\\\\"#e9ecec\\\\\\\"/>\\\\n    <path d=\\\\\\\"M70,-5 C78,0 78,20 70,30 C66,24 66,4 70,-5\\\\\\\" fill=\\\\\\\"#dfe3e3\\\\\\\"/>\\\\n  </g>\\\\n\\\\n  <!-- faint whispered sound lines -->\\\\n  <g stroke=\\\\\\\"#9ea3a3\\\\\\\" stroke-width=\\\\\\\"3\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.6\\\\\\\">\\\\n    <path d=\\\\\\\"M190,230 C240,210 280,210 310,230\\\\\\\" stroke-dasharray=\\\\\\\"6 8\\\\\\\" opacity=\\\\\\\"0.5\\\\\\\"/>\\\\n    <path d=\\\\\\\"M195,250 C245,235 285,235 315,250\\\\\\\" stroke-dasharray=\\\\\\\"4 10\\\\\\\" opacity=\\\\\\\"0.35\\\\\\\" stroke-width=\\\\\\\"2.5\\\\\\\"/>\\\\n    <path d=\\\\\\\"M200,270 C250,260 290,260 320,270\\\\\\\" stroke-dasharray=\\\\\\\"2 12\\\\\\\" opacity=\\\\\\\"0.2\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\"/>\\\\n  </g>\\\\n\\\\n  <ellipse cx=\\\\\\\"256\\\\\\\" cy=\\\\\\\"320\\\\\\\" rx=\\\\\\\"220\\\\\\\" ry=\\\\\\\"100\\\\\\\" fill=\\\\\\\"#ffffff\\\\\\\" opacity=\\\\\\\"0.03\\\\\\\"/>\\\\n</svg>\\\"\\n}\",\"refusal\":null,\"reasoning\":\"**Simplifying SVG design**\\n\\nI need to create a visual where the left speaker head is on the left, facing right, while the right listener head is on the right, facing left, with an ear highlighted. I'll use overlapping circles for faces and smaller ear shapes. For whisper lines, I plan to use three thin, curved strokes with low opacity and a dashed stroke to suggest whispering. It's important to keep the colors muted and stroke widths thin. I also need to ensure the SVG string is correctly formatted for JSON, with internal quotes escaped.**Creating SVG content**\\n\\nI'm working on crafting some SVG content, starting with a simple layout. The SVG has a width and height of 512 and includes a background rectangle. For the left person, I'm using an ellipse for the body, a circle for the eye, and paths to create the chin and mouth shape along with a hand covering the mouth. The right person will be a mirror image of the left, with adjustments like an ear included. I’ll also add whisper lines with dashed strokes to convey the whispering effect.**Finalizing SVG JSON string**\\n\\nI’m wrapping up the SVG content with an ellipse for a soft ambient effect, and I need to check there’s no text in it. Next, I’ll convert this SVG into a JSON string. To do this, I have to escape the quotes and manage the newlines properly. It turns out JSON strings can include newlines, but I’ll replace actual newlines with \\\\n for consistency. Finally, I’ll create a JSON object with the escaped SVG string without any extra fields. Let's get that crafted!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Simplifying SVG design**\\n\\nI need to create a visual where the left speaker head is on the left, facing right, while the right listener head is on the right, facing left, with an ear highlighted. I'll use overlapping circles for faces and smaller ear shapes. For whisper lines, I plan to use three thin, curved strokes with low opacity and a dashed stroke to suggest whispering. It's important to keep the colors muted and stroke widths thin. I also need to ensure the SVG string is correctly formatted for JSON, with internal quotes escaped.**Creating SVG content**\\n\\nI'm working on crafting some SVG content, starting with a simple layout. The SVG has a width and height of 512 and includes a background rectangle. For the left person, I'm using an ellipse for the body, a circle for the eye, and paths to create the chin and mouth shape along with a hand covering the mouth. The right person will be a mirror image of the left, with adjustments like an ear included. I’ll also add whisper lines with dashed strokes to convey the whispering effect.**Finalizing SVG JSON string**\\n\\nI’m wrapping up the SVG content with an ellipse for a soft ambient effect, and I need to check there’s no text in it. Next, I’ll convert this SVG into a JSON string. To do this, I have to escape the quotes and manage the newlines properly. It turns out JSON strings can include newlines, but I’ll replace actual newlines with \\\\n for consistency. Finally, I’ll create a JSON object with the escaped SVG string without any extra fields. Let's get that crafted!\",\"format\":\"azure-openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABprQAVCt-jKkmYwx4JrrvokcdKoDgMm0xttCUmqztsEbAGuj6xuyziOzxnuIanVTmyqrbEHHr2aD8j_xE5pppkBeNHYu19eV48WtbaQr26ZC60-ajbUuSKcYqMDrYw5WlDCV_3KL_G6ziJISUPDyX3jS5k0XToVlCZaYtjDX-wWxJlznicJVRwCflr6szPVqK3yA694d-q6mm_oJEq2crpRrOe1BNy-m43tIJjQlJuYkU9Y3gn8uW3r-wgh37JHssk-F10DLjQHE2nb1SzLjquKTJaAnQc3NF6Bot3OLxvLTUADp94l2eRd_fieYJWZ1oOIjhcTDHzPy_lxRqWgeYP6iWHwNnFBlrpJzwDD1jNeLr3vGH9RiyZtUzOKoznqEzonyQLaEsnpHRGu-idbkvObXi1_QEl4twaiEvBuuyJoEZDGSjEt_0fCy5Ven5oKS9U455vTvPJe2wz2MKPqmHGNrHtH8Hpn63lIxj4bGMiOQrlWFgr6MO4NHFc-CzjO0ZZ4Iyo9_0PdN8gISEI5z3sy7fJ-YEibfpZWP3OfuQ_ogumEYqc3mM8Spme2ZydgWIYKftPiD5RJMq8k6cJWP_pv076NjwCEqSQ8h0m2YqM2CZc6vx7jBLc_PW8E1dGzLEtyooS5XvKgadPwisA_kyVMw-689MFFUvmYPT41cZF-8-KC2h5VjFTEpKpEmAHFnDsatprAKkrugClxdLUf7OOf52wnF9nchulrvwDR2QWw95HT64b0fO_wIVuNGE6MCk0-HCLEVrvfHFDTINWjRz_vpYFTM7-7ZoKfkdW_MKG1uAB0MmGeg59Zm3S4_FFQTc1FvZ-weDl1cmE87ZbfMpS_07IDqgrOOeSi7WNWOU-iuGdXXm6ahQEXpM9JhKRoi0xEbTxuKqL5JBISMqV6kgANCV66biQDkz6ph-WEXEhKSgPdIBgZLyCZtGJusilfwJuih5iyNiXMGfan8xuBBDaIg4DdzERGVIugXiOhGINXhiwsEpeWUNCOptiIHYlfvokvkfXqCI_qKHPw0gotGIIQCVeLzJJUb7pmxkE7ulbYTgI3DmRYVl3DSIuGSPqBaogpPNLjBlnhdCauXbe84hsgz4nKxL9mAwxfTVXPhbVwXpLCZQfhnVH06YJfx5I5GGp8xpN73vglx2YJbRGBDoy695gFhXyK02k4eLI5cuvbx6YvJfeEVGV11Sp3SWtFHgUXtieQPQ7Gb2HS8C74xjFHmEJqjzxY0-pMnGg-fl_CoJMxTb3lqJUQsNYCge3Swc2oPZxU6kNLrhLTMXhdmX9dHroYQUnhgPHbnfqoh5cinKGC_OBFqrKmGSirxFU7W6MlkXh38uvYksJm8qa4aTRnbZLKjMFHbIHOX6fjNppkCqqWo4nQ84k94RikNGRX8leSdNOXw3MKt6vkk7sONEnFmM3-vyGGPUxjB4O3SDpMLg1SLzIxTH9GBY5_HbWilwnKW13hD3WFi7Du1zbL4gNaqr4Rb-yOfjmF0yk1tAJWK-b-6EkJqayjXltZ_VwXAOHEdO01D8xQ_7AvtWJY86dV__8d4QFnLAeU0seNBlLDo7nRaliMLN14AMfuLqOG9ZMndUkAmNTf7C4pBi2JW1PCvFYySuppygGxjWA8UisJ5SxTVAqxuEdreIlCNAhn2n0BGbh9iAYEr0xKqlLsM_3Ga0ndy4trPYqIu0EFOprdJOzAms0MP4ZpE1eo8GMhLSuHS_eznUXoz3UPz6I7fKUFHrVQ9pITaaHoEszo_CgdC25TKG3pRwx1n-vMCqeCCFLT8TLHpxRRH6fOkUlNkTA0AIYp8i16iimYNXNNiS__JylO_xjOEYJpMzksgCYNZfrdySCAYceuWBguapncvD85HiQrAKqYOBT-EE1tHA9o1mBeINFbxT6mpSDV0-UK0Jdpa5bH3sdt1zZtUimvSXPWnn6C9c0Y1rDbAkK02LkGXaKfQL13o62-n62xtqGQMOb2N2G3vTXTvOalXXZ3IQNOTKgh_Xen_lExYrPSwm3wkHfQRKluTD0a4K-4vd8pvMxjsjIuac5sVi-IQiuuCdEmuqPvZoHDGNFR1_c9g3AaDdj2oG8zvRzKdAJKH_pojiJfxVCwhMjqgWI-I6VbOpIV1bgMpe_SPDtbHG6WqWpS8hwBXY7tsa7oGEe8O4SQWhsUh9wOvIGXEnnfKPFQUEnrBnt4saqw_FRCA7LQKZqKEykge6cKcKrUybcNkLxlWankcp-rZyZFKyisaMDhiDAjkrFIhbU2hjcQJM6oNRLwUyBcJd2Rrclk5whLTxEAp1YbhX3x1IaGAw-cuMUw7i5JhD3YvbGYB2VmTyPbO_7se1KfzfVIwSrGZ190lrwMLAVwwojWF9LyYdaJ2OUP_st_fRhQqYPD6ysKDW13AmT9uzOQP07u6aHLy9Ghc-XflOrVGkUhYLd4hqEU-aZgbukRdkTmNrMoms6oUFQPKHP9dfDRpqY6hpVAojmOnsO9AOfet-PkNEsbJM3dUBC3rtMwsrcCAuVzjVJNJvw9guLhOs-lAQiHDiiydYOnH6R0o0pIKfeLu9idsOxNwJ_SgESRr-0aAvU84Ijrdb9JFk61b_KIk4rtWqinQEh2PYLr_AaB4duLNSQkNp09vcbLXfC0TiGNngZKaY7k0fo9Jrmkcs6kxZMsFREzbpzS6MpIc7pTDQWEdheIz6ZeEhgX5wIlHVZYGqcm_nuYc3iFkskWbSzTtqBLC1O64XNNthuW1AvtXmerH7vc8XVvOTIw69ki4TlUwK-ADmAc9xUekvNRRu8A8SfPjubwphP0EZ5yWzUeknmxqLr1LPenc5cmv-dXMA4kXwVQvLGFbG_kb9yhOTlrWGF0UJI6onRbeLEGKyHZqssNWliY9ti4fOrLbc4lwEJdBIDwBIRYhY9kDJA40z3ob1F5Sp_Q9J0i4DuM1gyPljJcR1l0aFmIVkuWo44GOG0an583JQJst_Uv6-FujigVsq4rOEJks9VhbeDhSVWLOzovvFOg8iEV_HQbkcQzAghYexGf11E7bywF0cisMwz_0ayZ4XI0Bwj3FQLSfwbeQ_e7pQpztdbmMzWqJjJmdwERurzjfq8ogr7K70e94kPowwX5uvzhIWUIofQzmg4YH4jGIseJLA6V6FzAWt8mkJgybigUhaxwGqrs7KU65kVKtelhm2VJH8qJ377DtO1WuHbh5fCgJi07XNqy-1O35cdSr48YyHUfQR3LYeh9NcK3YxYI2_3MpBMyG_BZUZ04G1D7AXCKz-jkcLO01c99f9uqiHfqy6AWpa6rNOD-LT38WOFoC7fQFTO5TS1gJM_pqfZ-uORQz8NbSMFdc-fRVg1TkFrb86TbCZei97Ptk6_P9H39Y_vKnxxRMSv_N5N5IQq-qpPhQpGQgNGtPTtOreiS8fhEJjUt9-GugNKJHixHTVTWt8Y6dekIT5sCxCSLPN9E52Qu2ta70ITXLbVoARMaK08xq9BYJyhhJXsMVmhyfG5u6QGE1-cWwbIWioMvPiGnVXo_IaSUp6KSiTEbR0A_2_f4NY8mXKpPOatNM6Y6uXRxKLLda1pWdWxbYVrbFojjypFI0VCoqT3hijqqZCORRQufKlwihwF4oOrh4GMx2qvqInjH67_uMD33zlXMt0iYlw_WqXIEBasfLY-Jut_YBENaXqedfjnD8rKd26nL56Gdhf3gHOBR8PubVWDSozZJjnDd8fcv0SC-xw_DL-UPwNFilmf6kVogNOXUXDCNfc7_NSp3UvLb64hXSMmqL1sFdNVgxi55sqovVyadb2S-6O_kdzE_t3Lnjv5h5FnmXj5Q98MiWzk1CLXL3Jf8DF0TpBhvvhpOZvs5PGBkdeknUEuyA4kl3JhsfLm36SA8lb7xOzcnDXOYOzhWzs4R2WJmxBI7b3LGgMHSxl-DzbwLMHaBtd6VwTC68wMTOr7rovNfaNRGZwY4KUdn_LN2PJlF03qfzn2is7bwzRedaZvDB2Tg3HczikM2BZe10cXMIh-sNlDlU0ojaJtsl37G9KIU95tvq4uuMSyQJlJL3D9W-Lm-uvanu3J5uBhr4056vfnqNeaNjXDOcV1KOLAgN_W6ZF-Kx9VN5yk8RXMowGcqHC08Vjbqns1Qn_Ro_Y17095KbU6n6s34ObtEcF12-zPRTUC-_a0umsTivmxZvaUhSbcnuQlW5ETocaoW2jzIdPJ0B8ARUALPfEUHjpinIRz_AGGNb1V7PASb073FuAboMktu6OoAOuod8s-kWDqSbnDAZT9xI0COyPwyhq-h7Zbdt3SQzDgEEg2IJi89SYLWyZglstwjh6Zlx0giWEMfKGUKrEpYPax7tEk586VSYD_Z17YmN8yrD9RCczfuq5HDH5t3nqy9iNUam4PhQzVs03F1gMpALnhNhgIiSSvH3WRPoLJWD51fYb75eRN1wSBHWADMHW_8-livnUfAcqEeG1EhsSv_9y55Cq0OEa7wGVRpaH1C7A8YyW_3SNYjfNWS8CUQBfuyQGoaqjH78-r6gHcXV57KOOprpjbWTErO1kRsFtGT66L0TzHz1MNsElS2zNf9LNYyClnDtQhzH8VBp6OC4aCSzKyaneAzgT3e9j4ec9ql55yl2C14Dbcggzcdv35etRbwDFXfgT3TsTqiJ4AkEgtAiCZqFbRb7qWzCnbfAwxvIQwp72FSlhblFXgbY7-W9CIY-EJF-y64kGlILo5y3W57SG0Eqch-eCp--MQnBEHdSi2GLlVj7VspPccoR5a1jMPo8U_9TBBv02YfSSsJZNMP-wFGmt2wXUQiE6-bT0B-k03R1uJgn0z8jNBGQuOQBSEjsn2tz7upX2AsKoZp5zl-TJwGketRT5rxJGGXr7pVu7kIYT6H7JX-Gmdmx2oik8U8zUr42__Nw02YTcaTOKuvtyNOXxweJM0tUX5TmFdwWHfyEVPj8LafJYTLDHrAoNFWRXMqfPS0WkwG4Am557Cp9OptdNplrCM9BeBcx7TtE-k00pY8rOYOckcpRTjePjK1Fi_B1E82a7J3dN_kjTdLf5n-v08huiQk8Y_TfM5AO7tsxBDb5mQpwwyiZsg40REZ-VE2IzIsV9cdlVE2kmBiUTp_tCpIvtGLnGXPoeKzc1juQnDNoyHZjx6hgqj9zVY71PNQI4_gxyNBgyx_tGXJsRzU9syxOlkU2qXb3FgaAZ5hKoE24LvN47AebsH76q6hTWSXNLax7-4KiAETRNM3NvLai3C5bi-ON8-xhnQHe_1gUwUxrvcMCCmZnjZ9I1x31fW0IBrbrEwhj5154L_OOPusRSpUmJ38hVuf0OclukP_KAbVWcehxxjDM_JbsW4GHGzj3-gW86BqEG9N5zKPJqWDBb3FRW6JnwuU1ceUfJxjVnPKPE957Uf4dzYyZE1HuU9XjzIX__gRTA-_siwRWbe_pbaer6qVpN-PtP3R37TNyqHL2UBtxC28I18lezEBsCMcd5ni9cJUhml79nSSOKtaLEU2-ot3DvrtLuyl46pUh-rcQKRR6bqZtPRok9-sFx_9mW7jP_FDJcH6WDhThgFo2S38uOMhAzdATrdes4RK6TvGSZGqbbYj9U8NEy3X76JnhsY2RQAdWAs3rQqkdNKHgg45Ub9QNAVoOd1GLgrXg4HCWumDwGoGfItaQuABwG1c6GZHtHUItCM3A4dyMKkni2GdiZXLI2_wncc2VKPv7eWGLiP-Q07Q76v0qLrd874jlW03H43TY0JxH9EpZfOiqXSWZ8gJHJwO4CpsZve00rkdFCbXJwGVWmxgucsJhD0qbYzCHFmSVtgur1gCY1ZaNG5La9CMXBqquwQiVTMt7l-iUOuzPo5pIZp2cj8Bx6ZRd2XVcsgycvQJ6pyeBu0QU0gBFsaZfpKyQH0yC_yuV6DFPwKLgxohW1ds5pvnfpmiLw8bQVUcM4mRQyw-92_gSEyU39WFEeNh5jo2myXMr_rCyqU9SF6n9kHNPg0dttjkWS5dUR90O8pOGwi0Q5PXGhHt7oWzDh4\",\"format\":\"azure-openai-responses-v1\",\"id\":\"rs_0e8736c555533d0b0169ad000acd60819497fd7c4239816544\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":134,\"completion_tokens\":1818,\"total_tokens\":1952,\"cost\":0.0036695,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0036695,\"upstream_inference_prompt_cost\":0.0000335,\"upstream_inference_completions_cost\":0.003636},\"completion_tokens_details\":{\"reasoning_tokens\":1088,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1772945418-cqeDOhq1VLVhFg7krvFV",
+              "object": "chat.completion",
+              "created": 1772945418,
+              "model": "openai/gpt-5-mini-2025-08-07",
+              "provider": "Azure",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\n  \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\">\\n  <rect width=\\\"100%\\\" height=\\\"100%\\\" fill=\\\"#f7f7f9\\\"/>\\n  <!-- left person whispering -->\\n  <g transform=\\\"translate(120,260)\\\">\\n    <ellipse cx=\\\"0\\\" cy=\\\"0\\\" rx=\\\"70\\\" ry=\\\"90\\\" fill=\\\"#e6eaea\\\"/>\\n    <circle cx=\\\"-20\\\" cy=\\\"-10\\\" r=\\\"8\\\" fill=\\\"#c4c6c6\\\"/>\\n    <path d=\\\"M-5,15 C20,10 40,30 40,50 C10,60 -10,50 -5,15\\\" fill=\\\"#dfe3e3\\\"/>\\n    <path d=\\\"M-10,-20 C10,-30 40,-10 40,10\\\" stroke=\\\"#bfc3c3\\\" stroke-width=\\\"6\\\" fill=\\\"none\\\" stroke-linecap=\\\"round\\\"/>\\n    <path d=\\\"M50,20 C70,5 80,15 75,35 C70,50 55,55 45,40 C35,30 40,25 50,20\\\" fill=\\\"#e6eaea\\\" stroke=\\\"#cfcfcf\\\" stroke-width=\\\"2\\\"/>\\n  </g>\\n\\n  <!-- right person listening (mirrored) -->\\n  <g transform=\\\"translate(360,260) scale(-1,1)\\\">\\n    <ellipse cx=\\\"0\\\" cy=\\\"0\\\" rx=\\\"70\\\" ry=\\\"90\\\" fill=\\\"#f0f2f3\\\"/>\\n    <circle cx=\\\"-20\\\" cy=\\\"-10\\\" r=\\\"8\\\" fill=\\\"#c4c6c6\\\"/>\\n    <path d=\\\"M-5,15 C20,10 40,30 40,50 C10,60 -10,50 -5,15\\\" fill=\\\"#e9ecec\\\"/>\\n    <path d=\\\"M70,-5 C78,0 78,20 70,30 C66,24 66,4 70,-5\\\" fill=\\\"#dfe3e3\\\"/>\\n  </g>\\n\\n  <!-- faint whispered sound lines -->\\n  <g stroke=\\\"#9ea3a3\\\" stroke-width=\\\"3\\\" fill=\\\"none\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.6\\\">\\n    <path d=\\\"M190,230 C240,210 280,210 310,230\\\" stroke-dasharray=\\\"6 8\\\" opacity=\\\"0.5\\\"/>\\n    <path d=\\\"M195,250 C245,235 285,235 315,250\\\" stroke-dasharray=\\\"4 10\\\" opacity=\\\"0.35\\\" stroke-width=\\\"2.5\\\"/>\\n    <path d=\\\"M200,270 C250,260 290,260 320,270\\\" stroke-dasharray=\\\"2 12\\\" opacity=\\\"0.2\\\" stroke-width=\\\"2\\\"/>\\n  </g>\\n\\n  <ellipse cx=\\\"256\\\" cy=\\\"320\\\" rx=\\\"220\\\" ry=\\\"100\\\" fill=\\\"#ffffff\\\" opacity=\\\"0.03\\\"/>\\n</svg>\"\n}",
+                    "refusal": null,
+                    "reasoning": "**Simplifying SVG design**\n\nI need to create a visual where the left speaker head is on the left, facing right, while the right listener head is on the right, facing left, with an ear highlighted. I'll use overlapping circles for faces and smaller ear shapes. For whisper lines, I plan to use three thin, curved strokes with low opacity and a dashed stroke to suggest whispering. It's important to keep the colors muted and stroke widths thin. I also need to ensure the SVG string is correctly formatted for JSON, with internal quotes escaped.**Creating SVG content**\n\nI'm working on crafting some SVG content, starting with a simple layout. The SVG has a width and height of 512 and includes a background rectangle. For the left person, I'm using an ellipse for the body, a circle for the eye, and paths to create the chin and mouth shape along with a hand covering the mouth. The right person will be a mirror image of the left, with adjustments like an ear included. I’ll also add whisper lines with dashed strokes to convey the whispering effect.**Finalizing SVG JSON string**\n\nI’m wrapping up the SVG content with an ellipse for a soft ambient effect, and I need to check there’s no text in it. Next, I’ll convert this SVG into a JSON string. To do this, I have to escape the quotes and manage the newlines properly. It turns out JSON strings can include newlines, but I’ll replace actual newlines with \\n for consistency. Finally, I’ll create a JSON object with the escaped SVG string without any extra fields. Let's get that crafted!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Simplifying SVG design**\n\nI need to create a visual where the left speaker head is on the left, facing right, while the right listener head is on the right, facing left, with an ear highlighted. I'll use overlapping circles for faces and smaller ear shapes. For whisper lines, I plan to use three thin, curved strokes with low opacity and a dashed stroke to suggest whispering. It's important to keep the colors muted and stroke widths thin. I also need to ensure the SVG string is correctly formatted for JSON, with internal quotes escaped.**Creating SVG content**\n\nI'm working on crafting some SVG content, starting with a simple layout. The SVG has a width and height of 512 and includes a background rectangle. For the left person, I'm using an ellipse for the body, a circle for the eye, and paths to create the chin and mouth shape along with a hand covering the mouth. The right person will be a mirror image of the left, with adjustments like an ear included. I’ll also add whisper lines with dashed strokes to convey the whispering effect.**Finalizing SVG JSON string**\n\nI’m wrapping up the SVG content with an ellipse for a soft ambient effect, and I need to check there’s no text in it. Next, I’ll convert this SVG into a JSON string. To do this, I have to escape the quotes and manage the newlines properly. It turns out JSON strings can include newlines, but I’ll replace actual newlines with \\n for consistency. Finally, I’ll create a JSON object with the escaped SVG string without any extra fields. Let's get that crafted!",
+                        "format": "azure-openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABprQAVCt-jKkmYwx4JrrvokcdKoDgMm0xttCUmqztsEbAGuj6xuyziOzxnuIanVTmyqrbEHHr2aD8j_xE5pppkBeNHYu19eV48WtbaQr26ZC60-ajbUuSKcYqMDrYw5WlDCV_3KL_G6ziJISUPDyX3jS5k0XToVlCZaYtjDX-wWxJlznicJVRwCflr6szPVqK3yA694d-q6mm_oJEq2crpRrOe1BNy-m43tIJjQlJuYkU9Y3gn8uW3r-wgh37JHssk-F10DLjQHE2nb1SzLjquKTJaAnQc3NF6Bot3OLxvLTUADp94l2eRd_fieYJWZ1oOIjhcTDHzPy_lxRqWgeYP6iWHwNnFBlrpJzwDD1jNeLr3vGH9RiyZtUzOKoznqEzonyQLaEsnpHRGu-idbkvObXi1_QEl4twaiEvBuuyJoEZDGSjEt_0fCy5Ven5oKS9U455vTvPJe2wz2MKPqmHGNrHtH8Hpn63lIxj4bGMiOQrlWFgr6MO4NHFc-CzjO0ZZ4Iyo9_0PdN8gISEI5z3sy7fJ-YEibfpZWP3OfuQ_ogumEYqc3mM8Spme2ZydgWIYKftPiD5RJMq8k6cJWP_pv076NjwCEqSQ8h0m2YqM2CZc6vx7jBLc_PW8E1dGzLEtyooS5XvKgadPwisA_kyVMw-689MFFUvmYPT41cZF-8-KC2h5VjFTEpKpEmAHFnDsatprAKkrugClxdLUf7OOf52wnF9nchulrvwDR2QWw95HT64b0fO_wIVuNGE6MCk0-HCLEVrvfHFDTINWjRz_vpYFTM7-7ZoKfkdW_MKG1uAB0MmGeg59Zm3S4_FFQTc1FvZ-weDl1cmE87ZbfMpS_07IDqgrOOeSi7WNWOU-iuGdXXm6ahQEXpM9JhKRoi0xEbTxuKqL5JBISMqV6kgANCV66biQDkz6ph-WEXEhKSgPdIBgZLyCZtGJusilfwJuih5iyNiXMGfan8xuBBDaIg4DdzERGVIugXiOhGINXhiwsEpeWUNCOptiIHYlfvokvkfXqCI_qKHPw0gotGIIQCVeLzJJUb7pmxkE7ulbYTgI3DmRYVl3DSIuGSPqBaogpPNLjBlnhdCauXbe84hsgz4nKxL9mAwxfTVXPhbVwXpLCZQfhnVH06YJfx5I5GGp8xpN73vglx2YJbRGBDoy695gFhXyK02k4eLI5cuvbx6YvJfeEVGV11Sp3SWtFHgUXtieQPQ7Gb2HS8C74xjFHmEJqjzxY0-pMnGg-fl_CoJMxTb3lqJUQsNYCge3Swc2oPZxU6kNLrhLTMXhdmX9dHroYQUnhgPHbnfqoh5cinKGC_OBFqrKmGSirxFU7W6MlkXh38uvYksJm8qa4aTRnbZLKjMFHbIHOX6fjNppkCqqWo4nQ84k94RikNGRX8leSdNOXw3MKt6vkk7sONEnFmM3-vyGGPUxjB4O3SDpMLg1SLzIxTH9GBY5_HbWilwnKW13hD3WFi7Du1zbL4gNaqr4Rb-yOfjmF0yk1tAJWK-b-6EkJqayjXltZ_VwXAOHEdO01D8xQ_7AvtWJY86dV__8d4QFnLAeU0seNBlLDo7nRaliMLN14AMfuLqOG9ZMndUkAmNTf7C4pBi2JW1PCvFYySuppygGxjWA8UisJ5SxTVAqxuEdreIlCNAhn2n0BGbh9iAYEr0xKqlLsM_3Ga0ndy4trPYqIu0EFOprdJOzAms0MP4ZpE1eo8GMhLSuHS_eznUXoz3UPz6I7fKUFHrVQ9pITaaHoEszo_CgdC25TKG3pRwx1n-vMCqeCCFLT8TLHpxRRH6fOkUlNkTA0AIYp8i16iimYNXNNiS__JylO_xjOEYJpMzksgCYNZfrdySCAYceuWBguapncvD85HiQrAKqYOBT-EE1tHA9o1mBeINFbxT6mpSDV0-UK0Jdpa5bH3sdt1zZtUimvSXPWnn6C9c0Y1rDbAkK02LkGXaKfQL13o62-n62xtqGQMOb2N2G3vTXTvOalXXZ3IQNOTKgh_Xen_lExYrPSwm3wkHfQRKluTD0a4K-4vd8pvMxjsjIuac5sVi-IQiuuCdEmuqPvZoHDGNFR1_c9g3AaDdj2oG8zvRzKdAJKH_pojiJfxVCwhMjqgWI-I6VbOpIV1bgMpe_SPDtbHG6WqWpS8hwBXY7tsa7oGEe8O4SQWhsUh9wOvIGXEnnfKPFQUEnrBnt4saqw_FRCA7LQKZqKEykge6cKcKrUybcNkLxlWankcp-rZyZFKyisaMDhiDAjkrFIhbU2hjcQJM6oNRLwUyBcJd2Rrclk5whLTxEAp1YbhX3x1IaGAw-cuMUw7i5JhD3YvbGYB2VmTyPbO_7se1KfzfVIwSrGZ190lrwMLAVwwojWF9LyYdaJ2OUP_st_fRhQqYPD6ysKDW13AmT9uzOQP07u6aHLy9Ghc-XflOrVGkUhYLd4hqEU-aZgbukRdkTmNrMoms6oUFQPKHP9dfDRpqY6hpVAojmOnsO9AOfet-PkNEsbJM3dUBC3rtMwsrcCAuVzjVJNJvw9guLhOs-lAQiHDiiydYOnH6R0o0pIKfeLu9idsOxNwJ_SgESRr-0aAvU84Ijrdb9JFk61b_KIk4rtWqinQEh2PYLr_AaB4duLNSQkNp09vcbLXfC0TiGNngZKaY7k0fo9Jrmkcs6kxZMsFREzbpzS6MpIc7pTDQWEdheIz6ZeEhgX5wIlHVZYGqcm_nuYc3iFkskWbSzTtqBLC1O64XNNthuW1AvtXmerH7vc8XVvOTIw69ki4TlUwK-ADmAc9xUekvNRRu8A8SfPjubwphP0EZ5yWzUeknmxqLr1LPenc5cmv-dXMA4kXwVQvLGFbG_kb9yhOTlrWGF0UJI6onRbeLEGKyHZqssNWliY9ti4fOrLbc4lwEJdBIDwBIRYhY9kDJA40z3ob1F5Sp_Q9J0i4DuM1gyPljJcR1l0aFmIVkuWo44GOG0an583JQJst_Uv6-FujigVsq4rOEJks9VhbeDhSVWLOzovvFOg8iEV_HQbkcQzAghYexGf11E7bywF0cisMwz_0ayZ4XI0Bwj3FQLSfwbeQ_e7pQpztdbmMzWqJjJmdwERurzjfq8ogr7K70e94kPowwX5uvzhIWUIofQzmg4YH4jGIseJLA6V6FzAWt8mkJgybigUhaxwGqrs7KU65kVKtelhm2VJH8qJ377DtO1WuHbh5fCgJi07XNqy-1O35cdSr48YyHUfQR3LYeh9NcK3YxYI2_3MpBMyG_BZUZ04G1D7AXCKz-jkcLO01c99f9uqiHfqy6AWpa6rNOD-LT38WOFoC7fQFTO5TS1gJM_pqfZ-uORQz8NbSMFdc-fRVg1TkFrb86TbCZei97Ptk6_P9H39Y_vKnxxRMSv_N5N5IQq-qpPhQpGQgNGtPTtOreiS8fhEJjUt9-GugNKJHixHTVTWt8Y6dekIT5sCxCSLPN9E52Qu2ta70ITXLbVoARMaK08xq9BYJyhhJXsMVmhyfG5u6QGE1-cWwbIWioMvPiGnVXo_IaSUp6KSiTEbR0A_2_f4NY8mXKpPOatNM6Y6uXRxKLLda1pWdWxbYVrbFojjypFI0VCoqT3hijqqZCORRQufKlwihwF4oOrh4GMx2qvqInjH67_uMD33zlXMt0iYlw_WqXIEBasfLY-Jut_YBENaXqedfjnD8rKd26nL56Gdhf3gHOBR8PubVWDSozZJjnDd8fcv0SC-xw_DL-UPwNFilmf6kVogNOXUXDCNfc7_NSp3UvLb64hXSMmqL1sFdNVgxi55sqovVyadb2S-6O_kdzE_t3Lnjv5h5FnmXj5Q98MiWzk1CLXL3Jf8DF0TpBhvvhpOZvs5PGBkdeknUEuyA4kl3JhsfLm36SA8lb7xOzcnDXOYOzhWzs4R2WJmxBI7b3LGgMHSxl-DzbwLMHaBtd6VwTC68wMTOr7rovNfaNRGZwY4KUdn_LN2PJlF03qfzn2is7bwzRedaZvDB2Tg3HczikM2BZe10cXMIh-sNlDlU0ojaJtsl37G9KIU95tvq4uuMSyQJlJL3D9W-Lm-uvanu3J5uBhr4056vfnqNeaNjXDOcV1KOLAgN_W6ZF-Kx9VN5yk8RXMowGcqHC08Vjbqns1Qn_Ro_Y17095KbU6n6s34ObtEcF12-zPRTUC-_a0umsTivmxZvaUhSbcnuQlW5ETocaoW2jzIdPJ0B8ARUALPfEUHjpinIRz_AGGNb1V7PASb073FuAboMktu6OoAOuod8s-kWDqSbnDAZT9xI0COyPwyhq-h7Zbdt3SQzDgEEg2IJi89SYLWyZglstwjh6Zlx0giWEMfKGUKrEpYPax7tEk586VSYD_Z17YmN8yrD9RCczfuq5HDH5t3nqy9iNUam4PhQzVs03F1gMpALnhNhgIiSSvH3WRPoLJWD51fYb75eRN1wSBHWADMHW_8-livnUfAcqEeG1EhsSv_9y55Cq0OEa7wGVRpaH1C7A8YyW_3SNYjfNWS8CUQBfuyQGoaqjH78-r6gHcXV57KOOprpjbWTErO1kRsFtGT66L0TzHz1MNsElS2zNf9LNYyClnDtQhzH8VBp6OC4aCSzKyaneAzgT3e9j4ec9ql55yl2C14Dbcggzcdv35etRbwDFXfgT3TsTqiJ4AkEgtAiCZqFbRb7qWzCnbfAwxvIQwp72FSlhblFXgbY7-W9CIY-EJF-y64kGlILo5y3W57SG0Eqch-eCp--MQnBEHdSi2GLlVj7VspPccoR5a1jMPo8U_9TBBv02YfSSsJZNMP-wFGmt2wXUQiE6-bT0B-k03R1uJgn0z8jNBGQuOQBSEjsn2tz7upX2AsKoZp5zl-TJwGketRT5rxJGGXr7pVu7kIYT6H7JX-Gmdmx2oik8U8zUr42__Nw02YTcaTOKuvtyNOXxweJM0tUX5TmFdwWHfyEVPj8LafJYTLDHrAoNFWRXMqfPS0WkwG4Am557Cp9OptdNplrCM9BeBcx7TtE-k00pY8rOYOckcpRTjePjK1Fi_B1E82a7J3dN_kjTdLf5n-v08huiQk8Y_TfM5AO7tsxBDb5mQpwwyiZsg40REZ-VE2IzIsV9cdlVE2kmBiUTp_tCpIvtGLnGXPoeKzc1juQnDNoyHZjx6hgqj9zVY71PNQI4_gxyNBgyx_tGXJsRzU9syxOlkU2qXb3FgaAZ5hKoE24LvN47AebsH76q6hTWSXNLax7-4KiAETRNM3NvLai3C5bi-ON8-xhnQHe_1gUwUxrvcMCCmZnjZ9I1x31fW0IBrbrEwhj5154L_OOPusRSpUmJ38hVuf0OclukP_KAbVWcehxxjDM_JbsW4GHGzj3-gW86BqEG9N5zKPJqWDBb3FRW6JnwuU1ceUfJxjVnPKPE957Uf4dzYyZE1HuU9XjzIX__gRTA-_siwRWbe_pbaer6qVpN-PtP3R37TNyqHL2UBtxC28I18lezEBsCMcd5ni9cJUhml79nSSOKtaLEU2-ot3DvrtLuyl46pUh-rcQKRR6bqZtPRok9-sFx_9mW7jP_FDJcH6WDhThgFo2S38uOMhAzdATrdes4RK6TvGSZGqbbYj9U8NEy3X76JnhsY2RQAdWAs3rQqkdNKHgg45Ub9QNAVoOd1GLgrXg4HCWumDwGoGfItaQuABwG1c6GZHtHUItCM3A4dyMKkni2GdiZXLI2_wncc2VKPv7eWGLiP-Q07Q76v0qLrd874jlW03H43TY0JxH9EpZfOiqXSWZ8gJHJwO4CpsZve00rkdFCbXJwGVWmxgucsJhD0qbYzCHFmSVtgur1gCY1ZaNG5La9CMXBqquwQiVTMt7l-iUOuzPo5pIZp2cj8Bx6ZRd2XVcsgycvQJ6pyeBu0QU0gBFsaZfpKyQH0yC_yuV6DFPwKLgxohW1ds5pvnfpmiLw8bQVUcM4mRQyw-92_gSEyU39WFEeNh5jo2myXMr_rCyqU9SF6n9kHNPg0dttjkWS5dUR90O8pOGwi0Q5PXGhHt7oWzDh4",
+                        "format": "azure-openai-responses-v1",
+                        "id": "rs_0e8736c555533d0b0169ad000acd60819497fd7c4239816544",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 134,
+                "completion_tokens": 1818,
+                "total_tokens": 1952,
+                "cost": 0.0036695,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0036695,
+                  "upstream_inference_prompt_cost": 0.0000335,
+                  "upstream_inference_completions_cost": 0.003636
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 1088,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.00367,
+          "requestDurationMs": 16581,
+          "error": null
+        },
+        {
+          "requestId": "5ce94bcd-38d4-4ebb-ade9-5a61bca36ca2",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-08T04:50:32.963Z",
+          "responseCompletedAt": "2026-03-08T04:50:40.438Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "whisper",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5-mini",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAIAAgADASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAIDBAEFBgj/xAA4EAEAAgECBAQDBQYHAQEAAAAAAQIDBBESITFBBRNRYSJxgQYjMkKRFBVSobHRJDM0YsHh8FNy/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8A/XwDQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACnJqcVOW/FPsptrLflpEfPmJrYPPnVZp/NEfQjVZo/NE/QNegMddZb81In5cl2PU4r8t+GfcNXACgAAAAAAAAAAAAAAAAAAAAAAjN6x7ozkntAasFXmW9TzLeomrRXGSe8JRes+wqQAAAAAAAAAAAAAAAAAAAAAAAAKdTnjFG0c7T0gEs+auKOfOe0MObNfLPOdo9IQtabWm1p3mXBm0AEAAAAWYc18U8p3j0luwZq5Y5cp7w812tpraLVnaYFleqKdNnjLG08rR1hcNAAAAAAAAAAAAAAAAAI3tw/MHbWiqq1ps5M7zvLggAIAAAAlW01W1tFlDsTtO8CrxGluL5pCgAAAAAAAAAAAAAAAAAAEzERvPSAV6jLGKm/eekPOtM2tNrTvMp58k5ck27dlYzaACAAAAAAAAO1tNbRas7TD0dPljLTfvHWHmrMGScWSLdu4sr0giYmN46SDQAAAAAAAAAAAAADl7cMe6mZ3neXbzxTuiIACAAAAAAAAOxO07wupbij3UJUnhncVcAKAAAAAAAAAAAAAAAAM+uycNIpHW3X5NDzdRfzMtrdukCVWAMgAAAAAAAAAAAN2hycVJpPWvT5NDzdPfy81bdukvSGoAhmzYsMb5Mla+3cVMQx5a5cPmYvijadu28sdbeJZbRPDjw137g3uRek24YtWbem/NXq9PXUY4pa1qxvv8ADKGm0WDBfjpFpt6zIJZ9Vgw24cmSKztvttMpafPiz1m2K28RO08tncmHFktxXxUtPTeY3SpSlI2pWtY9IjYGW3iGmreaza28TtPwtEZcc4fN4o4Nt9/Z22LHad7Y6TPvDtqVmk0msTWY2225Ahjz4ck7Uy0tPpE81jN+waWLxeMe0xO/KZS1ePNkrXyM3lzE/qC9DLO0beqrSTq+K1dTWm0RytHdCdRhvntjjJXjidthEwBAAAAAAAAAAAAFuKd429E1NJ2tErhYACgAAAAAAAAAAAAAIai3BhtPfbaHmNviFtqVr6zuxDNABAAAGHxPxPBoZil62vktG8Vj095BuHzGX7Qau1p8vHipHblMyrp47r4nnbHb50/sD6seBpvtDbfbUaeNvWk/8S9fR6zTauu+DLFp716TH0BoAAAAbL6m2PS0vXHbJaeW0erG2+H23pavpO4sc0dtZe82z1rSkxyr3TyaPT5M05b04rT6zyXg05Wta1itaxWI6REOgADlr1r+K1a/OQdCJiY3id4lV+04ePg4vi326T1BaOXtFazaekRvKvDqMeW3DSZ3235wC0RyZKY4ib2iIl2l63jelotHsBedqzLz9VosOfe23Bf+KG7NPKIVCVHDSaYq0m03mI23nukAgAAAAAAAAAAAAvpO9YlQtwzymBYmAKAAAAAAAAAAAAAAxeIT97WPSGZfrZ/xE+0QoGKAAMnimtrotP5nDxXtO1a+rW8j7T4b302PLWN4xzPF9e6Dzv31r+Pi46bfw8Ebf3ejTDpfG8NM+WtqZMfw2is/+5Pnn0P2Zw3ppsmW0TEZJjh+nci1u0+g0eCvDj0+OPeY3n9ZWX0+nyRtfBjtHvWFoqPM1PgmiyxPBW2G3rWeX6S8bW+GazQz51Zm1K84yUnaY/s+sJ5xtIPB8J8a3mMOtmPSMn9/7veeB454TWtZ1OkptEc70j+sO/ZzxGZmNHmtv/8AO0/0B7wADT4fP3to9YZl+inbUR7xIRvnl1JnaJlTk01MmSb3m0+2/JcNqcOa2S+3k3rXb8Up5q3tTal+Cd+uyYCGGlsdZi2S15mesuZMOLJbivTedtuqwAiIiIiI2iOhtG++0bgAADlq1tG1qxaPeClK0jalYrHtDoDLq8M3yxauW9J27dEo3isRM7zt19UskxN52ndERTi1FL5PLmtqX9JhcAgAAAAADF4xr6+H6XzZrx3tO1K79ZfN/v8A8S8zi8ym38PBG393qfbHBfJpMWasTNcVp4vaJ25/yfLJR9z4Pr6+IaXzYrwXrO1679JbXh/Y/Bkx6TLmtExXLaOH3iN+f83uAAKCzD+KfkrTxfjFWgCgAAAAAAAAAAAAAPP1n+pt9P6KV+tj/ET8oUDFAAHJiJiYmImJ6xLoDJ+7NDx8f7NTf67fp0aoiIiIiIiI6RDoAAAAA+T8b0s6LxDixb1pb46THafR9Y8b7V030eLJtzrk2/WP+geloM8anR4s8fmrz+ff+a95X2XmZ8NmJ32jJMR/J6oC7R/6mv1/opXaHnqI27RIR6ATyjdylptG81mvzG3Ry8WmPhmIn5Ox0AHJpWbRaY5x0dByLVmZiJiZh2ZiImZ7EREdIgBytotG8dC9orG87/SHQCGbX6iMOGYidrzyhpef4zPw4o95n+glQ8NtvS9ZnpO7WweGz97aP9rdWlazMxG0yJHQtvt8M7SV32+Lbf2AAAAAAAtEWiYmImJ6xLD+6PDfM4/2Sm/znb9OjcAViKxEREREdIgAAABLH+OEU8X44FWgCgAAAAAAAAAAAAAMXiEfe1n1hmbfEK70rb0nZiGb0AEAAAAVZclq22jZDzb+sGf/ADJQBbGae8Qspetuk8/RmAa0b0pes1vWtqz1iY3hDFk3+G30lZaYrWbTO0RG8g5SlKVitK1rWOkRG0KMuq+PytPXzcnfaeVfnKqIy674pm2LT9ojrf8A6a8OLHipFMdYrCCj9lvl56nNa3+yk7VP2HBWYth48N46Wpad4agNXeD6vJljJp9RMTmxbbz/ABR2l6DxtFvHjkbfmwTv+r2RuACgAAAAAAw+MV3x47ekzH/v0blWsxedp7Ujr1j5iV5vhv8An2//AD/zDeyeGUnbJeY7xDWJAAAFWXJt8NfrIJ3vWvWeauc09oiFQJqzzb+sfoliyWtbadlKeD/MgGgAUAAAAWYfxT8la3DHKZFTAFAAAAAAAAAAAAAAQ1FePDaO+28PMes83UU8vNavbrAzVYAgAAACjPHx7+sK1+eu9d/RQAAAnl4sukyUj8XDMR7oJYp2vHvyBPRXrk0uOa9qxEx6TC5jzVnSZpz0iZxWn7ysdveGutotWLVmJiecTCDoK9RlrhxTe3PtER1mfRRPwuvH4tnydseKKfrO712PwjTW0+k+9j73JM3yfOezYjYAoAAAAAAAAjNKxS0ViI3nefmpaFN42tMCVEARDNfhrtHWWdPLO95/RAQAAWYI+P6K1+Cu1d/UFgAoAAAAvpG1YVUje0QuFgAKAAAAAAAAAAAAAAM+ux8VIvHWvX5NBMRMbT0kK8kWajHOLJNe3ZWMAAAACjJimJ3rzheAyDVMRPWIlzy6fwgzO1raZ5RLTFax0rDoExExMTG8SyeRnwTM6W1ZpM7+Xft8pa1mnxzlyRXt3QZqU8SyVjh0dK79LWyRt+nVr0Xh3BljPqskZssfhiI2rT5R/wAvQiIiNo6A1gAqgAAAAAAAAACGWN439EwGcSvXhnZEZZrVtE84lFrcmtZ61gMZRp8un8MJRWI6RECYpx4pmd7coXAKAAAAAlSvFOwJ4o2jf1TAaAAAAAAAAAAAAAAAAAAV6jFGWm3eOkvOtE1tNbRtMPVU6nBGWN45Wj+Yljzx21Zraa2jaYcGQAAAAAAHa1m1orWN5kCsTa0VrG8y9HT4oxY9u89ZR02CMUbzztP8lw1IACgAAAAAAAAAAAAAOXrxR7qZjadpXo3pxc+4lUjsxtO0uCAAAAAAAOxG87QBEbztC6leGPdylOHn3SFgAKAAAAAAAAAAAAAAAAAAAAhmxUy12t17Sw5sN8U843r6w9EEseSPQyabFfntwz7KbaO35bxPz5CYyi6dLmj8sT9SNLmn8sR9RMUjVXR2/NeI+XNdj02KnPbin3Fxkw4b5Z5RtX1luw4qYq7V695TBZAAUAAAAAAAAAAAAAAAAABy1YtHNVas16rgGcXTSs+yM457SJisT8u3oeXb0BAWRjnvKUUrHuGK61m3RbWsV6OgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/2Q=="
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "azure"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1772945434-E6BRNH5BQEZmO5E9Oa4w",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9d8f38471c1e0308-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Sun, 08 Mar 2026 04:50:35 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1772945434-E6BRNH5BQEZmO5E9Oa4w\",\"object\":\"chat.completion\",\"created\":1772945434,\"model\":\"openai/gpt-5-mini-2025-08-07\",\"provider\":\"Azure\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"guesses\\\":[\\\"communication\\\",\\\"conversation\\\",\\\"connection\\\",\\\"sharing\\\",\\\"dialogue\\\",\\\"talking\\\",\\\"exchange\\\",\\\"transfer\\\",\\\"signal\\\",\\\"link\\\",\\\"network\\\",\\\"pollination\\\",\\\"whisper\\\",\\\"telepathy\\\",\\\"transmission\\\",\\\"interaction\\\",\\\"empathy\\\",\\\"bridge\\\",\\\"partnership\\\",\\\"broadcast\\\"]}\",\"refusal\":null,\"reasoning\":\"**Generating word guesses**\\n\\nI need to come up with exactly 20 one-word guesses. The drawing looks like two ovals facing each other with small dots and leaf shapes, which suggests ideas like \\\"communication,\\\" \\\"talking,\\\" \\\"connection,\\\" and \\\"sharing.\\\" I’m thinking high-confidence guesses could be \\\"communication\\\" and \\\"conversation,\\\" then \\\"dialogue\\\" and \\\"whisper.\\\" I’ll also consider words like \\\"link,\\\" \\\"signal,\\\" \\\"network,\\\" and \\\"exchange.\\\" The image may depict friends or plants; maybe even \\\"pollination\\\" fits here too!**Creating unique word guesses**\\n\\nI'm examining the drawing with leaf shapes inside ovals and thinking those might suggest “pollination.” The dotted arcs hint at seed or pollen transfer, so that word could fit well. I need an ordered list of 20 unique one-word guesses without spaces or punctuation, as hyphens count as punctuation too. I’ll start with “communication” and include concepts like “sharing” and “connection.” I need to avoid repeats while ensuring each word is distinct, so I'll finalize my list now!{\\\"guesses\\\":[\\\"communication\\\",\\\"conversation\\\",\\\"connection\\\",\\\"sharing\\\",\\\"dialogue\\\",\\\"talking\\\",\\\"exchange\\\",\\\"transfer\\\",\\\"signal\\\",\\\"link\\\",\\\"network\\\",\\\"pollination\\\",\\\"whisper\\\",\\\"telepathy\\\",\\\"transmission\\\",\\\"interaction\\\",\\\"empathy\\\",\\\"bridge\\\",\\\"partnership\\\",\\\"broadcast\\\"]}\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Generating word guesses**\\n\\nI need to come up with exactly 20 one-word guesses. The drawing looks like two ovals facing each other with small dots and leaf shapes, which suggests ideas like \\\"communication,\\\" \\\"talking,\\\" \\\"connection,\\\" and \\\"sharing.\\\" I’m thinking high-confidence guesses could be \\\"communication\\\" and \\\"conversation,\\\" then \\\"dialogue\\\" and \\\"whisper.\\\" I’ll also consider words like \\\"link,\\\" \\\"signal,\\\" \\\"network,\\\" and \\\"exchange.\\\" The image may depict friends or plants; maybe even \\\"pollination\\\" fits here too!**Creating unique word guesses**\\n\\nI'm examining the drawing with leaf shapes inside ovals and thinking those might suggest “pollination.” The dotted arcs hint at seed or pollen transfer, so that word could fit well. I need an ordered list of 20 unique one-word guesses without spaces or punctuation, as hyphens count as punctuation too. I’ll start with “communication” and include concepts like “sharing” and “connection.” I need to avoid repeats while ensuring each word is distinct, so I'll finalize my list now!{\\\"guesses\\\":[\\\"communication\\\",\\\"conversation\\\",\\\"connection\\\",\\\"sharing\\\",\\\"dialogue\\\",\\\"talking\\\",\\\"exchange\\\",\\\"transfer\\\",\\\"signal\\\",\\\"link\\\",\\\"network\\\",\\\"pollination\\\",\\\"whisper\\\",\\\"telepathy\\\",\\\"transmission\\\",\\\"interaction\\\",\\\"empathy\\\",\\\"bridge\\\",\\\"partnership\\\",\\\"broadcast\\\"]}\",\"format\":\"azure-openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABprQAhSBR6qW26cCAGgNRum3sHrBFkBLEkvFSabsPtU4u2lbPc7itnMA6q3ibhx1eO-zhwz99nxDjylsv03S0e79N7SFEPkh4qv4nt4KdVkGZBlRWm7pMVeZMcFGE7aP28FcHcIsjx2-nx4VOKRmQmWVequznQ4sin05CIimtp0oTIaJmcWGgQ5YRVYPlflj6R4avwL_S5QHls4DGR74G3nJoLItf0QNfRu32WK-1z4NSVNs-U1ndnORcVVg54YkV1LscydL6Y3H5ssk5caFdJspRJB63e4A4uiKFBrxPzgW3Jpi63ksKjT2lMPkPLvsAuSrQcgv4-4hyyxM3-F6R2jnAPOSRneITFjyvgEwrzNav_FbZIuKF9ET8vjbay6KJKwdT07fSARETgVlGpzbJA26Xk0iXMcwfG4D6UQcYztChrDioPZHZHQWwdJ4n-eY9Gd7mVnUvaPgz0DiK9rnMath3_3XEEqxsPjvih48NewBkb8VY0JycJ3C0QNaMVXHEWc-M_iiYFtlMakLwP3wAzy9wqYnE_PjaMjHzvUgFlNHwCtwx4h5U8JivOoiNVHb9HYXPJronJ965BhDXJ52lRgxLhAsSjnpZ0d81_hf599mPJWB-lzg4Eb_RKWPyq74g9QVfaBPr945b8lLNK2pJz9HicLLwvBy_MdhDvfz8MPVlx-1d-1F3oSS059RxDmo5uF5XVS6xpudlRL9MOsXxxWJUfNcG3t_V5zXdUzqogaM-zvD4nRDEvshL7hY-vkP_jIFZlWGVUjDzbJvz5reNGkopsMLrJK7GZmyNHLyVp3ORzviOqEBQIZFlCy6sdByMqpXk5_k9z-P9bZsr2y2ChmduRqm4r1ZQ7O_Z6wr8K_Ihx3gYsqslA2WIHAUHZ9ODGWMc4Ll7DgyzOzMOa0vV0wUHI6H8U-1tSBDFSs_Nj9OuThZuak-l4id2xDd6zC0PcC4p9wiXEfQVRCJDscFjRNApPdvBtrcirxrU2ZDYUBMlVb_bqKvDE2b_uQv_VTJBVM9SzdWWDEfEncdhZWneeiaoDIuUapKecKS-2DixoKInS02ckE4QOEeZuEejfaPyiX44JuJq2GdW8-EPviqVIXHMm1oqi_CxP9UzXqwtTBIwDhrI5_V4VmmxSDuydkV1XjI-d5ldXljZya8x2Z31RdmyOYoDThktdw32IkR8Ry28zbQZuI4Rt9gJZ7Xw9dOy5i4BCIdXeyddEhHQ7l2ktrsDhgaZVDasKW63lWBp4uGfIbx-h1obVDeC5flIFu6fvy2U0rlWjiyQ4Loj68nROaMXQezLKRnQ2GxBzFy4mw19XDCDJXJc4rOOwJDTcpY-nf9a9j5wARtNbhCMbFU5XN0WuXCeeXG9Hd8AhIyOYOsZl0vf0p-l_DPvNDCSbRqCypufJ92RaJBIhGYK0ukg0F6P3zpG6M6fcsGY9pQPnOhv_aoApzeNtiN3IM0He9GLfFBteMJCsOsxOFCHDzBU0AGzMzUT6oxWR8Q8OQW3moztBMFnJsekVwKx2XIkxZth8SjW9v8SCuX2fMkH382poJUKVEPIJ9aEGIrPCBXxQi3Kxt39fQ5l6Ab_VcQrkjfley5RXk2pevcrdg5Qmqdtvo4VjGz0W39Bx2HtE5muHpboVEEjkSK5pS7T3BRCs_q_U9CN_WhnjQHsdl0Vk4_b3ka79BFzNZlVmYKpWWp1l__ant-2cx55yg4is0K_yYxpSTKLTqaf04JaUOGv8jgsi7lKfCgztRfwrIi3SYc8IibPmNRE4zW_-AKHD6FUu75Oovsq7qhtPK4NSqwyg42_jaHkrX6FAWUL6nRiKuOrAOU6Wz1Ib82Mt1CCyjTfb7Dn1Kf8_Re_MO8zMnRnyvUwaUWzUXs_SYZxLlSzhHED0OD7TDyVv-NPXN6m558cXcVV8DfUHL_mkwRBg_c5IW_-SCaDLm6akmeEdNShCCVljEV8hoWAsXNrhsbhR-nDp8Gd5-FCjWt15lNo6WY0Ca5dB93BOeoEeTQeM-54Z5SrpVfhT-eNvzcTuwUWVLd5HoXLB8mPp0c2ARt1DS60NvHA8eiak69BUYVfiFGnB5D8XFiW3jmyFDYsp60TTQJovgPcS68Ye2A6IEuchovxseMgZBnIvh6Da68l3tP4B1-geR8SO1UpAkbIQpO7lHeAqvDLb28j66fTY_zYxPz7BwRJq38awNUz2EdT2-z4tozChfZIY3GGa4PbpcFHsqNq9dIwRmr5JML2kJjaIdRCOpMeJab_7LOnZr_TwVW3QBiUeYtInBuGlmgFUg8eEnsG9d43LVKuvcDheN4MAmNgwqB1o0QA1LAioGtX0531iaDhn-VPyynwC9-OxsaYAtj_GxzegeSb44uJ49PsL70uphyXmu3dsVnZ9Rfij284Z_jCRGPuSqm8Lyi6kpO-rTc4gvE5D4BMCsyWu99z25P5vOZNpOOGfoQ8urBuk4ntXI3Nywass5d03umaPRtwFrAqSo7BNXxid5u90X8qOxtR0TlmPc6zjlhHU9u1QKIxRmWclmi-Urb0M1Qjfk7NqrTATDW1vyKJSHBu5vAzdNpXc2GjTvToupnS14Gb6rOUuI5gbn6RObNKT7Y5F0XxtxOT9kN2D-mJWomXLwQ8yrepTbZ9pU7DsV_sKPYVrQNXxpbmDUdnKveEETEXxKK2-FqQr8Rk4Uz-D-g5KHyzDTCJFJCL1EuPDKnikOUTr05hP5LUgscA2hWirUWdjWgaJ0hyaevDHuHdC5w1n3TD8MNtla0nv0lRdnGovAFEwCkPF9SbFfITjV0gdTYrBHcLM6cizoPzJMpZ4oaN6ULuEbTrKXlWgSmlk9Q5ePKNi4KsyvqjWcnpylMDKxAhKbYUO_HrtiJgIFC9eTekCLApgVdNSppg39YSO5dqSkzxBkMkvZNw6dw7aeOqHu18bN02xOjYZet4emSkDqrgL9v-WGvMh5uttsG0_Bwp_9mTJtnhfdKWpPKc4BN0s7gqTbYnk4q66Rz6XO7eRthp_rF0PqMGXjr2y1jpC05OUc1mbSG-FZcro-_FsSofdaXqhjAYuySwdQbtfqljjOmH8fXQcF1Nr_QZCkU7vAkWim9WOsrA1ZRxXq0ZOmYc89JHscHO9k_OnfzMTuVXEPC9ufoGs2CnGp18SsT5qlUJ4ituGYLN9ycujlr0j4BGagDemdRFXNWLk8UILBv6KCviN_6foQW178OoEgdUBh6bxYUGlQ5FITYTrVqgeJswzoT2aXyp8oS6UZiD1J5EYJ2K4HIsJOcPObaGI1WnsMdd6LQ7PgteDCBBIFd8a7bw54YhAn8zADJQN9TxRqJKE7GcCIpvmRHCbpY3iS33QncHVsVPP9zQBNu1epCbEam1Q4-ZH3F6RH6ZR6ZkoMYgaSbBT6RJ7THL5Vie5lEkcz8TUpVN7JrkQQ8mIPIORpoDQ2d6riyXQD7hGp4GD-Ju4-xY-mqbWdWdiQwCvvB9vAFB7hiI4PGrx6HAUI1M_7nuuObOgusAG5P9oAuzwVYoetyU-T0XuqhY5Xb5Lv_DF24fKUZgnO6vaLST7xjLwCPs57rd_vxR6eGAO0BmslhyB0bINAXX5Qih7PbMhtPk93f_yWFGwJBC2LTTfnGrdTYs5X34Wk88kkdQHQJInQW_HaAGe28UEV2CKevfK4avB-g5vAFLPY_QkhBlwU5k4RapmqLVuCrCOPyM-2M3k2SrShVlCvQxgEak4OkIOytoa6HS0EdxdV1ZMDwGZcWSZ594u3NkSY3bf01j4XYJMtvhI0u69mpY7qDxIB9bMm5dPdMhYsDbcVKIt6xdNieuUhxHMQtXHGxdbHr6DNVsqMkXRUXbVVNbjmd1H4CeBgaJe3HQtdTGb21M0cnX3nmLa5LlniY2dHTuqTgZQ-FlUA_SQA_oMFxGiPdfDo9_yd16K1FgluohFIKemcGuKn5q5lcCX5COGR0uQzv8uNRJoaYMeN9FPNS9njIQ8u-KeFpumehmfVH7rqSRAVqMVF28PO7QO0qjx_aDX8zCoqWHOgOPTkHWk5GXG0GHFXb7YZBIWr0ZwjXkptaAcepXmIYldXsW64BIibjEy6ZIQimWvNMZfaI9aOuTPs3IfJMo5OujoZjL0BllbISlaXD3hykr1wASX2qWB60XOPp4MAQJ11AC_TreRDsd8H8Qr4a1zGiqqSMCoj6rPFi2WmTiq8cWRvfI67ThzRk7QWy-A3JP4yYEI0zgtDd9st18eTtksyalIHWK2El8u6TfdVkoG4ExtW60hAAKsbo-Sw_OfHFsQkdfXdmpZNOKBMT1nAJnPVi6tnDU9vnDFL7DpqWY1vHr1nC34G3MaOOQ-eZuQuBR7kMOfEfOQSW07yViend24vDL58A==\",\"format\":\"azure-openai-responses-v1\",\"id\":\"rs_044397ca4d8a773d0169ad001c54048196a4aa54e4621ea00f\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":464,\"completion_tokens\":657,\"total_tokens\":1121,\"cost\":0.00143,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00143,\"upstream_inference_prompt_cost\":0.000116,\"upstream_inference_completions_cost\":0.001314},\"completion_tokens_details\":{\"reasoning_tokens\":576,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1772945434-E6BRNH5BQEZmO5E9Oa4w",
+              "object": "chat.completion",
+              "created": 1772945434,
+              "model": "openai/gpt-5-mini-2025-08-07",
+              "provider": "Azure",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\"guesses\":[\"communication\",\"conversation\",\"connection\",\"sharing\",\"dialogue\",\"talking\",\"exchange\",\"transfer\",\"signal\",\"link\",\"network\",\"pollination\",\"whisper\",\"telepathy\",\"transmission\",\"interaction\",\"empathy\",\"bridge\",\"partnership\",\"broadcast\"]}",
+                    "refusal": null,
+                    "reasoning": "**Generating word guesses**\n\nI need to come up with exactly 20 one-word guesses. The drawing looks like two ovals facing each other with small dots and leaf shapes, which suggests ideas like \"communication,\" \"talking,\" \"connection,\" and \"sharing.\" I’m thinking high-confidence guesses could be \"communication\" and \"conversation,\" then \"dialogue\" and \"whisper.\" I’ll also consider words like \"link,\" \"signal,\" \"network,\" and \"exchange.\" The image may depict friends or plants; maybe even \"pollination\" fits here too!**Creating unique word guesses**\n\nI'm examining the drawing with leaf shapes inside ovals and thinking those might suggest “pollination.” The dotted arcs hint at seed or pollen transfer, so that word could fit well. I need an ordered list of 20 unique one-word guesses without spaces or punctuation, as hyphens count as punctuation too. I’ll start with “communication” and include concepts like “sharing” and “connection.” I need to avoid repeats while ensuring each word is distinct, so I'll finalize my list now!{\"guesses\":[\"communication\",\"conversation\",\"connection\",\"sharing\",\"dialogue\",\"talking\",\"exchange\",\"transfer\",\"signal\",\"link\",\"network\",\"pollination\",\"whisper\",\"telepathy\",\"transmission\",\"interaction\",\"empathy\",\"bridge\",\"partnership\",\"broadcast\"]}",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Generating word guesses**\n\nI need to come up with exactly 20 one-word guesses. The drawing looks like two ovals facing each other with small dots and leaf shapes, which suggests ideas like \"communication,\" \"talking,\" \"connection,\" and \"sharing.\" I’m thinking high-confidence guesses could be \"communication\" and \"conversation,\" then \"dialogue\" and \"whisper.\" I’ll also consider words like \"link,\" \"signal,\" \"network,\" and \"exchange.\" The image may depict friends or plants; maybe even \"pollination\" fits here too!**Creating unique word guesses**\n\nI'm examining the drawing with leaf shapes inside ovals and thinking those might suggest “pollination.” The dotted arcs hint at seed or pollen transfer, so that word could fit well. I need an ordered list of 20 unique one-word guesses without spaces or punctuation, as hyphens count as punctuation too. I’ll start with “communication” and include concepts like “sharing” and “connection.” I need to avoid repeats while ensuring each word is distinct, so I'll finalize my list now!{\"guesses\":[\"communication\",\"conversation\",\"connection\",\"sharing\",\"dialogue\",\"talking\",\"exchange\",\"transfer\",\"signal\",\"link\",\"network\",\"pollination\",\"whisper\",\"telepathy\",\"transmission\",\"interaction\",\"empathy\",\"bridge\",\"partnership\",\"broadcast\"]}",
+                        "format": "azure-openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABprQAhSBR6qW26cCAGgNRum3sHrBFkBLEkvFSabsPtU4u2lbPc7itnMA6q3ibhx1eO-zhwz99nxDjylsv03S0e79N7SFEPkh4qv4nt4KdVkGZBlRWm7pMVeZMcFGE7aP28FcHcIsjx2-nx4VOKRmQmWVequznQ4sin05CIimtp0oTIaJmcWGgQ5YRVYPlflj6R4avwL_S5QHls4DGR74G3nJoLItf0QNfRu32WK-1z4NSVNs-U1ndnORcVVg54YkV1LscydL6Y3H5ssk5caFdJspRJB63e4A4uiKFBrxPzgW3Jpi63ksKjT2lMPkPLvsAuSrQcgv4-4hyyxM3-F6R2jnAPOSRneITFjyvgEwrzNav_FbZIuKF9ET8vjbay6KJKwdT07fSARETgVlGpzbJA26Xk0iXMcwfG4D6UQcYztChrDioPZHZHQWwdJ4n-eY9Gd7mVnUvaPgz0DiK9rnMath3_3XEEqxsPjvih48NewBkb8VY0JycJ3C0QNaMVXHEWc-M_iiYFtlMakLwP3wAzy9wqYnE_PjaMjHzvUgFlNHwCtwx4h5U8JivOoiNVHb9HYXPJronJ965BhDXJ52lRgxLhAsSjnpZ0d81_hf599mPJWB-lzg4Eb_RKWPyq74g9QVfaBPr945b8lLNK2pJz9HicLLwvBy_MdhDvfz8MPVlx-1d-1F3oSS059RxDmo5uF5XVS6xpudlRL9MOsXxxWJUfNcG3t_V5zXdUzqogaM-zvD4nRDEvshL7hY-vkP_jIFZlWGVUjDzbJvz5reNGkopsMLrJK7GZmyNHLyVp3ORzviOqEBQIZFlCy6sdByMqpXk5_k9z-P9bZsr2y2ChmduRqm4r1ZQ7O_Z6wr8K_Ihx3gYsqslA2WIHAUHZ9ODGWMc4Ll7DgyzOzMOa0vV0wUHI6H8U-1tSBDFSs_Nj9OuThZuak-l4id2xDd6zC0PcC4p9wiXEfQVRCJDscFjRNApPdvBtrcirxrU2ZDYUBMlVb_bqKvDE2b_uQv_VTJBVM9SzdWWDEfEncdhZWneeiaoDIuUapKecKS-2DixoKInS02ckE4QOEeZuEejfaPyiX44JuJq2GdW8-EPviqVIXHMm1oqi_CxP9UzXqwtTBIwDhrI5_V4VmmxSDuydkV1XjI-d5ldXljZya8x2Z31RdmyOYoDThktdw32IkR8Ry28zbQZuI4Rt9gJZ7Xw9dOy5i4BCIdXeyddEhHQ7l2ktrsDhgaZVDasKW63lWBp4uGfIbx-h1obVDeC5flIFu6fvy2U0rlWjiyQ4Loj68nROaMXQezLKRnQ2GxBzFy4mw19XDCDJXJc4rOOwJDTcpY-nf9a9j5wARtNbhCMbFU5XN0WuXCeeXG9Hd8AhIyOYOsZl0vf0p-l_DPvNDCSbRqCypufJ92RaJBIhGYK0ukg0F6P3zpG6M6fcsGY9pQPnOhv_aoApzeNtiN3IM0He9GLfFBteMJCsOsxOFCHDzBU0AGzMzUT6oxWR8Q8OQW3moztBMFnJsekVwKx2XIkxZth8SjW9v8SCuX2fMkH382poJUKVEPIJ9aEGIrPCBXxQi3Kxt39fQ5l6Ab_VcQrkjfley5RXk2pevcrdg5Qmqdtvo4VjGz0W39Bx2HtE5muHpboVEEjkSK5pS7T3BRCs_q_U9CN_WhnjQHsdl0Vk4_b3ka79BFzNZlVmYKpWWp1l__ant-2cx55yg4is0K_yYxpSTKLTqaf04JaUOGv8jgsi7lKfCgztRfwrIi3SYc8IibPmNRE4zW_-AKHD6FUu75Oovsq7qhtPK4NSqwyg42_jaHkrX6FAWUL6nRiKuOrAOU6Wz1Ib82Mt1CCyjTfb7Dn1Kf8_Re_MO8zMnRnyvUwaUWzUXs_SYZxLlSzhHED0OD7TDyVv-NPXN6m558cXcVV8DfUHL_mkwRBg_c5IW_-SCaDLm6akmeEdNShCCVljEV8hoWAsXNrhsbhR-nDp8Gd5-FCjWt15lNo6WY0Ca5dB93BOeoEeTQeM-54Z5SrpVfhT-eNvzcTuwUWVLd5HoXLB8mPp0c2ARt1DS60NvHA8eiak69BUYVfiFGnB5D8XFiW3jmyFDYsp60TTQJovgPcS68Ye2A6IEuchovxseMgZBnIvh6Da68l3tP4B1-geR8SO1UpAkbIQpO7lHeAqvDLb28j66fTY_zYxPz7BwRJq38awNUz2EdT2-z4tozChfZIY3GGa4PbpcFHsqNq9dIwRmr5JML2kJjaIdRCOpMeJab_7LOnZr_TwVW3QBiUeYtInBuGlmgFUg8eEnsG9d43LVKuvcDheN4MAmNgwqB1o0QA1LAioGtX0531iaDhn-VPyynwC9-OxsaYAtj_GxzegeSb44uJ49PsL70uphyXmu3dsVnZ9Rfij284Z_jCRGPuSqm8Lyi6kpO-rTc4gvE5D4BMCsyWu99z25P5vOZNpOOGfoQ8urBuk4ntXI3Nywass5d03umaPRtwFrAqSo7BNXxid5u90X8qOxtR0TlmPc6zjlhHU9u1QKIxRmWclmi-Urb0M1Qjfk7NqrTATDW1vyKJSHBu5vAzdNpXc2GjTvToupnS14Gb6rOUuI5gbn6RObNKT7Y5F0XxtxOT9kN2D-mJWomXLwQ8yrepTbZ9pU7DsV_sKPYVrQNXxpbmDUdnKveEETEXxKK2-FqQr8Rk4Uz-D-g5KHyzDTCJFJCL1EuPDKnikOUTr05hP5LUgscA2hWirUWdjWgaJ0hyaevDHuHdC5w1n3TD8MNtla0nv0lRdnGovAFEwCkPF9SbFfITjV0gdTYrBHcLM6cizoPzJMpZ4oaN6ULuEbTrKXlWgSmlk9Q5ePKNi4KsyvqjWcnpylMDKxAhKbYUO_HrtiJgIFC9eTekCLApgVdNSppg39YSO5dqSkzxBkMkvZNw6dw7aeOqHu18bN02xOjYZet4emSkDqrgL9v-WGvMh5uttsG0_Bwp_9mTJtnhfdKWpPKc4BN0s7gqTbYnk4q66Rz6XO7eRthp_rF0PqMGXjr2y1jpC05OUc1mbSG-FZcro-_FsSofdaXqhjAYuySwdQbtfqljjOmH8fXQcF1Nr_QZCkU7vAkWim9WOsrA1ZRxXq0ZOmYc89JHscHO9k_OnfzMTuVXEPC9ufoGs2CnGp18SsT5qlUJ4ituGYLN9ycujlr0j4BGagDemdRFXNWLk8UILBv6KCviN_6foQW178OoEgdUBh6bxYUGlQ5FITYTrVqgeJswzoT2aXyp8oS6UZiD1J5EYJ2K4HIsJOcPObaGI1WnsMdd6LQ7PgteDCBBIFd8a7bw54YhAn8zADJQN9TxRqJKE7GcCIpvmRHCbpY3iS33QncHVsVPP9zQBNu1epCbEam1Q4-ZH3F6RH6ZR6ZkoMYgaSbBT6RJ7THL5Vie5lEkcz8TUpVN7JrkQQ8mIPIORpoDQ2d6riyXQD7hGp4GD-Ju4-xY-mqbWdWdiQwCvvB9vAFB7hiI4PGrx6HAUI1M_7nuuObOgusAG5P9oAuzwVYoetyU-T0XuqhY5Xb5Lv_DF24fKUZgnO6vaLST7xjLwCPs57rd_vxR6eGAO0BmslhyB0bINAXX5Qih7PbMhtPk93f_yWFGwJBC2LTTfnGrdTYs5X34Wk88kkdQHQJInQW_HaAGe28UEV2CKevfK4avB-g5vAFLPY_QkhBlwU5k4RapmqLVuCrCOPyM-2M3k2SrShVlCvQxgEak4OkIOytoa6HS0EdxdV1ZMDwGZcWSZ594u3NkSY3bf01j4XYJMtvhI0u69mpY7qDxIB9bMm5dPdMhYsDbcVKIt6xdNieuUhxHMQtXHGxdbHr6DNVsqMkXRUXbVVNbjmd1H4CeBgaJe3HQtdTGb21M0cnX3nmLa5LlniY2dHTuqTgZQ-FlUA_SQA_oMFxGiPdfDo9_yd16K1FgluohFIKemcGuKn5q5lcCX5COGR0uQzv8uNRJoaYMeN9FPNS9njIQ8u-KeFpumehmfVH7rqSRAVqMVF28PO7QO0qjx_aDX8zCoqWHOgOPTkHWk5GXG0GHFXb7YZBIWr0ZwjXkptaAcepXmIYldXsW64BIibjEy6ZIQimWvNMZfaI9aOuTPs3IfJMo5OujoZjL0BllbISlaXD3hykr1wASX2qWB60XOPp4MAQJ11AC_TreRDsd8H8Qr4a1zGiqqSMCoj6rPFi2WmTiq8cWRvfI67ThzRk7QWy-A3JP4yYEI0zgtDd9st18eTtksyalIHWK2El8u6TfdVkoG4ExtW60hAAKsbo-Sw_OfHFsQkdfXdmpZNOKBMT1nAJnPVi6tnDU9vnDFL7DpqWY1vHr1nC34G3MaOOQ-eZuQuBR7kMOfEfOQSW07yViend24vDL58A==",
+                        "format": "azure-openai-responses-v1",
+                        "id": "rs_044397ca4d8a773d0169ad001c54048196a4aa54e4621ea00f",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 464,
+                "completion_tokens": 657,
+                "total_tokens": 1121,
+                "cost": 0.00143,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00143,
+                  "upstream_inference_prompt_cost": 0.000116,
+                  "upstream_inference_completions_cost": 0.001314
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 576,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.00143,
+          "requestDurationMs": 7475,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- piano body -->
+  <path d="M60 220 C60 120 220 100 320 140 C410 170 460 230 460 290 C460 340 420 370 360 380 L120 380 C90 380 60 350 60 320 Z" fill="#111" stroke="#000" stroke-width="2"/>
+
+  <!-- lid highlight -->
+  <path d="M80 230 C80 140 220 120 320 150 C390 175 440 220 440 270 C440 310 410 335 360 350 L140 350 C115 350 92 335 92 310 Z" fill="#1a1a1a" opacity="0.9"/>
+
+  <!-- keyboard base (white key background) -->
+  <rect x="120" y="320" width="260" height="48" rx="4" ry="4" fill="#f2f2f2" stroke="#bbb" stroke-width="2"/>
+
+  <!-- white key separators -->
+  <!-- 14 white keys -->
+  <g stroke="#d0d0d0" stroke-width="1">
+    <!-- draw thin separators by lines -->
+    <!-- compute positions: start at 120, width 260, step ~18.571 -->
+    <line x1="138.57" y1="320" x2="138.57" y2="368" />
+    <line x1="157.14" y1="320" x2="157.14" y2="368" />
+    <line x1="175.71" y1="320" x2="175.71" y2="368" />
+    <line x1="194.28" y1="320" x2="194.28" y2="368" />
+    <line x1="212.85" y1="320" x2="212.85" y2="368" />
+    <line x1="231.42" y1="320" x2="231.42" y2="368" />
+    <line x1="249.99" y1="320" x2="249.99" y2="368" />
+    <line x1="268.56" y1="320" x2="268.56" y2="368" />
+    <line x1="287.13" y1="320" x2="287.13" y2="368" />
+    <line x1="305.7" y1="320" x2="305.7" y2="368" />
+    <line x1="324.27" y1="320" x2="324.27" y2="368" />
+    <line x1="342.84" y1="320" x2="342.84" y2="368" />
+    <line x1="361.41" y1="320" x2="361.41" y2="368" />
+  </g>
+
+  <!-- black keys -->
+  <g fill="#0b0b0b">
+    <!-- approximate pattern: groups of 2 and 3 across the keyboard -->
+    <!-- first octave group -->
+    <rect x="140" y="322" width="12" height="30" rx="2"/>
+    <rect x="160" y="322" width="12" height="30" rx="2"/>
+    <rect x="200" y="322" width="12" height="30" rx="2"/>
+    <rect x="220" y="322" width="12" height="30" rx="2"/>
+    <rect x="240" y="322" width="12" height="30" rx="2"/>
+    <!-- second group -->
+    <rect x="280" y="322" width="12" height="30" rx="2"/>
+    <rect x="300" y="322" width="12" height="30" rx="2"/>
+    <rect x="340" y="322" width="12" height="30" rx="2"/>
+    <rect x="360" y="322" width="12" height="30" rx="2"/>
+    <rect x="380" y="322" width="12" height="30" rx="2"/>
+  </g>
+
+  <!-- legs -->
+  <g fill="#111">
+    <polygon points="150,380 168,380 190,472 170,472"/>
+    <polygon points="260,380 278,380 300,472 280,472"/>
+    <polygon points="370,380 388,380 410,472 390,472"/>
+  </g>
+
+  <!-- pedals -->
+  <g fill="#b8860b" stroke="#8a5a02" stroke-width="1">
+    <ellipse cx="250" cy="480" rx="28" ry="8"/>
+    <ellipse cx="290" cy="480" rx="28" ry="8"/>
+    <rect x="240" y="452" width="10" height="28" fill="#b8860b" stroke="#8a5a02"/>
+    <rect x="280" y="452" width="10" height="28" fill="#b8860b" stroke="#8a5a02"/>
+  </g>
+
+  <!-- small reflection highlight on body -->
+  <path d="M130 220 C180 170 260 155 330 175" stroke="#333" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.12"/>
+
+</svg>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff7d1" />
+      <stop offset="40%" stop-color="#ffe08a" />
+      <stop offset="70%" stop-color="#7aa0e0" />
+      <stop offset="100%" stop-color="#0b1b2b" />
+    </linearGradient>
+    <radialGradient id="doorLight" cx="50%" cy="70%" r="60%">
+      <stop offset="0%" stop-color="#fff8cf" stop-opacity="1" />
+      <stop offset="45%" stop-color="#ffe089" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#ffdb6b" stop-opacity="0.6" />
+    </radialGradient>
+    <linearGradient id="pathGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff7d1" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#cda85a" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="512" height="512" fill="url(#bg)" />
+
+  <!-- light rays from doorway -->
+  <g opacity="0.95">
+    <polygon points="256,240 236,90 276,90" fill="#fff6c3" opacity="0.25" />
+    <polygon points="256,240 206,70 226,70" fill="#fff3a8" opacity="0.18" />
+    <polygon points="256,240 306,70 286,70" fill="#fff3a8" opacity="0.18" />
+    <polygon points="256,240 166,130 186,120" fill="#fff7c9" opacity="0.12" />
+    <polygon points="256,240 346,130 326,120" fill="#fff7c9" opacity="0.12" />
+  </g>
+
+  <!-- path leading out (perspective trapezoid) -->
+  <polygon points="166,420 346,420 460,512 52,512" fill="url(#pathGrad)" opacity="0.95" />
+
+  <!-- doorway frame (outer) -->
+  <path d="M146 420 L146 380 A110 110 0 0 1 366 380 L366 420 Z" fill="#2b2b2b" />
+  <!-- inner glowing arch -->
+  <path d="M166 420 L166 390 A90 90 0 0 1 346 390 L346 420 Z" fill="url(#doorLight)" />
+
+  <!-- small radiating beams inside arch for glow -->
+  <g fill="#fff9d9" opacity="0.6">
+    <rect x="250" y="310" width="12" height="90" transform="rotate(-8 256 355)" />
+    <rect x="254" y="310" width="12" height="90" transform="rotate(8 260 355)" />
+    <rect x="238" y="315" width="8" height="60" transform="rotate(-18 242 345)" />
+    <rect x="276" y="315" width="8" height="60" transform="rotate(18 280 345)" />
+  </g>
+
+  <!-- person silhouette stepping out (simple shapes) -->
+  <g transform="translate(0, -6)">
+    <!-- legs -->
+    <path d="M238 392 L248 392 L262 442 L246 442 Z" fill="#0b1016" />
+    <path d="M264 392 L274 392 L294 442 L276 442 Z" fill="#0b1016" />
+    <!-- body -->
+    <path d="M246 338 C246 338 256 316 266 338 L282 338 C275 314 256 314 246 338 Z" fill="#0b1016" />
+    <rect x="254" y="338" width="14" height="36" rx="6" fill="#0b1016" />
+    <!-- arms raised -->
+    <path d="M236 344 C216 320 200 314 198 320 C214 332 236 344 236 344 Z" fill="#0b1016" transform="translate(32,0) rotate(-14 256 348)" />
+    <path d="M284 344 C304 320 320 314 322 320 C306 332 284 344 284 344 Z" fill="#0b1016" transform="translate(-28,0) rotate(14 256 348)" />
+    <!-- head -->
+    <circle cx="256" cy="322" r="14" fill="#0b1016" />
+  </g>
+
+  <!-- dove (simple stylized) -->
+  <g transform="translate(40,-20)">
+    <path d="M420 120 C402 108 384 112 368 120 C362 124 352 122 348 116 C340 104 320 98 304 106 C368 94 412 118 420 120 Z" fill="#ffffff" opacity="0.98" />
+    <path d="M382 118 C392 110 412 112 424 124 C416 120 398 124 382 118 Z" fill="#ffffff" opacity="0.98" />
+    <!-- olive branch -->
+    <path d="M430 130 C436 126 444 126 450 132 C444 130 436 132 430 130 Z" fill="#6aa84f" />
+    <path d="M442 136 C448 132 456 132 462 138 C456 136 448 138 442 136 Z" fill="#6aa84f" />
+  </g>
+
+  <!-- subtle vignette for focus -->
+  <ellipse cx="256" cy="480" rx="220" ry="60" fill="#000" opacity="0.12" />
+
+</svg>

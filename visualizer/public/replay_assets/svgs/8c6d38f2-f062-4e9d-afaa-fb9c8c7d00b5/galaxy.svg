@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+ <defs>
+  <radialGradient id="bulge" cx="50%" cy="50%" r="30%">
+    <stop offset="0%" stop-color="#fff2a8"/>
+    <stop offset="40%" stop-color="#ffc86b"/>
+    <stop offset="100%" stop-color="#ff7b4d" stop-opacity="0.9"/>
+  </radialGradient>
+  <radialGradient id="bg" cx="30%" cy="20%" r="100%">
+    <stop offset="0%" stop-color="#071126"/>
+    <stop offset="100%" stop-color="#0b1020"/>
+  </radialGradient>
+  <linearGradient id="armGrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#8bd3ff"/>
+    <stop offset="50%" stop-color="#9b8bff"/>
+    <stop offset="100%" stop-color="#ff8bd1"/>
+  </linearGradient>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="6" result="blur"/>
+    <feMerge>
+      <feMergeNode in="blur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+  <filter id="smallGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="2" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+ </defs>
+ <rect width="100%" height="100%" fill="url(#bg)"/>
+ <!-- faint nebula clouds -->
+ <g opacity="0.6" filter="url(#glow)">
+  <ellipse cx="180" cy="160" rx="140" ry="80" fill="#2b1b63" opacity="0.35"/>
+  <ellipse cx="360" cy="220" rx="160" ry="90" fill="#1b3a6a" opacity="0.28"/>
+  <ellipse cx="270" cy="330" rx="180" ry="110" fill="#3b1f2f" opacity="0.22"/>
+ </g>
+ <!-- galaxy arms -->
+ <g stroke="url(#armGrad)" stroke-linecap="round" fill="none" opacity="0.95">
+  <path d="M256 256 C336 236, 420 180, 480 120" stroke-width="18" opacity="0.9"/>
+  <path d="M256 256 C316 276, 380 340, 430 400" stroke-width="16" opacity="0.75"/>
+  <path d="M256 256 C196 236, 120 180, 40 120" stroke-width="18" opacity="0.9"/>
+  <path d="M256 256 C196 276, 140 340, 90 400" stroke-width="16" opacity="0.75"/>
+  <path d="M256 256 C336 296, 420 360, 480 420" stroke-width="12" opacity="0.55"/>
+  <path d="M256 256 C176 296, 100 360, 40 420" stroke-width="12" opacity="0.55"/>
+ </g>
+ <!-- diffuse arm ribbons -->
+ <g fill="url(#armGrad)" opacity="0.25" filter="url(#glow)">
+  <path d="M256 256 C320 240, 420 200, 480 140 L470 150 C410 210, 330 250, 256 256 Z"/>
+  <path d="M256 256 C200 240, 100 200, 40 140 L50 150 C110 210, 190 250, 256 256 Z"/>
+  <path d="M256 256 C320 280, 420 340, 480 400 L470 390 C410 330, 330 290, 256 256 Z"/>
+  <path d="M256 256 C200 280, 100 340, 40 400 L50 390 C110 330, 190 290, 256 256 Z"/>
+ </g>
+ <!-- central bulge -->
+ <circle cx="256" cy="256" r="60" fill="url(#bulge)" filter="url(#glow)"/>
+ <circle cx="256" cy="256" r="26" fill="#ffffff" opacity="0.9"/>
+ <!-- stars -->
+ <g fill="#ffffff" filter="url(#smallGlow)">
+  <circle cx="420" cy="80" r="3" opacity="0.95"/>
+  <circle cx="380" cy="110" r="2" opacity="0.9"/>
+  <circle cx="100" cy="60" r="2.2" opacity="0.95"/>
+  <circle cx="60" cy="140" r="1.8" opacity="0.85"/>
+  <circle cx="300" cy="60" r="2.5" opacity="0.9"/>
+  <circle cx="460" cy="220" r="2.4" opacity="0.95"/>
+  <circle cx="430" cy="300" r="1.6" opacity="0.85"/>
+  <circle cx="380" cy="360" r="2.8" opacity="0.9"/>
+  <circle cx="320" cy="430" r="1.9" opacity="0.8"/>
+  <circle cx="200" cy="430" r="2.2" opacity="0.9"/>
+  <circle cx="140" cy="380" r="2.6" opacity="0.95"/>
+  <circle cx="80" cy="280" r="1.7" opacity="0.85"/>
+  <circle cx="130" cy="180" r="2.3" opacity="0.9"/>
+  <circle cx="220" cy="90" r="2.0" opacity="0.88"/>
+  <circle cx="260" cy="30" r="1.6" opacity="0.8"/>
+ </g>
+ <!-- tiny scattered pinpricks -->
+ <g fill="#ffffff" opacity="0.9">
+  <circle cx="500" cy="60" r="1"/>
+  <circle cx="490" cy="140" r="0.8"/>
+  <circle cx="450" cy="40" r="0.9"/>
+  <circle cx="60" cy="60" r="0.9"/>
+  <circle cx="30" cy="250" r="0.8"/>
+  <circle cx="80" cy="500" r="0.9"/>
+  <circle cx="450" cy="480" r="0.8"/>
+  <circle cx="260" cy="500" r="0.9"/>
+ </g>
+</svg>

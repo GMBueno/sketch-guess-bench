@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffefdb"/>
+      <stop offset="60%" stop-color="#ffd59a"/>
+      <stop offset="100%" stop-color="#ffe1b3"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="360" cy="120" r="120">
+      <stop offset="0%" stop-color="#ffd27f"/>
+      <stop offset="60%" stop-color="#ffb84d" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ff8c00" stop-opacity="0.6"/>
+    </radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#sky)"/>
+  <circle cx="360" cy="120" r="90" fill="url(#sunGlow)"/>
+  <g fill="#ffd27f" opacity="0.6">
+    <polygon points="360,40 380,120 360,100 340,120"/>
+    <polygon points="430,120 370,120 405,150"/>
+    <polygon points="300,100 320,120 300,140 290,120"/>
+    <polygon points="430,80 410,110 440,110"/>
+  </g>
+  <polygon points="0,420 160,380 200,360 260,340 320,360 420,380 512,420 512,512 0,512" fill="#5d4037"/>
+  <path d="M0 420 L160 380 L200 360 L260 348 L320 360 L420 380" fill="#4e342e" opacity="0.6"/>
+  <g transform="translate(220,250) scale(1.1)">
+    <ellipse cx="0" cy="100" rx="48" ry="14" fill="#000" opacity="0.25"/>
+    <path d="M-18 -44 C-140 -30 -120 70 -10 86 L4 24 C12 -6 8 -28 -18 -44 Z" fill="#c0392b"/>
+    <path d="M-12 -42 C-6 -30 6 -30 12 -42 L12 12 C6 20 -6 20 -12 12 Z" fill="#2c3e50"/>
+    <circle cx="0" cy="-62" r="16" fill="#2c3e50"/>
+    <path d="M-8 12 L-12 72 L4 72 L4 60 L-4 60 L-2 20 Z" fill="#2c3e50"/>
+    <path d="M12 12 L16 72 L30 68 L22 60 L18 36 Z" fill="#2c3e50"/>
+    <path d="M12 -10 L36 -44 L40 -40 L18 -6 Z" fill="#2c3e50"/>
+    <g transform="translate(42,-48) rotate(-20)">
+      <rect x="-6" y="-2" width="60" height="6" rx="2" fill="#bdc3c7"/>
+      <rect x="-8" y="0" width="8" height="14" rx="2" fill="#7f8c8d"/>
+      <polygon points="52,3 66,0 52,-3" fill="#ecf0f1"/>
+    </g>
+    <path d="M-6 -10 C0 -2 6 -2 10 -10" stroke="#34495e" stroke-width="2" fill="none" opacity="0.5"/>
+  </g>
+</svg>
