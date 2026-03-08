@@ -281,7 +281,7 @@ export function ReplayView() {
                                     {game ? (
                                       <div className="grid items-start gap-4 py-2 lg:grid-cols-[180px_minmax(0,1fr)]">
                                         <div className="self-start rounded-2xl border border-white/10 bg-neutral-950 p-3">
-                                          <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-black/20">
+                                          <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white">
                                             {game.svgPath ? (
                                               <img src={`${BASE_PATH}${game.svgPath}`} alt={`${word} drawing`} className="h-full w-full object-contain" />
                                             ) : (
