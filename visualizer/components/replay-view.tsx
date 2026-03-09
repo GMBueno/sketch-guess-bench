@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import replayData from "../data/replay-data.json";
 import { ModelFilterBar, useVisibleRunIds } from "@/components/model-filter-bar";
@@ -56,6 +57,15 @@ type SlotId = "a" | "b" | "c";
 const SLOT_IDS: SlotId[] = ["a", "b", "c"];
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
+function slugify(value: string) {
+  return value
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function formatRunLabel(run: ReplayRun) {
   return run.model;
 }
@@ -86,8 +96,56 @@ function splitGuesses(guesses: string[], columnSize = 10) {
   return [guesses.slice(0, columnSize), guesses.slice(columnSize, columnSize * 2)];
 }
 
+function buildRunSlugMap(runs: ReplayRun[]) {
+  const slugCounts = new Map<string, number>();
+  const runSlugEntries = runs.map((run) => {
+    const baseSlug = slugify(run.model);
+    const count = slugCounts.get(baseSlug) || 0;
+    slugCounts.set(baseSlug, count + 1);
+    const slug = count === 0 ? baseSlug : `${baseSlug}-${run.runId.slice(0, 8)}`;
+    return [run.runId, slug] as const;
+  });
+
+  return new Map(runSlugEntries);
+}
+
+function resolveRequestedRunId(
+  value: string | null,
+  runs: ReplayRun[],
+  runSlugMap: Map<string, string>
+) {
+  if (!value) return null;
+
+  const normalizedValue = value.trim().toLowerCase();
+  const slugMatch = runs.find((run) => runSlugMap.get(run.runId) === normalizedValue);
+  if (slugMatch) return slugMatch.runId;
+
+  const runIdMatch = runs.find((run) => run.runId.toLowerCase() === normalizedValue);
+  if (runIdMatch) return runIdMatch.runId;
+
+  const modelIdMatch = runs.find((run) => run.modelId?.toLowerCase() === normalizedValue);
+  if (modelIdMatch) return modelIdMatch.runId;
+
+  const modelSlugMatch = runs.find((run) => slugify(run.model) === normalizedValue);
+  return modelSlugMatch?.runId || null;
+}
+
+function resolveRequestedWord(value: string | null, wordBank: string[]) {
+  if (!value) return null;
+
+  const normalizedValue = value.trim().toLowerCase();
+  const exactMatch = wordBank.find((word) => word.toLowerCase() === normalizedValue);
+  if (exactMatch) return exactMatch;
+
+  const slugMatch = wordBank.find((word) => slugify(word) === normalizedValue);
+  return slugMatch || null;
+}
+
 export function ReplayView() {
   const { runs } = replayData as ReplayPayload;
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const sortedRuns = useMemo(
     () =>
       runs.slice().sort((a, b) => {
@@ -96,6 +154,16 @@ export function ReplayView() {
         return a.model.localeCompare(b.model);
       }),
     [runs]
+  );
+  const runSlugMap = useMemo(() => buildRunSlugMap(sortedRuns), [sortedRuns]);
+  const requestedRunIds = useMemo(
+    () =>
+      compactRunSlots({
+        a: resolveRequestedRunId(searchParams.get("runA"), sortedRuns, runSlugMap),
+        b: resolveRequestedRunId(searchParams.get("runB"), sortedRuns, runSlugMap),
+        c: resolveRequestedRunId(searchParams.get("runC"), sortedRuns, runSlugMap),
+      }),
+    [runSlugMap, searchParams, sortedRuns]
   );
   const filterOptions = useMemo(
     () => sortedRuns.map((run) => ({
@@ -110,11 +178,28 @@ export function ReplayView() {
     [sortedRuns, modelFilter.selectedSet]
   );
   const [selectedRunIds, setSelectedRunIds] = useState<Record<SlotId, string | null>>({
-    a: sortedRuns[0]?.runId || null,
-    b: null,
-    c: null,
+    a: requestedRunIds.a || sortedRuns[0]?.runId || null,
+    b: requestedRunIds.b,
+    c: requestedRunIds.c,
   });
   const [activeWord, setActiveWord] = useState<string | null>(null);
+  const pendingWordSyncRef = useRef<string | null | undefined>(undefined);
+
+  useEffect(() => {
+    setSelectedRunIds((current) => {
+      const next = compactRunSlots({
+        a: requestedRunIds.a || current.a || sortedRuns[0]?.runId || null,
+        b: requestedRunIds.b,
+        c: requestedRunIds.c,
+      });
+
+      if (next.a === current.a && next.b === current.b && next.c === current.c) {
+        return current;
+      }
+
+      return next;
+    });
+  }, [requestedRunIds, sortedRuns]);
 
   useEffect(() => {
     setSelectedRunIds((current) => {
@@ -136,10 +221,80 @@ export function ReplayView() {
     .filter((entry): entry is { slotId: SlotId; run: ReplayRun } => Boolean(entry.run));
 
   const wordOrder = selectedRuns[0]?.run.wordBank || [];
+  const requestedWord = useMemo(
+    () => resolveRequestedWord(searchParams.get("word"), wordOrder),
+    [searchParams, wordOrder]
+  );
   const runMaps = useMemo(
     () => new Map(selectedRuns.map(({ slotId, run }) => [slotId, buildRunMap(run)])),
     [selectedRuns]
   );
+
+  useEffect(() => {
+    if (!selectedRunIds.a) return;
+
+    const params = new URLSearchParams(searchParams.toString());
+    const currentQuery = compactRunSlots({
+      a: searchParams.get("runA"),
+      b: searchParams.get("runB"),
+      c: searchParams.get("runC"),
+    });
+    const nextQuery = compactRunSlots({
+      a: selectedRunIds.a ? runSlugMap.get(selectedRunIds.a) || selectedRunIds.a : null,
+      b: selectedRunIds.b ? runSlugMap.get(selectedRunIds.b) || selectedRunIds.b : null,
+      c: selectedRunIds.c ? runSlugMap.get(selectedRunIds.c) || selectedRunIds.c : null,
+    });
+    const currentWord = searchParams.get("word");
+
+    if (
+      currentQuery.a === nextQuery.a &&
+      currentQuery.b === nextQuery.b &&
+      currentQuery.c === nextQuery.c &&
+      currentWord === activeWord
+    ) {
+      return;
+    }
+
+    if (nextQuery.a) params.set("runA", nextQuery.a);
+    else params.delete("runA");
+
+    if (nextQuery.b) params.set("runB", nextQuery.b);
+    else params.delete("runB");
+
+    if (nextQuery.c) params.set("runC", nextQuery.c);
+    else params.delete("runC");
+
+    if (activeWord) params.set("word", activeWord);
+    else params.delete("word");
+
+    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
+    router.replace(nextUrl, { scroll: false });
+  }, [activeWord, pathname, router, runSlugMap, searchParams, selectedRunIds]);
+
+  useEffect(() => {
+    if (!wordOrder.length) {
+      if (activeWord) setActiveWord(null);
+      return;
+    }
+
+    if (pendingWordSyncRef.current !== undefined) {
+      if (requestedWord === pendingWordSyncRef.current) {
+        pendingWordSyncRef.current = undefined;
+      }
+      return;
+    }
+
+    if (!requestedWord) {
+      if (searchParams.get("word") && activeWord) {
+        setActiveWord(null);
+      }
+      return;
+    }
+
+    if (requestedWord !== activeWord) {
+      setActiveWord(requestedWord);
+    }
+  }, [activeWord, requestedWord, searchParams, wordOrder]);
 
   const availableRunOptions = (slotId: SlotId) =>
     visibleRuns.filter((run) => {
@@ -151,6 +306,11 @@ export function ReplayView() {
 
   const handleRunChange = (slotId: SlotId, runId: string) => {
     setSelectedRunIds((current) => ({ ...current, [slotId]: runId }));
+  };
+
+  const syncWordQuery = (word: string | null) => {
+    pendingWordSyncRef.current = word;
+    setActiveWord(word);
   };
 
   const addRun = () => {
@@ -173,7 +333,7 @@ export function ReplayView() {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setActiveWord(null);
+        syncWordQuery(null);
       }
     };
 
@@ -276,7 +436,7 @@ export function ReplayView() {
                             "cursor-pointer bg-white/[0.03] text-neutral-200 transition-colors hover:bg-white/[0.07]",
                             activeWord === word && "bg-white/[0.07]"
                           )}
-                          onClick={() => setActiveWord(word)}
+                          onClick={() => syncWordQuery(word)}
                         >
                             <TableCell className="font-medium text-white">{word}</TableCell>
                             {selectedRuns.map(({ slotId, run }) => {
@@ -307,7 +467,7 @@ export function ReplayView() {
       {activeWord ? (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/75 px-3 py-4 backdrop-blur-sm sm:px-6 sm:py-8"
-          onClick={() => setActiveWord(null)}
+          onClick={() => syncWordQuery(null)}
         >
           <div
             className="w-full max-w-6xl rounded-[28px] border border-white/10 bg-neutral-950/95 p-4 shadow-2xl sm:p-6"
@@ -318,7 +478,7 @@ export function ReplayView() {
                 <span className="mt-2 text-2xl font-semibold text-gray-400 sm:text-3xl">word: </span>
                 <span className="mt-2 text-2xl font-semibold text-white sm:text-3xl">{activeWord}</span>
               </div>
-              <Button type="button" variant="outline" onClick={() => setActiveWord(null)}>
+              <Button type="button" variant="outline" onClick={() => syncWordQuery(null)}>
                 Close
               </Button>
             </div>

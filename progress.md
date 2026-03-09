@@ -39,3 +39,7 @@ Original prompt: tem um jogo na tv brasileira que é assim: duas pessoas jogando
 - Fixed GitHub Pages custom-domain export: visualizer base path is now opt-in via `NEXT_PUBLIC_BASE_PATH` instead of automatically forcing `/sketch-guess-bench` on every Actions build.
 
 - Updated replay page UX: clicking a word row now opens a modal popup with larger images and guesses below the image in a two-column layout, designed to stay usable on mobile.
+
+- Added replay deep links: `/replay` now reads and writes `runA`/`runB`/`runC` query params using shareable model slugs (with fallbacks for raw runId/modelId).
+
+- Extended replay deep links with `word=` so shared URLs can open a specific word modal directly and clear it again when the modal closes.
