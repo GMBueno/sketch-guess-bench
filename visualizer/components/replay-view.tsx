@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import replayData from "../data/replay-data.json";
 import { ModelFilterBar, useVisibleRunIds } from "@/components/model-filter-bar";
@@ -82,6 +82,10 @@ function compactRunSlots(runIds: Record<SlotId, string | null>) {
   } satisfies Record<SlotId, string | null>;
 }
 
+function splitGuesses(guesses: string[], columnSize = 10) {
+  return [guesses.slice(0, columnSize), guesses.slice(columnSize, columnSize * 2)];
+}
+
 export function ReplayView() {
   const { runs } = replayData as ReplayPayload;
   const sortedRuns = useMemo(
@@ -110,7 +114,7 @@ export function ReplayView() {
     b: null,
     c: null,
   });
-  const [expandedWord, setExpandedWord] = useState<string | null>(sortedRuns[0]?.games[0]?.targetWord || null);
+  const [activeWord, setActiveWord] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedRunIds((current) => {
@@ -147,10 +151,6 @@ export function ReplayView() {
 
   const handleRunChange = (slotId: SlotId, runId: string) => {
     setSelectedRunIds((current) => ({ ...current, [slotId]: runId }));
-    if (!expandedWord) {
-      const run = visibleRuns.find((item) => item.runId === runId);
-      setExpandedWord(run?.games[0]?.targetWord || null);
-    }
   };
 
   const addRun = () => {
@@ -167,6 +167,25 @@ export function ReplayView() {
     if (slotId === "a") return;
     setSelectedRunIds((current) => compactRunSlots({ ...current, [slotId]: null }));
   };
+
+  useEffect(() => {
+    if (!activeWord) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveWord(null);
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeWord]);
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
@@ -190,7 +209,7 @@ export function ReplayView() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead rowSpan={2} className="w-[140px] align-bottom pb-4">Word</TableHead>
+                      <TableHead rowSpan={2} className="w-[140px] align-bottom pb-2">Word</TableHead>
                       {SLOT_IDS.map((slotId, index) => {
                         const runId = selectedRunIds[slotId];
                         const run = runs.find((item) => item.runId === runId) || null;
@@ -250,10 +269,15 @@ export function ReplayView() {
                   </TableHeader>
                   <TableBody>
                     {wordOrder.map((word) => {
-                      const expanded = expandedWord === word;
                       return (
-                        <Fragment key={word}>
-                          <TableRow key={word} className={cn("cursor-pointer bg-white/[0.03] text-neutral-200", expanded && "bg-white/[0.05]")} onClick={() => setExpandedWord((current) => current === word ? null : word)}>
+                        <TableRow
+                          key={word}
+                          className={cn(
+                            "cursor-pointer bg-white/[0.03] text-neutral-200 transition-colors hover:bg-white/[0.07]",
+                            activeWord === word && "bg-white/[0.07]"
+                          )}
+                          onClick={() => setActiveWord(word)}
+                        >
                             <TableCell className="font-medium text-white">{word}</TableCell>
                             {selectedRuns.map(({ slotId, run }) => {
                               const game = runMaps.get(slotId)?.get(word);
@@ -271,40 +295,6 @@ export function ReplayView() {
                               );
                             })}
                           </TableRow>
-                          {expanded ? (
-                            <TableRow key={`${word}-expanded`} className="bg-black/20 text-neutral-200">
-                              <TableCell className="align-top text-neutral-500">Details</TableCell>
-                              {selectedRuns.map(({ slotId }) => {
-                                const game = runMaps.get(slotId)?.get(word);
-                                return (
-                                  <TableCell key={`${slotId}-${word}-expanded`} className="align-top">
-                                    {game ? (
-                                      <div className="grid items-start gap-4 py-2 lg:grid-cols-[180px_minmax(0,1fr)]">
-                                        <div className="self-start rounded-2xl border border-white/10 bg-neutral-950 p-3">
-                                          <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white">
-                                            {game.svgPath ? (
-                                              <img src={`${BASE_PATH}${game.svgPath}`} alt={`${word} drawing`} className="h-full w-full object-contain" />
-                                            ) : (
-                                              <div className="text-xs text-neutral-500">No SVG saved</div>
-                                            )}
-                                          </div>
-                                        </div>
-                                        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-sm leading-6 text-neutral-300">
-                                          {game.guesses.map((guess, index) => {
-                                            const matched = guess.toLowerCase() === word.toLowerCase();
-                                            return (
-                                              <div key={`${guess}-${index}`} className={cn(matched && "text-green-300")}>{index + 1}. {guess}</div>
-                                            );
-                                          })}
-                                        </div>
-                                      </div>
-                                    ) : null}
-                                  </TableCell>
-                                );
-                              })}
-                            </TableRow>
-                          ) : null}
-                        </Fragment>
                       );
                     })}
                   </TableBody>
@@ -314,6 +304,102 @@ export function ReplayView() {
           </CardContent>
         </Card>
       </div>
+      {activeWord ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/75 px-3 py-4 backdrop-blur-sm sm:px-6 sm:py-8"
+          onClick={() => setActiveWord(null)}
+        >
+          <div
+            className="w-full max-w-6xl rounded-[28px] border border-white/10 bg-neutral-950/95 p-4 shadow-2xl sm:p-6"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-5 flex items-start justify-between gap-4">
+              <div>
+                <span className="mt-2 text-2xl font-semibold text-gray-400 sm:text-3xl">word: </span>
+                <span className="mt-2 text-2xl font-semibold text-white sm:text-3xl">{activeWord}</span>
+              </div>
+              <Button type="button" variant="outline" onClick={() => setActiveWord(null)}>
+                Close
+              </Button>
+            </div>
+            <div
+              className={cn(
+                "grid gap-4",
+                selectedRuns.length === 1 && "mx-auto w-full max-w-2xl grid-cols-1",
+                selectedRuns.length === 2 && "mx-auto w-full max-w-5xl grid-cols-1 lg:grid-cols-2",
+                selectedRuns.length >= 3 && "grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+              )}
+            >
+              {selectedRuns.map(({ slotId, run }) => {
+                const game = runMaps.get(slotId)?.get(activeWord);
+                if (!game) return null;
+
+                const guessColumns = splitGuesses(game.guesses);
+                const singleRunSelected = selectedRuns.length === 1;
+
+                return (
+                  <div
+                    key={`${slotId}-${activeWord}-modal`}
+                    className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4 sm:p-5"
+                  >
+                      <div>
+                        <div className="mt-2 text-md font-semibold text-white">{run.model}</div>
+                      </div>
+                      <div className="text-sm text-neutral-400 mb-2">
+                        <span className={getStatusClass(game.solved)}>{game.solved ? "Solved" : "Missed"}</span>
+                        <span className="ml-2">({game.penalizedGuesses > 1 ? `${game.penalizedGuesses} guesses` : `${game.penalizedGuesses} guess`})</span>
+                      </div>
+
+                    <div
+                      className={cn(
+                        "mx-auto w-full",
+                        singleRunSelected
+                          ? "max-w-4xl sm:grid sm:grid-cols-[minmax(0,360px)_minmax(0,1fr)] sm:items-start sm:gap-4"
+                          : "max-w-[160px] sm:max-w-[360px]"
+                      )}
+                    >
+                      <div className="rounded-[22px]">
+                        <div className="mx-auto flex aspect-square w-full max-w-[160px] items-center justify-center overflow-hidden rounded-[18px] bg-white sm:max-w-[360px]">
+                          {game.svgPath ? (
+                            <img
+                              src={`${BASE_PATH}${game.svgPath}`}
+                              alt={`${activeWord} drawing`}
+                              className="h-full w-full object-contain"
+                            />
+                          ) : (
+                            <div className="text-xs text-neutral-500">No SVG saved</div>
+                          )}
+                        </div>
+                      </div>
+                      <div className={cn("mt-2 rounded-[22px] p-4", singleRunSelected && "sm:mt-0")}>
+                        <div className="grid grid-cols-2 gap-3 text-sm leading-6 text-neutral-300">
+                          {guessColumns.map((column, columnIndex) => (
+                            <div key={`${slotId}-${activeWord}-col-${columnIndex}`} className="space-y-1">
+                              {column.length ? (
+                                column.map((guess, index) => {
+                                  const guessNumber = columnIndex * 10 + index + 1;
+                                  const matched = guess.toLowerCase() === activeWord.toLowerCase();
+                                  return (
+                                    <div key={`${guess}-${guessNumber}`} className={cn("break-words", matched && "text-green-300")}>
+                                      {guessNumber}. {guess}
+                                    </div>
+                                  );
+                                })
+                              ) : (
+                                <div className="text-neutral-600">-</div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }
