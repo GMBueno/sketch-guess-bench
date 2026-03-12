@@ -1,10 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
-import replayData from "../data/replay-data.json";
 import { ModelFilterBar, useVisibleRunIds } from "@/components/model-filter-bar";
+import {
+  buildRunSlugMap,
+  getReplaySharePagePath,
+  getSortedReplayRuns,
+  resolveRequestedRunId,
+  resolveRequestedWord,
+  type ReplayRun,
+  slugify,
+} from "@/lib/replay-share";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,53 +26,10 @@ import {
 } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-interface ReplayGame {
-  targetWord: string;
-  solved: boolean;
-  guessesUsed: number;
-  penalizedGuesses: number;
-  totalCostUsd: number;
-  totalRequestMs: number;
-  totalRequests: number;
-  svgPath: string | null;
-  guesses: string[];
-}
+type SlotId = "a" | "b";
 
-interface ReplayRun {
-  model: string;
-  modelId: string | null;
-  runId: string;
-  completedAt: string | null;
-  solvedCount: number;
-  failedCount: number;
-  totalWords: number;
-  totalGuesses: number;
-  averageGuesses: number;
-  totalCostUsd: number;
-  totalRequestMs: number;
-  totalRequests: number;
-  games: ReplayGame[];
-  wordBank: string[];
-}
-
-interface ReplayPayload {
-  generatedAt: string;
-  runs: ReplayRun[];
-}
-
-type SlotId = "a" | "b" | "c";
-
-const SLOT_IDS: SlotId[] = ["a", "b", "c"];
+const SLOT_IDS: SlotId[] = ["a", "b"];
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
-function slugify(value: string) {
-  return value
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
 
 function formatRunLabel(run: ReplayRun) {
   return run.model;
@@ -88,7 +53,6 @@ function compactRunSlots(runIds: Record<SlotId, string | null>) {
   return {
     a: ordered[0] || null,
     b: ordered[1] || null,
-    c: ordered[2] || null,
   } satisfies Record<SlotId, string | null>;
 }
 
@@ -96,74 +60,32 @@ function splitGuesses(guesses: string[], columnSize = 10) {
   return [guesses.slice(0, columnSize), guesses.slice(columnSize, columnSize * 2)];
 }
 
-function buildRunSlugMap(runs: ReplayRun[]) {
-  const slugCounts = new Map<string, number>();
-  const runSlugEntries = runs.map((run) => {
-    const baseSlug = slugify(run.model);
-    const count = slugCounts.get(baseSlug) || 0;
-    slugCounts.set(baseSlug, count + 1);
-    const slug = count === 0 ? baseSlug : `${baseSlug}-${run.runId.slice(0, 8)}`;
-    return [run.runId, slug] as const;
-  });
-
-  return new Map(runSlugEntries);
+interface ReplayViewProps {
+  initialParams?: {
+    runA?: string | null;
+    runB?: string | null;
+    word?: string | null;
+    syncUrl?: boolean;
+  };
 }
 
-function resolveRequestedRunId(
-  value: string | null,
-  runs: ReplayRun[],
-  runSlugMap: Map<string, string>
-) {
-  if (!value) return null;
-
-  const normalizedValue = value.trim().toLowerCase();
-  const slugMatch = runs.find((run) => runSlugMap.get(run.runId) === normalizedValue);
-  if (slugMatch) return slugMatch.runId;
-
-  const runIdMatch = runs.find((run) => run.runId.toLowerCase() === normalizedValue);
-  if (runIdMatch) return runIdMatch.runId;
-
-  const modelIdMatch = runs.find((run) => run.modelId?.toLowerCase() === normalizedValue);
-  if (modelIdMatch) return modelIdMatch.runId;
-
-  const modelSlugMatch = runs.find((run) => slugify(run.model) === normalizedValue);
-  return modelSlugMatch?.runId || null;
-}
-
-function resolveRequestedWord(value: string | null, wordBank: string[]) {
-  if (!value) return null;
-
-  const normalizedValue = value.trim().toLowerCase();
-  const exactMatch = wordBank.find((word) => word.toLowerCase() === normalizedValue);
-  if (exactMatch) return exactMatch;
-
-  const slugMatch = wordBank.find((word) => slugify(word) === normalizedValue);
-  return slugMatch || null;
-}
-
-export function ReplayView() {
-  const { runs } = replayData as ReplayPayload;
-  const router = useRouter();
+export function ReplayView({ initialParams }: ReplayViewProps = {}) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const sortedRuns = useMemo(
-    () =>
-      runs.slice().sort((a, b) => {
-        if (b.solvedCount !== a.solvedCount) return b.solvedCount - a.solvedCount;
-        if (a.totalGuesses !== b.totalGuesses) return a.totalGuesses - b.totalGuesses;
-        return a.model.localeCompare(b.model);
-      }),
-    [runs]
-  );
+  const safePathname = pathname || "/replay";
+  const getSearchParam = (key: string) => searchParams?.get(key) ?? null;
+  const sortedRuns = useMemo(() => getSortedReplayRuns(), []);
   const runSlugMap = useMemo(() => buildRunSlugMap(sortedRuns), [sortedRuns]);
+  const syncUrl = initialParams?.syncUrl !== false;
+  const requestedRunParamA = getSearchParam("runA") ?? initialParams?.runA ?? null;
+  const requestedRunParamB = getSearchParam("runB") ?? initialParams?.runB ?? null;
   const requestedRunIds = useMemo(
     () =>
       compactRunSlots({
-        a: resolveRequestedRunId(searchParams.get("runA"), sortedRuns, runSlugMap),
-        b: resolveRequestedRunId(searchParams.get("runB"), sortedRuns, runSlugMap),
-        c: resolveRequestedRunId(searchParams.get("runC"), sortedRuns, runSlugMap),
+        a: resolveRequestedRunId(requestedRunParamA, sortedRuns, runSlugMap),
+        b: resolveRequestedRunId(requestedRunParamB, sortedRuns, runSlugMap),
       }),
-    [runSlugMap, searchParams, sortedRuns]
+    [requestedRunParamA, requestedRunParamB, runSlugMap, sortedRuns]
   );
   const filterOptions = useMemo(
     () => sortedRuns.map((run) => ({
@@ -180,20 +102,19 @@ export function ReplayView() {
   const [selectedRunIds, setSelectedRunIds] = useState<Record<SlotId, string | null>>({
     a: requestedRunIds.a || sortedRuns[0]?.runId || null,
     b: requestedRunIds.b,
-    c: requestedRunIds.c,
   });
   const [activeWord, setActiveWord] = useState<string | null>(null);
   const pendingWordSyncRef = useRef<string | null | undefined>(undefined);
+  const [shareStatus, setShareStatus] = useState<"idle" | "copied" | "error">("idle");
 
   useEffect(() => {
     setSelectedRunIds((current) => {
       const next = compactRunSlots({
         a: requestedRunIds.a || current.a || sortedRuns[0]?.runId || null,
         b: requestedRunIds.b,
-        c: requestedRunIds.c,
       });
 
-      if (next.a === current.a && next.b === current.b && next.c === current.c) {
+      if (next.a === current.a && next.b === current.b) {
         return current;
       }
 
@@ -206,7 +127,6 @@ export function ReplayView() {
       const next = compactRunSlots({
         a: visibleRuns.some((run) => run.runId === current.a) ? current.a : visibleRuns[0]?.runId || null,
         b: visibleRuns.some((run) => run.runId === current.b) ? current.b : null,
-        c: visibleRuns.some((run) => run.runId === current.c) ? current.c : null,
       });
       return next;
     });
@@ -221,55 +141,49 @@ export function ReplayView() {
     .filter((entry): entry is { slotId: SlotId; run: ReplayRun } => Boolean(entry.run));
 
   const wordOrder = selectedRuns[0]?.run.wordBank || [];
+  const requestedWordParam = getSearchParam("word") ?? initialParams?.word ?? null;
   const requestedWord = useMemo(
-    () => resolveRequestedWord(searchParams.get("word"), wordOrder),
-    [searchParams, wordOrder]
+    () => resolveRequestedWord(requestedWordParam, wordOrder),
+    [requestedWordParam, wordOrder]
   );
   const runMaps = useMemo(
     () => new Map(selectedRuns.map(({ slotId, run }) => [slotId, buildRunMap(run)])),
     [selectedRuns]
   );
+  const canonicalReplayState = useMemo(() => {
+    const runA = selectedRunIds.a ? runSlugMap.get(selectedRunIds.a) || selectedRunIds.a : null;
+    const runB = selectedRunIds.b ? runSlugMap.get(selectedRunIds.b) || selectedRunIds.b : null;
 
-  useEffect(() => {
-    if (!selectedRunIds.a) return;
+    return { runA, runB, word: activeWord };
+  }, [activeWord, runSlugMap, selectedRunIds]);
+  const queryReplayPath = useMemo(() => {
+    const params = new URLSearchParams();
+    if (canonicalReplayState.runA) params.set("runA", canonicalReplayState.runA);
+    if (canonicalReplayState.runB) params.set("runB", canonicalReplayState.runB);
+    if (canonicalReplayState.word) params.set("word", canonicalReplayState.word);
 
-    const params = new URLSearchParams(searchParams.toString());
-    const currentQuery = compactRunSlots({
-      a: searchParams.get("runA"),
-      b: searchParams.get("runB"),
-      c: searchParams.get("runC"),
-    });
-    const nextQuery = compactRunSlots({
-      a: selectedRunIds.a ? runSlugMap.get(selectedRunIds.a) || selectedRunIds.a : null,
-      b: selectedRunIds.b ? runSlugMap.get(selectedRunIds.b) || selectedRunIds.b : null,
-      c: selectedRunIds.c ? runSlugMap.get(selectedRunIds.c) || selectedRunIds.c : null,
-    });
-    const currentWord = searchParams.get("word");
-
-    if (
-      currentQuery.a === nextQuery.a &&
-      currentQuery.b === nextQuery.b &&
-      currentQuery.c === nextQuery.c &&
-      currentWord === activeWord
-    ) {
-      return;
+    const query = params.toString();
+    return query ? `${safePathname}?${query}` : safePathname;
+  }, [canonicalReplayState, safePathname]);
+  const sharePagePath = useMemo(() => {
+    if (!canonicalReplayState.word || !canonicalReplayState.runA) {
+      return null;
     }
 
-    if (nextQuery.a) params.set("runA", nextQuery.a);
-    else params.delete("runA");
+    return getReplaySharePagePath({
+      word: slugify(canonicalReplayState.word),
+      runA: canonicalReplayState.runA,
+      ...(canonicalReplayState.runB ? { runB: canonicalReplayState.runB } : {}),
+    });
+  }, [canonicalReplayState]);
+  const preferredAddressPath = sharePagePath ? `${BASE_PATH}${sharePagePath}` : queryReplayPath;
 
-    if (nextQuery.b) params.set("runB", nextQuery.b);
-    else params.delete("runB");
-
-    if (nextQuery.c) params.set("runC", nextQuery.c);
-    else params.delete("runC");
-
-    if (activeWord) params.set("word", activeWord);
-    else params.delete("word");
-
-    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
-    router.replace(nextUrl, { scroll: false });
-  }, [activeWord, pathname, router, runSlugMap, searchParams, selectedRunIds]);
+  useEffect(() => {
+    if (!syncUrl || typeof window === "undefined") return;
+    const currentUrl = `${window.location.pathname}${window.location.search}`;
+    if (currentUrl === preferredAddressPath) return;
+    window.history.replaceState(window.history.state, "", preferredAddressPath);
+  }, [preferredAddressPath, syncUrl]);
 
   useEffect(() => {
     if (!wordOrder.length) {
@@ -285,7 +199,7 @@ export function ReplayView() {
     }
 
     if (!requestedWord) {
-      if (searchParams.get("word") && activeWord) {
+      if (requestedWordParam && activeWord) {
         setActiveWord(null);
       }
       return;
@@ -294,7 +208,7 @@ export function ReplayView() {
     if (requestedWord !== activeWord) {
       setActiveWord(requestedWord);
     }
-  }, [activeWord, requestedWord, searchParams, wordOrder]);
+  }, [activeWord, requestedWord, requestedWordParam, wordOrder]);
 
   const availableRunOptions = (slotId: SlotId) =>
     visibleRuns.filter((run) => {
@@ -311,6 +225,19 @@ export function ReplayView() {
   const syncWordQuery = (word: string | null) => {
     pendingWordSyncRef.current = word;
     setActiveWord(word);
+  };
+  const handleShare = async () => {
+    if (typeof window === "undefined") return;
+    const shareUrl = `${window.location.origin}${sharePagePath ? `${BASE_PATH}${sharePagePath}` : queryReplayPath}`;
+
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareStatus("copied");
+      window.setTimeout(() => setShareStatus("idle"), 2000);
+    } catch {
+      setShareStatus("error");
+      window.setTimeout(() => setShareStatus("idle"), 2500);
+    }
   };
 
   const addRun = () => {
@@ -360,8 +287,10 @@ export function ReplayView() {
         />
         <Card className="rounded-[28px]">
           <CardHeader>
-            <CardDescription>Replay</CardDescription>
-            <CardTitle>Run Comparison</CardTitle>
+            <div>
+              <CardDescription>Replay</CardDescription>
+              <CardTitle>Run Comparison</CardTitle>
+            </div>
           </CardHeader>
           <CardContent>
             <ScrollArea className="w-full whitespace-nowrap">
@@ -372,9 +301,9 @@ export function ReplayView() {
                       <TableHead rowSpan={2} className="w-[140px] align-bottom pb-2">Word</TableHead>
                       {SLOT_IDS.map((slotId, index) => {
                         const runId = selectedRunIds[slotId];
-                        const run = runs.find((item) => item.runId === runId) || null;
+                        const run = sortedRuns.find((item) => item.runId === runId) || null;
                         const canRemove = slotId !== "a" && Boolean(run);
-                        const canShowAdd = !run && index === activeSlots.length && activeSlots.length < 3;
+                        const canShowAdd = !run && index === activeSlots.length && activeSlots.length < 2;
 
                         return (
                           <TableHead key={slotId} className="min-w-[240px] align-top">
@@ -408,7 +337,7 @@ export function ReplayView() {
                                 </div>
                               </div>
                             ) : canShowAdd ? (
-                              <div className="flex h-full items-start pt-6">
+                              <div className="flex h-full items-center pt-8">
                                 <Button type="button" variant="outline" onClick={addRun}>+ Add Run</Button>
                               </div>
                             ) : null}
@@ -473,21 +402,25 @@ export function ReplayView() {
             className="w-full max-w-6xl rounded-[28px] border border-white/10 bg-neutral-950/95 p-4 shadow-2xl sm:p-6"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="mb-5 flex items-start justify-between gap-4">
+            <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
               <div>
                 <span className="mt-2 text-2xl font-semibold text-gray-400 sm:text-3xl">word: </span>
                 <span className="mt-2 text-2xl font-semibold text-white sm:text-3xl">{activeWord}</span>
               </div>
-              <Button type="button" variant="outline" onClick={() => syncWordQuery(null)}>
-                Close
-              </Button>
+              <div className="flex items-center gap-3">
+                <Button type="button" variant="outline" onClick={handleShare}>
+                  {shareStatus === "copied" ? "Copied" : shareStatus === "error" ? "Copy failed" : "Share link"}
+                </Button>
+                <Button type="button" variant="outline" onClick={() => syncWordQuery(null)}>
+                  Close
+                </Button>
+              </div>
             </div>
             <div
               className={cn(
                 "grid gap-4",
                 selectedRuns.length === 1 && "mx-auto w-full max-w-2xl grid-cols-1",
-                selectedRuns.length === 2 && "mx-auto w-full max-w-5xl grid-cols-1 lg:grid-cols-2",
-                selectedRuns.length >= 3 && "grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+                selectedRuns.length === 2 && "mx-auto w-full max-w-5xl grid-cols-1 lg:grid-cols-2"
               )}
             >
               {selectedRuns.map(({ slotId, run }) => {

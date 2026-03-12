@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { chromium } from "playwright";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,8 +16,18 @@ const VISUALIZER_REPLAY_ASSET_DIR = path.join(
   "replay_assets",
   "svgs"
 );
+const VISUALIZER_SHARE_PREVIEW_DIR = path.join(
+  ROOT_DIR,
+  "visualizer",
+  "public",
+  "replay_assets",
+  "share_previews"
+);
+const VISUALIZER_SHARE_HTML_DIR = path.join(ROOT_DIR, "visualizer", "public", "share", "replay");
 const BENCHMARK_OUTPUT_PATH = path.join(VISUALIZER_DATA_DIR, "benchmark-results.json");
 const REPLAY_OUTPUT_PATH = path.join(VISUALIZER_DATA_DIR, "replay-data.json");
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "";
 
 const DYNAMIC_MODEL_IDS = new Set(["google/gemini-3-flash-preview"]);
 const EFFORT_LABEL_MODEL_IDS = new Set(["google/gemini-3.1-flash-lite-preview"]);
@@ -254,9 +265,71 @@ function sanitizeSvgFileSegment(value) {
     .replace(/^-+|-+$/g, "") || "item";
 }
 
+function slugify(value) {
+  return String(value || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function sortReplayRunsForShare(runs) {
+  return runs.slice().sort((a, b) => {
+    if (b.solvedCount !== a.solvedCount) return b.solvedCount - a.solvedCount;
+    if (a.totalGuesses !== b.totalGuesses) return a.totalGuesses - b.totalGuesses;
+    return String(a.model).localeCompare(String(b.model));
+  });
+}
+
+function buildRunSlugMap(runs) {
+  const sortedRuns = sortReplayRunsForShare(runs);
+  const counts = new Map();
+  const slugs = new Map();
+
+  for (const run of sortedRuns) {
+    const baseSlug = slugify(run.model);
+    const count = counts.get(baseSlug) || 0;
+    counts.set(baseSlug, count + 1);
+    slugs.set(run.runId, count === 0 ? baseSlug : `${baseSlug}-${run.runId.slice(0, 8)}`);
+  }
+
+  return slugs;
+}
+
+function getSharePreviewImagePath({ word, runA, runB }) {
+  return runB
+    ? `/replay_assets/share_previews/${word}/${runA}__${runB}.png`
+    : `/replay_assets/share_previews/${word}/${runA}.png`;
+}
+
+function getSharePagePath({ word, runA, runB }) {
+  return runB
+    ? `/share/replay/${word}/${runA}/${runB}/`
+    : `/share/replay/${word}/${runA}/`;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 async function resetReplaySvgDir() {
   await fs.rm(VISUALIZER_REPLAY_ASSET_DIR, { recursive: true, force: true });
   await fs.mkdir(VISUALIZER_REPLAY_ASSET_DIR, { recursive: true });
+}
+
+async function resetReplaySharePreviewDir() {
+  await fs.rm(VISUALIZER_SHARE_PREVIEW_DIR, { recursive: true, force: true });
+  await fs.mkdir(VISUALIZER_SHARE_PREVIEW_DIR, { recursive: true });
+}
+
+async function resetReplayShareHtmlDir() {
+  await fs.rm(VISUALIZER_SHARE_HTML_DIR, { recursive: true, force: true });
+  await fs.mkdir(VISUALIZER_SHARE_HTML_DIR, { recursive: true });
 }
 
 async function writeReplaySvg(runId, targetWord, svg) {
@@ -272,6 +345,327 @@ async function writeReplaySvg(runId, targetWord, svg) {
   await fs.writeFile(filePath, svg, "utf8");
 
   return `/replay_assets/svgs/${safeRunId}/${fileName}`;
+}
+
+async function readReplaySvgMarkup(svgPath) {
+  if (!svgPath) return null;
+
+  const filePath = path.join(ROOT_DIR, "visualizer", "public", svgPath.replace(/^\/+/, ""));
+  try {
+    return await fs.readFile(filePath, "utf8");
+  } catch {
+    return null;
+  }
+}
+
+function buildSharePreviewMarkup({ word, leftRun, rightRun, leftGame, rightGame, leftSvg, rightSvg }) {
+  const renderCard = (run, game, svg) => `
+    <section class="card">
+      <div class="card-header">
+        <div class="model">${escapeHtml(run.model)}</div>
+        <div class="status ${game?.solved ? "solved" : "missed"}">${game?.solved ? "Solved" : "Missed"}</div>
+      </div>
+      <div class="image-wrap">
+        ${
+          svg
+            ? `<div class="svg-frame">${svg}</div>`
+            : `<div class="placeholder">No image saved</div>`
+        }
+      </div>
+    </section>
+  `;
+
+  return `<!doctype html>
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <style>
+        * { box-sizing: border-box; }
+        body {
+          margin: 0;
+          width: 1200px;
+          height: 630px;
+          overflow: hidden;
+          font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+          color: #fafafa;
+          background: linear-gradient(135deg, #2c2e34 0%, #16181a 100%);
+        }
+        .frame {
+          width: 100%;
+          height: 100%;
+          padding: 19px 42px 38px;
+          display: flex;
+          flex-direction: column;
+        }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 20px;
+          margin-bottom: 20px;
+          padding: 0 26px;
+        }
+        .eyebrow {
+          font-size: 22px;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: #a1a1aa;
+          text-align: right;
+          margin-top: 10px;
+        }
+        .word {
+          font-size: 55px;
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: 0.04em;
+          color: transparent;
+          background: linear-gradient(180deg, #f6f7f7 0%, #b3b8be 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          text-transform: uppercase;
+        }
+        .title-block {
+          display: flex;
+          flex: 1;
+          justify-content: flex-start;
+          min-width: 0;
+        }
+        .brand-block {
+          display: flex;
+          flex: 1;
+          justify-content: flex-end;
+          min-width: 0;
+        }
+        .grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          flex: 1;
+          align-items: start;
+        }
+        .card {
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+          border: 1px solid #7e838a;
+          border-radius: 22px;
+          background: rgba(255,255,255,0.04);
+          padding: 16px;
+          transform: scale(0.9);
+          transform-origin: top center;
+        }
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+        }
+        .model {
+          font-size: 20px;
+          font-weight: 600;
+        }
+        .status {
+          font-size: 14px;
+          font-weight: 700;
+          color: #ffffff;
+          padding: 8px 12px;
+          border-radius: 999px;
+          line-height: 1;
+        }
+        .status.solved {
+          background: #349c4e;
+          box-shadow: 0 0 18px rgba(52, 156, 78, 0.45);
+        }
+        .status.missed {
+          background: #c01932;
+          box-shadow: 0 0 18px rgba(192, 25, 50, 0.45);
+        }
+        .image-wrap {
+          flex: 1;
+          margin-top: 12px;
+          border-radius: 18px;
+          background: #f5f5f5;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 16px;
+          min-height: 0;
+        }
+        .svg-frame {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 0;
+        }
+        .image-wrap svg {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+          width: auto !important;
+          height: auto !important;
+        }
+        .placeholder {
+          color: #71717a;
+          font-size: 19px;
+        }
+      </style>
+    </head>
+    <body>
+      <main class="frame">
+        <header class="header">
+          <div class="title-block">
+            <div class="word">${escapeHtml(word)}</div>
+          </div>
+          <div class="brand-block">
+            <div class="eyebrow">SketchBench Replay</div>
+          </div>
+        </header>
+        <section class="grid">
+          ${renderCard(leftRun, leftGame, leftSvg)}
+          ${renderCard(rightRun, rightGame, rightSvg)}
+        </section>
+      </main>
+    </body>
+  </html>`;
+}
+
+async function generateReplaySharePreviews(runs) {
+  if (!runs.length) return;
+
+  const runSlugMap = buildRunSlugMap(runs);
+  const wordBank = runs[0]?.wordBank || [];
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
+
+  try {
+    for (const word of wordBank) {
+      const wordSlug = slugify(word);
+      const wordDir = path.join(VISUALIZER_SHARE_PREVIEW_DIR, wordSlug);
+      await fs.mkdir(wordDir, { recursive: true });
+
+      for (const leftRun of runs) {
+        for (const rightRun of runs) {
+          if (leftRun.runId === rightRun.runId) continue;
+
+          const leftGame = leftRun.games.find((game) => game.targetWord === word) || null;
+          const rightGame = rightRun.games.find((game) => game.targetWord === word) || null;
+          const [leftSvg, rightSvg] = await Promise.all([
+            readReplaySvgMarkup(leftGame?.svgPath || null),
+            readReplaySvgMarkup(rightGame?.svgPath || null),
+          ]);
+
+          const html = buildSharePreviewMarkup({
+            word,
+            leftRun,
+            rightRun,
+            leftGame,
+            rightGame,
+            leftSvg,
+            rightSvg,
+          });
+          const leftSlug = runSlugMap.get(leftRun.runId) || leftRun.runId;
+          const rightSlug = runSlugMap.get(rightRun.runId) || rightRun.runId;
+          const outputPath = path.join(wordDir, `${leftSlug}__${rightSlug}.png`);
+
+          await page.setContent(html, { waitUntil: "load" });
+          await page.screenshot({ path: outputPath, type: "png" });
+        }
+      }
+    }
+  } finally {
+    await browser.close();
+  }
+}
+
+function toAbsoluteUrl(relativePath) {
+  if (!SITE_URL) return `${BASE_PATH}${relativePath}`;
+  return new URL(`${BASE_PATH}${relativePath}`, SITE_URL).toString();
+}
+
+async function writeReplayShareLandingPages(runs) {
+  if (!runs.length) return;
+
+  const runSlugMap = buildRunSlugMap(runs);
+  const wordBank = runs[0]?.wordBank || [];
+  const writeLandingPage = async ({ word, wordSlug, leftRun, rightRun = null }) => {
+    const leftSlug = runSlugMap.get(leftRun.runId) || leftRun.runId;
+    const rightSlug = rightRun ? runSlugMap.get(rightRun.runId) || rightRun.runId : null;
+    const dirPath = rightSlug
+      ? path.join(VISUALIZER_SHARE_HTML_DIR, wordSlug, leftSlug, rightSlug)
+      : path.join(VISUALIZER_SHARE_HTML_DIR, wordSlug, leftSlug);
+    const replayUrl = rightSlug
+      ? `${BASE_PATH}/replay/?runA=${leftSlug}&runB=${rightSlug}&word=${wordSlug}`
+      : `${BASE_PATH}/replay/?runA=${leftSlug}&word=${wordSlug}`;
+    const imageQuery = rightSlug ? { word: wordSlug, runA: leftSlug, runB: rightSlug } : { word: wordSlug, runA: leftSlug };
+    const imagePath = getSharePreviewImagePath(imageQuery);
+    const pagePath = getSharePagePath(imageQuery);
+    const title = rightRun
+      ? `${word}: ${leftRun.model} vs ${rightRun.model}`
+      : `${word}: ${leftRun.model}`;
+    const description = rightRun
+      ? `Compare how ${leftRun.model} and ${rightRun.model} drew "${word}" in SketchBench.`
+      : `See how ${leftRun.model} drew "${word}" in SketchBench.`;
+    const html = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>${escapeHtml(title)}</title>
+    <meta name="description" content="${escapeHtml(description)}" />
+    <meta property="og:title" content="${escapeHtml(title)}" />
+    <meta property="og:description" content="${escapeHtml(description)}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="${escapeHtml(toAbsoluteUrl(imagePath))}" />
+    <meta property="og:url" content="${escapeHtml(toAbsoluteUrl(pagePath))}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(title)}" />
+    <meta name="twitter:description" content="${escapeHtml(description)}" />
+    <meta name="twitter:image" content="${escapeHtml(toAbsoluteUrl(imagePath))}" />
+    <meta http-equiv="refresh" content="0; url=${escapeHtml(replayUrl)}" />
+    <link rel="canonical" href="${escapeHtml(toAbsoluteUrl(pagePath))}" />
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #09090b;
+        color: #fafafa;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        text-align: center;
+        padding: 24px;
+      }
+      p { color: #a1a1aa; }
+      a { color: #fafafa; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>${escapeHtml(title)}</h1>
+      <p>${escapeHtml(description)}</p>
+      <a href="${escapeHtml(replayUrl)}">Open replay</a>
+    </main>
+  </body>
+</html>`;
+
+    await fs.mkdir(dirPath, { recursive: true });
+    await fs.writeFile(path.join(dirPath, "index.html"), html, "utf8");
+  };
+
+  for (const word of wordBank) {
+    const wordSlug = slugify(word);
+
+    for (const leftRun of runs) {
+      await writeLandingPage({ word, wordSlug, leftRun });
+
+      for (const rightRun of runs) {
+        if (leftRun.runId === rightRun.runId) continue;
+        await writeLandingPage({ word, wordSlug, leftRun, rightRun });
+      }
+    }
+  }
 }
 
 async function buildReplayRuns(benchmarks, rankingByRunId) {
@@ -339,10 +733,14 @@ async function main() {
   const rankingByRunId = new Map(rankings.map((ranking) => [ranking.runId, ranking]));
   const metadata = buildMetadata(rankings);
   await resetReplaySvgDir();
+  await resetReplaySharePreviewDir();
+  await resetReplayShareHtmlDir();
   const replay = {
     generatedAt: metadata.timestamp,
     runs: await buildReplayRuns(benchmarks, rankingByRunId),
   };
+  await generateReplaySharePreviews(replay.runs);
+  await writeReplayShareLandingPages(replay.runs);
 
   await fs.mkdir(VISUALIZER_DATA_DIR, { recursive: true });
   await fs.writeFile(BENCHMARK_OUTPUT_PATH, JSON.stringify({ rankings, metadata }, null, 2), "utf8");

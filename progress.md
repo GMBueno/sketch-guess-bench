@@ -43,3 +43,9 @@ Original prompt: tem um jogo na tv brasileira que é assim: duas pessoas jogando
 - Added replay deep links: `/replay` now reads and writes `runA`/`runB`/`runC` query params using shareable model slugs (with fallbacks for raw runId/modelId).
 
 - Extended replay deep links with `word=` so shared URLs can open a specific word modal directly and clear it again when the modal closes.
+
+- Added a static social-share route for replay cards with generated OG/Twitter images showing the selected word drawings side by side.
+
+- Refined static share-page plan: canonical share URLs now support 1-run and 2-run pages, and the generator writes directory-style landing pages for both without needing to regenerate preview assets yet.
+
+- Added share-link UX: replay now exposes a Share link button and mirrors shareable 1-run/2-run word states into the address bar via history.replaceState without reloading.
