@@ -32,6 +32,7 @@ const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "";
 const REPLAY_SHARE_PREVIEW_MODE = process.env.REPLAY_SHARE_PREVIEW_MODE || "all";
 const REPLAY_SHARE_SKIP_HTML = process.env.REPLAY_SHARE_SKIP_HTML === "1";
+const REPLAY_SHARE_TARGET_WORD = (process.env.REPLAY_SHARE_TARGET_WORD || "").trim().toLowerCase();
 const SHARE_PREVIEW_JPEG_WIDTH = 600;
 const SHARE_PREVIEW_JPEG_QUALITY = "50";
 const execFileAsync = promisify(execFile);
@@ -584,7 +585,9 @@ async function generateReplaySharePreviews(runs, mode = "all") {
   if (!runs.length) return;
 
   const runSlugMap = buildRunSlugMap(runs);
-  const wordBank = runs[0]?.wordBank || [];
+  const wordBank = (runs[0]?.wordBank || []).filter(
+    (word) => !REPLAY_SHARE_TARGET_WORD || slugify(word) === REPLAY_SHARE_TARGET_WORD
+  );
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
 
@@ -658,7 +661,9 @@ async function writeReplayShareLandingPages(runs) {
   if (!runs.length) return;
 
   const runSlugMap = buildRunSlugMap(runs);
-  const wordBank = runs[0]?.wordBank || [];
+  const wordBank = (runs[0]?.wordBank || []).filter(
+    (word) => !REPLAY_SHARE_TARGET_WORD || slugify(word) === REPLAY_SHARE_TARGET_WORD
+  );
   const writeLandingPage = async ({ word, wordSlug, leftRun, rightRun = null }) => {
     const leftSlug = runSlugMap.get(leftRun.runId) || leftRun.runId;
     const rightSlug = rightRun ? runSlugMap.get(rightRun.runId) || rightRun.runId : null;
@@ -801,14 +806,34 @@ async function main() {
   const rankings = sortRankings(await Promise.all(benchmarks.map(toRankingEntry)));
   const rankingByRunId = new Map(rankings.map((ranking) => [ranking.runId, ranking]));
   const metadata = buildMetadata(rankings);
-  await resetReplaySvgDir();
-  if (REPLAY_SHARE_PREVIEW_MODE === "all") {
+  const partialWordRefresh = Boolean(REPLAY_SHARE_TARGET_WORD);
+
+  if (!partialWordRefresh) {
+    await resetReplaySvgDir();
+  } else {
+    await fs.mkdir(VISUALIZER_REPLAY_ASSET_DIR, { recursive: true });
+  }
+  if (REPLAY_SHARE_PREVIEW_MODE === "all" && !partialWordRefresh) {
     await resetReplaySharePreviewDir();
   } else {
     await fs.mkdir(VISUALIZER_SHARE_PREVIEW_DIR, { recursive: true });
+    if (partialWordRefresh) {
+      await fs.rm(path.join(VISUALIZER_SHARE_PREVIEW_DIR, REPLAY_SHARE_TARGET_WORD), {
+        recursive: true,
+        force: true
+      });
+    }
   }
   if (!REPLAY_SHARE_SKIP_HTML) {
-    await resetReplayShareHtmlDir();
+    if (!partialWordRefresh) {
+      await resetReplayShareHtmlDir();
+    } else {
+      await fs.mkdir(VISUALIZER_SHARE_HTML_DIR, { recursive: true });
+      await fs.rm(path.join(VISUALIZER_SHARE_HTML_DIR, REPLAY_SHARE_TARGET_WORD), {
+        recursive: true,
+        force: true
+      });
+    }
   }
   const replay = {
     generatedAt: metadata.timestamp,
