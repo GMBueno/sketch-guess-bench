@@ -193,7 +193,7 @@ export function resolveReplayShareContext(input: {
 }
 
 export function getReplayShareImagePath(input: ReplayShareQuery) {
-  const fileName = input.runB ? `${input.runA}__${input.runB}.png` : `${input.runA}.png`;
+  const fileName = input.runB ? `${input.runA}__${input.runB}.jpg` : `${input.runA}.jpg`;
   return `/replay_assets/share_previews/${input.word}/${fileName}`;
 }
 

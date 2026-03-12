@@ -1,6 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { execFile } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { promisify } from "node:util";
 import { chromium } from "playwright";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +30,11 @@ const BENCHMARK_OUTPUT_PATH = path.join(VISUALIZER_DATA_DIR, "benchmark-results.
 const REPLAY_OUTPUT_PATH = path.join(VISUALIZER_DATA_DIR, "replay-data.json");
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "";
+const REPLAY_SHARE_PREVIEW_MODE = process.env.REPLAY_SHARE_PREVIEW_MODE || "all";
+const REPLAY_SHARE_SKIP_HTML = process.env.REPLAY_SHARE_SKIP_HTML === "1";
+const SHARE_PREVIEW_JPEG_WIDTH = 600;
+const SHARE_PREVIEW_JPEG_QUALITY = "50";
+const execFileAsync = promisify(execFile);
 
 const DYNAMIC_MODEL_IDS = new Set(["google/gemini-3-flash-preview"]);
 const EFFORT_LABEL_MODEL_IDS = new Set(["google/gemini-3.1-flash-lite-preview"]);
@@ -299,8 +306,8 @@ function buildRunSlugMap(runs) {
 
 function getSharePreviewImagePath({ word, runA, runB }) {
   return runB
-    ? `/replay_assets/share_previews/${word}/${runA}__${runB}.png`
-    : `/replay_assets/share_previews/${word}/${runA}.png`;
+    ? `/replay_assets/share_previews/${word}/${runA}__${runB}.jpg`
+    : `/replay_assets/share_previews/${word}/${runA}.jpg`;
 }
 
 function getSharePagePath({ word, runA, runB }) {
@@ -325,6 +332,34 @@ async function resetReplaySvgDir() {
 async function resetReplaySharePreviewDir() {
   await fs.rm(VISUALIZER_SHARE_PREVIEW_DIR, { recursive: true, force: true });
   await fs.mkdir(VISUALIZER_SHARE_PREVIEW_DIR, { recursive: true });
+}
+
+async function writeSharePreviewJpeg(page, html, outputPath) {
+  const tempPngPath = `${outputPath}.tmp.png`;
+  await page.setContent(html, { waitUntil: "load" });
+
+  try {
+    if (process.platform === "darwin") {
+      await page.screenshot({ path: tempPngPath, type: "png" });
+      await execFileAsync("/usr/bin/sips", [
+        "-s",
+        "format",
+        "jpeg",
+        "-s",
+        "formatOptions",
+        SHARE_PREVIEW_JPEG_QUALITY,
+        "-Z",
+        String(SHARE_PREVIEW_JPEG_WIDTH),
+        tempPngPath,
+        "--out",
+        outputPath,
+      ]);
+    } else {
+      await page.screenshot({ path: outputPath, type: "jpeg", quality: Number(SHARE_PREVIEW_JPEG_QUALITY) });
+    }
+  } finally {
+    await fs.rm(tempPngPath, { force: true });
+  }
 }
 
 async function resetReplayShareHtmlDir() {
@@ -443,6 +478,11 @@ function buildSharePreviewMarkup({ word, leftRun, rightRun, leftGame, rightGame,
           flex: 1;
           align-items: start;
         }
+        .single-slot {
+          grid-column: 1 / span 2;
+          display: flex;
+          justify-content: center;
+        }
         .card {
           display: flex;
           flex-direction: column;
@@ -453,6 +493,10 @@ function buildSharePreviewMarkup({ word, leftRun, rightRun, leftGame, rightGame,
           padding: 16px;
           transform: scale(0.9);
           transform-origin: top center;
+        }
+        .single-slot .card {
+          width: calc((100% - 20px) / 2);
+          max-width: calc((100% - 20px) / 2);
         }
         .card-header {
           display: flex;
@@ -524,15 +568,19 @@ function buildSharePreviewMarkup({ word, leftRun, rightRun, leftGame, rightGame,
           </div>
         </header>
         <section class="grid">
-          ${renderCard(leftRun, leftGame, leftSvg)}
-          ${renderCard(rightRun, rightGame, rightSvg)}
+          ${
+            rightRun
+              ? `${renderCard(leftRun, leftGame, leftSvg)}
+          ${renderCard(rightRun, rightGame, rightSvg)}`
+              : `<div class="single-slot">${renderCard(leftRun, leftGame, leftSvg)}</div>`
+          }
         </section>
       </main>
     </body>
   </html>`;
 }
 
-async function generateReplaySharePreviews(runs) {
+async function generateReplaySharePreviews(runs, mode = "all") {
   if (!runs.length) return;
 
   const runSlugMap = buildRunSlugMap(runs);
@@ -545,6 +593,29 @@ async function generateReplaySharePreviews(runs) {
       const wordSlug = slugify(word);
       const wordDir = path.join(VISUALIZER_SHARE_PREVIEW_DIR, wordSlug);
       await fs.mkdir(wordDir, { recursive: true });
+
+      if (mode === "all" || mode === "single") {
+        for (const leftRun of runs) {
+          const leftGame = leftRun.games.find((game) => game.targetWord === word) || null;
+          const leftSvg = await readReplaySvgMarkup(leftGame?.svgPath || null);
+          const html = buildSharePreviewMarkup({
+            word,
+            leftRun,
+            rightRun: null,
+            leftGame,
+            rightGame: null,
+            leftSvg,
+            rightSvg: null,
+          });
+          const leftSlug = runSlugMap.get(leftRun.runId) || leftRun.runId;
+          const outputPath = path.join(wordDir, `${leftSlug}.jpg`);
+          await writeSharePreviewJpeg(page, html, outputPath);
+        }
+      }
+
+      if (mode === "single") {
+        continue;
+      }
 
       for (const leftRun of runs) {
         for (const rightRun of runs) {
@@ -568,10 +639,8 @@ async function generateReplaySharePreviews(runs) {
           });
           const leftSlug = runSlugMap.get(leftRun.runId) || leftRun.runId;
           const rightSlug = runSlugMap.get(rightRun.runId) || rightRun.runId;
-          const outputPath = path.join(wordDir, `${leftSlug}__${rightSlug}.png`);
-
-          await page.setContent(html, { waitUntil: "load" });
-          await page.screenshot({ path: outputPath, type: "png" });
+          const outputPath = path.join(wordDir, `${leftSlug}__${rightSlug}.jpg`);
+          await writeSharePreviewJpeg(page, html, outputPath);
         }
       }
     }
@@ -733,14 +802,22 @@ async function main() {
   const rankingByRunId = new Map(rankings.map((ranking) => [ranking.runId, ranking]));
   const metadata = buildMetadata(rankings);
   await resetReplaySvgDir();
-  await resetReplaySharePreviewDir();
-  await resetReplayShareHtmlDir();
+  if (REPLAY_SHARE_PREVIEW_MODE === "all") {
+    await resetReplaySharePreviewDir();
+  } else {
+    await fs.mkdir(VISUALIZER_SHARE_PREVIEW_DIR, { recursive: true });
+  }
+  if (!REPLAY_SHARE_SKIP_HTML) {
+    await resetReplayShareHtmlDir();
+  }
   const replay = {
     generatedAt: metadata.timestamp,
     runs: await buildReplayRuns(benchmarks, rankingByRunId),
   };
-  await generateReplaySharePreviews(replay.runs);
-  await writeReplayShareLandingPages(replay.runs);
+  await generateReplaySharePreviews(replay.runs, REPLAY_SHARE_PREVIEW_MODE);
+  if (!REPLAY_SHARE_SKIP_HTML) {
+    await writeReplayShareLandingPages(replay.runs);
+  }
 
   await fs.mkdir(VISUALIZER_DATA_DIR, { recursive: true });
   await fs.writeFile(BENCHMARK_OUTPUT_PATH, JSON.stringify({ rankings, metadata }, null, 2), "utf8");
