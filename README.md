@@ -5,7 +5,6 @@ Current repo structure:
 - `bench/`: benchmark runner and HTTP API
 - `visualizer/`: Bun-managed Next.js app and generated visualizer data
 - `data/`: source-of-truth benchmark outputs and OpenRouter traces
-- `original_bench/`, `original_visualizer/`: reference-only donor projects
 
 Benchmark flow per word:
 
@@ -56,5 +55,5 @@ Open [http://localhost:3000](http://localhost:3000).
 Notes:
 
 - The current visualizer is a real Next.js app in `visualizer/`
-- Legacy static files from the pre-restructure UI were preserved in `visualizer/public_legacy`
+- The current UI is inspired by [Skatebench](https://github.com/t3-content/skatebench), by [Theo](https://github.com/t3dotgg)
 - Root workspace scripts are Bun-first
