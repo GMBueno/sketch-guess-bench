@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bfe8ff"/>
+      <stop offset="100%" stop-color="#eaf7ff"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a9d18e"/>
+      <stop offset="100%" stop-color="#6fbe67"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#sky)"/>
+
+  <!-- Sun -->
+  <circle cx="395" cy="115" r="42" fill="#ffd36a"/>
+  <g stroke="#ffd36a" stroke-width="6" stroke-linecap="round" opacity="0.9">
+    <line x1="395" y1="58" x2="395" y2="28"/>
+    <line x1="452" y1="115" x2="482" y2="115"/>
+    <line x1="395" y1="172" x2="395" y2="202"/>
+    <line x1="338" y1="115" x2="308" y2="115"/>
+    <line x1="437" y1="72" x2="459" y2="50"/>
+    <line x1="353" y1="72" x2="331" y2="50"/>
+    <line x1="353" y1="158" x2="331" y2="180"/>
+    <line x1="437" y1="158" x2="459" y2="180"/>
+  </g>
+
+  <!-- Clouds -->
+  <g fill="#ffffff" opacity="0.95">
+    <ellipse cx="130" cy="125" rx="55" ry="28"/>
+    <ellipse cx="165" cy="118" rx="45" ry="26"/>
+    <ellipse cx="105" cy="130" rx="40" ry="24"/>
+    <ellipse cx="235" cy="175" rx="52" ry="26"/>
+    <ellipse cx="270" cy="168" rx="42" ry="24"/>
+    <ellipse cx="215" cy="182" rx="38" ry="22"/>
+  </g>
+
+  <!-- Bird silhouettes (freedom/flight) -->
+  <g fill="#2f3a4a" opacity="0.9">
+    <path d="M255 210 C245 196 232 191 218 195 C232 186 245 185 255 195 C265 185 278 186 292 195 C278 191 265 196 255 210 Z"/>
+    <path d="M320 245 C312 233 301 229 289 232 C301 225 312 224 320 232 C328 224 339 225 351 232 C339 229 328 233 320 245 Z" opacity="0.75"/>
+  </g>
+
+  <!-- Ground -->
+  <path d="M0 360 C90 330 170 365 256 355 C350 344 420 320 512 345 L512 512 L0 512 Z" fill="url(#ground)"/>
+
+  <!-- Open door / gateway -->
+  <g transform="translate(120,110)">
+    <!-- Door frame -->
+    <rect x="0" y="110" width="272" height="300" rx="16" fill="#c7b49a" stroke="#8a735a" stroke-width="6"/>
+
+    <!-- Left door panel (closed side) -->
+    <path d="M40 140 L40 400 L140 430 L140 140 Z" fill="#d9c6a8" stroke="#8a735a" stroke-width="6"/>
+    <!-- Right door panel (open side, shifted) -->
+    <path d="M232 140 L232 400 L170 430 L170 140 Z" fill="#d9c6a8" stroke="#8a735a" stroke-width="6"/>
+
+    <!-- Gap of freedom (bright opening) -->
+    <rect x="140" y="150" width="36" height="260" fill="#ffffff" opacity="0.55"/>
+
+    <!-- Door handle (no text) -->
+    <circle cx="110" cy="285" r="10" fill="#6b4f3c"/>
+    <rect x="100" y="275" width="20" height="20" rx="10" fill="#6b4f3c" opacity="0.35"/>
+
+    <!-- Arch opening accent -->
+    <path d="M64 210 C78 160 118 135 136 135 C160 135 204 164 206 210 L206 220 C190 186 160 170 136 170 C115 170 88 186 70 220 Z" fill="#ffffff" opacity="0.25"/>
+  </g>
+
+  <!-- Light rays from opening -->
+  <g opacity="0.35">
+    <path d="M256 190 L256 360" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+    <path d="M240 205 L235 365" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <path d="M272 205 L277 365" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <path d="M224 215 L210 370" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+    <path d="M288 215 L302 370" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

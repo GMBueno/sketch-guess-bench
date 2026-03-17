@@ -1,0 +1,417 @@
+{
+  "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+  "targetWord": "werewolf",
+  "modelKey": "gpt54nano",
+  "modelLabel": "GPT-5.4 Nano",
+  "modelId": "openai/gpt-5.4-nano",
+  "effort": "medium",
+  "latestExecutionId": "d07da0bd-a23c-45ce-a962-180158df221d",
+  "executions": [
+    {
+      "executionId": "d07da0bd-a23c-45ce-a962-180158df221d",
+      "startedAt": "2026-03-17T17:50:14.039Z",
+      "completedAt": "2026-03-17T17:50:29.755Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "werewolf",
+        "solved": false,
+        "guessesUsed": 20,
+        "penalizedGuesses": 21,
+        "totalCostUsd": 0.002768,
+        "totalRequestMs": 15602,
+        "pricedRequests": 2,
+        "totalRequests": 2,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <radialGradient id=\"moonGrad\" cx=\"35%\" cy=\"35%\" r=\"65%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\"/>\n      <stop offset=\"60%\" stop-color=\"#dfe7ff\"/>\n      <stop offset=\"100%\" stop-color=\"#b7c7ff\"/>\n    </radialGradient>\n    <linearGradient id=\"furGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#33383f\"/>\n      <stop offset=\"100%\" stop-color=\"#0f1115\"/>\n    </linearGradient>\n    <filter id=\"softShadow\" x=\"-30%\" y=\"-30%\" width=\"160%\" height=\"160%\">\n      <feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"8\" flood-color=\"#000\" flood-opacity=\"0.35\"/>\n    </filter>\n  </defs>\n\n  <!-- Night background -->\n  <rect width=\"512\" height=\"512\" fill=\"#0b1220\"/>\n  <circle cx=\"395\" cy=\"120\" r=\"60\" fill=\"url(#moonGrad)\" opacity=\"0.95\"/>\n  <circle cx=\"414\" cy=\"135\" r=\"78\" fill=\"#0b1220\" opacity=\"0.12\"/>\n\n  <!-- Moon rays -->\n  <g stroke=\"#cfe0ff\" stroke-opacity=\"0.18\" stroke-width=\"6\" stroke-linecap=\"round\">\n    <path d=\"M395 46 L395 10\"/>\n    <path d=\"M463 120 L499 120\"/>\n    <path d=\"M395 194 L395 230\"/>\n    <path d=\"M326 120 L290 120\"/>\n    <path d=\"M440 75 L465 50\"/>\n    <path d=\"M350 165 L325 190\"/>\n    <path d=\"M440 165 L465 190\"/>\n    <path d=\"M350 75 L325 50\"/>\n  </g>\n\n  <!-- Ground mist -->\n  <g opacity=\"0.25\" fill=\"#6aa3ff\">\n    <path d=\"M40 430 C90 400, 150 410, 200 430 C250 450, 310 450, 360 430 C405 412, 450 410, 472 420 L472 512 L40 512 Z\"/>\n  </g>\n\n  <!-- Wolf silhouette -->\n  <g filter=\"url(#softShadow)\" transform=\"translate(0,0)\">\n    <!-- Tail -->\n    <path d=\"M165 315 C125 305, 98 280, 92 255 C86 232, 104 218, 124 220 C147 222, 155 242, 158 259 C160 272, 165 285, 175 295 C185 306, 189 322, 175 332 C168 337, 158 335, 165 315 Z\" fill=\"url(#furGrad)\"/>\n\n    <!-- Main body -->\n    <path d=\"M125 318 C125 255, 165 210, 220 198 C235 152, 277 128, 318 140 C350 150, 372 180, 377 215 C420 230, 444 268, 436 314 C425 382, 358 418, 295 418 C224 418, 125 385, 125 318 Z\" fill=\"url(#furGrad)\"/>\n\n    <!-- Head base -->\n    <path d=\"M205 235 C205 190, 238 158, 282 160 C320 162, 350 195, 350 236 C350 280, 318 309, 276 309 C235 309, 205 280, 205 235 Z\" fill=\"url(#furGrad)\"/>\n\n    <!-- Ears -->\n    <path d=\"M232 188 L208 128 L255 150 Z\" fill=\"url(#furGrad)\"/>\n    <path d=\"M315 188 L340 128 L292 150 Z\" fill=\"url(#furGrad)\"/>\n\n    <!-- Face muzzle -->\n    <path d=\"M260 268 C260 242, 276 225, 300 225 C325 225, 338 242, 338 268 C338 292, 324 308, 300 308 C276 308, 260 292, 260 268 Z\" fill=\"#12151b\"/>\n\n    <!-- Mouth line (no text) -->\n    <path d=\"M290 294 C301 305, 312 303, 320 292\" fill=\"none\" stroke=\"#3a3f48\" stroke-width=\"6\" stroke-linecap=\"round\"/>\n\n    <!-- Eyes (dark ovals) -->\n    <ellipse cx=\"272\" cy=\"246\" rx=\"12\" ry=\"18\" fill=\"#040507\"/>\n    <ellipse cx=\"312\" cy=\"246\" rx=\"12\" ry=\"18\" fill=\"#040507\"/>\n\n    <!-- Subtle highlight on forehead -->\n    <path d=\"M240 245 C250 210, 280 195, 308 200\" fill=\"none\" stroke=\"#5e6a78\" stroke-opacity=\"0.35\" stroke-width=\"10\" stroke-linecap=\"round\"/>\n\n    <!-- Transformation hint: moonlight reflection trail -->\n    <path d=\"M360 360 C385 345, 410 328, 435 322\" fill=\"none\" stroke=\"#7fb1ff\" stroke-opacity=\"0.35\" stroke-width=\"10\" stroke-linecap=\"round\"/>\n    <path d=\"M360 385 C390 370, 420 360, 452 362\" fill=\"none\" stroke=\"#7fb1ff\" stroke-opacity=\"0.20\" stroke-width=\"8\" stroke-linecap=\"round\"/>\n\n    <!-- Legs -->\n    <path d=\"M175 382 C170 350, 190 332, 214 332 C230 332, 245 348, 245 370 C245 410, 206 420, 175 382 Z\" fill=\"url(#furGrad)\"/>\n    <path d=\"M245 378 C245 345, 262 332, 286 332 C315 332, 328 354, 324 386 C318 434, 270 428, 245 378 Z\" fill=\"url(#furGrad)\"/>\n  </g>\n\n  <!-- Foreground mist for mood -->\n  <g opacity=\"0.18\" fill=\"#94c0ff\">\n    <path d=\"M0 430 C50 408, 110 424, 160 440 C210 456, 255 452, 310 438 C360 426, 420 416, 512 430 L512 512 L0 512 Z\"/>\n  </g>\n</svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,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"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "koala",
+            "correct": false
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "sleep",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "bedtime",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "moon",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "bear",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "panda",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "cat",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "raccoon",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "sloth",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "hamster",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "wombat",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "possum",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "teddy",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "blanket",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "pillow",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "dream",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "night",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "animal",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "cartoon",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "hug",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+          "targetWord": "werewolf",
+          "executionId": "d07da0bd-a23c-45ce-a962-180158df221d",
+          "file": "openrouter_traces/d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045/werewolf.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 2,
+        "pricedRequests": 2,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.002768,
+        "totalRequestMs": 15602
+      },
+      "requests": [
+        {
+          "requestId": "5be6db43-997b-489d-b7e5-de9df4481f1a",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:14.039Z",
+          "responseCompletedAt": "2026-03-17T17:50:24.101Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "werewolf",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"werewolf\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769818-0NPe1fRgfRYc50PQT30L",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6d2bc654b3f-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:18 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769818-0NPe1fRgfRYc50PQT30L\",\"object\":\"chat.completion\",\"created\":1773769818,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"svg\\\": \\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\">\\\\n  <defs>\\\\n    <radialGradient id=\\\\\\\"moonGrad\\\\\\\" cx=\\\\\\\"35%\\\\\\\" cy=\\\\\\\"35%\\\\\\\" r=\\\\\\\"65%\\\\\\\">\\\\n      <stop offset=\\\\\\\"0%\\\\\\\" stop-color=\\\\\\\"#ffffff\\\\\\\"/>\\\\n      <stop offset=\\\\\\\"60%\\\\\\\" stop-color=\\\\\\\"#dfe7ff\\\\\\\"/>\\\\n      <stop offset=\\\\\\\"100%\\\\\\\" stop-color=\\\\\\\"#b7c7ff\\\\\\\"/>\\\\n    </radialGradient>\\\\n    <linearGradient id=\\\\\\\"furGrad\\\\\\\" x1=\\\\\\\"0\\\\\\\" y1=\\\\\\\"0\\\\\\\" x2=\\\\\\\"0\\\\\\\" y2=\\\\\\\"1\\\\\\\">\\\\n      <stop offset=\\\\\\\"0%\\\\\\\" stop-color=\\\\\\\"#33383f\\\\\\\"/>\\\\n      <stop offset=\\\\\\\"100%\\\\\\\" stop-color=\\\\\\\"#0f1115\\\\\\\"/>\\\\n    </linearGradient>\\\\n    <filter id=\\\\\\\"softShadow\\\\\\\" x=\\\\\\\"-30%\\\\\\\" y=\\\\\\\"-30%\\\\\\\" width=\\\\\\\"160%\\\\\\\" height=\\\\\\\"160%\\\\\\\">\\\\n      <feDropShadow dx=\\\\\\\"0\\\\\\\" dy=\\\\\\\"6\\\\\\\" stdDeviation=\\\\\\\"8\\\\\\\" flood-color=\\\\\\\"#000\\\\\\\" flood-opacity=\\\\\\\"0.35\\\\\\\"/>\\\\n    </filter>\\\\n  </defs>\\\\n\\\\n  <!-- Night background -->\\\\n  <rect width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" fill=\\\\\\\"#0b1220\\\\\\\"/>\\\\n  <circle cx=\\\\\\\"395\\\\\\\" cy=\\\\\\\"120\\\\\\\" r=\\\\\\\"60\\\\\\\" fill=\\\\\\\"url(#moonGrad)\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n  <circle cx=\\\\\\\"414\\\\\\\" cy=\\\\\\\"135\\\\\\\" r=\\\\\\\"78\\\\\\\" fill=\\\\\\\"#0b1220\\\\\\\" opacity=\\\\\\\"0.12\\\\\\\"/>\\\\n\\\\n  <!-- Moon rays -->\\\\n  <g stroke=\\\\\\\"#cfe0ff\\\\\\\" stroke-opacity=\\\\\\\"0.18\\\\\\\" stroke-width=\\\\\\\"6\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\">\\\\n    <path d=\\\\\\\"M395 46 L395 10\\\\\\\"/>\\\\n    <path d=\\\\\\\"M463 120 L499 120\\\\\\\"/>\\\\n    <path d=\\\\\\\"M395 194 L395 230\\\\\\\"/>\\\\n    <path d=\\\\\\\"M326 120 L290 120\\\\\\\"/>\\\\n    <path d=\\\\\\\"M440 75 L465 50\\\\\\\"/>\\\\n    <path d=\\\\\\\"M350 165 L325 190\\\\\\\"/>\\\\n    <path d=\\\\\\\"M440 165 L465 190\\\\\\\"/>\\\\n    <path d=\\\\\\\"M350 75 L325 50\\\\\\\"/>\\\\n  </g>\\\\n\\\\n  <!-- Ground mist -->\\\\n  <g opacity=\\\\\\\"0.25\\\\\\\" fill=\\\\\\\"#6aa3ff\\\\\\\">\\\\n    <path d=\\\\\\\"M40 430 C90 400, 150 410, 200 430 C250 450, 310 450, 360 430 C405 412, 450 410, 472 420 L472 512 L40 512 Z\\\\\\\"/>\\\\n  </g>\\\\n\\\\n  <!-- Wolf silhouette -->\\\\n  <g filter=\\\\\\\"url(#softShadow)\\\\\\\" transform=\\\\\\\"translate(0,0)\\\\\\\">\\\\n    <!-- Tail -->\\\\n    <path d=\\\\\\\"M165 315 C125 305, 98 280, 92 255 C86 232, 104 218, 124 220 C147 222, 155 242, 158 259 C160 272, 165 285, 175 295 C185 306, 189 322, 175 332 C168 337, 158 335, 165 315 Z\\\\\\\" fill=\\\\\\\"url(#furGrad)\\\\\\\"/>\\\\n\\\\n    <!-- Main body -->\\\\n    <path d=\\\\\\\"M125 318 C125 255, 165 210, 220 198 C235 152, 277 128, 318 140 C350 150, 372 180, 377 215 C420 230, 444 268, 436 314 C425 382, 358 418, 295 418 C224 418, 125 385, 125 318 Z\\\\\\\" fill=\\\\\\\"url(#furGrad)\\\\\\\"/>\\\\n\\\\n    <!-- Head base -->\\\\n    <path d=\\\\\\\"M205 235 C205 190, 238 158, 282 160 C320 162, 350 195, 350 236 C350 280, 318 309, 276 309 C235 309, 205 280, 205 235 Z\\\\\\\" fill=\\\\\\\"url(#furGrad)\\\\\\\"/>\\\\n\\\\n    <!-- Ears -->\\\\n    <path d=\\\\\\\"M232 188 L208 128 L255 150 Z\\\\\\\" fill=\\\\\\\"url(#furGrad)\\\\\\\"/>\\\\n    <path d=\\\\\\\"M315 188 L340 128 L292 150 Z\\\\\\\" fill=\\\\\\\"url(#furGrad)\\\\\\\"/>\\\\n\\\\n    <!-- Face muzzle -->\\\\n    <path d=\\\\\\\"M260 268 C260 242, 276 225, 300 225 C325 225, 338 242, 338 268 C338 292, 324 308, 300 308 C276 308, 260 292, 260 268 Z\\\\\\\" fill=\\\\\\\"#12151b\\\\\\\"/>\\\\n\\\\n    <!-- Mouth line (no text) -->\\\\n    <path d=\\\\\\\"M290 294 C301 305, 312 303, 320 292\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#3a3f48\\\\\\\" stroke-width=\\\\\\\"6\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n\\\\n    <!-- Eyes (dark ovals) -->\\\\n    <ellipse cx=\\\\\\\"272\\\\\\\" cy=\\\\\\\"246\\\\\\\" rx=\\\\\\\"12\\\\\\\" ry=\\\\\\\"18\\\\\\\" fill=\\\\\\\"#040507\\\\\\\"/>\\\\n    <ellipse cx=\\\\\\\"312\\\\\\\" cy=\\\\\\\"246\\\\\\\" rx=\\\\\\\"12\\\\\\\" ry=\\\\\\\"18\\\\\\\" fill=\\\\\\\"#040507\\\\\\\"/>\\\\n\\\\n    <!-- Subtle highlight on forehead -->\\\\n    <path d=\\\\\\\"M240 245 C250 210, 280 195, 308 200\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#5e6a78\\\\\\\" stroke-opacity=\\\\\\\"0.35\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n\\\\n    <!-- Transformation hint: moonlight reflection trail -->\\\\n    <path d=\\\\\\\"M360 360 C385 345, 410 328, 435 322\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#7fb1ff\\\\\\\" stroke-opacity=\\\\\\\"0.35\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n    <path d=\\\\\\\"M360 385 C390 370, 420 360, 452 362\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#7fb1ff\\\\\\\" stroke-opacity=\\\\\\\"0.20\\\\\\\" stroke-width=\\\\\\\"8\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n\\\\n    <!-- Legs -->\\\\n    <path d=\\\\\\\"M175 382 C170 350, 190 332, 214 332 C230 332, 245 348, 245 370 C245 410, 206 420, 175 382 Z\\\\\\\" fill=\\\\\\\"url(#furGrad)\\\\\\\"/>\\\\n    <path d=\\\\\\\"M245 378 C245 345, 262 332, 286 332 C315 332, 328 354, 324 386 C318 434, 270 428, 245 378 Z\\\\\\\" fill=\\\\\\\"url(#furGrad)\\\\\\\"/>\\\\n  </g>\\\\n\\\\n  <!-- Foreground mist for mood -->\\\\n  <g opacity=\\\\\\\"0.18\\\\\\\" fill=\\\\\\\"#94c0ff\\\\\\\">\\\\n    <path d=\\\\\\\"M0 430 C50 408, 110 424, 160 440 C210 456, 255 452, 310 438 C360 426, 420 416, 512 430 L512 512 L0 512 Z\\\\\\\"/>\\\\n  </g>\\\\n</svg>\\\"\\n}\",\"refusal\":null,\"reasoning\":\"**Creating werewolf icon**\\n\\nI need to create a simple icon representing a \\\"werewolf\\\" without any text. I’m thinking of using a silhouette of a wolf's head along with a full moon, possibly showing the transformation aspect. I want to incorporate the moon's rays and maybe a chain too, all while keeping it visually clear. I'll use SVG shapes in a 512 canvas size and provide a JSON format that includes the SVG string.\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Creating werewolf icon**\\n\\nI need to create a simple icon representing a \\\"werewolf\\\" without any text. I’m thinking of using a silhouette of a wolf's head along with a full moon, possibly showing the transformation aspect. I want to incorporate the moon's rays and maybe a chain too, all while keeping it visually clear. I'll use SVG shapes in a 512 canvas size and provide a JSON format that includes the SVG string.\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRckNDDBMB0WZHBRm6lxHvEMRLtZorkLThpLRKGXmX9GjQj8zkUizuIMcGUQijohtF74TZ7VKDflGJWEqkeMVS3-KxDl4cpc1YFHbZiEjHqIrdDcLSxWUQ2yG09OwfO-wGfYoKJgJxqAiTKyt2LLkQFZtaH2jZ9qIAowJJM5cPOKz46grdNwuyamTH56ttyhh2iaeg0Zsz8-PatYQn9cbNAtjv9SF8phAyxjsukkrjipnsib0MoVsZx6Svcf2LW4cYnvn8FEvz6HStui5V2vy8oqado63CKphWsB_6OtYDWLaxn0TsGb6rWgyJQ1tyUoox6j8LuXh1dDnSH7SWezvK0EM39ooTKKWc1oE5NTL4UcZAtIAKlUoeZjS7mx2fzHG4XZ8QCqgWArnyi5EH9tX4ob2wrr2VEgpZfi5u1n8zSxU8Rm4Xa7wagJbZ0l5jSi3CGMOfX3igjQlpxjW4xrQm3Hcyz5o5TOksMwW9YMD7wYi99O3z8jR-xFUg6haYwE5_XjaBeo_k9DcyRCtDghUf6HwYKAjELs9w6rOBID1t5k78ZxrMK-SOUolbEg3xZehC_v0K-O8xdPGg3UWej_fbAj6WxX-oUeoH-sbDwvbfkPSc_a-kRp_P-fwYJnTSCS8V7JzArIpinruwvGwYiHBwK6n00koszocfl433ibfxVUA4ZV1-XdUYj8unl09pKJiVnFhz8K2pxqqlCug7K0rXe5TXWMdbI05YcH2fhCN3aNvqyFMu8IUtPrUEDmPKvzdKCkVgqt2rinbuUaw51qTeNqBsw7TYMP5a6U1fDFoiVywQmDdCreVC60GePz1QToXyU-fd-LtFRj4fHZs9fy_hl5ufTFrltVwc1hqZDGKo71C6hweimLpd-uYuXpmASUf4hHF6vh6l3GMRKWOG0VtqWm2iNNWbA2Cs7ox3lpVSuwpk7rb1hp9FpMCO8SI8CtmPfJhzgLeqZme-cENUjuFiFi0ta4EYUFZZ-bH5_awbwTwuIcbNFnuZlLClyUqzSc2xCbBfTNHlrOsFeCzKnSWaeX6LTi025EplJ1GaPG106RJUiXfdySrlEs_X-2z5YIZV1jr9HAb5AF3r0KORR_1cwm6_SNJhHwvhjEb4-A5GlqbVgy9KUp3oNtF4T5-KeX6DzSFzQaLtuyA1La2YfUsZtsmB_y1pDdMKEbpQMpswu3kM=\",\"format\":\"openai-responses-v1\",\"id\":\"rs_09d91b9e9af9c1d40169b9945a9b4881979785d5097d987d0e\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":134,\"completion_tokens\":1761,\"total_tokens\":1895,\"cost\":0.00222805,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00222805,\"upstream_inference_prompt_cost\":0.0000268,\"upstream_inference_completions_cost\":0.00220125},\"completion_tokens_details\":{\"reasoning_tokens\":56,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769818-0NPe1fRgfRYc50PQT30L",
+              "object": "chat.completion",
+              "created": 1773769818,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\n  \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\">\\n  <defs>\\n    <radialGradient id=\\\"moonGrad\\\" cx=\\\"35%\\\" cy=\\\"35%\\\" r=\\\"65%\\\">\\n      <stop offset=\\\"0%\\\" stop-color=\\\"#ffffff\\\"/>\\n      <stop offset=\\\"60%\\\" stop-color=\\\"#dfe7ff\\\"/>\\n      <stop offset=\\\"100%\\\" stop-color=\\\"#b7c7ff\\\"/>\\n    </radialGradient>\\n    <linearGradient id=\\\"furGrad\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"0\\\" y2=\\\"1\\\">\\n      <stop offset=\\\"0%\\\" stop-color=\\\"#33383f\\\"/>\\n      <stop offset=\\\"100%\\\" stop-color=\\\"#0f1115\\\"/>\\n    </linearGradient>\\n    <filter id=\\\"softShadow\\\" x=\\\"-30%\\\" y=\\\"-30%\\\" width=\\\"160%\\\" height=\\\"160%\\\">\\n      <feDropShadow dx=\\\"0\\\" dy=\\\"6\\\" stdDeviation=\\\"8\\\" flood-color=\\\"#000\\\" flood-opacity=\\\"0.35\\\"/>\\n    </filter>\\n  </defs>\\n\\n  <!-- Night background -->\\n  <rect width=\\\"512\\\" height=\\\"512\\\" fill=\\\"#0b1220\\\"/>\\n  <circle cx=\\\"395\\\" cy=\\\"120\\\" r=\\\"60\\\" fill=\\\"url(#moonGrad)\\\" opacity=\\\"0.95\\\"/>\\n  <circle cx=\\\"414\\\" cy=\\\"135\\\" r=\\\"78\\\" fill=\\\"#0b1220\\\" opacity=\\\"0.12\\\"/>\\n\\n  <!-- Moon rays -->\\n  <g stroke=\\\"#cfe0ff\\\" stroke-opacity=\\\"0.18\\\" stroke-width=\\\"6\\\" stroke-linecap=\\\"round\\\">\\n    <path d=\\\"M395 46 L395 10\\\"/>\\n    <path d=\\\"M463 120 L499 120\\\"/>\\n    <path d=\\\"M395 194 L395 230\\\"/>\\n    <path d=\\\"M326 120 L290 120\\\"/>\\n    <path d=\\\"M440 75 L465 50\\\"/>\\n    <path d=\\\"M350 165 L325 190\\\"/>\\n    <path d=\\\"M440 165 L465 190\\\"/>\\n    <path d=\\\"M350 75 L325 50\\\"/>\\n  </g>\\n\\n  <!-- Ground mist -->\\n  <g opacity=\\\"0.25\\\" fill=\\\"#6aa3ff\\\">\\n    <path d=\\\"M40 430 C90 400, 150 410, 200 430 C250 450, 310 450, 360 430 C405 412, 450 410, 472 420 L472 512 L40 512 Z\\\"/>\\n  </g>\\n\\n  <!-- Wolf silhouette -->\\n  <g filter=\\\"url(#softShadow)\\\" transform=\\\"translate(0,0)\\\">\\n    <!-- Tail -->\\n    <path d=\\\"M165 315 C125 305, 98 280, 92 255 C86 232, 104 218, 124 220 C147 222, 155 242, 158 259 C160 272, 165 285, 175 295 C185 306, 189 322, 175 332 C168 337, 158 335, 165 315 Z\\\" fill=\\\"url(#furGrad)\\\"/>\\n\\n    <!-- Main body -->\\n    <path d=\\\"M125 318 C125 255, 165 210, 220 198 C235 152, 277 128, 318 140 C350 150, 372 180, 377 215 C420 230, 444 268, 436 314 C425 382, 358 418, 295 418 C224 418, 125 385, 125 318 Z\\\" fill=\\\"url(#furGrad)\\\"/>\\n\\n    <!-- Head base -->\\n    <path d=\\\"M205 235 C205 190, 238 158, 282 160 C320 162, 350 195, 350 236 C350 280, 318 309, 276 309 C235 309, 205 280, 205 235 Z\\\" fill=\\\"url(#furGrad)\\\"/>\\n\\n    <!-- Ears -->\\n    <path d=\\\"M232 188 L208 128 L255 150 Z\\\" fill=\\\"url(#furGrad)\\\"/>\\n    <path d=\\\"M315 188 L340 128 L292 150 Z\\\" fill=\\\"url(#furGrad)\\\"/>\\n\\n    <!-- Face muzzle -->\\n    <path d=\\\"M260 268 C260 242, 276 225, 300 225 C325 225, 338 242, 338 268 C338 292, 324 308, 300 308 C276 308, 260 292, 260 268 Z\\\" fill=\\\"#12151b\\\"/>\\n\\n    <!-- Mouth line (no text) -->\\n    <path d=\\\"M290 294 C301 305, 312 303, 320 292\\\" fill=\\\"none\\\" stroke=\\\"#3a3f48\\\" stroke-width=\\\"6\\\" stroke-linecap=\\\"round\\\"/>\\n\\n    <!-- Eyes (dark ovals) -->\\n    <ellipse cx=\\\"272\\\" cy=\\\"246\\\" rx=\\\"12\\\" ry=\\\"18\\\" fill=\\\"#040507\\\"/>\\n    <ellipse cx=\\\"312\\\" cy=\\\"246\\\" rx=\\\"12\\\" ry=\\\"18\\\" fill=\\\"#040507\\\"/>\\n\\n    <!-- Subtle highlight on forehead -->\\n    <path d=\\\"M240 245 C250 210, 280 195, 308 200\\\" fill=\\\"none\\\" stroke=\\\"#5e6a78\\\" stroke-opacity=\\\"0.35\\\" stroke-width=\\\"10\\\" stroke-linecap=\\\"round\\\"/>\\n\\n    <!-- Transformation hint: moonlight reflection trail -->\\n    <path d=\\\"M360 360 C385 345, 410 328, 435 322\\\" fill=\\\"none\\\" stroke=\\\"#7fb1ff\\\" stroke-opacity=\\\"0.35\\\" stroke-width=\\\"10\\\" stroke-linecap=\\\"round\\\"/>\\n    <path d=\\\"M360 385 C390 370, 420 360, 452 362\\\" fill=\\\"none\\\" stroke=\\\"#7fb1ff\\\" stroke-opacity=\\\"0.20\\\" stroke-width=\\\"8\\\" stroke-linecap=\\\"round\\\"/>\\n\\n    <!-- Legs -->\\n    <path d=\\\"M175 382 C170 350, 190 332, 214 332 C230 332, 245 348, 245 370 C245 410, 206 420, 175 382 Z\\\" fill=\\\"url(#furGrad)\\\"/>\\n    <path d=\\\"M245 378 C245 345, 262 332, 286 332 C315 332, 328 354, 324 386 C318 434, 270 428, 245 378 Z\\\" fill=\\\"url(#furGrad)\\\"/>\\n  </g>\\n\\n  <!-- Foreground mist for mood -->\\n  <g opacity=\\\"0.18\\\" fill=\\\"#94c0ff\\\">\\n    <path d=\\\"M0 430 C50 408, 110 424, 160 440 C210 456, 255 452, 310 438 C360 426, 420 416, 512 430 L512 512 L0 512 Z\\\"/>\\n  </g>\\n</svg>\"\n}",
+                    "refusal": null,
+                    "reasoning": "**Creating werewolf icon**\n\nI need to create a simple icon representing a \"werewolf\" without any text. I’m thinking of using a silhouette of a wolf's head along with a full moon, possibly showing the transformation aspect. I want to incorporate the moon's rays and maybe a chain too, all while keeping it visually clear. I'll use SVG shapes in a 512 canvas size and provide a JSON format that includes the SVG string.",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Creating werewolf icon**\n\nI need to create a simple icon representing a \"werewolf\" without any text. I’m thinking of using a silhouette of a wolf's head along with a full moon, possibly showing the transformation aspect. I want to incorporate the moon's rays and maybe a chain too, all while keeping it visually clear. I'll use SVG shapes in a 512 canvas size and provide a JSON format that includes the SVG string.",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRckNDDBMB0WZHBRm6lxHvEMRLtZorkLThpLRKGXmX9GjQj8zkUizuIMcGUQijohtF74TZ7VKDflGJWEqkeMVS3-KxDl4cpc1YFHbZiEjHqIrdDcLSxWUQ2yG09OwfO-wGfYoKJgJxqAiTKyt2LLkQFZtaH2jZ9qIAowJJM5cPOKz46grdNwuyamTH56ttyhh2iaeg0Zsz8-PatYQn9cbNAtjv9SF8phAyxjsukkrjipnsib0MoVsZx6Svcf2LW4cYnvn8FEvz6HStui5V2vy8oqado63CKphWsB_6OtYDWLaxn0TsGb6rWgyJQ1tyUoox6j8LuXh1dDnSH7SWezvK0EM39ooTKKWc1oE5NTL4UcZAtIAKlUoeZjS7mx2fzHG4XZ8QCqgWArnyi5EH9tX4ob2wrr2VEgpZfi5u1n8zSxU8Rm4Xa7wagJbZ0l5jSi3CGMOfX3igjQlpxjW4xrQm3Hcyz5o5TOksMwW9YMD7wYi99O3z8jR-xFUg6haYwE5_XjaBeo_k9DcyRCtDghUf6HwYKAjELs9w6rOBID1t5k78ZxrMK-SOUolbEg3xZehC_v0K-O8xdPGg3UWej_fbAj6WxX-oUeoH-sbDwvbfkPSc_a-kRp_P-fwYJnTSCS8V7JzArIpinruwvGwYiHBwK6n00koszocfl433ibfxVUA4ZV1-XdUYj8unl09pKJiVnFhz8K2pxqqlCug7K0rXe5TXWMdbI05YcH2fhCN3aNvqyFMu8IUtPrUEDmPKvzdKCkVgqt2rinbuUaw51qTeNqBsw7TYMP5a6U1fDFoiVywQmDdCreVC60GePz1QToXyU-fd-LtFRj4fHZs9fy_hl5ufTFrltVwc1hqZDGKo71C6hweimLpd-uYuXpmASUf4hHF6vh6l3GMRKWOG0VtqWm2iNNWbA2Cs7ox3lpVSuwpk7rb1hp9FpMCO8SI8CtmPfJhzgLeqZme-cENUjuFiFi0ta4EYUFZZ-bH5_awbwTwuIcbNFnuZlLClyUqzSc2xCbBfTNHlrOsFeCzKnSWaeX6LTi025EplJ1GaPG106RJUiXfdySrlEs_X-2z5YIZV1jr9HAb5AF3r0KORR_1cwm6_SNJhHwvhjEb4-A5GlqbVgy9KUp3oNtF4T5-KeX6DzSFzQaLtuyA1La2YfUsZtsmB_y1pDdMKEbpQMpswu3kM=",
+                        "format": "openai-responses-v1",
+                        "id": "rs_09d91b9e9af9c1d40169b9945a9b4881979785d5097d987d0e",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 134,
+                "completion_tokens": 1761,
+                "total_tokens": 1895,
+                "cost": 0.00222805,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00222805,
+                  "upstream_inference_prompt_cost": 0.0000268,
+                  "upstream_inference_completions_cost": 0.00220125
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 56,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.002228,
+          "requestDurationMs": 10062,
+          "error": null
+        },
+        {
+          "requestId": "bd1f61c7-fb4c-47b7-9662-4910533092ee",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:24.214Z",
+          "responseCompletedAt": "2026-03-17T17:50:29.754Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "werewolf",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,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"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769828-CblPgcz7yEmzvNtPnqhW",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd7125f154b3f-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:28 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769828-CblPgcz7yEmzvNtPnqhW\",\"object\":\"chat.completion\",\"created\":1773769828,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"guesses\\\": [\\\"koala\\\",\\\"sleep\\\",\\\"bedtime\\\",\\\"moon\\\",\\\"bear\\\",\\\"panda\\\",\\\"cat\\\",\\\"raccoon\\\",\\\"sloth\\\",\\\"hamster\\\",\\\"wombat\\\",\\\"possum\\\",\\\"teddy\\\",\\\"blanket\\\",\\\"pillow\\\",\\\"dream\\\",\\\"night\\\",\\\"animal\\\",\\\"cartoon\\\",\\\"hug\\\"] }\",\"refusal\":null,\"reasoning\":\"**Compiling animal words for bedtime**\\n\\nI’m focusing on creating a list of 20 unique animal-related words. My choices include koala, bear, panda, cat, raccoon, sloth, hamster, wombat, possum, and teddy. Then I’ll tie in some cozy nighttime themes like night, sleep, moon, blanket, pillow, dream, cartoon, animal, hug, and bedtime. I need to remember to order them by my confidence and ensure that each word stands alone without hyphens. Let's get this crafted!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Compiling animal words for bedtime**\\n\\nI’m focusing on creating a list of 20 unique animal-related words. My choices include koala, bear, panda, cat, raccoon, sloth, hamster, wombat, possum, and teddy. Then I’ll tie in some cozy nighttime themes like night, sleep, moon, blanket, pillow, dream, cartoon, animal, hug, and bedtime. I need to remember to order them by my confidence and ensure that each word stands alone without hyphens. Let's get this crafted!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRp-LTSAmLNm7akblCOFhM8jGMjILnogvrFK6Nv9ZozJ694uS4iG8g-VXHKB2bhfoEWruahSVOu_a71kmR2knXAUJs59PdtlLoIGNyV_pTfyhzkX_bS1AhsODO0Klzat4pWZedD1MoFinJu1ckTGOXFDXmaSUdixXyrtqMFrUJvIMgQ2dwR8VSCWRpcXPjUC-g4kRXhdCsKqJt9ZvLre5OI3wk3x5K6gUraifZdFXfRu2w1tOllIW5c9SW9msqnGP1tOhcvTADRB4t0DyXM9CNVOk4b_4Z7TsBnbmFgm92_LP-5pBXkaq6iGoJVDXIaOAY6GOMP2yE-o6-6m3atA_4iz8T90oSmA3ipgwr9kj253Z7p6ilLWK0gFax-aSSJU9Z2ERGGEmIlySZoIo8p50Y9c6G0PPMw9wfgFPO2SD894vwfdn6JyYWCHzchmxRoRk7VBA56Jq-Nu_YBxKYX5sZmxttEyFkTu2wczMnuCW5_ZjLxYexMHWnollkUfS_rPJ6zdkhPISAVfQuWgSjvfIIe22NSEBdYN-xPGt2_C3t9eVwVTYO4L5k9LaeDiYXCk3OzxLqeCKlT_l9e9r_w8JbuPdUTGASh2t9MUcQRDX6R8iS3ZPkVngrm6ujg5ZZXCvhkDJatfzi2qS62mauDsWOKHMLmWByBY4y0n9KJU7ijHZxZ-ICAPmaal5IztWs0YHQ3iqm7Hq0XW12nxJ7FqqxMupppKWeHn1eR_zRuW_FYCWOP95m_qnYMna5idvfOv3ZEMDSx-NVSpY-vNHCoMLwPvmZfuTACAel-JlbDGdnqem2Yi-_wp88smdOBggIkmv3YFCwIPbbfYu_uX5wQWMnK13AJh8sEdZoCuC14-IFSCn_qvh1aU5S9qY45ENr5fdso7-fOmngu2Dy9_4jbboLo1y6aRBXS-KpWoH8DrpB_AZo1Ai8J048Oxi_WTo8UuheP6sMjFFkKfGybjSqVx9Ik-z4vNzbNqJw5HQCNqL-fXwff2URc1HfFFLg4u3DpWuQMiQHKsVa_9FpmgsgWvTL8M8UEzQC6wAOzsAot_iQMVCjVbXRUMa_iZ0ADip6-1JSl0tv0bfdlY-Bzpk2uSurM7EDFL8HYX-3lS8SeziJsavZkqp7i1_ie4hId4joSsyoLEeRMik2MZP6VJQR24gsYZjZEgChe0KiX_k9kF8WXmvAJ5RrJd7LAP2U_8MWEtw0d3xEWT_KLMV3PKf8Kl7WwPHlvjrZ2_Ot2Y-2OwAkRrUjfhLUbEDUJFkgzFJaQg6L6lK8AuQV9tU7-z3IxnoVm2N-HWi56bWj2pwceB7q9gQ3zY7SI_m8rnUIqIETA69C1spxNIj7lev5pDtQ6TNfMDZSTWWobUhEve0e86FyAzt97bS_DCqyzrwT9tEyYOtsfDpo67hWqaBAsIM7JFe4WM-fjDcrNYzDns1kaoC-w6XqLwmybkoOKo3n8aKy6kJfTVUi2JChM9Ds_Qo_NNahfRBufzsJEH3NeWH7KB0GnumOgXXd9LBLOqUqeF66brmPzIgIcaUu8g4UCox5iUgeRZj7PcNNBmd9fKMcxL4LQdlHxAtfMttarHyZi0jimzZjU_YqPqdRBGPqutmHDKWxvN7To07AsGtxWFbafgbtM47RNbORC5EeWoxdALWYmLyVBXNRjl6ziZPvkc1gDyJ6u0KwOjJ4Au8xg-_39eWh9mBQHq6ubvAL-KbeH1kR4JqeJYLKt9b6qE3qonlEsiZL2_gZOVQMjq7z6627jXIhQKgzU63GmWHeUwrO0W1vQV2bmJdNEMX1qyNcM5gOtPkbm2kQuin-C1VL3n781WkfUgasrY60pivRi2gTW9-FUPlSVf1g6zsgQR7zhmyJ4eroWiJVIt7cjtIfW504nL-iHNe7sMDS2kltWb8uOeMCGFn2SgOMLMmQYCTH7MEjYG363vRQw55pI1UJ1GJc9NQQYCaa11XtKmDckC4XfnNeEcGpC6jYwMKPDEcx4y6__J5jOhZD1k6J5JYzMSOnhoZe0yBq4pNgYbLeTAfultcRY_IMcRR9iLrkrXRyjpRZjv1dMLOhcFO1OGlqU1PC5AOLeEPfc3g1jZlrnAN5DwNknhDVlxutTDADhyWY5mbujkBqb2jxKL_T0HrcEVFWMXqeucsW1vXjrxJ59QcgjVvt0MJwE_kxJBWQLD00RrHorOm9fFzbCgmz44hFSYMWeGdj7Idwi2HZXSFTNSdo2doUuM-GU2F9jfL-853IgHIC0H6R1xO7VWCfl93tKuuAw6YU4NQxu8o10Ms5pLOB6T9cTeiKJLB3onaacz9uezji_-eH0e_4hpzsFmfsok7q1qO8epwlAlhUK_5R5aJ2ri7P8C-kF\",\"format\":\"openai-responses-v1\",\"id\":\"rs_01ccd6b4163d6fa00169b99464cffc819588990193361e6c5b\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":464,\"completion_tokens\":358,\"total_tokens\":822,\"cost\":0.0005403,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0005403,\"upstream_inference_prompt_cost\":0.0000928,\"upstream_inference_completions_cost\":0.0004475},\"completion_tokens_details\":{\"reasoning_tokens\":291,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769828-CblPgcz7yEmzvNtPnqhW",
+              "object": "chat.completion",
+              "created": 1773769828,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{ \"guesses\": [\"koala\",\"sleep\",\"bedtime\",\"moon\",\"bear\",\"panda\",\"cat\",\"raccoon\",\"sloth\",\"hamster\",\"wombat\",\"possum\",\"teddy\",\"blanket\",\"pillow\",\"dream\",\"night\",\"animal\",\"cartoon\",\"hug\"] }",
+                    "refusal": null,
+                    "reasoning": "**Compiling animal words for bedtime**\n\nI’m focusing on creating a list of 20 unique animal-related words. My choices include koala, bear, panda, cat, raccoon, sloth, hamster, wombat, possum, and teddy. Then I’ll tie in some cozy nighttime themes like night, sleep, moon, blanket, pillow, dream, cartoon, animal, hug, and bedtime. I need to remember to order them by my confidence and ensure that each word stands alone without hyphens. Let's get this crafted!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Compiling animal words for bedtime**\n\nI’m focusing on creating a list of 20 unique animal-related words. My choices include koala, bear, panda, cat, raccoon, sloth, hamster, wombat, possum, and teddy. Then I’ll tie in some cozy nighttime themes like night, sleep, moon, blanket, pillow, dream, cartoon, animal, hug, and bedtime. I need to remember to order them by my confidence and ensure that each word stands alone without hyphens. Let's get this crafted!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRp-LTSAmLNm7akblCOFhM8jGMjILnogvrFK6Nv9ZozJ694uS4iG8g-VXHKB2bhfoEWruahSVOu_a71kmR2knXAUJs59PdtlLoIGNyV_pTfyhzkX_bS1AhsODO0Klzat4pWZedD1MoFinJu1ckTGOXFDXmaSUdixXyrtqMFrUJvIMgQ2dwR8VSCWRpcXPjUC-g4kRXhdCsKqJt9ZvLre5OI3wk3x5K6gUraifZdFXfRu2w1tOllIW5c9SW9msqnGP1tOhcvTADRB4t0DyXM9CNVOk4b_4Z7TsBnbmFgm92_LP-5pBXkaq6iGoJVDXIaOAY6GOMP2yE-o6-6m3atA_4iz8T90oSmA3ipgwr9kj253Z7p6ilLWK0gFax-aSSJU9Z2ERGGEmIlySZoIo8p50Y9c6G0PPMw9wfgFPO2SD894vwfdn6JyYWCHzchmxRoRk7VBA56Jq-Nu_YBxKYX5sZmxttEyFkTu2wczMnuCW5_ZjLxYexMHWnollkUfS_rPJ6zdkhPISAVfQuWgSjvfIIe22NSEBdYN-xPGt2_C3t9eVwVTYO4L5k9LaeDiYXCk3OzxLqeCKlT_l9e9r_w8JbuPdUTGASh2t9MUcQRDX6R8iS3ZPkVngrm6ujg5ZZXCvhkDJatfzi2qS62mauDsWOKHMLmWByBY4y0n9KJU7ijHZxZ-ICAPmaal5IztWs0YHQ3iqm7Hq0XW12nxJ7FqqxMupppKWeHn1eR_zRuW_FYCWOP95m_qnYMna5idvfOv3ZEMDSx-NVSpY-vNHCoMLwPvmZfuTACAel-JlbDGdnqem2Yi-_wp88smdOBggIkmv3YFCwIPbbfYu_uX5wQWMnK13AJh8sEdZoCuC14-IFSCn_qvh1aU5S9qY45ENr5fdso7-fOmngu2Dy9_4jbboLo1y6aRBXS-KpWoH8DrpB_AZo1Ai8J048Oxi_WTo8UuheP6sMjFFkKfGybjSqVx9Ik-z4vNzbNqJw5HQCNqL-fXwff2URc1HfFFLg4u3DpWuQMiQHKsVa_9FpmgsgWvTL8M8UEzQC6wAOzsAot_iQMVCjVbXRUMa_iZ0ADip6-1JSl0tv0bfdlY-Bzpk2uSurM7EDFL8HYX-3lS8SeziJsavZkqp7i1_ie4hId4joSsyoLEeRMik2MZP6VJQR24gsYZjZEgChe0KiX_k9kF8WXmvAJ5RrJd7LAP2U_8MWEtw0d3xEWT_KLMV3PKf8Kl7WwPHlvjrZ2_Ot2Y-2OwAkRrUjfhLUbEDUJFkgzFJaQg6L6lK8AuQV9tU7-z3IxnoVm2N-HWi56bWj2pwceB7q9gQ3zY7SI_m8rnUIqIETA69C1spxNIj7lev5pDtQ6TNfMDZSTWWobUhEve0e86FyAzt97bS_DCqyzrwT9tEyYOtsfDpo67hWqaBAsIM7JFe4WM-fjDcrNYzDns1kaoC-w6XqLwmybkoOKo3n8aKy6kJfTVUi2JChM9Ds_Qo_NNahfRBufzsJEH3NeWH7KB0GnumOgXXd9LBLOqUqeF66brmPzIgIcaUu8g4UCox5iUgeRZj7PcNNBmd9fKMcxL4LQdlHxAtfMttarHyZi0jimzZjU_YqPqdRBGPqutmHDKWxvN7To07AsGtxWFbafgbtM47RNbORC5EeWoxdALWYmLyVBXNRjl6ziZPvkc1gDyJ6u0KwOjJ4Au8xg-_39eWh9mBQHq6ubvAL-KbeH1kR4JqeJYLKt9b6qE3qonlEsiZL2_gZOVQMjq7z6627jXIhQKgzU63GmWHeUwrO0W1vQV2bmJdNEMX1qyNcM5gOtPkbm2kQuin-C1VL3n781WkfUgasrY60pivRi2gTW9-FUPlSVf1g6zsgQR7zhmyJ4eroWiJVIt7cjtIfW504nL-iHNe7sMDS2kltWb8uOeMCGFn2SgOMLMmQYCTH7MEjYG363vRQw55pI1UJ1GJc9NQQYCaa11XtKmDckC4XfnNeEcGpC6jYwMKPDEcx4y6__J5jOhZD1k6J5JYzMSOnhoZe0yBq4pNgYbLeTAfultcRY_IMcRR9iLrkrXRyjpRZjv1dMLOhcFO1OGlqU1PC5AOLeEPfc3g1jZlrnAN5DwNknhDVlxutTDADhyWY5mbujkBqb2jxKL_T0HrcEVFWMXqeucsW1vXjrxJ59QcgjVvt0MJwE_kxJBWQLD00RrHorOm9fFzbCgmz44hFSYMWeGdj7Idwi2HZXSFTNSdo2doUuM-GU2F9jfL-853IgHIC0H6R1xO7VWCfl93tKuuAw6YU4NQxu8o10Ms5pLOB6T9cTeiKJLB3onaacz9uezji_-eH0e_4hpzsFmfsok7q1qO8epwlAlhUK_5R5aJ2ri7P8C-kF",
+                        "format": "openai-responses-v1",
+                        "id": "rs_01ccd6b4163d6fa00169b99464cffc819588990193361e6c5b",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 464,
+                "completion_tokens": 358,
+                "total_tokens": 822,
+                "cost": 0.0005403,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0005403,
+                  "upstream_inference_prompt_cost": 0.0000928,
+                  "upstream_inference_completions_cost": 0.0004475
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 291,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.00054,
+          "requestDurationMs": 5540,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

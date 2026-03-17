@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Sky -->
+  <rect x="0" y="0" width="512" height="320" fill="#bfe6ff"/>
+  <!-- Ground/Cities -->
+  <rect x="0" y="300" width="512" height="212" fill="#d6e7c6"/>
+
+  <!-- Canal -->
+  <path d="M0 300 C90 295, 170 270, 260 270 C340 270, 430 305, 512 310 L512 512 L0 512 Z" fill="#5fb0d6"/>
+  <path d="M0 318 C100 315, 170 290, 270 288 C355 286, 430 316, 512 326" fill="none" stroke="#3f86ad" stroke-width="10" opacity="0.75"/>
+
+  <!-- Bridge (arched) -->
+  <path d="M120 300 C165 255, 220 255, 260 300 L260 350 L120 350 Z" fill="#c9a37e" opacity="0.95"/>
+  <path d="M142 320 C178 292, 205 292, 238 320" fill="none" stroke="#9a6f4a" stroke-width="8" stroke-linecap="round"/>
+  <rect x="205" y="300" width="25" height="60" fill="#9a6f4a"/>
+
+  <!-- Houses along canal -->
+  <g opacity="0.98">
+    <rect x="20" y="285" width="70" height="110" fill="#f0efe7"/>
+    <rect x="30" y="300" width="50" height="95" fill="#e9d1c7"/>
+    <rect x="80" y="285" width="10" height="110" fill="#cdb7a6"/>
+    <path d="M20 285 L55 255 L90 285 Z" fill="#d16a5b"/>
+
+    <rect x="420" y="280" width="75" height="115" fill="#f0efe7"/>
+    <rect x="430" y="295" width="55" height="100" fill="#e2cbd6"/>
+    <path d="M420 280 L458 250 L495 280 Z" fill="#4b6fb1"/>
+
+    <rect x="310" y="288" width="70" height="112" fill="#efe9dc"/>
+    <rect x="320" y="304" width="50" height="96" fill="#d7b78e"/>
+    <path d="M310 288 L345 260 L380 288 Z" fill="#b24c3f"/>
+
+    <rect x="215" y="292" width="70" height="108" fill="#f2efe6"/>
+    <rect x="225" y="307" width="50" height="93" fill="#cfe3f2"/>
+    <path d="M215 292 L250 265 L285 292 Z" fill="#7a4ea3"/>
+  </g>
+
+  <!-- Windmill (left) -->
+  <g transform="translate(95,105)">
+    <!-- tower -->
+    <rect x="60" y="160" width="30" height="170" rx="10" fill="#d8dce6"/>
+    <rect x="63" y="172" width="24" height="160" rx="9" fill="#cfd5e2"/>
+    <!-- top cap -->
+    <path d="M58 155 C73 128, 92 128, 100 155 L95 160 L63 160 Z" fill="#b9c0d4"/>
+    <!-- blades -->
+    <g fill="none" stroke="#b84d43" stroke-width="7" stroke-linecap="round" opacity="0.95">
+      <path d="M75 170 L75 60"/>
+      <path d="M75 170 L120 120"/>
+      <path d="M75 170 L30 120"/>
+      <path d="M75 170 L75 60"/>
+      <path d="M75 170 L120 120"/>
+    </g>
+    <g>
+      <circle cx="75" cy="170" r="14" fill="#e46a5b"/>
+      <circle cx="75" cy="170" r="6" fill="#b34a42"/>
+    </g>
+  </g>
+
+  <!-- Tulips (garden) -->
+  <g>
+    <!-- stems -->
+    <path d="M70 440 C68 410, 72 388, 82 362" stroke="#2f8f55" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M110 452 C110 420, 115 395, 125 370" stroke="#2f8f55" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M160 455 C160 420, 168 395, 178 370" stroke="#2f8f55" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+    <!-- flowers -->
+    <path d="M78 360 C72 344, 66 333, 80 320 C94 333, 88 344, 78 360 Z" fill="#ff5a7a"/>
+    <path d="M122 372 C116 356, 110 345, 124 332 C138 345, 132 356, 122 372 Z" fill="#ffd24a"/>
+    <path d="M178 372 C172 356, 166 345, 180 332 C194 345, 188 356, 178 372 Z" fill="#4d7dff"/>
+
+    <!-- petals hints -->
+    <path d="M78 360 C74 348, 72 338, 80 320" stroke="#d93b5c" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M122 372 C118 360, 116 350, 124 332" stroke="#caa62a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M178 372 C174 360, 172 350, 180 332" stroke="#345cd6" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bicycle (simple) -->
+  <g transform="translate(290,395)" opacity="0.98">
+    <!-- wheels -->
+    <circle cx="-30" cy="75" r="33" fill="#2a2f36"/>
+    <circle cx="-30" cy="75" r="24" fill="none" stroke="#cfd6df" stroke-width="4"/>
+    <circle cx="65" cy="75" r="33" fill="#2a2f36"/>
+    <circle cx="65" cy="75" r="24" fill="none" stroke="#cfd6df" stroke-width="4"/>
+
+    <!-- frame -->
+    <path d="M-30 75 L10 20 L48 20 L65 75 L10 75 L-5 45 Z" fill="#4b79d6" opacity="0.9"/>
+    <path d="M10 20 L0 75" stroke="#234a9a" stroke-width="8" stroke-linecap="round"/>
+    <path d="M48 20 L65 75" stroke="#234a9a" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-5 45 L10 75" stroke="#234a9a" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- seat & handle -->
+    <path d="M42 14 L24 10" stroke="#2f2f2f" stroke-width="8" stroke-linecap="round"/>
+    <path d="M48 20 L70 10" stroke="#2f2f2f" stroke-width="8" stroke-linecap="round"/>
+    <path d="M24 10 L22 20" stroke="#2f2f2f" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- pedals/chain hints -->
+    <circle cx="10" cy="58" r="6" fill="#2f2f2f"/>
+    <path d="M10 58 L48 20" stroke="#2f2f2f" stroke-width="5" fill="none"/>
+  </g>
+
+  <!-- Foreground grass edge -->
+  <path d="M0 440 C80 420, 160 452, 260 440 C345 430, 420 455, 512 440 L512 512 L0 512 Z" fill="#a8c98a" opacity="0.95"/>
+</svg>

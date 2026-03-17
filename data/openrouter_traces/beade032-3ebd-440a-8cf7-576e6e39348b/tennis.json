@@ -1,0 +1,417 @@
+{
+  "runId": "beade032-3ebd-440a-8cf7-576e6e39348b",
+  "targetWord": "tennis",
+  "modelKey": "gpt54mini",
+  "modelLabel": "GPT-5.4 Mini",
+  "modelId": "openai/gpt-5.4-mini",
+  "effort": "medium",
+  "latestExecutionId": "b5da24f4-3c52-4fc1-a7b6-cd2560055434",
+  "executions": [
+    {
+      "executionId": "b5da24f4-3c52-4fc1-a7b6-cd2560055434",
+      "startedAt": "2026-03-17T17:50:06.946Z",
+      "completedAt": "2026-03-17T17:50:15.329Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "tennis",
+        "solved": true,
+        "guessesUsed": 1,
+        "penalizedGuesses": 1,
+        "totalCostUsd": 0.004615,
+        "totalRequestMs": 8284,
+        "pricedRequests": 2,
+        "totalRequests": 2,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\"><rect width=\"512\" height=\"512\" fill=\"#dff5df\"/><g transform=\"translate(70,60) rotate(-18 180 200)\"><ellipse cx=\"180\" cy=\"170\" rx=\"88\" ry=\"112\" fill=\"#f7f7f7\" stroke=\"#4a4a4a\" stroke-width=\"10\"/><g stroke=\"#cfcfcf\" stroke-width=\"6\" opacity=\"0.9\"><line x1=\"120\" y1=\"120\" x2=\"240\" y2=\"220\"/><line x1=\"110\" y1=\"150\" x2=\"250\" y2=\"190\"/><line x1=\"110\" y1=\"185\" x2=\"250\" y2=\"145\"/><line x1=\"120\" y1=\"220\" x2=\"240\" y2=\"120\"/><line x1=\"140\" y1=\"100\" x2=\"140\" y2=\"250\"/><line x1=\"165\" y1=\"92\" x2=\"165\" y2=\"258\"/><line x1=\"190\" y1=\"92\" x2=\"190\" y2=\"258\"/><line x1=\"215\" y1=\"100\" x2=\"215\" y2=\"250\"/></g><rect x=\"165\" y=\"272\" width=\"30\" height=\"118\" rx=\"12\" fill=\"#8b5a2b\" stroke=\"#5a3718\" stroke-width=\"8\"/><rect x=\"156\" y=\"362\" width=\"48\" height=\"24\" rx=\"10\" fill=\"#6b4420\" stroke=\"#5a3718\" stroke-width=\"6\"/></g><g transform=\"translate(330,300)\"><circle cx=\"0\" cy=\"0\" r=\"56\" fill=\"#cde94b\" stroke=\"#7fb43a\" stroke-width=\"8\"/><path d=\"M -28 -38 C -6 -20 6 20 -22 42\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M 28 -38 C 6 -20 -6 20 22 42\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"10\" stroke-linecap=\"round\"/></g><path d=\"M 250 330 C 285 310 310 290 336 258\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"10\" stroke-linecap=\"round\" opacity=\"0.7\"/><path d=\"M 240 344 C 280 330 310 320 345 292\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"6\" stroke-linecap=\"round\" opacity=\"0.45\"/></svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,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"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "tennis",
+            "correct": true
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "racket",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "ball",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "sport",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "racquet",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "serve",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "court",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "player",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "match",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "game",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "volley",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "backhand",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "forehand",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "string",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "net",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "smash",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "yellow",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "bounce",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "athlete",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "pingpong",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "beade032-3ebd-440a-8cf7-576e6e39348b",
+          "targetWord": "tennis",
+          "executionId": "b5da24f4-3c52-4fc1-a7b6-cd2560055434",
+          "file": "openrouter_traces/beade032-3ebd-440a-8cf7-576e6e39348b/tennis.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 2,
+        "pricedRequests": 2,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.004615,
+        "totalRequestMs": 8284
+      },
+      "requests": [
+        {
+          "requestId": "2ec01db0-fc0a-42c5-ba23-65f2669f0ad7",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:06.946Z",
+          "responseCompletedAt": "2026-03-17T17:50:12.093Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "tennis",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-mini",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"tennis\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769810-sMM6hgplv9Z33kBg8P3f",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6a66cd51047-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:11 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769810-sMM6hgplv9Z33kBg8P3f\",\"object\":\"chat.completion\",\"created\":1773769810,\"model\":\"openai/gpt-5.4-mini-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"svg\\\":\\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\"><rect width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" fill=\\\\\\\"#dff5df\\\\\\\"/><g transform=\\\\\\\"translate(70,60) rotate(-18 180 200)\\\\\\\"><ellipse cx=\\\\\\\"180\\\\\\\" cy=\\\\\\\"170\\\\\\\" rx=\\\\\\\"88\\\\\\\" ry=\\\\\\\"112\\\\\\\" fill=\\\\\\\"#f7f7f7\\\\\\\" stroke=\\\\\\\"#4a4a4a\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\"/><g stroke=\\\\\\\"#cfcfcf\\\\\\\" stroke-width=\\\\\\\"6\\\\\\\" opacity=\\\\\\\"0.9\\\\\\\"><line x1=\\\\\\\"120\\\\\\\" y1=\\\\\\\"120\\\\\\\" x2=\\\\\\\"240\\\\\\\" y2=\\\\\\\"220\\\\\\\"/><line x1=\\\\\\\"110\\\\\\\" y1=\\\\\\\"150\\\\\\\" x2=\\\\\\\"250\\\\\\\" y2=\\\\\\\"190\\\\\\\"/><line x1=\\\\\\\"110\\\\\\\" y1=\\\\\\\"185\\\\\\\" x2=\\\\\\\"250\\\\\\\" y2=\\\\\\\"145\\\\\\\"/><line x1=\\\\\\\"120\\\\\\\" y1=\\\\\\\"220\\\\\\\" x2=\\\\\\\"240\\\\\\\" y2=\\\\\\\"120\\\\\\\"/><line x1=\\\\\\\"140\\\\\\\" y1=\\\\\\\"100\\\\\\\" x2=\\\\\\\"140\\\\\\\" y2=\\\\\\\"250\\\\\\\"/><line x1=\\\\\\\"165\\\\\\\" y1=\\\\\\\"92\\\\\\\" x2=\\\\\\\"165\\\\\\\" y2=\\\\\\\"258\\\\\\\"/><line x1=\\\\\\\"190\\\\\\\" y1=\\\\\\\"92\\\\\\\" x2=\\\\\\\"190\\\\\\\" y2=\\\\\\\"258\\\\\\\"/><line x1=\\\\\\\"215\\\\\\\" y1=\\\\\\\"100\\\\\\\" x2=\\\\\\\"215\\\\\\\" y2=\\\\\\\"250\\\\\\\"/></g><rect x=\\\\\\\"165\\\\\\\" y=\\\\\\\"272\\\\\\\" width=\\\\\\\"30\\\\\\\" height=\\\\\\\"118\\\\\\\" rx=\\\\\\\"12\\\\\\\" fill=\\\\\\\"#8b5a2b\\\\\\\" stroke=\\\\\\\"#5a3718\\\\\\\" stroke-width=\\\\\\\"8\\\\\\\"/><rect x=\\\\\\\"156\\\\\\\" y=\\\\\\\"362\\\\\\\" width=\\\\\\\"48\\\\\\\" height=\\\\\\\"24\\\\\\\" rx=\\\\\\\"10\\\\\\\" fill=\\\\\\\"#6b4420\\\\\\\" stroke=\\\\\\\"#5a3718\\\\\\\" stroke-width=\\\\\\\"6\\\\\\\"/></g><g transform=\\\\\\\"translate(330,300)\\\\\\\"><circle cx=\\\\\\\"0\\\\\\\" cy=\\\\\\\"0\\\\\\\" r=\\\\\\\"56\\\\\\\" fill=\\\\\\\"#cde94b\\\\\\\" stroke=\\\\\\\"#7fb43a\\\\\\\" stroke-width=\\\\\\\"8\\\\\\\"/><path d=\\\\\\\"M -28 -38 C -6 -20 6 20 -22 42\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#ffffff\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M 28 -38 C 6 -20 -6 20 22 42\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#ffffff\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/></g><path d=\\\\\\\"M 250 330 C 285 310 310 290 336 258\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#ffffff\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.7\\\\\\\"/><path d=\\\\\\\"M 240 344 C 280 330 310 320 345 292\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#ffffff\\\\\\\" stroke-width=\\\\\\\"6\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.45\\\\\\\"/></svg>\\\"}\",\"refusal\":null,\"reasoning\":\"**Creating SVG for tennis**\\n\\nI need to focus on producing an SVG drawing related to tennis without any text. I think a simple design featuring a tennis ball, racket, and maybe some net lines for motion would work well. I’ll aim for a clean and valid SVG format sized at 512x512. \\n\\nThe tennis ball should be yellow-green with white seams while the racket will be drawn with an oval head, strings, and a handle. A light green court background could enhance the look, but keeping it minimalistic with just the ball and racket is fine too. I'll ensure the JSON has escaped quotes.\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Creating SVG for tennis**\\n\\nI need to focus on producing an SVG drawing related to tennis without any text. I think a simple design featuring a tennis ball, racket, and maybe some net lines for motion would work well. I’ll aim for a clean and valid SVG format sized at 512x512. \\n\\nThe tennis ball should be yellow-green with white seams while the racket will be drawn with an oval head, strings, and a handle. A light green court background could enhance the look, but keeping it minimalistic with just the ball and racket is fine too. I'll ensure the JSON has escaped quotes.\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRWsq6Hm0cHpyjWtVPVNB5kxiN1RT2_IY9diIE2oHNqGw7Scl7sQdhBT6xp37yYZaaqB73TdG8mNfWK5SsGdjPBf8OvEsP1b1AjNQB1ynNX8njvcEV9M94tGG39dmVHjdP9d_L_sBXfKPXxyKz78Lr21oasBm3BhkTgVydmuawwOAI9kPaUCTbsx9WyXMCoMTe3UOwvRIU9bUPWHqIfVvKAUKi_Qc6_LBmcX_5WIfq8hoOlxzqCkW-QK9QYKhOXPXQvtjJZMSjbFhx-U_OvIj9Xwsmf5B_8LwOUF15sn3CnQoEn7loTYIZ9EJ0E7xvTDm0SbGkmzyxfbsKiOoeNh2fyvCgLcWWqGoM8-uLyQSyzqUU1fg0t08zL3Y3XbXK_pr2_f9m_76qdR4TD7k650FOwy57VRvybsdJWDGKqZm8S5ixvUfofr-RRxfMnsPC9ffqkEk7qQvFBNnne1J9KTTkelAWrYrqbSe-DnrChLZiUQ1I0HkAAEvAoj_e87cTD6bx6dWn0r1h2MYHMkBv0Mzo1qw1xyJzgYXkT3dkGiKaQPleaYBpQRd7cJ_ygzP5ZQBBLvbYV3xnNuKhi3jfIyYd1rrVQSXu0CxJbBcx2XufgXmioI-GIdNB-kSX0mqDulIunQ2_m7gsKtE9CiaPWXb9HH0Y4piFlLKVKhlUp97hCi4tW9NuTsI7x_MGav-x0SDAUMKQIAUJdsSt2_hO4xHyINYYIdiyAJvJua38183X-14nnC-qrthEkaV8ymrQah3osfWN5XqOHNk6GTM_cT8XjrjSMIovtdxozddpp6XsFvaXYD48-oiTge81grgU2TvO36wfBmoib9n9MGGTxhPCWmjiXwE423hsYgai75ecynzXrVxVzDT-JJgmZ9SU3jlu7IVne4BNMSBTyNgGYc3NDz9XVlvPeX0g55TGjoxL8dqlcuFVqyMSv3eSsPHkfeqLvHfOUySmh57ccKJrdEA7fXsB500kSVNkTLAaNt0htUxxDNS6MVgTnu7AOA3X3JpmGUsBD8BfIfsiuWaUXfHWWmQ8KeAFqJXHd0vGnC9hOdOrWUYxj1e-T1gPNrQjk3KMdjC-ilR47IQ3VhPC7yszW3ydNVNoyNBEAkPdP2ioXUvQELp6G2j1EMKS9GUepByKWLtomgbBwfBMrNqMD1bl2FqXjrUxaIED7PdNF7yfYLByrsKS84EjE4sUjRsejFhDkl1Fgy8bb4MYiX7lXQmt8Q8UiHVSC-u-mzWyTe5t9vP0Sgip_Nl8OVc8jWA8BYQqUNL_8RbT0YBysVZgjTbF6234dhyKRvvSJQBo_h3rhGwIAPXG9NztgaZK50P6iQL9I1zPaAMf393desAgscopDPV318sHniJPGOpEswmdXtp1MjYtpl4uouWBLSquS8Kbphxj8wKcZBYNTy5iejx0xataYRxhB3-ySjLENaz6ArRZHtfhJ6ShrMJnl4-DYt7n_pbp5LJZ5SRMVliNiboImgSh2c2ftHplsR7PKZp5rbB7eUCN6ftaDQ_DScpE6JDQXTKM_dhLw03ViwCYYQFVDGWnaQwj46yiMkX_ppYiHicNb6BcjbOEgfow6aemJJmUo79eyxbW9Xit3mUB2m3A3OXheTwF9b_whkfadQAjPoIdqrakAlBFX_XoIRdAKBHciOU5DFLCTViof5fRVOYTORw7_-O2IaNvszQaAh4vUlOd0F5vBul0Qa4cxVb5q66dyUD0ULbsokTn_8G2F5Q8rKNNGzKzuRMe69Fe6NSq0VdnQyTxrl8XLCzhv4jAmF-sR7uNXr9EZuNZKbfxvE_G6nbJDe_yZJ1PdUREe47lvFviQ8VVdOsIbA5o8dDq2snKJeqhsCsxuavPiyOFPVt7s6g==\",\"format\":\"openai-responses-v1\",\"id\":\"rs_08498e0c48663e510169b9945380f081938e96ea06136896ea\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":134,\"completion_tokens\":795,\"total_tokens\":929,\"cost\":0.003678,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.003678,\"upstream_inference_prompt_cost\":0.0001005,\"upstream_inference_completions_cost\":0.0035775},\"completion_tokens_details\":{\"reasoning_tokens\":165,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769810-sMM6hgplv9Z33kBg8P3f",
+              "object": "chat.completion",
+              "created": 1773769810,
+              "model": "openai/gpt-5.4-mini-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\"svg\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\"><rect width=\\\"512\\\" height=\\\"512\\\" fill=\\\"#dff5df\\\"/><g transform=\\\"translate(70,60) rotate(-18 180 200)\\\"><ellipse cx=\\\"180\\\" cy=\\\"170\\\" rx=\\\"88\\\" ry=\\\"112\\\" fill=\\\"#f7f7f7\\\" stroke=\\\"#4a4a4a\\\" stroke-width=\\\"10\\\"/><g stroke=\\\"#cfcfcf\\\" stroke-width=\\\"6\\\" opacity=\\\"0.9\\\"><line x1=\\\"120\\\" y1=\\\"120\\\" x2=\\\"240\\\" y2=\\\"220\\\"/><line x1=\\\"110\\\" y1=\\\"150\\\" x2=\\\"250\\\" y2=\\\"190\\\"/><line x1=\\\"110\\\" y1=\\\"185\\\" x2=\\\"250\\\" y2=\\\"145\\\"/><line x1=\\\"120\\\" y1=\\\"220\\\" x2=\\\"240\\\" y2=\\\"120\\\"/><line x1=\\\"140\\\" y1=\\\"100\\\" x2=\\\"140\\\" y2=\\\"250\\\"/><line x1=\\\"165\\\" y1=\\\"92\\\" x2=\\\"165\\\" y2=\\\"258\\\"/><line x1=\\\"190\\\" y1=\\\"92\\\" x2=\\\"190\\\" y2=\\\"258\\\"/><line x1=\\\"215\\\" y1=\\\"100\\\" x2=\\\"215\\\" y2=\\\"250\\\"/></g><rect x=\\\"165\\\" y=\\\"272\\\" width=\\\"30\\\" height=\\\"118\\\" rx=\\\"12\\\" fill=\\\"#8b5a2b\\\" stroke=\\\"#5a3718\\\" stroke-width=\\\"8\\\"/><rect x=\\\"156\\\" y=\\\"362\\\" width=\\\"48\\\" height=\\\"24\\\" rx=\\\"10\\\" fill=\\\"#6b4420\\\" stroke=\\\"#5a3718\\\" stroke-width=\\\"6\\\"/></g><g transform=\\\"translate(330,300)\\\"><circle cx=\\\"0\\\" cy=\\\"0\\\" r=\\\"56\\\" fill=\\\"#cde94b\\\" stroke=\\\"#7fb43a\\\" stroke-width=\\\"8\\\"/><path d=\\\"M -28 -38 C -6 -20 6 20 -22 42\\\" fill=\\\"none\\\" stroke=\\\"#ffffff\\\" stroke-width=\\\"10\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M 28 -38 C 6 -20 -6 20 22 42\\\" fill=\\\"none\\\" stroke=\\\"#ffffff\\\" stroke-width=\\\"10\\\" stroke-linecap=\\\"round\\\"/></g><path d=\\\"M 250 330 C 285 310 310 290 336 258\\\" fill=\\\"none\\\" stroke=\\\"#ffffff\\\" stroke-width=\\\"10\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.7\\\"/><path d=\\\"M 240 344 C 280 330 310 320 345 292\\\" fill=\\\"none\\\" stroke=\\\"#ffffff\\\" stroke-width=\\\"6\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.45\\\"/></svg>\"}",
+                    "refusal": null,
+                    "reasoning": "**Creating SVG for tennis**\n\nI need to focus on producing an SVG drawing related to tennis without any text. I think a simple design featuring a tennis ball, racket, and maybe some net lines for motion would work well. I’ll aim for a clean and valid SVG format sized at 512x512. \n\nThe tennis ball should be yellow-green with white seams while the racket will be drawn with an oval head, strings, and a handle. A light green court background could enhance the look, but keeping it minimalistic with just the ball and racket is fine too. I'll ensure the JSON has escaped quotes.",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Creating SVG for tennis**\n\nI need to focus on producing an SVG drawing related to tennis without any text. I think a simple design featuring a tennis ball, racket, and maybe some net lines for motion would work well. I’ll aim for a clean and valid SVG format sized at 512x512. \n\nThe tennis ball should be yellow-green with white seams while the racket will be drawn with an oval head, strings, and a handle. A light green court background could enhance the look, but keeping it minimalistic with just the ball and racket is fine too. I'll ensure the JSON has escaped quotes.",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRWsq6Hm0cHpyjWtVPVNB5kxiN1RT2_IY9diIE2oHNqGw7Scl7sQdhBT6xp37yYZaaqB73TdG8mNfWK5SsGdjPBf8OvEsP1b1AjNQB1ynNX8njvcEV9M94tGG39dmVHjdP9d_L_sBXfKPXxyKz78Lr21oasBm3BhkTgVydmuawwOAI9kPaUCTbsx9WyXMCoMTe3UOwvRIU9bUPWHqIfVvKAUKi_Qc6_LBmcX_5WIfq8hoOlxzqCkW-QK9QYKhOXPXQvtjJZMSjbFhx-U_OvIj9Xwsmf5B_8LwOUF15sn3CnQoEn7loTYIZ9EJ0E7xvTDm0SbGkmzyxfbsKiOoeNh2fyvCgLcWWqGoM8-uLyQSyzqUU1fg0t08zL3Y3XbXK_pr2_f9m_76qdR4TD7k650FOwy57VRvybsdJWDGKqZm8S5ixvUfofr-RRxfMnsPC9ffqkEk7qQvFBNnne1J9KTTkelAWrYrqbSe-DnrChLZiUQ1I0HkAAEvAoj_e87cTD6bx6dWn0r1h2MYHMkBv0Mzo1qw1xyJzgYXkT3dkGiKaQPleaYBpQRd7cJ_ygzP5ZQBBLvbYV3xnNuKhi3jfIyYd1rrVQSXu0CxJbBcx2XufgXmioI-GIdNB-kSX0mqDulIunQ2_m7gsKtE9CiaPWXb9HH0Y4piFlLKVKhlUp97hCi4tW9NuTsI7x_MGav-x0SDAUMKQIAUJdsSt2_hO4xHyINYYIdiyAJvJua38183X-14nnC-qrthEkaV8ymrQah3osfWN5XqOHNk6GTM_cT8XjrjSMIovtdxozddpp6XsFvaXYD48-oiTge81grgU2TvO36wfBmoib9n9MGGTxhPCWmjiXwE423hsYgai75ecynzXrVxVzDT-JJgmZ9SU3jlu7IVne4BNMSBTyNgGYc3NDz9XVlvPeX0g55TGjoxL8dqlcuFVqyMSv3eSsPHkfeqLvHfOUySmh57ccKJrdEA7fXsB500kSVNkTLAaNt0htUxxDNS6MVgTnu7AOA3X3JpmGUsBD8BfIfsiuWaUXfHWWmQ8KeAFqJXHd0vGnC9hOdOrWUYxj1e-T1gPNrQjk3KMdjC-ilR47IQ3VhPC7yszW3ydNVNoyNBEAkPdP2ioXUvQELp6G2j1EMKS9GUepByKWLtomgbBwfBMrNqMD1bl2FqXjrUxaIED7PdNF7yfYLByrsKS84EjE4sUjRsejFhDkl1Fgy8bb4MYiX7lXQmt8Q8UiHVSC-u-mzWyTe5t9vP0Sgip_Nl8OVc8jWA8BYQqUNL_8RbT0YBysVZgjTbF6234dhyKRvvSJQBo_h3rhGwIAPXG9NztgaZK50P6iQL9I1zPaAMf393desAgscopDPV318sHniJPGOpEswmdXtp1MjYtpl4uouWBLSquS8Kbphxj8wKcZBYNTy5iejx0xataYRxhB3-ySjLENaz6ArRZHtfhJ6ShrMJnl4-DYt7n_pbp5LJZ5SRMVliNiboImgSh2c2ftHplsR7PKZp5rbB7eUCN6ftaDQ_DScpE6JDQXTKM_dhLw03ViwCYYQFVDGWnaQwj46yiMkX_ppYiHicNb6BcjbOEgfow6aemJJmUo79eyxbW9Xit3mUB2m3A3OXheTwF9b_whkfadQAjPoIdqrakAlBFX_XoIRdAKBHciOU5DFLCTViof5fRVOYTORw7_-O2IaNvszQaAh4vUlOd0F5vBul0Qa4cxVb5q66dyUD0ULbsokTn_8G2F5Q8rKNNGzKzuRMe69Fe6NSq0VdnQyTxrl8XLCzhv4jAmF-sR7uNXr9EZuNZKbfxvE_G6nbJDe_yZJ1PdUREe47lvFviQ8VVdOsIbA5o8dDq2snKJeqhsCsxuavPiyOFPVt7s6g==",
+                        "format": "openai-responses-v1",
+                        "id": "rs_08498e0c48663e510169b9945380f081938e96ea06136896ea",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 134,
+                "completion_tokens": 795,
+                "total_tokens": 929,
+                "cost": 0.003678,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.003678,
+                  "upstream_inference_prompt_cost": 0.0001005,
+                  "upstream_inference_completions_cost": 0.0035775
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 165,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.003678,
+          "requestDurationMs": 5147,
+          "error": null
+        },
+        {
+          "requestId": "c1ac741f-b9a1-4472-a9ad-da0cfc184ccf",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:12.191Z",
+          "responseCompletedAt": "2026-03-17T17:50:15.328Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "tennis",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-mini",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,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"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769816-zeZ3KcAe5Oaq5naE13jZ",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6c72bacda2d-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:16 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769816-zeZ3KcAe5Oaq5naE13jZ\",\"object\":\"chat.completion\",\"created\":1773769816,\"model\":\"openai/gpt-5.4-mini-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"guesses\\\": [\\\"tennis\\\", \\\"racket\\\", \\\"ball\\\", \\\"sport\\\", \\\"racquet\\\", \\\"serve\\\", \\\"court\\\", \\\"player\\\", \\\"match\\\", \\\"game\\\", \\\"volley\\\", \\\"backhand\\\", \\\"forehand\\\", \\\"string\\\", \\\"net\\\", \\\"smash\\\", \\\"yellow\\\", \\\"bounce\\\", \\\"athlete\\\", \\\"pingpong\\\"] }\",\"refusal\":null,\"reasoning\":\"**Generating guesses for tennis**\\n\\nI'm focusing on providing 20 unique one-word guesses related to the image of a tennis racket and tennis ball. The primary guess would be \\\"tennis,\\\" but I need the other 19 to flow naturally from that. Each guess should be distinct and without punctuation. I’ll aim for words connected to the sport, equipment, or gameplay. It's important to make sure none of the guesses overlap, so I’ll take my time to brainstorm and compile this list carefully!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Generating guesses for tennis**\\n\\nI'm focusing on providing 20 unique one-word guesses related to the image of a tennis racket and tennis ball. The primary guess would be \\\"tennis,\\\" but I need the other 19 to flow naturally from that. Each guess should be distinct and without punctuation. I’ll aim for words connected to the sport, equipment, or gameplay. It's important to make sure none of the guesses overlap, so I’ll take my time to brainstorm and compile this list carefully!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRbNdD2YF4VXKEFbs8sDC8Arf_V_RB6YnsUZF9eWJ0hvDzmBBm1aWz725P6-KEqzwRXOh8vTHKqKVRDTmuWNxUmziOAlrPG6lozn1DcxUMvg8G-Enqmm5TLLIXuzDFA8r2ogNTbvtYaNPYVRJrjmqI-DDmcKcWM5Wl4SQGBg9WAgNQCyE5DKPnUvzU0Gg4UKSfcXsSRCKGGWAzRQ2o9QhQmb6dQqw_alGqKGvaYgYGWgk-iIS4jSZTiHWMqdMp-DIYqDtu-4VdLz9mBmK9r05KsfC7_PePb9O_mhgC0eKlcd8vrtUyfbekPrXvEt3ild0rdQhkpmX8e0ohzfmRG0gAHWhweDtB8DOzNqRi-1gyCkoB1MxpAzIwxKl9Tr9jH2MVUprQe-6JLMW2HV454gdnY3tV2b2f__m1jl9tn4U8Ao4IfBb5bM9mdXNDvxAKBRJeXBCsOqeoEmxz8_NBlTkmfU92NyXOkjT6-kxF5YkgfvyWD5HrZYlUAVI1Qt68s8hEjjLx_caHrgVnss0HdanU14DWa7hFTcvg2xq5NCg6AB599FKK6v4lfTN-Sf5RW3iY7tPz4T3KTvDAaVTp8viOVcdOjy14d307g9IY5fywqxjhLKp6GjGSXjWhTDJtWzARQAcXdMydhiwoiXDd50_dn9QiR4LV0oaiy_BZ1tbhAYRrzu4lqz5IogTFEn53jsKxQpOsrrYb97Ks78o9v3KcVfc2V5X0GYKrlEb_r-hwekA0NUZSIUF74seC-cphtWaf6Uj9fn9zqd9AdXVFQPgua9If-c9-bk5J6Z1_9RR0F6JPosCpQiL8OtxD2ROWAr1g2Uh9Ki-tNTKzW9Mj6X9Jdvf1MDKy4mZlmGlaLEgBrsYwi9yyYgrHlLeiOe6S-KUTYnTqQkoewYWA0ILllgL3ApiVF2k8p-Y3lEplS-pGtlnSlj0fFS4CH-IzcGX5edwQF_fE4_1U4Oo1O5pjkSNpo5tCk9tKt3gssGgtWi4rdx4lTaIi8yIGyVwyGR1pD27i6qZkgz6m2jVZYwMq2u-vpbvdmYHA_G742WTEQUwo2ZJrFkoMbaINbrZD2ibF7VSzcZiaPUUBSySd8AgibkBCPNXK6GYphte8UgQppxe7sItE=\",\"format\":\"openai-responses-v1\",\"id\":\"rs_0284ae7e95337ca10169b99458d9c08190821ce84d0d153e63\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":464,\"completion_tokens\":131,\"total_tokens\":595,\"cost\":0.0009375,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0009375,\"upstream_inference_prompt_cost\":0.000348,\"upstream_inference_completions_cost\":0.0005895},\"completion_tokens_details\":{\"reasoning_tokens\":50,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769816-zeZ3KcAe5Oaq5naE13jZ",
+              "object": "chat.completion",
+              "created": 1773769816,
+              "model": "openai/gpt-5.4-mini-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{ \"guesses\": [\"tennis\", \"racket\", \"ball\", \"sport\", \"racquet\", \"serve\", \"court\", \"player\", \"match\", \"game\", \"volley\", \"backhand\", \"forehand\", \"string\", \"net\", \"smash\", \"yellow\", \"bounce\", \"athlete\", \"pingpong\"] }",
+                    "refusal": null,
+                    "reasoning": "**Generating guesses for tennis**\n\nI'm focusing on providing 20 unique one-word guesses related to the image of a tennis racket and tennis ball. The primary guess would be \"tennis,\" but I need the other 19 to flow naturally from that. Each guess should be distinct and without punctuation. I’ll aim for words connected to the sport, equipment, or gameplay. It's important to make sure none of the guesses overlap, so I’ll take my time to brainstorm and compile this list carefully!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Generating guesses for tennis**\n\nI'm focusing on providing 20 unique one-word guesses related to the image of a tennis racket and tennis ball. The primary guess would be \"tennis,\" but I need the other 19 to flow naturally from that. Each guess should be distinct and without punctuation. I’ll aim for words connected to the sport, equipment, or gameplay. It's important to make sure none of the guesses overlap, so I’ll take my time to brainstorm and compile this list carefully!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRbNdD2YF4VXKEFbs8sDC8Arf_V_RB6YnsUZF9eWJ0hvDzmBBm1aWz725P6-KEqzwRXOh8vTHKqKVRDTmuWNxUmziOAlrPG6lozn1DcxUMvg8G-Enqmm5TLLIXuzDFA8r2ogNTbvtYaNPYVRJrjmqI-DDmcKcWM5Wl4SQGBg9WAgNQCyE5DKPnUvzU0Gg4UKSfcXsSRCKGGWAzRQ2o9QhQmb6dQqw_alGqKGvaYgYGWgk-iIS4jSZTiHWMqdMp-DIYqDtu-4VdLz9mBmK9r05KsfC7_PePb9O_mhgC0eKlcd8vrtUyfbekPrXvEt3ild0rdQhkpmX8e0ohzfmRG0gAHWhweDtB8DOzNqRi-1gyCkoB1MxpAzIwxKl9Tr9jH2MVUprQe-6JLMW2HV454gdnY3tV2b2f__m1jl9tn4U8Ao4IfBb5bM9mdXNDvxAKBRJeXBCsOqeoEmxz8_NBlTkmfU92NyXOkjT6-kxF5YkgfvyWD5HrZYlUAVI1Qt68s8hEjjLx_caHrgVnss0HdanU14DWa7hFTcvg2xq5NCg6AB599FKK6v4lfTN-Sf5RW3iY7tPz4T3KTvDAaVTp8viOVcdOjy14d307g9IY5fywqxjhLKp6GjGSXjWhTDJtWzARQAcXdMydhiwoiXDd50_dn9QiR4LV0oaiy_BZ1tbhAYRrzu4lqz5IogTFEn53jsKxQpOsrrYb97Ks78o9v3KcVfc2V5X0GYKrlEb_r-hwekA0NUZSIUF74seC-cphtWaf6Uj9fn9zqd9AdXVFQPgua9If-c9-bk5J6Z1_9RR0F6JPosCpQiL8OtxD2ROWAr1g2Uh9Ki-tNTKzW9Mj6X9Jdvf1MDKy4mZlmGlaLEgBrsYwi9yyYgrHlLeiOe6S-KUTYnTqQkoewYWA0ILllgL3ApiVF2k8p-Y3lEplS-pGtlnSlj0fFS4CH-IzcGX5edwQF_fE4_1U4Oo1O5pjkSNpo5tCk9tKt3gssGgtWi4rdx4lTaIi8yIGyVwyGR1pD27i6qZkgz6m2jVZYwMq2u-vpbvdmYHA_G742WTEQUwo2ZJrFkoMbaINbrZD2ibF7VSzcZiaPUUBSySd8AgibkBCPNXK6GYphte8UgQppxe7sItE=",
+                        "format": "openai-responses-v1",
+                        "id": "rs_0284ae7e95337ca10169b99458d9c08190821ce84d0d153e63",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 464,
+                "completion_tokens": 131,
+                "total_tokens": 595,
+                "cost": 0.0009375,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0009375,
+                  "upstream_inference_prompt_cost": 0.000348,
+                  "upstream_inference_completions_cost": 0.0005895
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 50,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.000937,
+          "requestDurationMs": 3137,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

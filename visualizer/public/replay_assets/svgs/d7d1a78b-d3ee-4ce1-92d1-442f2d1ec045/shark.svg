@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bodyGrad" x1="170" y1="190" x2="430" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6dd6ff"/>
+      <stop offset="1" stop-color="#1e87ff"/>
+    </linearGradient>
+    <linearGradient id="bellyGrad" x1="170" y1="270" x2="420" y2="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e8f7ff"/>
+      <stop offset="1" stop-color="#bfe8ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- water background -->
+  <rect width="512" height="512" fill="#e8f6ff"/>
+  <path d="M0 380 C80 340, 160 420, 240 390 C320 360, 400 420, 512 380 L512 512 L0 512 Z" fill="#bfe7ff" opacity="0.9"/>
+  <path d="M0 330 C90 300, 160 360, 250 330 C330 305, 410 350, 512 320" fill="none" stroke="#7ecbff" stroke-width="6" opacity="0.35"/>
+  <path d="M0 260 C70 240, 150 290, 240 265 C330 240, 420 285, 512 255" fill="none" stroke="#7ecbff" stroke-width="5" opacity="0.25"/>
+
+  <!-- shark shadow -->
+  <ellipse cx="285" cy="360" rx="130" ry="34" fill="#0b3a5a" opacity="0.08"/>
+
+  <!-- tail -->
+  <path d="M120 255 C70 235, 40 250, 20 280 C55 290, 55 320, 25 340 C55 350, 88 335, 120 315 C105 292, 105 276, 120 255 Z" fill="#1b7bdc"/>
+  <path d="M106 262 C72 252, 52 262, 40 280 C64 286, 64 306, 44 320 C62 326, 86 312, 106 300 Z" fill="#6dd6ff" opacity="0.7"/>
+
+  <!-- tail fin notch -->
+  <path d="M92 290 C62 300, 50 312, 42 328 C62 328, 78 330, 98 318 Z" fill="#0e5fb2" opacity="0.65"/>
+
+  <!-- body (main) -->
+  <path d="M145 255 C190 205, 275 185, 352 215 C420 242, 445 290, 420 330 C388 380, 300 405, 225 385 C170 370, 135 330, 145 255 Z" fill="url(#bodyGrad)"/>
+
+  <!-- belly -->
+  <path d="M185 285 C210 250, 270 235, 325 255 C360 268, 382 298, 372 327 C358 365, 298 385, 245 370 C205 360, 176 335, 185 285 Z" fill="url(#bellyGrad)" opacity="0.95"/>
+
+  <!-- dorsal fin -->
+  <path d="M255 230 C278 205, 315 210, 320 245 C300 260, 275 265, 255 260 Z" fill="#156cc9"/>
+  <path d="M266 236 C283 220, 303 223, 308 243 C295 253, 279 255, 266 250 Z" fill="#6dd6ff" opacity="0.5"/>
+
+  <!-- pectoral fin -->
+  <path d="M315 300 C335 285, 365 295, 370 315 C355 330, 335 332, 318 322 Z" fill="#156cc9"/>
+  <path d="M322 306 C336 296, 352 304, 355 314 C345 322, 334 324, 324 318 Z" fill="#6dd6ff" opacity="0.45"/>
+
+  <!-- head / snout emphasis -->
+  <path d="M342 226 C372 240, 405 275, 404 305 C390 312, 372 316, 360 312 C372 294, 366 260, 342 226 Z" fill="#0f6be0" opacity="0.35"/>
+
+  <!-- eye -->
+  <circle cx="352" cy="262" r="8" fill="#08334f"/>
+  <circle cx="350" cy="260" r="3" fill="#ffffff"/>
+
+  <!-- mouth line -->
+  <path d="M330 282 C345 290, 360 292, 378 290" fill="none" stroke="#08334f" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+
+  <!-- gill slashes -->
+  <path d="M305 275 C318 278, 328 283, 336 290" fill="none" stroke="#0b4a73" stroke-width="4" stroke-linecap="round" opacity="0.35"/>
+  <path d="M300 290 C314 292, 325 298, 333 305" fill="none" stroke="#0b4a73" stroke-width="4" stroke-linecap="round" opacity="0.28"/>
+
+  <!-- whisker-like highlights (subtle) -->
+  <path d="M185 295 C210 280, 240 275, 265 278" fill="none" stroke="#ffffff" stroke-width="5" opacity="0.35" stroke-linecap="round"/>
+</svg>

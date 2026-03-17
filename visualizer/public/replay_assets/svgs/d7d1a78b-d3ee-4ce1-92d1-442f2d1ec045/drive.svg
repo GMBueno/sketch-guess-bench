@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#ffffff"/>
+
+  <!-- Sky/Background gradient -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe3ff"/>
+      <stop offset="1" stop-color="#eef7ff"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="512" height="340" fill="url(#g)"/>
+
+  <!-- Road -->
+  <path d="M140 500 L230 190 Q245 150 270 150 L290 150 Q315 150 330 190 L420 500 Z" fill="#2f2f35"/>
+  <path d="M220 500 L300 200" stroke="#f6c12a" stroke-width="10" stroke-linecap="round" opacity="0.95"/>
+
+  <!-- Dashed lane markings -->
+  <g opacity="0.95">
+    <path d="M235 420 L265 300" stroke="#ffd966" stroke-width="6" stroke-linecap="round"/>
+    <path d="M220 450 L250 330" stroke="#ffd966" stroke-width="6" stroke-linecap="round"/>
+    <path d="M250 390 L285 260" stroke="#ffd966" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Car body (side/front perspective) -->
+  <g transform="translate(0,0)">
+    <!-- shadow on road -->
+    <ellipse cx="270" cy="355" rx="95" ry="22" fill="#000" opacity="0.12"/>
+
+    <!-- body -->
+    <path d="M200 320
+             Q215 290 250 280
+             L285 270
+             Q300 260 320 265
+             Q355 275 380 290
+             Q402 304 405 330
+             L408 352
+             Q410 370 395 372
+             L215 372
+             Q190 370 190 350
+             Q190 335 200 320 Z" 
+          fill="#4f7cff" stroke="#2b3b6e" stroke-width="3"/>
+
+    <!-- windshield -->
+    <path d="M260 292
+             Q270 270 295 266
+             Q320 261 350 276
+             Q355 279 357 287
+             Q360 300 348 306
+             L275 318
+             Q258 318 260 292 Z" 
+          fill="#9ad7ff" stroke="#2b3b6e" stroke-width="3"/>
+
+    <!-- hood/trim -->
+    <path d="M210 336
+             Q245 320 290 312
+             Q340 304 390 330" 
+          fill="none" stroke="#d9ecff" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+
+    <!-- front bumper/stripe -->
+    <path d="M360 362 Q382 360 397 353" fill="none" stroke="#ffd966" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- wheels -->
+    <g>
+      <circle cx="238" cy="372" r="30" fill="#1b1b22" stroke="#0a0a0f" stroke-width="4"/>
+      <circle cx="238" cy="372" r="14" fill="#3a3a45" stroke="#0a0a0f" stroke-width="3"/>
+      <circle cx="370" cy="372" r="32" fill="#1b1b22" stroke="#0a0a0f" stroke-width="4"/>
+      <circle cx="370" cy="372" r="15" fill="#3a3a45" stroke="#0a0a0f" stroke-width="3"/>
+    </g>
+
+    <!-- axle/underbody -->
+    <path d="M205 372 Q242 360 275 366" stroke="#121218" stroke-width="8" stroke-linecap="round"/>
+    <path d="M275 366 Q315 360 405 352" stroke="#121218" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Motion lines to suggest driving -->
+  <g opacity="0.9" stroke="#ffffff" stroke-width="6" stroke-linecap="round">
+    <path d="M120 420 Q165 390 215 388" fill="none"/>
+    <path d="M130 445 Q175 415 225 413" fill="none"/>
+    <path d="M140 470 Q190 445 245 443" fill="none"/>
+  </g>
+</svg>

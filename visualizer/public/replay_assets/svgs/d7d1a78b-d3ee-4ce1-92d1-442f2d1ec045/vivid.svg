@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#1b2a6b"/>
+      <stop offset="55%" stop-color="#0b5ea8"/>
+      <stop offset="100%" stop-color="#081a3a"/>
+    </radialGradient>
+    <linearGradient id="r1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff2a6d"/>
+      <stop offset="100%" stop-color="#ffcc00"/>
+    </linearGradient>
+    <linearGradient id="r2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#7c4dff"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Color rays -->
+  <g opacity="0.95" filter="url(#glow)">
+    <path d="M256 120 L270 55 L290 120" fill="none" stroke="#ffcc00" stroke-width="10" stroke-linecap="round"/>
+    <path d="M230 130 L205 70 L200 140" fill="none" stroke="#00e5ff" stroke-width="10" stroke-linecap="round"/>
+    <path d="M282 140 L310 90 L300 160" fill="none" stroke="#7c4dff" stroke-width="10" stroke-linecap="round"/>
+    <path d="M190 170 L130 150 L200 200" fill="none" stroke="#ff2a6d" stroke-width="10" stroke-linecap="round"/>
+    <path d="M320 170 L380 150 L310 205" fill="none" stroke="#22c55e" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <!-- Central vivid burst -->
+  <g filter="url(#glow)" transform="translate(0,6)">
+    <circle cx="256" cy="240" r="92" fill="url(#r1)" opacity="0.95"/>
+    <circle cx="250" cy="228" r="70" fill="url(#r2)" opacity="0.85"/>
+    <circle cx="265" cy="255" r="48" fill="#ffffff" opacity="0.18"/>
+
+    <!-- Splashes / droplets -->
+    <path d="M180 245 C155 210, 195 165, 225 205 C250 240, 200 275, 180 245Z" fill="#ff2a6d" opacity="0.95"/>
+    <path d="M330 230 C365 205, 410 245, 370 275 C340 300, 305 260, 330 230Z" fill="#00e5ff" opacity="0.9"/>
+    <path d="M220 320 C195 340, 190 385, 230 390 C275 395, 265 350, 220 320Z" fill="#7c4dff" opacity="0.9"/>
+    <path d="M292 315 C315 300, 355 305, 360 340 C365 380, 325 390, 292 360 C275 345, 275 325, 292 315Z" fill="#22c55e" opacity="0.9"/>
+
+    <!-- Sparkle dots -->
+    <g>
+      <circle cx="206" cy="250" r="7" fill="#ffe66d"/>
+      <circle cx="312" cy="250" r="6" fill="#9effff"/>
+      <circle cx="252" cy="185" r="6" fill="#ff9ad1"/>
+      <circle cx="278" cy="320" r="6" fill="#b9a7ff"/>
+      <circle cx="230" cy="300" r="5" fill="#b6ff7a"/>
+    </g>
+  </g>
+
+  <!-- Foreground color blobs -->
+  <g opacity="0.95" filter="url(#glow)">
+    <path d="M120 360 C110 320, 145 285, 185 305 C220 323, 220 375, 180 390 C155 400, 128 395, 120 360Z" fill="#ffcc00"/>
+    <path d="M390 360 C402 320, 370 282, 330 300 C295 316, 292 372, 332 392 C355 404, 382 395, 390 360Z" fill="#ff2a6d"/>
+    <path d="M150 165 C165 135, 210 125, 230 155 C250 185, 225 215, 185 210 C155 205, 138 195, 150 165Z" fill="#00e5ff"/>
+    <path d="M360 160 C345 132, 300 120, 282 148 C265 176, 288 214, 332 205 C360 200, 375 190, 360 160Z" fill="#7c4dff"/>
+  </g>
+
+  <!-- Subtle frame -->
+  <rect x="20" y="20" width="472" height="472" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+</svg>

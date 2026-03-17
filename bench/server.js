@@ -1,5 +1,4 @@
 import dotenv from "dotenv";
-import express from "express";
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -11,8 +10,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, "..", ".env") });
 
-const app = express();
-const PORT = process.env.PORT || 3000;
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MAX_HINTS = 20;
 const BENCHMARK_CONCURRENCY = Number(process.env.BENCHMARK_CONCURRENCY || 10);
@@ -66,6 +63,18 @@ const MODELS = [
     provider: { order: ["openai"], allow_fallbacks: false }
   },
   {
+    key: "gpt54nano",
+    label: "GPT-5.4 Nano",
+    modelId: "openai/gpt-5.4-nano",
+    provider: { order: ["openai"], allow_fallbacks: false }
+  },
+  {
+    key: "gpt54mini",
+    label: "GPT-5.4 Mini",
+    modelId: "openai/gpt-5.4-mini",
+    provider: { order: ["openai"], allow_fallbacks: false }
+  },
+  {
     key: "gemini25flashlite",
     label: "Gemini 2.5 Flash Lite",
     modelId: "google/gemini-2.5-flash-lite",
@@ -86,7 +95,6 @@ const FIXED_PROVIDER = {
 const DATA_DIR = path.join(__dirname, "..", "data");
 const MODEL_RESULTS_DIR = path.join(DATA_DIR, "benchmarks");
 const TRACE_RESULTS_DIR = path.join(DATA_DIR, "openrouter_traces");
-const PUBLIC_DIR = path.join(__dirname, "..", "visualizer", "public");
 const benchmarkProgress = {
   status: "idle",
   runId: null,
@@ -140,178 +148,6 @@ const SVG_FALLBACK = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height
 let renderBrowserPromise = null;
 
 const wordPattern = /^[\p{L}-]+$/u;
-
-app.use(express.json({ limit: "1mb" }));
-app.use(express.static(PUBLIC_DIR));
-app.get(["/", "/rankings", "/replays", "/about"], (_req, res) => {
-  res.sendFile(path.join(PUBLIC_DIR, "index.html"));
-});
-
-app.get("/api/status", async (_req, res) => {
-  const benchmarks = await readAllBenchmarks();
-  res.json({
-    ok: true,
-    hasApiKey: Boolean(process.env.OPENROUTER_API_KEY),
-    words: WORD_BANK,
-    maxHints: MAX_HINTS,
-    benchmarkConcurrency: BENCHMARK_CONCURRENCY,
-    modelIds: MODELS,
-    benchmarkCount: benchmarks.length,
-    provider: {
-      default: FIXED_PROVIDER,
-      byModel: Object.fromEntries(MODELS.map((m) => [m.modelId, m.provider]))
-    }
-  });
-});
-
-app.get("/api/benchmarks", async (_req, res) => {
-  const benchmarks = await readAllBenchmarks();
-  res.json(benchmarks);
-});
-
-app.get("/api/benchmarks/progress", (_req, res) => {
-  const percent = benchmarkProgress.totalGames > 0
-    ? Number(((benchmarkProgress.completedGames / benchmarkProgress.totalGames) * 100).toFixed(1))
-    : 0;
-  res.json({
-    ...benchmarkProgress,
-    percent
-  });
-});
-
-app.post("/api/benchmarks/run", async (req, res) => {
-  if (!process.env.OPENROUTER_API_KEY) {
-    res.status(400).json({ error: "Missing OPENROUTER_API_KEY" });
-    return;
-  }
-  const modelKey = typeof req.body?.modelKey === "string" ? req.body.modelKey : "";
-  const model = MODELS.find((item) => item.key === modelKey);
-  if (!model) {
-    res.status(400).json({
-      error: "Invalid or missing modelKey",
-      allowedModelKeys: MODELS.map((item) => item.key)
-    });
-    return;
-  }
-  const modelSupportsEffort = supportsEffort(model.modelId);
-  const providedEffort = parseEffort(req.body?.effort);
-  if (modelSupportsEffort && req.body?.effort !== undefined && !providedEffort) {
-    res.status(400).json({
-      error: "Invalid effort",
-      allowedEfforts: [...ALLOWED_EFFORTS]
-    });
-    return;
-  }
-  const effort = modelSupportsEffort ? (providedEffort || DEFAULT_EFFORT) : null;
-  if (benchmarkProgress.status === "running") {
-    res.status(409).json({ error: "A benchmark is already running" });
-    return;
-  }
-
-  const runId = crypto.randomUUID();
-  startBenchmarkProgress(runId, model, effort);
-  try {
-    const benchmark = await runBenchmark(runId, model, effort);
-    const modelBenchmarks = await readModelBenchmarks(model.key);
-    modelBenchmarks.unshift(benchmark);
-    await writeModelBenchmarks(model.key, modelBenchmarks);
-    completeBenchmarkProgress();
-    res.json(benchmark);
-  } catch (err) {
-    console.error(err);
-    failBenchmarkProgress(err.message || "Benchmark failed");
-    res.status(500).json({ error: err.message || "Benchmark failed" });
-  }
-});
-
-app.post("/api/benchmarks/:runId/retry-word", async (req, res) => {
-  if (!process.env.OPENROUTER_API_KEY) {
-    res.status(400).json({ error: "Missing OPENROUTER_API_KEY" });
-    return;
-  }
-  if (benchmarkProgress.status === "running") {
-    res.status(409).json({ error: "A benchmark is already running" });
-    return;
-  }
-
-  const runId = typeof req.params?.runId === "string" ? req.params.runId : "";
-  const targetWord = sanitizeOneWord(req.body?.targetWord);
-  if (!targetWord) {
-    res.status(400).json({ error: "Invalid targetWord" });
-    return;
-  }
-
-  const record = await findBenchmarkRecord(runId);
-  if (!record) {
-    res.status(404).json({ error: "Benchmark run not found" });
-    return;
-  }
-
-  const run = record.benchmark?.modelRuns?.[0];
-  if (!run || !Array.isArray(run.games)) {
-    res.status(400).json({ error: "Benchmark has no model run data" });
-    return;
-  }
-
-  const gameIndex = run.games.findIndex((game) => isSameWord(game?.targetWord, targetWord));
-  if (gameIndex === -1) {
-    res.status(404).json({ error: "Word not found in this benchmark run" });
-    return;
-  }
-
-  const model = MODELS.find((item) => item.key === run.modelKey || item.modelId === run.modelId);
-  if (!model) {
-    res.status(400).json({ error: "Model config not found for this run" });
-    return;
-  }
-
-  const modelSupportsEffort = supportsEffort(model.modelId);
-  const effort = modelSupportsEffort
-    ? (parseEffort(run.effort) || parseEffort(record.benchmark?.effort) || DEFAULT_EFFORT)
-    : null;
-  startBenchmarkProgress(runId, model, effort);
-  benchmarkProgress.totalGames = 1;
-  benchmarkProgress.completedGames = 0;
-  benchmarkProgress.failedGames = 0;
-  setActiveGame(model.label, run.games[gameIndex].targetWord);
-  try {
-    const updatedGame = await withTimeout(
-      runSingleGame({
-        runId,
-        model,
-        targetWord: run.games[gameIndex].targetWord,
-        effort
-      }),
-      GAME_TIMEOUT_MS,
-      `Game timed out after ${GAME_TIMEOUT_MS}ms`
-    );
-
-    run.games[gameIndex] = updatedGame;
-    const refreshedRun = buildModelRun({
-      model,
-      effort,
-      games: run.games
-    });
-    record.benchmark.completedAt = new Date().toISOString();
-    record.benchmark.effort = effort;
-    record.benchmark.modelRuns = [refreshedRun];
-    record.benchmark.ranking = [buildRankingRow(refreshedRun)];
-
-    record.benchmarks[record.index] = normalizeBenchmark(record.benchmark);
-    await writeModelBenchmarks(record.modelKey, record.benchmarks);
-    advanceProgress(model.label, run.games[gameIndex].targetWord, false);
-    completeBenchmarkProgress();
-    res.json(record.benchmark);
-  } catch (err) {
-    advanceProgress(model.label, run.games[gameIndex].targetWord, true);
-    failBenchmarkProgress(err?.message || "Word retry failed");
-    res.status(500).json({ error: err?.message || "Word retry failed" });
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
 
 async function runBenchmark(runId, model, effort) {
   const startedAt = new Date().toISOString();
@@ -1128,6 +964,236 @@ async function withTimeout(promise, timeoutMs, message) {
   }
 }
 
+async function runBenchmarkCommand({ modelKey, effort: rawEffort }) {
+  ensureApiKey();
+  ensureNotRunning();
+
+  const model = resolveModelOrThrow(modelKey);
+  const effort = resolveEffortForModel(model, rawEffort);
+  const runId = crypto.randomUUID();
+
+  startBenchmarkProgress(runId, model, effort);
+
+  try {
+    const benchmark = await runBenchmark(runId, model, effort);
+    const modelBenchmarks = await readModelBenchmarks(model.key);
+    modelBenchmarks.unshift(benchmark);
+    await writeModelBenchmarks(model.key, modelBenchmarks);
+    completeBenchmarkProgress();
+    return benchmark;
+  } catch (err) {
+    failBenchmarkProgress(err?.message || "Benchmark failed");
+    throw err;
+  }
+}
+
+async function retryWordCommand({ runId, targetWord }) {
+  ensureApiKey();
+  ensureNotRunning();
+
+  const safeTargetWord = sanitizeOneWord(targetWord);
+  if (!safeTargetWord) {
+    throw new Error("Missing or invalid --word");
+  }
+
+  const record = await findBenchmarkRecord(runId);
+  if (!record) {
+    throw new Error(`Benchmark run not found: ${runId}`);
+  }
+
+  const run = record.benchmark?.modelRuns?.[0];
+  if (!run || !Array.isArray(run.games)) {
+    throw new Error("Benchmark has no model run data");
+  }
+
+  const gameIndex = run.games.findIndex((game) => isSameWord(game?.targetWord, safeTargetWord));
+  if (gameIndex === -1) {
+    throw new Error(`Word not found in this benchmark run: ${safeTargetWord}`);
+  }
+
+  const model = MODELS.find((item) => item.key === run.modelKey || item.modelId === run.modelId);
+  if (!model) {
+    throw new Error("Model config not found for this run");
+  }
+
+  const effort = supportsEffort(model.modelId)
+    ? (parseEffort(run.effort) || parseEffort(record.benchmark?.effort) || DEFAULT_EFFORT)
+    : null;
+
+  startBenchmarkProgress(runId, model, effort);
+  benchmarkProgress.totalGames = 1;
+  benchmarkProgress.completedGames = 0;
+  benchmarkProgress.failedGames = 0;
+  setActiveGame(model.label, run.games[gameIndex].targetWord);
+
+  try {
+    const updatedGame = await withTimeout(
+      runSingleGame({
+        runId,
+        model,
+        targetWord: run.games[gameIndex].targetWord,
+        effort
+      }),
+      GAME_TIMEOUT_MS,
+      `Game timed out after ${GAME_TIMEOUT_MS}ms`
+    );
+
+    run.games[gameIndex] = updatedGame;
+    const refreshedRun = buildModelRun({
+      model,
+      effort,
+      games: run.games
+    });
+    record.benchmark.completedAt = new Date().toISOString();
+    record.benchmark.effort = effort;
+    record.benchmark.modelRuns = [refreshedRun];
+    record.benchmark.ranking = [buildRankingRow(refreshedRun)];
+
+    record.benchmarks[record.index] = normalizeBenchmark(record.benchmark);
+    await writeModelBenchmarks(record.modelKey, record.benchmarks);
+    advanceProgress(model.label, run.games[gameIndex].targetWord, false);
+    completeBenchmarkProgress();
+    return record.benchmark;
+  } catch (err) {
+    advanceProgress(model.label, run.games[gameIndex].targetWord, true);
+    failBenchmarkProgress(err?.message || "Word retry failed");
+    throw err;
+  }
+}
+
+function ensureApiKey() {
+  if (!process.env.OPENROUTER_API_KEY) {
+    throw new Error("Missing OPENROUTER_API_KEY");
+  }
+}
+
+function ensureNotRunning() {
+  if (benchmarkProgress.status === "running") {
+    throw new Error("A benchmark is already running");
+  }
+}
+
+function resolveModelOrThrow(modelKey) {
+  const model = MODELS.find((item) => item.key === modelKey);
+  if (!model) {
+    throw new Error(
+      `Invalid or missing --model. Allowed values: ${MODELS.map((item) => item.key).join(", ")}`
+    );
+  }
+  return model;
+}
+
+function resolveEffortForModel(model, rawEffort) {
+  const providedEffort = parseEffort(rawEffort);
+  if (supportsEffort(model.modelId)) {
+    if (rawEffort !== undefined && !providedEffort) {
+      throw new Error(`Invalid --effort. Allowed values: ${[...ALLOWED_EFFORTS].join(", ")}`);
+    }
+    return providedEffort || DEFAULT_EFFORT;
+  }
+  return null;
+}
+
+function parseCliArgs(argv) {
+  const positionals = [];
+  const flags = {};
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+    if (!token.startsWith("--")) {
+      positionals.push(token);
+      continue;
+    }
+
+    const trimmed = token.slice(2);
+    const eqIndex = trimmed.indexOf("=");
+    if (eqIndex !== -1) {
+      const key = trimmed.slice(0, eqIndex);
+      const value = trimmed.slice(eqIndex + 1);
+      flags[key] = value;
+      continue;
+    }
+
+    const key = trimmed;
+    const next = argv[index + 1];
+    if (next && !next.startsWith("--")) {
+      flags[key] = next;
+      index += 1;
+    } else {
+      flags[key] = true;
+    }
+  }
+
+  return { positionals, flags };
+}
+
+function printUsage() {
+  console.log(`SketchGuess bench runner
+
+Usage:
+  bun run run -- --model <modelKey> [--effort <level>]
+  bun run retry-word -- --run-id <runId> --word <targetWord>
+  bun run models
+
+Examples:
+  bun run run -- --model gpt5mini --effort medium
+  bun run retry-word -- --run-id 1234 --word rocket
+`);
+}
+
+async function main() {
+  const { positionals, flags } = parseCliArgs(process.argv.slice(2));
+  const command = positionals[0] || "help";
+
+  if (command === "help" || flags.help) {
+    printUsage();
+    return;
+  }
+
+  if (command === "models") {
+    console.log(JSON.stringify({
+      models: MODELS.map((model) => ({
+        key: model.key,
+        label: model.label,
+        modelId: model.modelId,
+        supportsEffort: supportsEffort(model.modelId)
+      }))
+    }, null, 2));
+    return;
+  }
+
+  if (command === "run") {
+    const benchmark = await runBenchmarkCommand({
+      modelKey: typeof flags.model === "string" ? flags.model : process.env.MODEL_KEY,
+      effort: typeof flags.effort === "string" ? flags.effort : process.env.EFFORT
+    });
+    console.log(JSON.stringify({
+      ok: true,
+      runId: benchmark.id,
+      modelKey: benchmark.modelRuns?.[0]?.modelKey || null,
+      effort: benchmark.effort,
+      completedAt: benchmark.completedAt
+    }, null, 2));
+    return;
+  }
+
+  if (command === "retry-word") {
+    const benchmark = await retryWordCommand({
+      runId: typeof flags["run-id"] === "string" ? flags["run-id"] : process.env.RUN_ID,
+      targetWord: typeof flags.word === "string" ? flags.word : process.env.TARGET_WORD
+    });
+    console.log(JSON.stringify({
+      ok: true,
+      runId: benchmark.id,
+      word: typeof flags.word === "string" ? flags.word : process.env.TARGET_WORD,
+      completedAt: benchmark.completedAt
+    }, null, 2));
+    return;
+  }
+
+  throw new Error(`Unknown command: ${command}`);
+}
+
 function startBenchmarkProgress(runId, model, effort) {
   benchmarkProgress.status = "running";
   benchmarkProgress.runId = runId;
@@ -1143,11 +1209,15 @@ function startBenchmarkProgress(runId, model, effort) {
   benchmarkProgress.lastCompletedModel = null;
   benchmarkProgress.lastCompletedWord = null;
   benchmarkProgress.error = null;
+  console.log(
+    `Starting benchmark ${runId} for ${benchmarkProgress.activeModel || model?.label || "unknown model"}`
+  );
 }
 
 function setActiveGame(modelLabel, targetWord) {
   benchmarkProgress.activeModel = modelLabel;
   benchmarkProgress.activeWord = targetWord;
+  console.log(`Running word: ${targetWord}`);
 }
 
 function advanceProgress(modelLabel, targetWord, failed) {
@@ -1155,6 +1225,9 @@ function advanceProgress(modelLabel, targetWord, failed) {
   if (failed) benchmarkProgress.failedGames += 1;
   benchmarkProgress.lastCompletedModel = modelLabel;
   benchmarkProgress.lastCompletedWord = targetWord;
+  console.log(
+    `Progress ${benchmarkProgress.completedGames}/${benchmarkProgress.totalGames}: ${targetWord}${failed ? " (failed)" : ""}`
+  );
 }
 
 function completeBenchmarkProgress() {
@@ -1162,6 +1235,7 @@ function completeBenchmarkProgress() {
   benchmarkProgress.completedAt = new Date().toISOString();
   benchmarkProgress.activeModel = null;
   benchmarkProgress.activeWord = null;
+  console.log(`Benchmark completed at ${benchmarkProgress.completedAt}`);
 }
 
 function failBenchmarkProgress(message) {
@@ -1170,6 +1244,7 @@ function failBenchmarkProgress(message) {
   benchmarkProgress.activeModel = null;
   benchmarkProgress.activeWord = null;
   benchmarkProgress.error = message;
+  console.error(`Benchmark failed: ${message}`);
 }
 
 async function runWithConcurrency(items, maxConcurrency, worker) {
@@ -1400,4 +1475,9 @@ process.on("exit", () => {
   renderBrowserPromise
     .then((browser) => browser.close())
     .catch(() => {});
+});
+
+main().catch((err) => {
+  console.error(err?.stack || err?.message || String(err));
+  process.exitCode = 1;
 });

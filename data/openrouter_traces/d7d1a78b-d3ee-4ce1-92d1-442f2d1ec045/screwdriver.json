@@ -1,0 +1,417 @@
+{
+  "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+  "targetWord": "screwdriver",
+  "modelKey": "gpt54nano",
+  "modelLabel": "GPT-5.4 Nano",
+  "modelId": "openai/gpt-5.4-nano",
+  "effort": "medium",
+  "latestExecutionId": "ade11c9a-aa2b-4588-99bc-732b47127e73",
+  "executions": [
+    {
+      "executionId": "ade11c9a-aa2b-4588-99bc-732b47127e73",
+      "startedAt": "2026-03-17T17:50:07.711Z",
+      "completedAt": "2026-03-17T17:50:20.094Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "screwdriver",
+        "solved": false,
+        "guessesUsed": 20,
+        "penalizedGuesses": 21,
+        "totalCostUsd": 0.001889,
+        "totalRequestMs": 12278,
+        "pricedRequests": 2,
+        "totalRequests": 2,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\" fill=\"none\">\n  <defs>\n    <linearGradient id=\"gHandle\" x1=\"120\" y1=\"380\" x2=\"240\" y2=\"140\" gradientUnits=\"userSpaceOnUse\">\n      <stop stop-color=\"#ff8a5b\"/>\n      <stop offset=\"1\" stop-color=\"#d9533a\"/>\n    </linearGradient>\n    <linearGradient id=\"gShaft\" x1=\"250\" y1=\"200\" x2=\"420\" y2=\"420\" gradientUnits=\"userSpaceOnUse\">\n      <stop stop-color=\"#cfd8dc\"/>\n      <stop offset=\"1\" stop-color=\"#90a4ae\"/>\n    </linearGradient>\n  </defs>\n\n  <!-- shadow -->\n  <ellipse cx=\"270\" cy=\"410\" rx=\"120\" ry=\"22\" fill=\"#000\" opacity=\"0.12\"/>\n\n  <!-- screwdriver body (rotated) -->\n  <g transform=\"translate(0,0) rotate(-18 260 260)\" >\n    <!-- handle -->\n    <rect x=\"110\" y=\"300\" width=\"175\" height=\"85\" rx=\"22\" fill=\"url(#gHandle)\"/>\n    <rect x=\"130\" y=\"315\" width=\"135\" height=\"55\" rx=\"16\" fill=\"#f39c7a\" opacity=\"0.35\"/>\n\n    <!-- handle grip rings -->\n    <rect x=\"150\" y=\"332\" width=\"95\" height=\"10\" rx=\"5\" fill=\"#9b4b3f\" opacity=\"0.35\"/>\n    <rect x=\"160\" y=\"360\" width=\"75\" height=\"8\" rx=\"4\" fill=\"#9b4b3f\" opacity=\"0.25\"/>\n\n    <!-- shaft -->\n    <rect x=\"258\" y=\"220\" width=\"110\" height=\"255\" rx=\"18\" fill=\"url(#gShaft)\"/>\n\n    <!-- metal highlight -->\n    <path d=\"M280 230 C300 265, 350 315, 345 465\" stroke=\"#e9f0f2\" stroke-width=\"8\" stroke-linecap=\"round\" opacity=\"0.7\"/>\n\n    <!-- tip (cross shape silhouette without letters) -->\n    <g transform=\"translate(340 430) rotate(8)\">\n      <polygon points=\"0,0 40,-10 40,10\" fill=\"#b0bec5\"/>\n      <polygon points=\"-10,0 30,-35 40,-10\" fill=\"#c7d1d6\"/>\n      <polygon points=\"-10,0 30,35 40,10\" fill=\"#90a4ae\"/>\n      <path d=\"M0,0 L22,-30 L22,30 Z\" fill=\"#a5b7c0\" opacity=\"0.35\"/>\n    </g>\n\n    <!-- ferrule -->\n    <rect x=\"235\" y=\"275\" width=\"55\" height=\"35\" rx=\"14\" fill=\"#9fb3bf\" opacity=\"0.9\"/>\n    <rect x=\"238\" y=\"279\" width=\"49\" height=\"27\" rx=\"12\" fill=\"#bfcad1\" opacity=\"0.55\"/>\n  </g>\n\n  <!-- small sparkle dots for style -->\n  <g opacity=\"0.35\" fill=\"#fff\">\n    <circle cx=\"170\" cy=\"200\" r=\"3\"/>\n    <circle cx=\"195\" cy=\"185\" r=\"2\"/>\n    <circle cx=\"215\" cy=\"225\" r=\"2.5\"/>\n  </g>\n</svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,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"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "download",
+            "correct": false
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "file",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "transfer",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "document",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "inbox",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "mailbox",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "envelope",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "upload",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "submission",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "deposit",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "save",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "import",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "export",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "card",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "cardreader",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "receipt",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "payment",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "archive",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "printer",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "scanner",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+          "targetWord": "screwdriver",
+          "executionId": "ade11c9a-aa2b-4588-99bc-732b47127e73",
+          "file": "openrouter_traces/d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045/screwdriver.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 2,
+        "pricedRequests": 2,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.001889,
+        "totalRequestMs": 12278
+      },
+      "requests": [
+        {
+          "requestId": "8dd0f114-173f-4751-9d95-e6041a8800b0",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:07.711Z",
+          "responseCompletedAt": "2026-03-17T17:50:13.310Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "screwdriver",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"screwdriver\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769811-PSqSZFosc3tFcFRwLFNN",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6ab2da5c98a-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:12 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769811-PSqSZFosc3tFcFRwLFNN\",\"object\":\"chat.completion\",\"created\":1773769811,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"svg\\\": \\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\" fill=\\\\\\\"none\\\\\\\">\\\\n  <defs>\\\\n    <linearGradient id=\\\\\\\"gHandle\\\\\\\" x1=\\\\\\\"120\\\\\\\" y1=\\\\\\\"380\\\\\\\" x2=\\\\\\\"240\\\\\\\" y2=\\\\\\\"140\\\\\\\" gradientUnits=\\\\\\\"userSpaceOnUse\\\\\\\">\\\\n      <stop stop-color=\\\\\\\"#ff8a5b\\\\\\\"/>\\\\n      <stop offset=\\\\\\\"1\\\\\\\" stop-color=\\\\\\\"#d9533a\\\\\\\"/>\\\\n    </linearGradient>\\\\n    <linearGradient id=\\\\\\\"gShaft\\\\\\\" x1=\\\\\\\"250\\\\\\\" y1=\\\\\\\"200\\\\\\\" x2=\\\\\\\"420\\\\\\\" y2=\\\\\\\"420\\\\\\\" gradientUnits=\\\\\\\"userSpaceOnUse\\\\\\\">\\\\n      <stop stop-color=\\\\\\\"#cfd8dc\\\\\\\"/>\\\\n      <stop offset=\\\\\\\"1\\\\\\\" stop-color=\\\\\\\"#90a4ae\\\\\\\"/>\\\\n    </linearGradient>\\\\n  </defs>\\\\n\\\\n  <!-- shadow -->\\\\n  <ellipse cx=\\\\\\\"270\\\\\\\" cy=\\\\\\\"410\\\\\\\" rx=\\\\\\\"120\\\\\\\" ry=\\\\\\\"22\\\\\\\" fill=\\\\\\\"#000\\\\\\\" opacity=\\\\\\\"0.12\\\\\\\"/>\\\\n\\\\n  <!-- screwdriver body (rotated) -->\\\\n  <g transform=\\\\\\\"translate(0,0) rotate(-18 260 260)\\\\\\\" >\\\\n    <!-- handle -->\\\\n    <rect x=\\\\\\\"110\\\\\\\" y=\\\\\\\"300\\\\\\\" width=\\\\\\\"175\\\\\\\" height=\\\\\\\"85\\\\\\\" rx=\\\\\\\"22\\\\\\\" fill=\\\\\\\"url(#gHandle)\\\\\\\"/>\\\\n    <rect x=\\\\\\\"130\\\\\\\" y=\\\\\\\"315\\\\\\\" width=\\\\\\\"135\\\\\\\" height=\\\\\\\"55\\\\\\\" rx=\\\\\\\"16\\\\\\\" fill=\\\\\\\"#f39c7a\\\\\\\" opacity=\\\\\\\"0.35\\\\\\\"/>\\\\n\\\\n    <!-- handle grip rings -->\\\\n    <rect x=\\\\\\\"150\\\\\\\" y=\\\\\\\"332\\\\\\\" width=\\\\\\\"95\\\\\\\" height=\\\\\\\"10\\\\\\\" rx=\\\\\\\"5\\\\\\\" fill=\\\\\\\"#9b4b3f\\\\\\\" opacity=\\\\\\\"0.35\\\\\\\"/>\\\\n    <rect x=\\\\\\\"160\\\\\\\" y=\\\\\\\"360\\\\\\\" width=\\\\\\\"75\\\\\\\" height=\\\\\\\"8\\\\\\\" rx=\\\\\\\"4\\\\\\\" fill=\\\\\\\"#9b4b3f\\\\\\\" opacity=\\\\\\\"0.25\\\\\\\"/>\\\\n\\\\n    <!-- shaft -->\\\\n    <rect x=\\\\\\\"258\\\\\\\" y=\\\\\\\"220\\\\\\\" width=\\\\\\\"110\\\\\\\" height=\\\\\\\"255\\\\\\\" rx=\\\\\\\"18\\\\\\\" fill=\\\\\\\"url(#gShaft)\\\\\\\"/>\\\\n\\\\n    <!-- metal highlight -->\\\\n    <path d=\\\\\\\"M280 230 C300 265, 350 315, 345 465\\\\\\\" stroke=\\\\\\\"#e9f0f2\\\\\\\" stroke-width=\\\\\\\"8\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.7\\\\\\\"/>\\\\n\\\\n    <!-- tip (cross shape silhouette without letters) -->\\\\n    <g transform=\\\\\\\"translate(340 430) rotate(8)\\\\\\\">\\\\n      <polygon points=\\\\\\\"0,0 40,-10 40,10\\\\\\\" fill=\\\\\\\"#b0bec5\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"-10,0 30,-35 40,-10\\\\\\\" fill=\\\\\\\"#c7d1d6\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"-10,0 30,35 40,10\\\\\\\" fill=\\\\\\\"#90a4ae\\\\\\\"/>\\\\n      <path d=\\\\\\\"M0,0 L22,-30 L22,30 Z\\\\\\\" fill=\\\\\\\"#a5b7c0\\\\\\\" opacity=\\\\\\\"0.35\\\\\\\"/>\\\\n    </g>\\\\n\\\\n    <!-- ferrule -->\\\\n    <rect x=\\\\\\\"235\\\\\\\" y=\\\\\\\"275\\\\\\\" width=\\\\\\\"55\\\\\\\" height=\\\\\\\"35\\\\\\\" rx=\\\\\\\"14\\\\\\\" fill=\\\\\\\"#9fb3bf\\\\\\\" opacity=\\\\\\\"0.9\\\\\\\"/>\\\\n    <rect x=\\\\\\\"238\\\\\\\" y=\\\\\\\"279\\\\\\\" width=\\\\\\\"49\\\\\\\" height=\\\\\\\"27\\\\\\\" rx=\\\\\\\"12\\\\\\\" fill=\\\\\\\"#bfcad1\\\\\\\" opacity=\\\\\\\"0.55\\\\\\\"/>\\\\n  </g>\\\\n\\\\n  <!-- small sparkle dots for style -->\\\\n  <g opacity=\\\\\\\"0.35\\\\\\\" fill=\\\\\\\"#fff\\\\\\\">\\\\n    <circle cx=\\\\\\\"170\\\\\\\" cy=\\\\\\\"200\\\\\\\" r=\\\\\\\"3\\\\\\\"/>\\\\n    <circle cx=\\\\\\\"195\\\\\\\" cy=\\\\\\\"185\\\\\\\" r=\\\\\\\"2\\\\\\\"/>\\\\n    <circle cx=\\\\\\\"215\\\\\\\" cy=\\\\\\\"225\\\\\\\" r=\\\\\\\"2.5\\\\\\\"/>\\\\n  </g>\\\\n</svg>\\\"\\n}\",\"refusal\":null,\"reasoning\":\"**Designing a screwdriver vector**\\n\\nI need to create a simple vector drawing of a screwdriver without any text. It should include the handle, shaft, and tip, using basic shapes to keep it clean. I want to ensure that there are no letters or words in this illustration. The final output should be in SVG format with a size of 512, and I’ll return it in a JSON structure so it's easy to integrate. Let’s get started on this!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Designing a screwdriver vector**\\n\\nI need to create a simple vector drawing of a screwdriver without any text. It should include the handle, shaft, and tip, using basic shapes to keep it clean. I want to ensure that there are no letters or words in this illustration. The final output should be in SVG format with a size of 512, and I’ll return it in a JSON structure so it's easy to integrate. Let’s get started on this!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRWBDfB7pKXWooB04qyHqKxbuSJOqrnUkzkxtbTvBxiOT76j7H5peBmoHnHq1nGQLyabZrwlSChAjQ4L5vehB3z5axddwpfNpFGwttp6jkUywhrd62JpKvaKE9CjtOFadmOQ6ikj2R05aaSd1vN5-N8aFEhiLAMUXt-np8VY2tZrWxKgZSrFopLoicVLhCBljaBGpAraHRgqf2G3Mr9qZ1Xuj5980wfjGJAcDKg-6rMkx9INUyt-CQyIZII_FhYUyiA7GtlHHlRj5n4JG8LHMZ5xT2X1mvNNs7Emqkq03ERxacvX7y_sOxXFq_wdq73DWYfe-chpJkL8gDh5qAOmdZI-X6xxHTNAAaL6JgmFPE6ZZ5pPqglzRU1V2yKHvbv57nEgrEfGHIG_WvC1hryXOkyWV56H6HdV_gGUeRHvwO-6WQP8C8jnicisdkplRD-auFaNd2UOHm8QjTi4mZdWNoexbYIjRfMZjvs3TXUFu88dTQfng7GjS7RWgtFjPkuZ5fWFCiE2Ih6gIwYOrahzaWNRNqMNEbXaC1tSaekpsYqQp0GevO2gRU3TffsiCFVRD9fYGXzAU3phoqFhlP-ltTVdZqVZdRGZWZTpRnmNOglTGHZ0Pt_HGGv5LgbbUpDjPTR4POGyse0cil5yZl4YeqTu-TL4lU1SLO9MByTB4iKStHnJimO6uu8DRYG7BS_SpZGTm2sxg3eVxZJkXuJ7JidtI-MwJ5JlIGfoXgTQz13mDY9eRN9c2g3Hql1aD6PbyRNf1NaaX9cR0jev_Bc_Jyq01LphoJ-t70MDt_u7JaaC09qG_heiW8qi98qO0lSpzOnVla_3FT0bE5SzWxm9HtJDKhvAgAEEfDQpZkBVl0E9GsGZ7IWWzWWggrqWVWSSnLarJkxqpXGrRnJPi-DPJaztc4mqYgrC-4wO_uZwWZ-FSwKfgcq2--wp-ZJQbovPqkMD7iWGTSI58Oac1GWSvHVix_jKkaDinsQziAPM788DkXi6Ydx_2m94thSMoJUVJMu\",\"format\":\"openai-responses-v1\",\"id\":\"rs_08c36e59a700882f0169b9945418148196baf30724cc221771\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":135,\"completion_tokens\":935,\"total_tokens\":1070,\"cost\":0.00119575,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00119575,\"upstream_inference_prompt_cost\":0.000027,\"upstream_inference_completions_cost\":0.00116875},\"completion_tokens_details\":{\"reasoning_tokens\":34,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769811-PSqSZFosc3tFcFRwLFNN",
+              "object": "chat.completion",
+              "created": 1773769811,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\n  \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\" fill=\\\"none\\\">\\n  <defs>\\n    <linearGradient id=\\\"gHandle\\\" x1=\\\"120\\\" y1=\\\"380\\\" x2=\\\"240\\\" y2=\\\"140\\\" gradientUnits=\\\"userSpaceOnUse\\\">\\n      <stop stop-color=\\\"#ff8a5b\\\"/>\\n      <stop offset=\\\"1\\\" stop-color=\\\"#d9533a\\\"/>\\n    </linearGradient>\\n    <linearGradient id=\\\"gShaft\\\" x1=\\\"250\\\" y1=\\\"200\\\" x2=\\\"420\\\" y2=\\\"420\\\" gradientUnits=\\\"userSpaceOnUse\\\">\\n      <stop stop-color=\\\"#cfd8dc\\\"/>\\n      <stop offset=\\\"1\\\" stop-color=\\\"#90a4ae\\\"/>\\n    </linearGradient>\\n  </defs>\\n\\n  <!-- shadow -->\\n  <ellipse cx=\\\"270\\\" cy=\\\"410\\\" rx=\\\"120\\\" ry=\\\"22\\\" fill=\\\"#000\\\" opacity=\\\"0.12\\\"/>\\n\\n  <!-- screwdriver body (rotated) -->\\n  <g transform=\\\"translate(0,0) rotate(-18 260 260)\\\" >\\n    <!-- handle -->\\n    <rect x=\\\"110\\\" y=\\\"300\\\" width=\\\"175\\\" height=\\\"85\\\" rx=\\\"22\\\" fill=\\\"url(#gHandle)\\\"/>\\n    <rect x=\\\"130\\\" y=\\\"315\\\" width=\\\"135\\\" height=\\\"55\\\" rx=\\\"16\\\" fill=\\\"#f39c7a\\\" opacity=\\\"0.35\\\"/>\\n\\n    <!-- handle grip rings -->\\n    <rect x=\\\"150\\\" y=\\\"332\\\" width=\\\"95\\\" height=\\\"10\\\" rx=\\\"5\\\" fill=\\\"#9b4b3f\\\" opacity=\\\"0.35\\\"/>\\n    <rect x=\\\"160\\\" y=\\\"360\\\" width=\\\"75\\\" height=\\\"8\\\" rx=\\\"4\\\" fill=\\\"#9b4b3f\\\" opacity=\\\"0.25\\\"/>\\n\\n    <!-- shaft -->\\n    <rect x=\\\"258\\\" y=\\\"220\\\" width=\\\"110\\\" height=\\\"255\\\" rx=\\\"18\\\" fill=\\\"url(#gShaft)\\\"/>\\n\\n    <!-- metal highlight -->\\n    <path d=\\\"M280 230 C300 265, 350 315, 345 465\\\" stroke=\\\"#e9f0f2\\\" stroke-width=\\\"8\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.7\\\"/>\\n\\n    <!-- tip (cross shape silhouette without letters) -->\\n    <g transform=\\\"translate(340 430) rotate(8)\\\">\\n      <polygon points=\\\"0,0 40,-10 40,10\\\" fill=\\\"#b0bec5\\\"/>\\n      <polygon points=\\\"-10,0 30,-35 40,-10\\\" fill=\\\"#c7d1d6\\\"/>\\n      <polygon points=\\\"-10,0 30,35 40,10\\\" fill=\\\"#90a4ae\\\"/>\\n      <path d=\\\"M0,0 L22,-30 L22,30 Z\\\" fill=\\\"#a5b7c0\\\" opacity=\\\"0.35\\\"/>\\n    </g>\\n\\n    <!-- ferrule -->\\n    <rect x=\\\"235\\\" y=\\\"275\\\" width=\\\"55\\\" height=\\\"35\\\" rx=\\\"14\\\" fill=\\\"#9fb3bf\\\" opacity=\\\"0.9\\\"/>\\n    <rect x=\\\"238\\\" y=\\\"279\\\" width=\\\"49\\\" height=\\\"27\\\" rx=\\\"12\\\" fill=\\\"#bfcad1\\\" opacity=\\\"0.55\\\"/>\\n  </g>\\n\\n  <!-- small sparkle dots for style -->\\n  <g opacity=\\\"0.35\\\" fill=\\\"#fff\\\">\\n    <circle cx=\\\"170\\\" cy=\\\"200\\\" r=\\\"3\\\"/>\\n    <circle cx=\\\"195\\\" cy=\\\"185\\\" r=\\\"2\\\"/>\\n    <circle cx=\\\"215\\\" cy=\\\"225\\\" r=\\\"2.5\\\"/>\\n  </g>\\n</svg>\"\n}",
+                    "refusal": null,
+                    "reasoning": "**Designing a screwdriver vector**\n\nI need to create a simple vector drawing of a screwdriver without any text. It should include the handle, shaft, and tip, using basic shapes to keep it clean. I want to ensure that there are no letters or words in this illustration. The final output should be in SVG format with a size of 512, and I’ll return it in a JSON structure so it's easy to integrate. Let’s get started on this!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Designing a screwdriver vector**\n\nI need to create a simple vector drawing of a screwdriver without any text. It should include the handle, shaft, and tip, using basic shapes to keep it clean. I want to ensure that there are no letters or words in this illustration. The final output should be in SVG format with a size of 512, and I’ll return it in a JSON structure so it's easy to integrate. Let’s get started on this!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRWBDfB7pKXWooB04qyHqKxbuSJOqrnUkzkxtbTvBxiOT76j7H5peBmoHnHq1nGQLyabZrwlSChAjQ4L5vehB3z5axddwpfNpFGwttp6jkUywhrd62JpKvaKE9CjtOFadmOQ6ikj2R05aaSd1vN5-N8aFEhiLAMUXt-np8VY2tZrWxKgZSrFopLoicVLhCBljaBGpAraHRgqf2G3Mr9qZ1Xuj5980wfjGJAcDKg-6rMkx9INUyt-CQyIZII_FhYUyiA7GtlHHlRj5n4JG8LHMZ5xT2X1mvNNs7Emqkq03ERxacvX7y_sOxXFq_wdq73DWYfe-chpJkL8gDh5qAOmdZI-X6xxHTNAAaL6JgmFPE6ZZ5pPqglzRU1V2yKHvbv57nEgrEfGHIG_WvC1hryXOkyWV56H6HdV_gGUeRHvwO-6WQP8C8jnicisdkplRD-auFaNd2UOHm8QjTi4mZdWNoexbYIjRfMZjvs3TXUFu88dTQfng7GjS7RWgtFjPkuZ5fWFCiE2Ih6gIwYOrahzaWNRNqMNEbXaC1tSaekpsYqQp0GevO2gRU3TffsiCFVRD9fYGXzAU3phoqFhlP-ltTVdZqVZdRGZWZTpRnmNOglTGHZ0Pt_HGGv5LgbbUpDjPTR4POGyse0cil5yZl4YeqTu-TL4lU1SLO9MByTB4iKStHnJimO6uu8DRYG7BS_SpZGTm2sxg3eVxZJkXuJ7JidtI-MwJ5JlIGfoXgTQz13mDY9eRN9c2g3Hql1aD6PbyRNf1NaaX9cR0jev_Bc_Jyq01LphoJ-t70MDt_u7JaaC09qG_heiW8qi98qO0lSpzOnVla_3FT0bE5SzWxm9HtJDKhvAgAEEfDQpZkBVl0E9GsGZ7IWWzWWggrqWVWSSnLarJkxqpXGrRnJPi-DPJaztc4mqYgrC-4wO_uZwWZ-FSwKfgcq2--wp-ZJQbovPqkMD7iWGTSI58Oac1GWSvHVix_jKkaDinsQziAPM788DkXi6Ydx_2m94thSMoJUVJMu",
+                        "format": "openai-responses-v1",
+                        "id": "rs_08c36e59a700882f0169b9945418148196baf30724cc221771",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 135,
+                "completion_tokens": 935,
+                "total_tokens": 1070,
+                "cost": 0.00119575,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00119575,
+                  "upstream_inference_prompt_cost": 0.000027,
+                  "upstream_inference_completions_cost": 0.00116875
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 34,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.001196,
+          "requestDurationMs": 5599,
+          "error": null
+        },
+        {
+          "requestId": "15742b12-beab-4427-bd47-d5b7135aea81",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:13.414Z",
+          "responseCompletedAt": "2026-03-17T17:50:20.093Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "screwdriver",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,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"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769817-3RrMdtFTcRrj2hyApqOo",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6ced900016e-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:17 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769817-3RrMdtFTcRrj2hyApqOo\",\"object\":\"chat.completion\",\"created\":1773769817,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"guesses\\\": [\\n    \\\"download\\\",\\n    \\\"file\\\",\\n    \\\"transfer\\\",\\n    \\\"document\\\",\\n    \\\"inbox\\\",\\n    \\\"mailbox\\\",\\n    \\\"envelope\\\",\\n    \\\"upload\\\",\\n    \\\"submission\\\",\\n    \\\"deposit\\\",\\n    \\\"save\\\",\\n    \\\"import\\\",\\n    \\\"export\\\",\\n    \\\"card\\\",\\n    \\\"cardreader\\\",\\n    \\\"receipt\\\",\\n    \\\"payment\\\",\\n    \\\"archive\\\",\\n    \\\"printer\\\",\\n    \\\"scanner\\\"\\n  ]\\n}\",\"refusal\":null,\"reasoning\":\"**Analyzing download icons**\\n\\nI'm trying to identify this blue object that resembles a doorway or trash can. The arrow at the bottom center seems to indicate \\\"save\\\" or \\\"download.\\\" It could symbolize a document being downloaded. The picture shows a blue folder opening with an orange rectangle sliding in, suggesting it's related to a \\\"file.\\\" \\n\\nI'll make a list of guesses: download, upload, file, document, transfer, inbox, mailbox, envelope, submission, deposit, cardreader, and payment. I'll aim for 20 unique one-word options.\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Analyzing download icons**\\n\\nI'm trying to identify this blue object that resembles a doorway or trash can. The arrow at the bottom center seems to indicate \\\"save\\\" or \\\"download.\\\" It could symbolize a document being downloaded. The picture shows a blue folder opening with an orange rectangle sliding in, suggesting it's related to a \\\"file.\\\" \\n\\nI'll make a list of guesses: download, upload, file, document, transfer, inbox, mailbox, envelope, submission, deposit, cardreader, and payment. I'll aim for 20 unique one-word options.\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRft9xBl6PnozV3X-K1uIqm8rDeWLqA8xTpd8otfwF2u4KoRsySII-6vIxA21fzL3d6bzztXs8BI0fv_ZramHuepAfY9b5vgw69oGccIHi9omuxzZGrz5CH9lCU6C50gQ-MksfvpO3tSWMeaRUGnFvKw8jEhOniBuB5tVFrg8bNI1GDvMUMXBb7CeP-0cKWLdBRwh-_UGDld1k0SUXLXnOJIKH8cSqaSahTPDiwZ6bnjRMCPrV8InFJ3FPczohUaBpyZfjapMZ8hzstW43nIywjinIUxqi0260M3oinQhQqJMXLH7brtUfRncrmz7BckYCUQSP22x7mnA84PHA6Fn3EZpVHc1xNnuPL5X-PR0_cu58mQQBvm44WqTAM2SfoTYZSkPuTOsS4HNFugg-cWgErqtnygnR8hFxcwZCGOMYr37VqaJHQath494pcW106TFpaGZNKux6YYuPTwqOzL74Czvtt76mTVNfNGfGKMrnd63YAXEQZkkLWNzZg9mKNcVEz2FriJur56naHGFHt4JVwsZCZJsSk26H4jFRHixIyGygJ5WGazxLQD2ARjtFJqGCe0F-qdbKLnEIdjy3luDYgujW-9453qbNMNct_QF2L5PMGncdHJa3GFWmfOauSCgSeMZyITTyW1QERU8UzgRVFNN7qKj4OJd3RqtMaOijka2-19ed_Nad7iwRm_G23cs3pAU47RbQvqpd5MFMCW6Zuawee1neFRgaNcZAPCqK1q3brp4qb1Clhog1YcWI61WvlCp5NPXXUOHPJIXc3aWUbiv027LWlgXFnjae8c3fNS9bC7yyzuwyrdlH8YgU2yJZq6Egz2aFL_xCezMDwjBqTGeOYspfAuL2Rd7KBgGMORxYeE6XmQKy4_L9UhFa5eDhPfVsE6h1i7ehAqtT8Ra_7sX4aLUft-GUKHqmIoL9793gObBJnpeF3-PfmUXKl98SQnoLx9jMeg6FOcZlqwbBoD9Lv7x956N3QtsRjtxPoczwtCiJpuyE80h1eS5-fwudIrgKQXi1UdDwEDBGlUi_-ob5FibXPW13a43fsEIIldnPF-iCJe11zzqw-2FNv4fnmi32KidVj5xQMypRzP-cd66ioifYNN5fRzz2mFIYQF1_ZtoQ_x4t1jX5GFQoDT0FL8EnViH4AOooAM5luoaE9upCr8-cZO1-L5tLdFbsXK0Jm2hARULmYCrQeOPpgN51VomgJUa-7lMjtTXHc_MdvhHFtqhhVSX4ViNN4cTuLIAiqdAycrDspy57vUYgNEZJ_iq_A1e0tJhoF0FYyBwvAmE4-_o5mW2jHCje6e3WyIk7Lmy-uBBWN8AdVm9wBKIckk0jKExW-YqSCo29CUAxWi907t5DCdajY_6lJ877FgFZ2NvW9zkqdsbiZFV9k_Xs4Vr2aJu4YjIG1FhrDUYFs7HcUwzGOkvoKR13Q_vyUlAj7DRV7O0e_8aXAy5MGnLioje4ZswnhDyhi-oLD4mUaUdg9jmWco3ceNcE7ScuxJ79heDn48-lZz6i3L45lRDWUD9jAbTbszFIX4sPkEAldVFdYI7wLVfn6ykaZNvi2BJm8Kzr6yyJKZDWS7leurpuaCAqKm9pmi9Wsx9HXDJG4IrVMLB5lGoXgUZ4vwX4L0PUvKSJTVgcqe882lsp-8_OdFoMjzNvzxt8Q5KbXcKhP2JUNsmRcAAO2rcJklDLDV3GvIHPPQhfcQRa7sBvfoZcaV4PqvfSIazrfJDAyDz9L0jIotDP6mRM3jjHJAVKvWdb1oqpXpdjgYCYzyxnHlttKSFNza9KR0kybpKoLOTg1HCdaQn7ie1oWoOo3RpgSvvcTbfDf60Vyp52ektOpV9PmI5z432ZoQY8oAQSAD3LIy8QkvTRmLTOhwLTrwKNAcV_m2yL7XzG38eWEkBcBwC2naOY8KPzbx7bYIKIuqu57L8ZkyPT_0OiNDqf-0_qXC76u1n9P0TEqOqE2qbFtrrL4sEOIlEiozkMZexA0Lgf7wf8MWZzQknEUflT3YyFP0VM6ygIPgUNwtMJZTE9l0Gm_ZAmwd43MP5EpKJZWxO_aClcxq47LWgDGW1BgINjbrfA0bxeGYSu7J8Kp6GxxhQ_LoVs41a4KkpGskRgEfPPwgIUaDCdYb5inTbZfX8HzWRBrNxQkI4YSjF2hSC561o-XpheSCUUDGIeM4wCXJdXG4VfJc1eNS__iL9eXYuKBB37-KZ3JGZ_MgleiHyA3lC7lETLJTUirG7h94RTpa8ty37QUPLVEc3mJm5okKN2gtx_SkzHhn4W3TtG1JtFYuqPopN0EZ15Dpun0507i4wL0BL8kmJ1VYIw73ti1nVTgo-qqFytVy10npnr1CwqxYSOwt81W9BMWDgvCtT2qBwwnTHWD1iD-gX3jQCb0ETK0dypL1wRp7kFX2LvfBcpRCMzGi1zWyELA6SCpiknUfLxHqCMhVpV4mXdBZ9qQqOcGAzJ_qypv3Dl7jgNrJec-jUjnro2RbCL3f_40Fnss14_dGLKczajuhgLs5YayOKLvyYcBBtwTQ2jkIGGAqKgQD-jMyODEbmY-ehDgk-godLoONvX1TtA91PZzqMCiGeOwXctnrRksXDmmAE2GZ22VbNmlMhEu5BTL2Ia_ym2lIwV6BhF8CHGAkmi2nAUHEn0rWRBoeQWZujdYOcJBToD3jPSomiEadnbPpLbJaYyGBaosg3TID9_zhJX2hdVU_NbQcOJoxbDJGLlDITn5qCY6KUwvj1D0u1MMac488RytErstaAuC7w4EPoTwAAqBYTfQp9a1PIN-_FOkKGGfZOPoJOH86vhCpv5MKCPveXk1uywpKE7bbqafInSR134LQyuGxHZwYHmbKy7E_xsr45zpdMFffxmACOjlu0lNijC88tRRSrugZHrOnja2fhXGretV_az2r4TAoXmWcnPXhOmRkDcY_BcXpXgjf_N-RPqVmCBbCcmCBwf955xcx6Ep6tpGoWpIyf7Ni1DfgnBmms0E6_qAEAEbFdBEon-bx3mEv2eACKejQoqlVa42fKYZyY1AManRsm7WUD71OMwg1CJvUBjck9TDkXNK8P4QvMTl3SW_XQ==\",\"format\":\"openai-responses-v1\",\"id\":\"rs_0bd872dacb29e45e0169b9945ad11c8193b69dccfb84a5096a\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":464,\"completion_tokens\":480,\"total_tokens\":944,\"cost\":0.0006928,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0006928,\"upstream_inference_prompt_cost\":0.0000928,\"upstream_inference_completions_cost\":0.0006},\"completion_tokens_details\":{\"reasoning_tokens\":380,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769817-3RrMdtFTcRrj2hyApqOo",
+              "object": "chat.completion",
+              "created": 1773769817,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\n  \"guesses\": [\n    \"download\",\n    \"file\",\n    \"transfer\",\n    \"document\",\n    \"inbox\",\n    \"mailbox\",\n    \"envelope\",\n    \"upload\",\n    \"submission\",\n    \"deposit\",\n    \"save\",\n    \"import\",\n    \"export\",\n    \"card\",\n    \"cardreader\",\n    \"receipt\",\n    \"payment\",\n    \"archive\",\n    \"printer\",\n    \"scanner\"\n  ]\n}",
+                    "refusal": null,
+                    "reasoning": "**Analyzing download icons**\n\nI'm trying to identify this blue object that resembles a doorway or trash can. The arrow at the bottom center seems to indicate \"save\" or \"download.\" It could symbolize a document being downloaded. The picture shows a blue folder opening with an orange rectangle sliding in, suggesting it's related to a \"file.\" \n\nI'll make a list of guesses: download, upload, file, document, transfer, inbox, mailbox, envelope, submission, deposit, cardreader, and payment. I'll aim for 20 unique one-word options.",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Analyzing download icons**\n\nI'm trying to identify this blue object that resembles a doorway or trash can. The arrow at the bottom center seems to indicate \"save\" or \"download.\" It could symbolize a document being downloaded. The picture shows a blue folder opening with an orange rectangle sliding in, suggesting it's related to a \"file.\" \n\nI'll make a list of guesses: download, upload, file, document, transfer, inbox, mailbox, envelope, submission, deposit, cardreader, and payment. I'll aim for 20 unique one-word options.",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRft9xBl6PnozV3X-K1uIqm8rDeWLqA8xTpd8otfwF2u4KoRsySII-6vIxA21fzL3d6bzztXs8BI0fv_ZramHuepAfY9b5vgw69oGccIHi9omuxzZGrz5CH9lCU6C50gQ-MksfvpO3tSWMeaRUGnFvKw8jEhOniBuB5tVFrg8bNI1GDvMUMXBb7CeP-0cKWLdBRwh-_UGDld1k0SUXLXnOJIKH8cSqaSahTPDiwZ6bnjRMCPrV8InFJ3FPczohUaBpyZfjapMZ8hzstW43nIywjinIUxqi0260M3oinQhQqJMXLH7brtUfRncrmz7BckYCUQSP22x7mnA84PHA6Fn3EZpVHc1xNnuPL5X-PR0_cu58mQQBvm44WqTAM2SfoTYZSkPuTOsS4HNFugg-cWgErqtnygnR8hFxcwZCGOMYr37VqaJHQath494pcW106TFpaGZNKux6YYuPTwqOzL74Czvtt76mTVNfNGfGKMrnd63YAXEQZkkLWNzZg9mKNcVEz2FriJur56naHGFHt4JVwsZCZJsSk26H4jFRHixIyGygJ5WGazxLQD2ARjtFJqGCe0F-qdbKLnEIdjy3luDYgujW-9453qbNMNct_QF2L5PMGncdHJa3GFWmfOauSCgSeMZyITTyW1QERU8UzgRVFNN7qKj4OJd3RqtMaOijka2-19ed_Nad7iwRm_G23cs3pAU47RbQvqpd5MFMCW6Zuawee1neFRgaNcZAPCqK1q3brp4qb1Clhog1YcWI61WvlCp5NPXXUOHPJIXc3aWUbiv027LWlgXFnjae8c3fNS9bC7yyzuwyrdlH8YgU2yJZq6Egz2aFL_xCezMDwjBqTGeOYspfAuL2Rd7KBgGMORxYeE6XmQKy4_L9UhFa5eDhPfVsE6h1i7ehAqtT8Ra_7sX4aLUft-GUKHqmIoL9793gObBJnpeF3-PfmUXKl98SQnoLx9jMeg6FOcZlqwbBoD9Lv7x956N3QtsRjtxPoczwtCiJpuyE80h1eS5-fwudIrgKQXi1UdDwEDBGlUi_-ob5FibXPW13a43fsEIIldnPF-iCJe11zzqw-2FNv4fnmi32KidVj5xQMypRzP-cd66ioifYNN5fRzz2mFIYQF1_ZtoQ_x4t1jX5GFQoDT0FL8EnViH4AOooAM5luoaE9upCr8-cZO1-L5tLdFbsXK0Jm2hARULmYCrQeOPpgN51VomgJUa-7lMjtTXHc_MdvhHFtqhhVSX4ViNN4cTuLIAiqdAycrDspy57vUYgNEZJ_iq_A1e0tJhoF0FYyBwvAmE4-_o5mW2jHCje6e3WyIk7Lmy-uBBWN8AdVm9wBKIckk0jKExW-YqSCo29CUAxWi907t5DCdajY_6lJ877FgFZ2NvW9zkqdsbiZFV9k_Xs4Vr2aJu4YjIG1FhrDUYFs7HcUwzGOkvoKR13Q_vyUlAj7DRV7O0e_8aXAy5MGnLioje4ZswnhDyhi-oLD4mUaUdg9jmWco3ceNcE7ScuxJ79heDn48-lZz6i3L45lRDWUD9jAbTbszFIX4sPkEAldVFdYI7wLVfn6ykaZNvi2BJm8Kzr6yyJKZDWS7leurpuaCAqKm9pmi9Wsx9HXDJG4IrVMLB5lGoXgUZ4vwX4L0PUvKSJTVgcqe882lsp-8_OdFoMjzNvzxt8Q5KbXcKhP2JUNsmRcAAO2rcJklDLDV3GvIHPPQhfcQRa7sBvfoZcaV4PqvfSIazrfJDAyDz9L0jIotDP6mRM3jjHJAVKvWdb1oqpXpdjgYCYzyxnHlttKSFNza9KR0kybpKoLOTg1HCdaQn7ie1oWoOo3RpgSvvcTbfDf60Vyp52ektOpV9PmI5z432ZoQY8oAQSAD3LIy8QkvTRmLTOhwLTrwKNAcV_m2yL7XzG38eWEkBcBwC2naOY8KPzbx7bYIKIuqu57L8ZkyPT_0OiNDqf-0_qXC76u1n9P0TEqOqE2qbFtrrL4sEOIlEiozkMZexA0Lgf7wf8MWZzQknEUflT3YyFP0VM6ygIPgUNwtMJZTE9l0Gm_ZAmwd43MP5EpKJZWxO_aClcxq47LWgDGW1BgINjbrfA0bxeGYSu7J8Kp6GxxhQ_LoVs41a4KkpGskRgEfPPwgIUaDCdYb5inTbZfX8HzWRBrNxQkI4YSjF2hSC561o-XpheSCUUDGIeM4wCXJdXG4VfJc1eNS__iL9eXYuKBB37-KZ3JGZ_MgleiHyA3lC7lETLJTUirG7h94RTpa8ty37QUPLVEc3mJm5okKN2gtx_SkzHhn4W3TtG1JtFYuqPopN0EZ15Dpun0507i4wL0BL8kmJ1VYIw73ti1nVTgo-qqFytVy10npnr1CwqxYSOwt81W9BMWDgvCtT2qBwwnTHWD1iD-gX3jQCb0ETK0dypL1wRp7kFX2LvfBcpRCMzGi1zWyELA6SCpiknUfLxHqCMhVpV4mXdBZ9qQqOcGAzJ_qypv3Dl7jgNrJec-jUjnro2RbCL3f_40Fnss14_dGLKczajuhgLs5YayOKLvyYcBBtwTQ2jkIGGAqKgQD-jMyODEbmY-ehDgk-godLoONvX1TtA91PZzqMCiGeOwXctnrRksXDmmAE2GZ22VbNmlMhEu5BTL2Ia_ym2lIwV6BhF8CHGAkmi2nAUHEn0rWRBoeQWZujdYOcJBToD3jPSomiEadnbPpLbJaYyGBaosg3TID9_zhJX2hdVU_NbQcOJoxbDJGLlDITn5qCY6KUwvj1D0u1MMac488RytErstaAuC7w4EPoTwAAqBYTfQp9a1PIN-_FOkKGGfZOPoJOH86vhCpv5MKCPveXk1uywpKE7bbqafInSR134LQyuGxHZwYHmbKy7E_xsr45zpdMFffxmACOjlu0lNijC88tRRSrugZHrOnja2fhXGretV_az2r4TAoXmWcnPXhOmRkDcY_BcXpXgjf_N-RPqVmCBbCcmCBwf955xcx6Ep6tpGoWpIyf7Ni1DfgnBmms0E6_qAEAEbFdBEon-bx3mEv2eACKejQoqlVa42fKYZyY1AManRsm7WUD71OMwg1CJvUBjck9TDkXNK8P4QvMTl3SW_XQ==",
+                        "format": "openai-responses-v1",
+                        "id": "rs_0bd872dacb29e45e0169b9945ad11c8193b69dccfb84a5096a",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 464,
+                "completion_tokens": 480,
+                "total_tokens": 944,
+                "cost": 0.0006928,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0006928,
+                  "upstream_inference_prompt_cost": 0.0000928,
+                  "upstream_inference_completions_cost": 0.0006
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 380,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.000693,
+          "requestDurationMs": 6679,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

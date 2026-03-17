@@ -33,7 +33,16 @@ bun install
 
 cd bench
 export OPENROUTER_API_KEY="your_key_here"
-bun run dev
+bun run models
+bun run run -- --model gpt5mini --effort medium
+```
+
+Retry a single word in an existing run:
+
+```bash
+cd /Users/gmb/playground/bench_drawing/bench
+export OPENROUTER_API_KEY="your_key_here"
+bun run retry-word -- --run-id "<run_id>" --word rocket
 ```
 
 Generate visualizer data:
@@ -54,6 +63,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Notes:
 
+- The benchmark runner is a local CLI in `bench/`, not a deployed HTTP service
 - The current visualizer is a real Next.js app in `visualizer/`
 - The current UI is inspired by [Skatebench](https://github.com/t3-content/skatebench), by [Theo](https://github.com/t3dotgg)
 - Root workspace scripts are Bun-first

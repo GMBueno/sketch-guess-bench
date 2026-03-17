@@ -16,14 +16,14 @@ Original prompt: tem um jogo na tv brasileira que é assim: duas pessoas jogando
 - Executed a full benchmark run successfully and confirmed ranking + replay render in UI.
 - Fixed leakage risk: guesser function no longer receives `targetWord` parameter, and fallback no longer returns target.
 - Parallelized benchmark execution with bounded concurrency utility.
-- Added `BENCHMARK_CONCURRENCY` env var (default 6) and exposed it in `/api/status`.
+- Added `BENCHMARK_CONCURRENCY` env var (default 6) for the local benchmark runner.
 - Verified new parallel run: completed in ~24.7s vs prior minute-level sequential behavior.
 - Updated default benchmark concurrency to 20.
 - Added models: minimax/minimax-m2.5, moonshotai/kimi-k2.5, z-ai/glm-5 with fixed providers.
 - Removed JSON schema structured outputs globally; now uses prompt-constrained JSON plus robust parsing.
 - Added retry/backoff for transient request failures and empty/invalid content responses.
 - Ran full benchmark with 50 words x 5 models; results persisted successfully.
-- Added live benchmark progress tracking in backend (`/api/benchmarks/progress`) with total/completed/percent/active model+word/error fields.
+- Added live benchmark progress tracking in the local benchmark runner with total/completed/percent/active model+word/error fields.
 - Added run lock to prevent concurrent benchmark runs (`409 A benchmark is already running`).
 - Updated dashboard to poll and show progress (`x/total`, percent, active item) and failure messages.
 - Verified progress increments during execution (observed 0/225 -> 18/225 -> 33/225).

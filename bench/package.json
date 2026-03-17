@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "start": "bun server.js",
-    "dev": "bun --watch server.js",
+    "run": "bun server.js run",
+    "retry-word": "bun server.js retry-word",
+    "models": "bun server.js models",
     "generate:visualizer-data": "bun scripts/generate_visualizer_data.mjs"
   },
   "dependencies": {
     "dotenv": "^17.3.1",
-    "express": "^4.21.2",
     "playwright": "^1.58.2"
   }
 }

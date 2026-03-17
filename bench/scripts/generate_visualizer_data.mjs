@@ -32,6 +32,7 @@ const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "";
 const REPLAY_SHARE_PREVIEW_MODE = process.env.REPLAY_SHARE_PREVIEW_MODE || "all";
 const REPLAY_SHARE_SKIP_HTML = process.env.REPLAY_SHARE_SKIP_HTML === "1";
+const SKIP_REPLAY_EXPORT = process.env.SKIP_REPLAY_EXPORT === "1";
 const REPLAY_SHARE_TARGET_WORD = (process.env.REPLAY_SHARE_TARGET_WORD || "").trim().toLowerCase();
 const SHARE_PREVIEW_JPEG_WIDTH = 600;
 const SHARE_PREVIEW_JPEG_QUALITY = "50";
@@ -808,6 +809,14 @@ async function main() {
   const metadata = buildMetadata(rankings);
   const partialWordRefresh = Boolean(REPLAY_SHARE_TARGET_WORD);
 
+  await fs.mkdir(VISUALIZER_DATA_DIR, { recursive: true });
+  await fs.writeFile(BENCHMARK_OUTPUT_PATH, JSON.stringify({ rankings, metadata }, null, 2), "utf8");
+  console.log(`Wrote ${rankings.length} rankings to ${BENCHMARK_OUTPUT_PATH}`);
+
+  if (SKIP_REPLAY_EXPORT) {
+    return;
+  }
+
   if (!partialWordRefresh) {
     await resetReplaySvgDir();
   } else {
@@ -844,11 +853,7 @@ async function main() {
     await writeReplayShareLandingPages(replay.runs);
   }
 
-  await fs.mkdir(VISUALIZER_DATA_DIR, { recursive: true });
-  await fs.writeFile(BENCHMARK_OUTPUT_PATH, JSON.stringify({ rankings, metadata }, null, 2), "utf8");
   await fs.writeFile(REPLAY_OUTPUT_PATH, JSON.stringify(replay, null, 2), "utf8");
-
-  console.log(`Wrote ${rankings.length} rankings to ${BENCHMARK_OUTPUT_PATH}`);
   console.log(`Wrote ${replay.runs.length} replay runs to ${REPLAY_OUTPUT_PATH}`);
 }
 

@@ -1,0 +1,417 @@
+{
+  "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+  "targetWord": "forest",
+  "modelKey": "gpt54nano",
+  "modelLabel": "GPT-5.4 Nano",
+  "modelId": "openai/gpt-5.4-nano",
+  "effort": "medium",
+  "latestExecutionId": "8337ab57-e213-471a-b0a8-15613391dd16",
+  "executions": [
+    {
+      "executionId": "8337ab57-e213-471a-b0a8-15613391dd16",
+      "startedAt": "2026-03-17T17:49:57.566Z",
+      "completedAt": "2026-03-17T17:50:14.690Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "forest",
+        "solved": true,
+        "guessesUsed": 1,
+        "penalizedGuesses": 1,
+        "totalCostUsd": 0.00326,
+        "totalRequestMs": 16985,
+        "pricedRequests": 2,
+        "totalRequests": 2,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <linearGradient id=\"sky\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#cfefff\"/>\n      <stop offset=\"60%\" stop-color=\"#b7e2ff\"/>\n      <stop offset=\"100%\" stop-color=\"#7fc6a8\"/>\n    </linearGradient>\n    <linearGradient id=\"ground\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#2f7d4a\"/>\n      <stop offset=\"100%\" stop-color=\"#1f4f35\"/>\n    </linearGradient>\n    <filter id=\"soft\" x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\">\n      <feGaussianBlur stdDeviation=\"3\"/>\n    </filter>\n  </defs>\n\n  <rect width=\"512\" height=\"512\" fill=\"url(#sky)\"/>\n\n  <!-- distant haze / treeline -->\n  <path d=\"M0,285 C60,260 120,270 180,255 C240,240 300,255 360,250 C430,243 470,260 512,248 L512,512 L0,512 Z\" fill=\"#2a6b43\" opacity=\"0.35\" filter=\"url(#soft)\"/>\n\n  <!-- ground base -->\n  <path d=\"M0,330 C80,315 160,340 240,330 C320,320 400,350 512,330 L512,512 L0,512 Z\" fill=\"url(#ground)\"/>\n\n  <!-- trees back layer -->\n  <g opacity=\"0.95\">\n    <g transform=\"translate(40,160)\">\n      <rect x=\"18\" y=\"150\" width=\"14\" height=\"90\" rx=\"5\" fill=\"#1b3b2a\"/>\n      <polygon points=\"25,150 5,195 45,195\" fill=\"#2c7a4e\"/>\n      <polygon points=\"25,150 0,225 50,225\" fill=\"#1f6a44\"/>\n      <circle cx=\"25\" cy=\"160\" r=\"45\" fill=\"#2e8557\" opacity=\"0.95\"/>\n      <circle cx=\"5\" cy=\"210\" r=\"35\" fill=\"#2c7a4e\" opacity=\"0.95\"/>\n      <circle cx=\"45\" cy=\"210\" r=\"35\" fill=\"#2c7a4e\" opacity=\"0.95\"/>\n    </g>\n\n    <g transform=\"translate(130,185)\">\n      <rect x=\"18\" y=\"140\" width=\"14\" height=\"100\" rx=\"5\" fill=\"#1b3b2a\"/>\n      <circle cx=\"25\" cy=\"145\" r=\"48\" fill=\"#2f8a5b\"/>\n      <polygon points=\"25,155 0,215 50,215\" fill=\"#237044\"/>\n      <polygon points=\"25,125 0,195 50,195\" fill=\"#2a7b4f\"/>\n      <circle cx=\"8\" cy=\"215\" r=\"32\" fill=\"#2c7a4e\"/>\n      <circle cx=\"42\" cy=\"215\" r=\"32\" fill=\"#2c7a4e\"/>\n    </g>\n\n    <g transform=\"translate(250,170)\">\n      <rect x=\"18\" y=\"150\" width=\"14\" height=\"90\" rx=\"5\" fill=\"#1b3b2a\"/>\n      <circle cx=\"25\" cy=\"150\" r=\"55\" fill=\"#2e8d5f\"/>\n      <polygon points=\"25,155 0,240 50,240\" fill=\"#1f6a44\"/>\n      <polygon points=\"25,120 0,205 50,205\" fill=\"#2a7b4f\"/>\n      <circle cx=\"-5\" cy=\"240\" r=\"35\" fill=\"#2c7a4e\" opacity=\"0.95\"/>\n      <circle cx=\"55\" cy=\"240\" r=\"35\" fill=\"#2c7a4e\" opacity=\"0.95\"/>\n    </g>\n\n    <g transform=\"translate(360,190)\">\n      <rect x=\"18\" y=\"145\" width=\"14\" height=\"95\" rx=\"5\" fill=\"#1b3b2a\"/>\n      <circle cx=\"25\" cy=\"150\" r=\"45\" fill=\"#2d8658\"/>\n      <polygon points=\"25,160 0,220 50,220\" fill=\"#1f6a44\"/>\n      <polygon points=\"25,130 0,205 50,205\" fill=\"#2a7b4f\"/>\n      <circle cx=\"8\" cy=\"220\" r=\"30\" fill=\"#2c7a4e\"/>\n      <circle cx=\"42\" cy=\"220\" r=\"30\" fill=\"#2c7a4e\"/>\n    </g>\n  </g>\n\n  <!-- trees front layer -->\n  <g>\n    <g transform=\"translate(70,210)\">\n      <rect x=\"18\" y=\"190\" width=\"14\" height=\"120\" rx=\"6\" fill=\"#153526\"/>\n      <circle cx=\"25\" cy=\"205\" r=\"70\" fill=\"#1f6a44\"/>\n      <circle cx=\"-10\" cy=\"245\" r=\"55\" fill=\"#246f47\"/>\n      <circle cx=\"60\" cy=\"245\" r=\"55\" fill=\"#246f47\"/>\n      <polygon points=\"25,210 0,305 50,305\" fill=\"#1b5f3c\"/>\n      <polygon points=\"25,170 -10,270 60,270\" fill=\"#2b7f53\" opacity=\"0.95\"/>\n    </g>\n\n    <g transform=\"translate(160,235)\">\n      <rect x=\"18\" y=\"175\" width=\"14\" height=\"135\" rx=\"6\" fill=\"#153526\"/>\n      <circle cx=\"25\" cy=\"190\" r=\"78\" fill=\"#1f6a44\"/>\n      <polygon points=\"25,195 0,320 50,320\" fill=\"#1b5f3c\"/>\n      <circle cx=\"-20\" cy=\"245\" r=\"58\" fill=\"#246f47\"/>\n      <circle cx=\"70\" cy=\"245\" r=\"58\" fill=\"#246f47\"/>\n      <circle cx=\"10\" cy=\"315\" r=\"40\" fill=\"#1c6a43\"/>\n      <circle cx=\"42\" cy=\"315\" r=\"40\" fill=\"#1c6a43\"/>\n    </g>\n\n    <g transform=\"translate(275,210)\">\n      <rect x=\"18\" y=\"195\" width=\"14\" height=\"115\" rx=\"6\" fill=\"#153526\"/>\n      <circle cx=\"25\" cy=\"215\" r=\"82\" fill=\"#1f6a44\"/>\n      <polygon points=\"25,220 0,330 50,330\" fill=\"#1b5f3c\"/>\n      <polygon points=\"25,180 -12,290 62,290\" fill=\"#2b7f53\" opacity=\"0.95\"/>\n      <circle cx=\"-15\" cy=\"275\" r=\"60\" fill=\"#246f47\"/>\n      <circle cx=\"65\" cy=\"275\" r=\"60\" fill=\"#246f47\"/>\n    </g>\n\n    <g transform=\"translate(375,230)\">\n      <rect x=\"18\" y=\"175\" width=\"14\" height=\"135\" rx=\"6\" fill=\"#153526\"/>\n      <circle cx=\"25\" cy=\"200\" r=\"70\" fill=\"#1f6a44\"/>\n      <polygon points=\"25,205 0,320 50,320\" fill=\"#1b5f3c\"/>\n      <polygon points=\"25,165 0,260 50,260\" fill=\"#2b7f53\" opacity=\"0.95\"/>\n      <circle cx=\"-10\" cy=\"255\" r=\"48\" fill=\"#246f47\"/>\n      <circle cx=\"60\" cy=\"255\" r=\"48\" fill=\"#246f47\"/>\n      <circle cx=\"18\" cy=\"320\" r=\"38\" fill=\"#1c6a43\"/>\n      <circle cx=\"42\" cy=\"320\" r=\"38\" fill=\"#1c6a43\"/>\n    </g>\n\n    <!-- small foreground shrubs -->\n    <path d=\"M40,410 C70,390 100,390 130,410 C110,430 70,435 40,410 Z\" fill=\"#16523a\" opacity=\"0.95\"/>\n    <path d=\"M190,420 C215,400 255,405 275,425 C255,450 210,450 190,420 Z\" fill=\"#15503a\" opacity=\"0.95\"/>\n    <path d=\"M335,420 C360,395 410,400 440,425 C410,455 365,455 335,420 Z\" fill=\"#15503a\" opacity=\"0.95\"/>\n  </g>\n\n  <!-- subtle sun glow -->\n  <circle cx=\"420\" cy=\"90\" r=\"65\" fill=\"#ffd27a\" opacity=\"0.18\" filter=\"url(#soft)\"/>\n</svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,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"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "forest",
+            "correct": true
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "jungle",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "woodland",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "bushes",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "shrubs",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "meadow",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "thicket",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "greenery",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "vegetation",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "countryside",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "hills",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "hillside",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "landscape",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "tree",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "grove",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "canopy",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "foliage",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "wilderness",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "savanna",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "park",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+          "targetWord": "forest",
+          "executionId": "8337ab57-e213-471a-b0a8-15613391dd16",
+          "file": "openrouter_traces/d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045/forest.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 2,
+        "pricedRequests": 2,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.00326,
+        "totalRequestMs": 16985
+      },
+      "requests": [
+        {
+          "requestId": "99089615-ebc2-44eb-ae5f-d3ec7e0df210",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:49:57.566Z",
+          "responseCompletedAt": "2026-03-17T17:50:10.794Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "forest",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"forest\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769802-dA0nNN9YqtAoMIhpPROd",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd66de884d824-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:02 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769802-dA0nNN9YqtAoMIhpPROd\",\"object\":\"chat.completion\",\"created\":1773769802,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"svg\\\": \\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\">\\\\n  <defs>\\\\n    <linearGradient id=\\\\\\\"sky\\\\\\\" x1=\\\\\\\"0\\\\\\\" y1=\\\\\\\"0\\\\\\\" x2=\\\\\\\"0\\\\\\\" y2=\\\\\\\"1\\\\\\\">\\\\n      <stop offset=\\\\\\\"0%\\\\\\\" stop-color=\\\\\\\"#cfefff\\\\\\\"/>\\\\n      <stop offset=\\\\\\\"60%\\\\\\\" stop-color=\\\\\\\"#b7e2ff\\\\\\\"/>\\\\n      <stop offset=\\\\\\\"100%\\\\\\\" stop-color=\\\\\\\"#7fc6a8\\\\\\\"/>\\\\n    </linearGradient>\\\\n    <linearGradient id=\\\\\\\"ground\\\\\\\" x1=\\\\\\\"0\\\\\\\" y1=\\\\\\\"0\\\\\\\" x2=\\\\\\\"0\\\\\\\" y2=\\\\\\\"1\\\\\\\">\\\\n      <stop offset=\\\\\\\"0%\\\\\\\" stop-color=\\\\\\\"#2f7d4a\\\\\\\"/>\\\\n      <stop offset=\\\\\\\"100%\\\\\\\" stop-color=\\\\\\\"#1f4f35\\\\\\\"/>\\\\n    </linearGradient>\\\\n    <filter id=\\\\\\\"soft\\\\\\\" x=\\\\\\\"-20%\\\\\\\" y=\\\\\\\"-20%\\\\\\\" width=\\\\\\\"140%\\\\\\\" height=\\\\\\\"140%\\\\\\\">\\\\n      <feGaussianBlur stdDeviation=\\\\\\\"3\\\\\\\"/>\\\\n    </filter>\\\\n  </defs>\\\\n\\\\n  <rect width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" fill=\\\\\\\"url(#sky)\\\\\\\"/>\\\\n\\\\n  <!-- distant haze / treeline -->\\\\n  <path d=\\\\\\\"M0,285 C60,260 120,270 180,255 C240,240 300,255 360,250 C430,243 470,260 512,248 L512,512 L0,512 Z\\\\\\\" fill=\\\\\\\"#2a6b43\\\\\\\" opacity=\\\\\\\"0.35\\\\\\\" filter=\\\\\\\"url(#soft)\\\\\\\"/>\\\\n\\\\n  <!-- ground base -->\\\\n  <path d=\\\\\\\"M0,330 C80,315 160,340 240,330 C320,320 400,350 512,330 L512,512 L0,512 Z\\\\\\\" fill=\\\\\\\"url(#ground)\\\\\\\"/>\\\\n\\\\n  <!-- trees back layer -->\\\\n  <g opacity=\\\\\\\"0.95\\\\\\\">\\\\n    <g transform=\\\\\\\"translate(40,160)\\\\\\\">\\\\n      <rect x=\\\\\\\"18\\\\\\\" y=\\\\\\\"150\\\\\\\" width=\\\\\\\"14\\\\\\\" height=\\\\\\\"90\\\\\\\" rx=\\\\\\\"5\\\\\\\" fill=\\\\\\\"#1b3b2a\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,150 5,195 45,195\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,150 0,225 50,225\\\\\\\" fill=\\\\\\\"#1f6a44\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"25\\\\\\\" cy=\\\\\\\"160\\\\\\\" r=\\\\\\\"45\\\\\\\" fill=\\\\\\\"#2e8557\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"5\\\\\\\" cy=\\\\\\\"210\\\\\\\" r=\\\\\\\"35\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"45\\\\\\\" cy=\\\\\\\"210\\\\\\\" r=\\\\\\\"35\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n    </g>\\\\n\\\\n    <g transform=\\\\\\\"translate(130,185)\\\\\\\">\\\\n      <rect x=\\\\\\\"18\\\\\\\" y=\\\\\\\"140\\\\\\\" width=\\\\\\\"14\\\\\\\" height=\\\\\\\"100\\\\\\\" rx=\\\\\\\"5\\\\\\\" fill=\\\\\\\"#1b3b2a\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"25\\\\\\\" cy=\\\\\\\"145\\\\\\\" r=\\\\\\\"48\\\\\\\" fill=\\\\\\\"#2f8a5b\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,155 0,215 50,215\\\\\\\" fill=\\\\\\\"#237044\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,125 0,195 50,195\\\\\\\" fill=\\\\\\\"#2a7b4f\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"8\\\\\\\" cy=\\\\\\\"215\\\\\\\" r=\\\\\\\"32\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"42\\\\\\\" cy=\\\\\\\"215\\\\\\\" r=\\\\\\\"32\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\"/>\\\\n    </g>\\\\n\\\\n    <g transform=\\\\\\\"translate(250,170)\\\\\\\">\\\\n      <rect x=\\\\\\\"18\\\\\\\" y=\\\\\\\"150\\\\\\\" width=\\\\\\\"14\\\\\\\" height=\\\\\\\"90\\\\\\\" rx=\\\\\\\"5\\\\\\\" fill=\\\\\\\"#1b3b2a\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"25\\\\\\\" cy=\\\\\\\"150\\\\\\\" r=\\\\\\\"55\\\\\\\" fill=\\\\\\\"#2e8d5f\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,155 0,240 50,240\\\\\\\" fill=\\\\\\\"#1f6a44\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,120 0,205 50,205\\\\\\\" fill=\\\\\\\"#2a7b4f\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"-5\\\\\\\" cy=\\\\\\\"240\\\\\\\" r=\\\\\\\"35\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"55\\\\\\\" cy=\\\\\\\"240\\\\\\\" r=\\\\\\\"35\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n    </g>\\\\n\\\\n    <g transform=\\\\\\\"translate(360,190)\\\\\\\">\\\\n      <rect x=\\\\\\\"18\\\\\\\" y=\\\\\\\"145\\\\\\\" width=\\\\\\\"14\\\\\\\" height=\\\\\\\"95\\\\\\\" rx=\\\\\\\"5\\\\\\\" fill=\\\\\\\"#1b3b2a\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"25\\\\\\\" cy=\\\\\\\"150\\\\\\\" r=\\\\\\\"45\\\\\\\" fill=\\\\\\\"#2d8658\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,160 0,220 50,220\\\\\\\" fill=\\\\\\\"#1f6a44\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,130 0,205 50,205\\\\\\\" fill=\\\\\\\"#2a7b4f\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"8\\\\\\\" cy=\\\\\\\"220\\\\\\\" r=\\\\\\\"30\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"42\\\\\\\" cy=\\\\\\\"220\\\\\\\" r=\\\\\\\"30\\\\\\\" fill=\\\\\\\"#2c7a4e\\\\\\\"/>\\\\n    </g>\\\\n  </g>\\\\n\\\\n  <!-- trees front layer -->\\\\n  <g>\\\\n    <g transform=\\\\\\\"translate(70,210)\\\\\\\">\\\\n      <rect x=\\\\\\\"18\\\\\\\" y=\\\\\\\"190\\\\\\\" width=\\\\\\\"14\\\\\\\" height=\\\\\\\"120\\\\\\\" rx=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#153526\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"25\\\\\\\" cy=\\\\\\\"205\\\\\\\" r=\\\\\\\"70\\\\\\\" fill=\\\\\\\"#1f6a44\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"-10\\\\\\\" cy=\\\\\\\"245\\\\\\\" r=\\\\\\\"55\\\\\\\" fill=\\\\\\\"#246f47\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"60\\\\\\\" cy=\\\\\\\"245\\\\\\\" r=\\\\\\\"55\\\\\\\" fill=\\\\\\\"#246f47\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,210 0,305 50,305\\\\\\\" fill=\\\\\\\"#1b5f3c\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,170 -10,270 60,270\\\\\\\" fill=\\\\\\\"#2b7f53\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n    </g>\\\\n\\\\n    <g transform=\\\\\\\"translate(160,235)\\\\\\\">\\\\n      <rect x=\\\\\\\"18\\\\\\\" y=\\\\\\\"175\\\\\\\" width=\\\\\\\"14\\\\\\\" height=\\\\\\\"135\\\\\\\" rx=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#153526\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"25\\\\\\\" cy=\\\\\\\"190\\\\\\\" r=\\\\\\\"78\\\\\\\" fill=\\\\\\\"#1f6a44\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,195 0,320 50,320\\\\\\\" fill=\\\\\\\"#1b5f3c\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"-20\\\\\\\" cy=\\\\\\\"245\\\\\\\" r=\\\\\\\"58\\\\\\\" fill=\\\\\\\"#246f47\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"70\\\\\\\" cy=\\\\\\\"245\\\\\\\" r=\\\\\\\"58\\\\\\\" fill=\\\\\\\"#246f47\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"10\\\\\\\" cy=\\\\\\\"315\\\\\\\" r=\\\\\\\"40\\\\\\\" fill=\\\\\\\"#1c6a43\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"42\\\\\\\" cy=\\\\\\\"315\\\\\\\" r=\\\\\\\"40\\\\\\\" fill=\\\\\\\"#1c6a43\\\\\\\"/>\\\\n    </g>\\\\n\\\\n    <g transform=\\\\\\\"translate(275,210)\\\\\\\">\\\\n      <rect x=\\\\\\\"18\\\\\\\" y=\\\\\\\"195\\\\\\\" width=\\\\\\\"14\\\\\\\" height=\\\\\\\"115\\\\\\\" rx=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#153526\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"25\\\\\\\" cy=\\\\\\\"215\\\\\\\" r=\\\\\\\"82\\\\\\\" fill=\\\\\\\"#1f6a44\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,220 0,330 50,330\\\\\\\" fill=\\\\\\\"#1b5f3c\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,180 -12,290 62,290\\\\\\\" fill=\\\\\\\"#2b7f53\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"-15\\\\\\\" cy=\\\\\\\"275\\\\\\\" r=\\\\\\\"60\\\\\\\" fill=\\\\\\\"#246f47\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"65\\\\\\\" cy=\\\\\\\"275\\\\\\\" r=\\\\\\\"60\\\\\\\" fill=\\\\\\\"#246f47\\\\\\\"/>\\\\n    </g>\\\\n\\\\n    <g transform=\\\\\\\"translate(375,230)\\\\\\\">\\\\n      <rect x=\\\\\\\"18\\\\\\\" y=\\\\\\\"175\\\\\\\" width=\\\\\\\"14\\\\\\\" height=\\\\\\\"135\\\\\\\" rx=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#153526\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"25\\\\\\\" cy=\\\\\\\"200\\\\\\\" r=\\\\\\\"70\\\\\\\" fill=\\\\\\\"#1f6a44\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,205 0,320 50,320\\\\\\\" fill=\\\\\\\"#1b5f3c\\\\\\\"/>\\\\n      <polygon points=\\\\\\\"25,165 0,260 50,260\\\\\\\" fill=\\\\\\\"#2b7f53\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"-10\\\\\\\" cy=\\\\\\\"255\\\\\\\" r=\\\\\\\"48\\\\\\\" fill=\\\\\\\"#246f47\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"60\\\\\\\" cy=\\\\\\\"255\\\\\\\" r=\\\\\\\"48\\\\\\\" fill=\\\\\\\"#246f47\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"18\\\\\\\" cy=\\\\\\\"320\\\\\\\" r=\\\\\\\"38\\\\\\\" fill=\\\\\\\"#1c6a43\\\\\\\"/>\\\\n      <circle cx=\\\\\\\"42\\\\\\\" cy=\\\\\\\"320\\\\\\\" r=\\\\\\\"38\\\\\\\" fill=\\\\\\\"#1c6a43\\\\\\\"/>\\\\n    </g>\\\\n\\\\n    <!-- small foreground shrubs -->\\\\n    <path d=\\\\\\\"M40,410 C70,390 100,390 130,410 C110,430 70,435 40,410 Z\\\\\\\" fill=\\\\\\\"#16523a\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n    <path d=\\\\\\\"M190,420 C215,400 255,405 275,425 C255,450 210,450 190,420 Z\\\\\\\" fill=\\\\\\\"#15503a\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n    <path d=\\\\\\\"M335,420 C360,395 410,400 440,425 C410,455 365,455 335,420 Z\\\\\\\" fill=\\\\\\\"#15503a\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n  </g>\\\\n\\\\n  <!-- subtle sun glow -->\\\\n  <circle cx=\\\\\\\"420\\\\\\\" cy=\\\\\\\"90\\\\\\\" r=\\\\\\\"65\\\\\\\" fill=\\\\\\\"#ffd27a\\\\\\\" opacity=\\\\\\\"0.18\\\\\\\" filter=\\\\\\\"url(#soft)\\\\\\\"/>\\\\n</svg>\\\"\\n}\",\"refusal\":null,\"reasoning\":\"**Creating SVG forest design**\\n\\nI need to make an SVG drawing that represents a forest without any text. I’m thinking of using tree silhouettes, layered hills, and some foliage. It's important that there are absolutely no letters. I want to incorporate shapes like circles, triangles, and paths. The SVG should be 512x512. I might create a gradient background for the sky and use a simple rectangle for that. The ground will be green with darker trees, and a few triangular shapes for the trees will add interest. I’ll provide this in JSON format.\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Creating SVG forest design**\\n\\nI need to make an SVG drawing that represents a forest without any text. I’m thinking of using tree silhouettes, layered hills, and some foliage. It's important that there are absolutely no letters. I want to incorporate shapes like circles, triangles, and paths. The SVG should be 512x512. I might create a gradient background for the sky and use a simple rectangle for that. The ground will be green with darker trees, and a few triangular shapes for the trees will add interest. I’ll provide this in JSON format.\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZROo0abpfJkALV-NrO2wkduGPrnvEHuaMseRHtju6rO-MGfpbFSFAlZXyAQx5bM7mK82BUI8a4DQvLSWTtQdDUpw9zlW6Ia7tS-EQEklRNhLRKVB1ltkqti5SdTTw7MWp4im1G_T6MgFVhT8Pgx-93LKOuZNCu3L1QvqsPY4IjG7M6Tdc18XJtltkhgcgzYG_XnL9_iJwIjLk1XrIdjsX-pERiYMtVlrHQnaoml-TgbLT5bJ_er408pX6_00u9XSFp01t4yMrW84A42pKmZNw6Z2NTlJvrjKQ_Ooop1jEFB4kIBI9ZZROI2F0YvYbKExmADQV-n5uCCaIy3dw9LwcOmPvMXJzRRx1Eck4E-aNwN-MQxyX9xHfSN8OBs7sp3Z6gaDkYongxcd7AbGa47FeSM5MBtjvfI7ixeWOelNlMXYfZL4ryix9YzoO5sETwMOE3WUnnq7Yg1ssutn-PLU4reLRHQqRhy9xz03btqgsEDp2XqFvuu4hPp5m_Z2iojjGWbKuht68ngXfyMsw09v9rKxfb3UphExUJLB7nBDhQ18_fWlCbd49StNSumcES92_goB6gcT-hMLMRGXW77cnYE8Qncdj9sxqVrnRn2uxcoVVBbS2rxbJfwpvddcPQVLxt-hil2X58VkzW86aXIMYAKIPMjXwe1hqHg-_8Hz5zX53b8rG_vQdkGM6FTQJNfWXEUBUUgxiKaqwqlSP05ks5q8QV5SLjxtc_rZJMtzyRU2r--b3ykHL3HdC4jCpzv0kZeIk3oFiT8u_Amgtnw9ipWR_P_f1w6ujrrZ1CQIxHeFsLEPlNjYqLgsJ-aVTx6mnsg0KeTJotADPMGalKgOAFDL9l1BlAjdv5LSj4Z-90VVH6LPzhXK9fzl3U81f8lyYZI2lndbYUM26njB6cmXVNxn6u3HiuhTW0ZyLRjumeBxg501IgYlGzSzZo3ryVRgbS3E90ag5TyoqUEi0HfG770Ra8Bk_kwIcQXaBOZf4gRa5kjE7ZAQOVqgQZvuXJmT9HjJ2ZjkJ7etCKnJzBG4i_UYfzCb7uOh7t3X9cFsQ13OXKSIDgn8YHK933bgQEiCdA_JJqsZNWWLm8FCVGgAev2MMCoXD2ojrpeC0KRzRf8QqiNeb5m2BP2djpWuCZ_8V1mEOS9qcStN9DbkL6TPYLha_Dm7GViCVLVNuLc-qSv9dMienUL7zlwwQsRN4RCeInwaKawey_w7qWAyAXHyLC0XNGbcan5apUGyfb04uAygGWNf8FLCsrAU_CByeZSf5Z8a1IOOCirTKJQSXR3EbpXvg==\",\"format\":\"openai-responses-v1\",\"id\":\"rs_0766abc19b6f4a200169b9944af3a88193b21d489f24896a5f\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":133,\"completion_tokens\":2385,\"total_tokens\":2518,\"cost\":0.00300785,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00300785,\"upstream_inference_prompt_cost\":0.0000266,\"upstream_inference_completions_cost\":0.00298125},\"completion_tokens_details\":{\"reasoning_tokens\":75,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769802-dA0nNN9YqtAoMIhpPROd",
+              "object": "chat.completion",
+              "created": 1773769802,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\n  \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\">\\n  <defs>\\n    <linearGradient id=\\\"sky\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"0\\\" y2=\\\"1\\\">\\n      <stop offset=\\\"0%\\\" stop-color=\\\"#cfefff\\\"/>\\n      <stop offset=\\\"60%\\\" stop-color=\\\"#b7e2ff\\\"/>\\n      <stop offset=\\\"100%\\\" stop-color=\\\"#7fc6a8\\\"/>\\n    </linearGradient>\\n    <linearGradient id=\\\"ground\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"0\\\" y2=\\\"1\\\">\\n      <stop offset=\\\"0%\\\" stop-color=\\\"#2f7d4a\\\"/>\\n      <stop offset=\\\"100%\\\" stop-color=\\\"#1f4f35\\\"/>\\n    </linearGradient>\\n    <filter id=\\\"soft\\\" x=\\\"-20%\\\" y=\\\"-20%\\\" width=\\\"140%\\\" height=\\\"140%\\\">\\n      <feGaussianBlur stdDeviation=\\\"3\\\"/>\\n    </filter>\\n  </defs>\\n\\n  <rect width=\\\"512\\\" height=\\\"512\\\" fill=\\\"url(#sky)\\\"/>\\n\\n  <!-- distant haze / treeline -->\\n  <path d=\\\"M0,285 C60,260 120,270 180,255 C240,240 300,255 360,250 C430,243 470,260 512,248 L512,512 L0,512 Z\\\" fill=\\\"#2a6b43\\\" opacity=\\\"0.35\\\" filter=\\\"url(#soft)\\\"/>\\n\\n  <!-- ground base -->\\n  <path d=\\\"M0,330 C80,315 160,340 240,330 C320,320 400,350 512,330 L512,512 L0,512 Z\\\" fill=\\\"url(#ground)\\\"/>\\n\\n  <!-- trees back layer -->\\n  <g opacity=\\\"0.95\\\">\\n    <g transform=\\\"translate(40,160)\\\">\\n      <rect x=\\\"18\\\" y=\\\"150\\\" width=\\\"14\\\" height=\\\"90\\\" rx=\\\"5\\\" fill=\\\"#1b3b2a\\\"/>\\n      <polygon points=\\\"25,150 5,195 45,195\\\" fill=\\\"#2c7a4e\\\"/>\\n      <polygon points=\\\"25,150 0,225 50,225\\\" fill=\\\"#1f6a44\\\"/>\\n      <circle cx=\\\"25\\\" cy=\\\"160\\\" r=\\\"45\\\" fill=\\\"#2e8557\\\" opacity=\\\"0.95\\\"/>\\n      <circle cx=\\\"5\\\" cy=\\\"210\\\" r=\\\"35\\\" fill=\\\"#2c7a4e\\\" opacity=\\\"0.95\\\"/>\\n      <circle cx=\\\"45\\\" cy=\\\"210\\\" r=\\\"35\\\" fill=\\\"#2c7a4e\\\" opacity=\\\"0.95\\\"/>\\n    </g>\\n\\n    <g transform=\\\"translate(130,185)\\\">\\n      <rect x=\\\"18\\\" y=\\\"140\\\" width=\\\"14\\\" height=\\\"100\\\" rx=\\\"5\\\" fill=\\\"#1b3b2a\\\"/>\\n      <circle cx=\\\"25\\\" cy=\\\"145\\\" r=\\\"48\\\" fill=\\\"#2f8a5b\\\"/>\\n      <polygon points=\\\"25,155 0,215 50,215\\\" fill=\\\"#237044\\\"/>\\n      <polygon points=\\\"25,125 0,195 50,195\\\" fill=\\\"#2a7b4f\\\"/>\\n      <circle cx=\\\"8\\\" cy=\\\"215\\\" r=\\\"32\\\" fill=\\\"#2c7a4e\\\"/>\\n      <circle cx=\\\"42\\\" cy=\\\"215\\\" r=\\\"32\\\" fill=\\\"#2c7a4e\\\"/>\\n    </g>\\n\\n    <g transform=\\\"translate(250,170)\\\">\\n      <rect x=\\\"18\\\" y=\\\"150\\\" width=\\\"14\\\" height=\\\"90\\\" rx=\\\"5\\\" fill=\\\"#1b3b2a\\\"/>\\n      <circle cx=\\\"25\\\" cy=\\\"150\\\" r=\\\"55\\\" fill=\\\"#2e8d5f\\\"/>\\n      <polygon points=\\\"25,155 0,240 50,240\\\" fill=\\\"#1f6a44\\\"/>\\n      <polygon points=\\\"25,120 0,205 50,205\\\" fill=\\\"#2a7b4f\\\"/>\\n      <circle cx=\\\"-5\\\" cy=\\\"240\\\" r=\\\"35\\\" fill=\\\"#2c7a4e\\\" opacity=\\\"0.95\\\"/>\\n      <circle cx=\\\"55\\\" cy=\\\"240\\\" r=\\\"35\\\" fill=\\\"#2c7a4e\\\" opacity=\\\"0.95\\\"/>\\n    </g>\\n\\n    <g transform=\\\"translate(360,190)\\\">\\n      <rect x=\\\"18\\\" y=\\\"145\\\" width=\\\"14\\\" height=\\\"95\\\" rx=\\\"5\\\" fill=\\\"#1b3b2a\\\"/>\\n      <circle cx=\\\"25\\\" cy=\\\"150\\\" r=\\\"45\\\" fill=\\\"#2d8658\\\"/>\\n      <polygon points=\\\"25,160 0,220 50,220\\\" fill=\\\"#1f6a44\\\"/>\\n      <polygon points=\\\"25,130 0,205 50,205\\\" fill=\\\"#2a7b4f\\\"/>\\n      <circle cx=\\\"8\\\" cy=\\\"220\\\" r=\\\"30\\\" fill=\\\"#2c7a4e\\\"/>\\n      <circle cx=\\\"42\\\" cy=\\\"220\\\" r=\\\"30\\\" fill=\\\"#2c7a4e\\\"/>\\n    </g>\\n  </g>\\n\\n  <!-- trees front layer -->\\n  <g>\\n    <g transform=\\\"translate(70,210)\\\">\\n      <rect x=\\\"18\\\" y=\\\"190\\\" width=\\\"14\\\" height=\\\"120\\\" rx=\\\"6\\\" fill=\\\"#153526\\\"/>\\n      <circle cx=\\\"25\\\" cy=\\\"205\\\" r=\\\"70\\\" fill=\\\"#1f6a44\\\"/>\\n      <circle cx=\\\"-10\\\" cy=\\\"245\\\" r=\\\"55\\\" fill=\\\"#246f47\\\"/>\\n      <circle cx=\\\"60\\\" cy=\\\"245\\\" r=\\\"55\\\" fill=\\\"#246f47\\\"/>\\n      <polygon points=\\\"25,210 0,305 50,305\\\" fill=\\\"#1b5f3c\\\"/>\\n      <polygon points=\\\"25,170 -10,270 60,270\\\" fill=\\\"#2b7f53\\\" opacity=\\\"0.95\\\"/>\\n    </g>\\n\\n    <g transform=\\\"translate(160,235)\\\">\\n      <rect x=\\\"18\\\" y=\\\"175\\\" width=\\\"14\\\" height=\\\"135\\\" rx=\\\"6\\\" fill=\\\"#153526\\\"/>\\n      <circle cx=\\\"25\\\" cy=\\\"190\\\" r=\\\"78\\\" fill=\\\"#1f6a44\\\"/>\\n      <polygon points=\\\"25,195 0,320 50,320\\\" fill=\\\"#1b5f3c\\\"/>\\n      <circle cx=\\\"-20\\\" cy=\\\"245\\\" r=\\\"58\\\" fill=\\\"#246f47\\\"/>\\n      <circle cx=\\\"70\\\" cy=\\\"245\\\" r=\\\"58\\\" fill=\\\"#246f47\\\"/>\\n      <circle cx=\\\"10\\\" cy=\\\"315\\\" r=\\\"40\\\" fill=\\\"#1c6a43\\\"/>\\n      <circle cx=\\\"42\\\" cy=\\\"315\\\" r=\\\"40\\\" fill=\\\"#1c6a43\\\"/>\\n    </g>\\n\\n    <g transform=\\\"translate(275,210)\\\">\\n      <rect x=\\\"18\\\" y=\\\"195\\\" width=\\\"14\\\" height=\\\"115\\\" rx=\\\"6\\\" fill=\\\"#153526\\\"/>\\n      <circle cx=\\\"25\\\" cy=\\\"215\\\" r=\\\"82\\\" fill=\\\"#1f6a44\\\"/>\\n      <polygon points=\\\"25,220 0,330 50,330\\\" fill=\\\"#1b5f3c\\\"/>\\n      <polygon points=\\\"25,180 -12,290 62,290\\\" fill=\\\"#2b7f53\\\" opacity=\\\"0.95\\\"/>\\n      <circle cx=\\\"-15\\\" cy=\\\"275\\\" r=\\\"60\\\" fill=\\\"#246f47\\\"/>\\n      <circle cx=\\\"65\\\" cy=\\\"275\\\" r=\\\"60\\\" fill=\\\"#246f47\\\"/>\\n    </g>\\n\\n    <g transform=\\\"translate(375,230)\\\">\\n      <rect x=\\\"18\\\" y=\\\"175\\\" width=\\\"14\\\" height=\\\"135\\\" rx=\\\"6\\\" fill=\\\"#153526\\\"/>\\n      <circle cx=\\\"25\\\" cy=\\\"200\\\" r=\\\"70\\\" fill=\\\"#1f6a44\\\"/>\\n      <polygon points=\\\"25,205 0,320 50,320\\\" fill=\\\"#1b5f3c\\\"/>\\n      <polygon points=\\\"25,165 0,260 50,260\\\" fill=\\\"#2b7f53\\\" opacity=\\\"0.95\\\"/>\\n      <circle cx=\\\"-10\\\" cy=\\\"255\\\" r=\\\"48\\\" fill=\\\"#246f47\\\"/>\\n      <circle cx=\\\"60\\\" cy=\\\"255\\\" r=\\\"48\\\" fill=\\\"#246f47\\\"/>\\n      <circle cx=\\\"18\\\" cy=\\\"320\\\" r=\\\"38\\\" fill=\\\"#1c6a43\\\"/>\\n      <circle cx=\\\"42\\\" cy=\\\"320\\\" r=\\\"38\\\" fill=\\\"#1c6a43\\\"/>\\n    </g>\\n\\n    <!-- small foreground shrubs -->\\n    <path d=\\\"M40,410 C70,390 100,390 130,410 C110,430 70,435 40,410 Z\\\" fill=\\\"#16523a\\\" opacity=\\\"0.95\\\"/>\\n    <path d=\\\"M190,420 C215,400 255,405 275,425 C255,450 210,450 190,420 Z\\\" fill=\\\"#15503a\\\" opacity=\\\"0.95\\\"/>\\n    <path d=\\\"M335,420 C360,395 410,400 440,425 C410,455 365,455 335,420 Z\\\" fill=\\\"#15503a\\\" opacity=\\\"0.95\\\"/>\\n  </g>\\n\\n  <!-- subtle sun glow -->\\n  <circle cx=\\\"420\\\" cy=\\\"90\\\" r=\\\"65\\\" fill=\\\"#ffd27a\\\" opacity=\\\"0.18\\\" filter=\\\"url(#soft)\\\"/>\\n</svg>\"\n}",
+                    "refusal": null,
+                    "reasoning": "**Creating SVG forest design**\n\nI need to make an SVG drawing that represents a forest without any text. I’m thinking of using tree silhouettes, layered hills, and some foliage. It's important that there are absolutely no letters. I want to incorporate shapes like circles, triangles, and paths. The SVG should be 512x512. I might create a gradient background for the sky and use a simple rectangle for that. The ground will be green with darker trees, and a few triangular shapes for the trees will add interest. I’ll provide this in JSON format.",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Creating SVG forest design**\n\nI need to make an SVG drawing that represents a forest without any text. I’m thinking of using tree silhouettes, layered hills, and some foliage. It's important that there are absolutely no letters. I want to incorporate shapes like circles, triangles, and paths. The SVG should be 512x512. I might create a gradient background for the sky and use a simple rectangle for that. The ground will be green with darker trees, and a few triangular shapes for the trees will add interest. I’ll provide this in JSON format.",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZROo0abpfJkALV-NrO2wkduGPrnvEHuaMseRHtju6rO-MGfpbFSFAlZXyAQx5bM7mK82BUI8a4DQvLSWTtQdDUpw9zlW6Ia7tS-EQEklRNhLRKVB1ltkqti5SdTTw7MWp4im1G_T6MgFVhT8Pgx-93LKOuZNCu3L1QvqsPY4IjG7M6Tdc18XJtltkhgcgzYG_XnL9_iJwIjLk1XrIdjsX-pERiYMtVlrHQnaoml-TgbLT5bJ_er408pX6_00u9XSFp01t4yMrW84A42pKmZNw6Z2NTlJvrjKQ_Ooop1jEFB4kIBI9ZZROI2F0YvYbKExmADQV-n5uCCaIy3dw9LwcOmPvMXJzRRx1Eck4E-aNwN-MQxyX9xHfSN8OBs7sp3Z6gaDkYongxcd7AbGa47FeSM5MBtjvfI7ixeWOelNlMXYfZL4ryix9YzoO5sETwMOE3WUnnq7Yg1ssutn-PLU4reLRHQqRhy9xz03btqgsEDp2XqFvuu4hPp5m_Z2iojjGWbKuht68ngXfyMsw09v9rKxfb3UphExUJLB7nBDhQ18_fWlCbd49StNSumcES92_goB6gcT-hMLMRGXW77cnYE8Qncdj9sxqVrnRn2uxcoVVBbS2rxbJfwpvddcPQVLxt-hil2X58VkzW86aXIMYAKIPMjXwe1hqHg-_8Hz5zX53b8rG_vQdkGM6FTQJNfWXEUBUUgxiKaqwqlSP05ks5q8QV5SLjxtc_rZJMtzyRU2r--b3ykHL3HdC4jCpzv0kZeIk3oFiT8u_Amgtnw9ipWR_P_f1w6ujrrZ1CQIxHeFsLEPlNjYqLgsJ-aVTx6mnsg0KeTJotADPMGalKgOAFDL9l1BlAjdv5LSj4Z-90VVH6LPzhXK9fzl3U81f8lyYZI2lndbYUM26njB6cmXVNxn6u3HiuhTW0ZyLRjumeBxg501IgYlGzSzZo3ryVRgbS3E90ag5TyoqUEi0HfG770Ra8Bk_kwIcQXaBOZf4gRa5kjE7ZAQOVqgQZvuXJmT9HjJ2ZjkJ7etCKnJzBG4i_UYfzCb7uOh7t3X9cFsQ13OXKSIDgn8YHK933bgQEiCdA_JJqsZNWWLm8FCVGgAev2MMCoXD2ojrpeC0KRzRf8QqiNeb5m2BP2djpWuCZ_8V1mEOS9qcStN9DbkL6TPYLha_Dm7GViCVLVNuLc-qSv9dMienUL7zlwwQsRN4RCeInwaKawey_w7qWAyAXHyLC0XNGbcan5apUGyfb04uAygGWNf8FLCsrAU_CByeZSf5Z8a1IOOCirTKJQSXR3EbpXvg==",
+                        "format": "openai-responses-v1",
+                        "id": "rs_0766abc19b6f4a200169b9944af3a88193b21d489f24896a5f",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 133,
+                "completion_tokens": 2385,
+                "total_tokens": 2518,
+                "cost": 0.00300785,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00300785,
+                  "upstream_inference_prompt_cost": 0.0000266,
+                  "upstream_inference_completions_cost": 0.00298125
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 75,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.003008,
+          "requestDurationMs": 13228,
+          "error": null
+        },
+        {
+          "requestId": "25365aa6-82c6-45e1-9fe3-50d7caa90feb",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:10.932Z",
+          "responseCompletedAt": "2026-03-17T17:50:14.689Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "forest",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,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"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769814-UUzxY9Y1Jozb3URbrEoW",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6bf4ed6d824-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:15 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769814-UUzxY9Y1Jozb3URbrEoW\",\"object\":\"chat.completion\",\"created\":1773769814,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"guesses\\\": [\\\"forest\\\",\\\"jungle\\\",\\\"woodland\\\",\\\"bushes\\\",\\\"shrubs\\\",\\\"meadow\\\",\\\"thicket\\\",\\\"greenery\\\",\\\"vegetation\\\",\\\"countryside\\\",\\\"hills\\\",\\\"hillside\\\",\\\"landscape\\\",\\\"tree\\\",\\\"grove\\\",\\\"canopy\\\",\\\"foliage\\\",\\\"wilderness\\\",\\\"savanna\\\",\\\"park\\\"] }\",\"refusal\":null,\"reasoning\":\"**Exploring nature-themed words**\\n\\nI’m thinking about how to describe the image, which shows stylized green bushes or a forest with hills and sky. I wonder if \\\"forest\\\" or \\\"jungle\\\" would work, maybe even \\\"meadow\\\" or \\\"bushes.\\\" I’ll aim for 20 unique words to capture this essence. It’s essential to create a good list, so I want to be thoughtful about the options I select and order them neatly. Let's get started!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Exploring nature-themed words**\\n\\nI’m thinking about how to describe the image, which shows stylized green bushes or a forest with hills and sky. I wonder if \\\"forest\\\" or \\\"jungle\\\" would work, maybe even \\\"meadow\\\" or \\\"bushes.\\\" I’ll aim for 20 unique words to capture this essence. It’s essential to create a good list, so I want to be thoughtful about the options I select and order them neatly. Let's get started!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRa39NoyqhHQiEqtVt_LQjUnTG2zfAhp2613N2IBXX2SPRrbd_mqQSf7-ODyFtJ2kN7wTQy1bZt6vJ0XOYU9OClRMHUHbghNaymBxKRuI2JVFwsk87t_F9NFm60ZAFFH8gEGctzM-CRoVFmfdUzqIRdwMceXg-wuFylaB1JWOmUK25y_VV9RbxMfgJ2TwQ0I62rm48p_K0lYl0bzhH1EtMcddKBS9ks54Y-B2VlMDwJCxhSeWMWrmb2tSPynzufKX6R7nDY-j-WctzQspd5A79g-jDW-YYrzSEY44jaIfQ4A5L6UTrVwfei-t2q5q7FtJE8GNwCg0ZRaRNsSZXgjCB6ZAkPg7NDTqxl84Dtu_SDTDDpqfRgMT2DZ4bPPj9bm74nvK4r7BV_wFDIQLJAfRXqsWkQuYLJvc_O_fp1GPiYNboF4c3Lsf8FBhoeS9Bc9rFLvSck0NMbpfxdHMYX-tNN4DYWKR0GdbfdfZ23RcvsrHKFs6uVdyXWdGwmJAr37csX7xAIsCX5HqTG8wWAnKBBtRFj2EOb3_geivOYFGC8pkOLQDOaZQOC4W5Xq3LnLP4eotITQAyw5N0IPfvXDlLgyBs9jtiC6C9-dO9e06KGz4bTkxacUbDUyKuwjomw-E1m4x7kiwafzqvmxBwyb9eeDHMNHc_MsTTuOFeea1qzu-hTrz2GctHTUgexTkmKhAfJfee8FJVEsrec2St17Z5AzVEjkRrF3R8APdaPGvAbI23ZNaLEv05hqQaQ_HGJBKt6BIjNgSXWQl2DOcpQPewxR6GAwmw5KsbyNp6DteziH2BXwk7rTiqkGl1rwC1np-sj7uhBSplQF6pDTskrszIdUJOYamKBUFyl4VLlXAPqCbsCg-SBYdH_rUQtZnXktJ4cBYNj2fLxWzmza6ZCmzjy98IHfvXdIfvltzmoQj4HHjju74NQneDoK1ehw7yw3TfupGnQLXPJnRLoZtIPYfx0bpXXpETfZIHOYr6Y0ne5n7CdcGg1X9E74Wa9i-3nOrOLFhjlYGOR5Di9wmkwPkKpCjuco2YL6mtSZbRL_Qbv8vJuPb25XR6qYXK8_5DS99gnaJIwSUwGicSzZSMQQFoiBw==\",\"format\":\"openai-responses-v1\",\"id\":\"rs_077b079ad6ad27420169b99457f0288197a2df730621ec1eb5\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":464,\"completion_tokens\":127,\"total_tokens\":591,\"cost\":0.00025155,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00025155,\"upstream_inference_prompt_cost\":0.0000928,\"upstream_inference_completions_cost\":0.00015875},\"completion_tokens_details\":{\"reasoning_tokens\":53,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769814-UUzxY9Y1Jozb3URbrEoW",
+              "object": "chat.completion",
+              "created": 1773769814,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{ \"guesses\": [\"forest\",\"jungle\",\"woodland\",\"bushes\",\"shrubs\",\"meadow\",\"thicket\",\"greenery\",\"vegetation\",\"countryside\",\"hills\",\"hillside\",\"landscape\",\"tree\",\"grove\",\"canopy\",\"foliage\",\"wilderness\",\"savanna\",\"park\"] }",
+                    "refusal": null,
+                    "reasoning": "**Exploring nature-themed words**\n\nI’m thinking about how to describe the image, which shows stylized green bushes or a forest with hills and sky. I wonder if \"forest\" or \"jungle\" would work, maybe even \"meadow\" or \"bushes.\" I’ll aim for 20 unique words to capture this essence. It’s essential to create a good list, so I want to be thoughtful about the options I select and order them neatly. Let's get started!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Exploring nature-themed words**\n\nI’m thinking about how to describe the image, which shows stylized green bushes or a forest with hills and sky. I wonder if \"forest\" or \"jungle\" would work, maybe even \"meadow\" or \"bushes.\" I’ll aim for 20 unique words to capture this essence. It’s essential to create a good list, so I want to be thoughtful about the options I select and order them neatly. Let's get started!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRa39NoyqhHQiEqtVt_LQjUnTG2zfAhp2613N2IBXX2SPRrbd_mqQSf7-ODyFtJ2kN7wTQy1bZt6vJ0XOYU9OClRMHUHbghNaymBxKRuI2JVFwsk87t_F9NFm60ZAFFH8gEGctzM-CRoVFmfdUzqIRdwMceXg-wuFylaB1JWOmUK25y_VV9RbxMfgJ2TwQ0I62rm48p_K0lYl0bzhH1EtMcddKBS9ks54Y-B2VlMDwJCxhSeWMWrmb2tSPynzufKX6R7nDY-j-WctzQspd5A79g-jDW-YYrzSEY44jaIfQ4A5L6UTrVwfei-t2q5q7FtJE8GNwCg0ZRaRNsSZXgjCB6ZAkPg7NDTqxl84Dtu_SDTDDpqfRgMT2DZ4bPPj9bm74nvK4r7BV_wFDIQLJAfRXqsWkQuYLJvc_O_fp1GPiYNboF4c3Lsf8FBhoeS9Bc9rFLvSck0NMbpfxdHMYX-tNN4DYWKR0GdbfdfZ23RcvsrHKFs6uVdyXWdGwmJAr37csX7xAIsCX5HqTG8wWAnKBBtRFj2EOb3_geivOYFGC8pkOLQDOaZQOC4W5Xq3LnLP4eotITQAyw5N0IPfvXDlLgyBs9jtiC6C9-dO9e06KGz4bTkxacUbDUyKuwjomw-E1m4x7kiwafzqvmxBwyb9eeDHMNHc_MsTTuOFeea1qzu-hTrz2GctHTUgexTkmKhAfJfee8FJVEsrec2St17Z5AzVEjkRrF3R8APdaPGvAbI23ZNaLEv05hqQaQ_HGJBKt6BIjNgSXWQl2DOcpQPewxR6GAwmw5KsbyNp6DteziH2BXwk7rTiqkGl1rwC1np-sj7uhBSplQF6pDTskrszIdUJOYamKBUFyl4VLlXAPqCbsCg-SBYdH_rUQtZnXktJ4cBYNj2fLxWzmza6ZCmzjy98IHfvXdIfvltzmoQj4HHjju74NQneDoK1ehw7yw3TfupGnQLXPJnRLoZtIPYfx0bpXXpETfZIHOYr6Y0ne5n7CdcGg1X9E74Wa9i-3nOrOLFhjlYGOR5Di9wmkwPkKpCjuco2YL6mtSZbRL_Qbv8vJuPb25XR6qYXK8_5DS99gnaJIwSUwGicSzZSMQQFoiBw==",
+                        "format": "openai-responses-v1",
+                        "id": "rs_077b079ad6ad27420169b99457f0288197a2df730621ec1eb5",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 464,
+                "completion_tokens": 127,
+                "total_tokens": 591,
+                "cost": 0.00025155,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00025155,
+                  "upstream_inference_prompt_cost": 0.0000928,
+                  "upstream_inference_completions_cost": 0.00015875
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 53,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.000252,
+          "requestDurationMs": 3757,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

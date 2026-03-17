@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#ffffff"/>
+
+  <!-- Ground -->
+  <path d="M40 410 C120 395, 200 395, 280 410 S440 425, 480 415" fill="none" stroke="#9aa3af" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Motion swooshes (to suggest running) -->
+  <g fill="none" stroke="#7dd3fc" stroke-width="10" stroke-linecap="round" opacity="0.9">
+    <path d="M120 320 C160 300, 205 295, 250 305"/>
+    <path d="M90 345 C135 320, 190 315, 240 330" stroke-width="8" opacity="0.75"/>
+    <path d="M65 370 C120 345, 180 340, 235 360" stroke-width="6" opacity="0.6"/>
+  </g>
+
+  <!-- Runner (simple stick figure with dynamic pose) -->
+  <!-- Tail/hat-like head accent omitted to avoid text -->
+  <g stroke="#111827" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Head -->
+    <circle cx="285" cy="235" r="30" fill="#f3f4f6" stroke="#111827"/>
+
+    <!-- Torso -->
+    <path d="M285 265 C280 310, 270 330, 250 355" fill="none"/>
+
+    <!-- Arms -->
+    <path d="M250 355 C235 330, 220 320, 195 310" fill="none"/>
+    <path d="M250 355 C260 320, 275 300, 305 285" fill="none"/>
+
+    <!-- Legs -->
+    <path d="M250 355 C240 385, 250 410, 275 435" fill="none"/>
+    <path d="M250 355 C235 385, 210 405, 185 418" fill="none"/>
+
+    <!-- Slight bend lines for energy -->
+    <path d="M275 435 C286 444, 294 452, 302 455" fill="none" stroke="#1d4ed8" opacity="0.9" stroke-width="6"/>
+    <path d="M185 418 C170 428, 155 438, 145 445" fill="none" stroke="#1d4ed8" opacity="0.9" stroke-width="6"/>
+  </g>
+
+  <!-- Foreground speed marks near feet -->
+  <g fill="none" stroke="#34d399" stroke-width="7" stroke-linecap="round" opacity="0.9">
+    <path d="M305 410 C335 395, 360 392, 390 400"/>
+    <path d="M165 435 C190 420, 220 415, 250 420" opacity="0.65"/>
+  </g>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff6b3"/>
+      <stop offset="30%" stop-color="#ffd24a"/>
+      <stop offset="65%" stop-color="#ff8a1f"/>
+      <stop offset="100%" stop-color="#ff3d2e"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#ffcc66" stop-opacity="0.9"/>
+      <stop offset="45%" stop-color="#ff7a2a" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ff2f6a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- soft background stars -->
+  <rect width="512" height="512" fill="#070814"/>
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="86" cy="92" r="1.2"/>
+    <circle cx="140" cy="180" r="1.0"/>
+    <circle cx="420" cy="96" r="1.3"/>
+    <circle cx="380" cy="180" r="0.9"/>
+    <circle cx="70" cy="320" r="1.1"/>
+    <circle cx="440" cy="320" r="1.2"/>
+    <circle cx="220" cy="420" r="1.0"/>
+    <circle cx="315" cy="400" r="1.1"/>
+  </g>
+
+  <!-- explosion glow -->
+  <circle cx="256" cy="256" r="210" fill="url(#glow)"/>
+
+  <!-- shockwave rings -->
+  <circle cx="256" cy="256" r="120" fill="none" stroke="#ff5a3a" stroke-opacity="0.35" stroke-width="4"/>
+  <circle cx="256" cy="256" r="168" fill="none" stroke="#ffcc66" stroke-opacity="0.25" stroke-width="3"/>
+  <circle cx="256" cy="256" r="205" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
+
+  <!-- star core -->
+  <g>
+    <circle cx="256" cy="256" r="44" fill="url(#core)"/>
+    <circle cx="256" cy="256" r="22" fill="#fff5c2" opacity="0.95"/>
+
+    <!-- radial rays -->
+    <g stroke-linecap="round">
+      <g stroke="#ffd45a" stroke-opacity="0.95" stroke-width="8">
+        <line x1="256" y1="140" x2="256" y2="64"/>
+        <line x1="256" y1="372" x2="256" y2="448"/>
+        <line x1="140" y1="256" x2="64" y2="256"/>
+        <line x1="372" y1="256" x2="448" y2="256"/>
+      </g>
+      <g stroke="#ff8a1f" stroke-opacity="0.9" stroke-width="6">
+        <line x1="206" y1="195" x2="150" y2="145"/>
+        <line x1="306" y1="195" x2="362" y2="145"/>
+        <line x1="206" y1="317" x2="150" y2="367"/>
+        <line x1="306" y1="317" x2="362" y2="367"/>
+      </g>
+      <g stroke="#ff3d2e" stroke-opacity="0.75" stroke-width="5">
+        <line x1="180" y1="236" x2="112" y2="216"/>
+        <line x1="332" y1="236" x2="400" y2="216"/>
+        <line x1="180" y1="276" x2="112" y2="296"/>
+        <line x1="332" y1="276" x2="400" y2="296"/>
+      </g>
+      <!-- extra fine rays -->
+      <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="2">
+        <line x1="256" y1="168" x2="240" y2="132"/>
+        <line x1="256" y1="168" x2="272" y2="132"/>
+        <line x1="256" y1="344" x2="240" y2="380"/>
+        <line x1="256" y1="344" x2="272" y2="380"/>
+        <line x1="168" y1="256" x2="132" y2="240"/>
+        <line x1="168" y1="256" x2="132" y2="272"/>
+        <line x1="344" y1="256" x2="380" y2="240"/>
+        <line x1="344" y1="256" x2="380" y2="272"/>
+      </g>
+    </g>
+
+    <!-- fiery burst shapes -->
+    <g opacity="0.9">
+      <path d="M256 208 C268 196 284 184 304 176 C290 206 296 226 316 236 C292 240 276 252 268 270 C262 252 246 240 226 232 C240 224 248 218 256 208 Z" fill="#ff6a2a" opacity="0.65"/>
+      <path d="M256 304 C244 316 228 328 208 336 C222 306 216 286 196 276 C220 272 236 260 244 242 C250 260 266 272 286 280 C272 288 264 294 256 304 Z" fill="#ff3d2e" opacity="0.55"/>
+      <path d="M304 256 C316 244 328 228 336 208 C306 222 286 216 276 196 C272 220 260 236 242 244 C260 250 272 266 280 286 C288 272 294 264 304 256 Z" fill="#ffd24a" opacity="0.45"/>
+      <path d="M208 256 C196 268 184 284 176 304 C206 290 226 296 236 316 C240 292 252 276 270 268 C252 262 240 246 232 226 C224 240 218 248 208 256 Z" fill="#ff8a1f" opacity="0.45"/>
+    </g>
+  </g>
+
+  <!-- subtle vignette -->
+  <rect width="512" height="512" fill="#000" opacity="0.12"/>
+</svg>

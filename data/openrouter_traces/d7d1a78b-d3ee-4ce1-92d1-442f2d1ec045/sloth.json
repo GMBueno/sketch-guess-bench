@@ -1,0 +1,417 @@
+{
+  "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+  "targetWord": "sloth",
+  "modelKey": "gpt54nano",
+  "modelLabel": "GPT-5.4 Nano",
+  "modelId": "openai/gpt-5.4-nano",
+  "effort": "medium",
+  "latestExecutionId": "36ad8a3d-8b04-4dd9-a0c2-77f7b3bd87a1",
+  "executions": [
+    {
+      "executionId": "36ad8a3d-8b04-4dd9-a0c2-77f7b3bd87a1",
+      "startedAt": "2026-03-17T17:49:57.566Z",
+      "completedAt": "2026-03-17T17:50:11.457Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "sloth",
+        "solved": false,
+        "guessesUsed": 20,
+        "penalizedGuesses": 21,
+        "totalCostUsd": 0.001781,
+        "totalRequestMs": 13728,
+        "pricedRequests": 2,
+        "totalRequests": 2,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <!-- Branch -->\n  <path d=\"M40 180 C120 120, 220 90, 320 120 C390 140, 440 175, 485 220\" fill=\"none\" stroke=\"#7A4A1E\" stroke-width=\"22\" stroke-linecap=\"round\"/>\n  <path d=\"M55 190 C130 135, 225 110, 320 135 C385 155, 435 185, 470 225\" fill=\"none\" stroke=\"#5C3414\" stroke-width=\"10\" stroke-linecap=\"round\" opacity=\"0.9\"/>\n\n  <!-- Sloth body -->\n  <ellipse cx=\"320\" cy=\"290\" rx=\"80\" ry=\"95\" fill=\"#8B6B4F\"/>\n  <ellipse cx=\"320\" cy=\"280\" rx=\"92\" ry=\"110\" fill=\"none\" stroke=\"#6F543B\" stroke-width=\"8\" opacity=\"0.7\"/>\n\n  <!-- Head -->\n  <circle cx=\"340\" cy=\"205\" r=\"42\" fill=\"#8B6B4F\"/>\n  <circle cx=\"340\" cy=\"205\" r=\"46\" fill=\"none\" stroke=\"#6F543B\" stroke-width=\"7\" opacity=\"0.75\"/>\n\n  <!-- Muzzle/Face patch -->\n  <path d=\"M318 226 C330 240, 355 240, 368 225 C372 195, 357 182, 343 182 C328 182, 313 195, 318 226 Z\" fill=\"#A68463\" opacity=\"0.95\"/>\n\n  <!-- Eyes (no text) -->\n  <circle cx=\"332\" cy=\"205\" r=\"6\" fill=\"#2B1F18\"/>\n  <circle cx=\"352\" cy=\"205\" r=\"6\" fill=\"#2B1F18\"/>\n  <path d=\"M334 219 C342 224, 349 224, 356 219\" fill=\"none\" stroke=\"#2B1F18\" stroke-width=\"4\" stroke-linecap=\"round\"/>\n\n  <!-- Arms grabbing branch -->\n  <path d=\"M260 250 C235 235, 215 220, 205 200\" fill=\"none\" stroke=\"#8B6B4F\" stroke-width=\"22\" stroke-linecap=\"round\"/>\n  <path d=\"M205 200 C196 182, 210 165, 228 168\" fill=\"none\" stroke=\"#8B6B4F\" stroke-width=\"22\" stroke-linecap=\"round\"/>\n  <!-- Paw detail -->\n  <path d=\"M214 171 C205 170, 195 180, 200 192 C208 199, 224 198, 230 189\" fill=\"#6F543B\" opacity=\"0.55\"/>\n\n  <!-- Legs -->\n  <path d=\"M280 360 C280 405, 270 425, 250 450\" fill=\"none\" stroke=\"#8B6B4F\" stroke-width=\"22\" stroke-linecap=\"round\"/>\n  <path d=\"M358 360 C360 405, 375 430, 405 455\" fill=\"none\" stroke=\"#8B6B4F\" stroke-width=\"22\" stroke-linecap=\"round\"/>\n\n  <!-- Feet/paws -->\n  <path d=\"M242 452 C245 438, 258 432, 270 437 C282 441, 282 456, 272 463 C259 470, 244 463, 242 452 Z\" fill=\"#6F543B\" opacity=\"0.6\"/>\n  <path d=\"M404 456 C403 441, 416 432, 429 436 C442 440, 444 456, 432 466 C419 475, 406 468, 404 456 Z\" fill=\"#6F543B\" opacity=\"0.6\"/>\n\n  <!-- Shadow under sloth -->\n  <ellipse cx=\"320\" cy=\"430\" rx=\"120\" ry=\"26\" fill=\"#000000\" opacity=\"0.08\"/>\n\n  <!-- Background hints (soft sky) -->\n  <rect x=\"0\" y=\"0\" width=\"512\" height=\"512\" fill=\"#F3F1EE\"/>\n  <path d=\"M0 360 C70 330, 130 345, 200 360 C275 376, 350 370, 512 335 L512 512 L0 512 Z\" fill=\"#E6E1DB\" opacity=\"0.75\"/>\n</svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAIAAgADASIAAhEBAxEB/8QAGgABAAMBAQEAAAAAAAAAAAAAAAECBAMFCP/EACYQAQEAAQMDBAIDAQAAAAAAAAABAgMEMRFCgUFRcZETUhIyoSH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAwDAQACEQMRAD8A+tQGGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWyc2QEgAA55a2nj3dfgHQZ8t1O3G+a55bjUvHSeEpGwYLq6l5zqttvNtSkehcsZzlPtH5NP8AfH7eeFWN/wCXT/fH7T+TD98ft54Uj0P54/tj9pllecFSPSHnTLKcZWeV5rak76UjcMc3OpOel8Lzde+H1VpGkcZuNO89Z4Xx1NPLjOFFwFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWyc3oCRTLV05znPDnlucJxLUo7jLlucu3GT5c8tfUvd0+CkblMtXTx5zjDcrebb81CUjXlucJxLXPLc53jGRwEqx0y1tS853x/xS23m9UAN2erhhzl1vtHHPc5X+sk+WcWkWyzyy/tlaqCAAAAAAAAAAAAAAAACccsseMrPiumOvqTu6/LkA0Y7q92E8OmO407z1nzGMWkehjnhlxlL5WeatjnnjxlZ5KkegMWO41J6y/MXm6vrhPFWkahwm5w9cbFpr6V7ungo6ik1dO9+P2mZY3jKfaiwjrPdIAAAAAi2T1iLnhOcsfsFhS6unO+K3X0p3f4g6jjdzpziZXwpd1PTD/SjSMl3OfpjIrdxq31k8FI2otk5vRhupqXnPL7Vtt5Skbrq6c5zil3GnPW3wxhVjVd1PTC+apdzqXiSOAlHTLV1LznfCltvN6oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE9b7oAT1vvT+V979oAT1vugAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/Z"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "blank",
+            "correct": false
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "white",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "paper",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "canvas",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "background",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "empty",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "nothing",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "surface",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "wall",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "sheet",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "snow",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "cloud",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "fog",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "mist",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "sky",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "horizon",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "shadow",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "minimalism",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "plain",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "space",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+          "targetWord": "sloth",
+          "executionId": "36ad8a3d-8b04-4dd9-a0c2-77f7b3bd87a1",
+          "file": "openrouter_traces/d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045/sloth.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 2,
+        "pricedRequests": 2,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.001781,
+        "totalRequestMs": 13728
+      },
+      "requests": [
+        {
+          "requestId": "1c855c9c-356e-422c-9a3a-803a5f95b5d8",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:49:57.566Z",
+          "responseCompletedAt": "2026-03-17T17:50:06.599Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "sloth",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"sloth\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769802-vTh00g1FpNyRh5bC4YlP",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd66ddb6a1a97-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:03 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769802-vTh00g1FpNyRh5bC4YlP\",\"object\":\"chat.completion\",\"created\":1773769802,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"svg\\\": \\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\">\\\\n  <!-- Branch -->\\\\n  <path d=\\\\\\\"M40 180 C120 120, 220 90, 320 120 C390 140, 440 175, 485 220\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#7A4A1E\\\\\\\" stroke-width=\\\\\\\"22\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n  <path d=\\\\\\\"M55 190 C130 135, 225 110, 320 135 C385 155, 435 185, 470 225\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#5C3414\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.9\\\\\\\"/>\\\\n\\\\n  <!-- Sloth body -->\\\\n  <ellipse cx=\\\\\\\"320\\\\\\\" cy=\\\\\\\"290\\\\\\\" rx=\\\\\\\"80\\\\\\\" ry=\\\\\\\"95\\\\\\\" fill=\\\\\\\"#8B6B4F\\\\\\\"/>\\\\n  <ellipse cx=\\\\\\\"320\\\\\\\" cy=\\\\\\\"280\\\\\\\" rx=\\\\\\\"92\\\\\\\" ry=\\\\\\\"110\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#6F543B\\\\\\\" stroke-width=\\\\\\\"8\\\\\\\" opacity=\\\\\\\"0.7\\\\\\\"/>\\\\n\\\\n  <!-- Head -->\\\\n  <circle cx=\\\\\\\"340\\\\\\\" cy=\\\\\\\"205\\\\\\\" r=\\\\\\\"42\\\\\\\" fill=\\\\\\\"#8B6B4F\\\\\\\"/>\\\\n  <circle cx=\\\\\\\"340\\\\\\\" cy=\\\\\\\"205\\\\\\\" r=\\\\\\\"46\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#6F543B\\\\\\\" stroke-width=\\\\\\\"7\\\\\\\" opacity=\\\\\\\"0.75\\\\\\\"/>\\\\n\\\\n  <!-- Muzzle/Face patch -->\\\\n  <path d=\\\\\\\"M318 226 C330 240, 355 240, 368 225 C372 195, 357 182, 343 182 C328 182, 313 195, 318 226 Z\\\\\\\" fill=\\\\\\\"#A68463\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\n\\\\n  <!-- Eyes (no text) -->\\\\n  <circle cx=\\\\\\\"332\\\\\\\" cy=\\\\\\\"205\\\\\\\" r=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#2B1F18\\\\\\\"/>\\\\n  <circle cx=\\\\\\\"352\\\\\\\" cy=\\\\\\\"205\\\\\\\" r=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#2B1F18\\\\\\\"/>\\\\n  <path d=\\\\\\\"M334 219 C342 224, 349 224, 356 219\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#2B1F18\\\\\\\" stroke-width=\\\\\\\"4\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n\\\\n  <!-- Arms grabbing branch -->\\\\n  <path d=\\\\\\\"M260 250 C235 235, 215 220, 205 200\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#8B6B4F\\\\\\\" stroke-width=\\\\\\\"22\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n  <path d=\\\\\\\"M205 200 C196 182, 210 165, 228 168\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#8B6B4F\\\\\\\" stroke-width=\\\\\\\"22\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n  <!-- Paw detail -->\\\\n  <path d=\\\\\\\"M214 171 C205 170, 195 180, 200 192 C208 199, 224 198, 230 189\\\\\\\" fill=\\\\\\\"#6F543B\\\\\\\" opacity=\\\\\\\"0.55\\\\\\\"/>\\\\n\\\\n  <!-- Legs -->\\\\n  <path d=\\\\\\\"M280 360 C280 405, 270 425, 250 450\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#8B6B4F\\\\\\\" stroke-width=\\\\\\\"22\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n  <path d=\\\\\\\"M358 360 C360 405, 375 430, 405 455\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#8B6B4F\\\\\\\" stroke-width=\\\\\\\"22\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\n\\\\n  <!-- Feet/paws -->\\\\n  <path d=\\\\\\\"M242 452 C245 438, 258 432, 270 437 C282 441, 282 456, 272 463 C259 470, 244 463, 242 452 Z\\\\\\\" fill=\\\\\\\"#6F543B\\\\\\\" opacity=\\\\\\\"0.6\\\\\\\"/>\\\\n  <path d=\\\\\\\"M404 456 C403 441, 416 432, 429 436 C442 440, 444 456, 432 466 C419 475, 406 468, 404 456 Z\\\\\\\" fill=\\\\\\\"#6F543B\\\\\\\" opacity=\\\\\\\"0.6\\\\\\\"/>\\\\n\\\\n  <!-- Shadow under sloth -->\\\\n  <ellipse cx=\\\\\\\"320\\\\\\\" cy=\\\\\\\"430\\\\\\\" rx=\\\\\\\"120\\\\\\\" ry=\\\\\\\"26\\\\\\\" fill=\\\\\\\"#000000\\\\\\\" opacity=\\\\\\\"0.08\\\\\\\"/>\\\\n\\\\n  <!-- Background hints (soft sky) -->\\\\n  <rect x=\\\\\\\"0\\\\\\\" y=\\\\\\\"0\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" fill=\\\\\\\"#F3F1EE\\\\\\\"/>\\\\n  <path d=\\\\\\\"M0 360 C70 330, 130 345, 200 360 C275 376, 350 370, 512 335 L512 512 L0 512 Z\\\\\\\" fill=\\\\\\\"#E6E1DB\\\\\\\" opacity=\\\\\\\"0.75\\\\\\\"/>\\\\n</svg>\\\"\\n}\",\"refusal\":null,\"reasoning\":\"**Creating sloth SVG**\\n\\nI need to draw a simple SVG of a sloth without any text. I want to create a stylized sloth hanging from a branch, using basic shapes: for the branch, I’ll use a curved path or rectangle; the body will be an oval, the head as a circle, and the limbs will hang down. Everything should be in a 512x512 format. I’ll make sure to return a JSON with the SVG string!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Creating sloth SVG**\\n\\nI need to draw a simple SVG of a sloth without any text. I want to create a stylized sloth hanging from a branch, using basic shapes: for the branch, I’ll use a curved path or rectangle; the body will be an oval, the head as a circle, and the limbs will hang down. Everything should be in a 512x512 format. I’ll make sure to return a JSON with the SVG string!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRPaNwt7GXNymfJ4OaIVe_rK1FpcvO9xrlERNW6roa34l1Km6vEKKjBIr9MhzR5F7UcGFSOUdXCDZS7gmeFx0M3dOATKWR7WQghtmRb9A8JFp9F7NS5LJ6VhTyIOEm1XR7GPakTKbWtCuf-ghZqZXmM-YMGrTaNxPDNgiNcH2-9_tyJwKUPcj91VUGX70WxVdA-1froTN1SsOh9f9in9s_mZ1fLlcVwA0NkHy3W66oOCkuAK2CXyGN-rQ_6a_9ukBUw-XGVpe763c3Oje4em3kpP-kef0L6b990LGEDbvUWNIzwosaeXg7RFTCA50Ag67Zci_pJ8ZKH8PIVHPvXNg38msd-yuXOG8ORjyZOFnFkIfPOKGzUGttC4fmQ5nE_ULcStkxJusY6VEg7l1-vqls3f1SV81eRQcwgtv2ZlcnO64LixLPZhwHds0BDkYEldsdKbQiROggzMzY1uh0tZ3caLV_VV9B50kTeSwrNoM5BX1t7-s4tbQa8N3ou4jhUn4rg5HOcU2p11C8J8dJOKDvuGbjXc2lqAWB8A-uZf88qKUunJFiFejxliIxnOSSvm0zxS21ZBuWwODOB0IGuEQCZObS9ZxUDuN7aeg3EXbxOMdlXopZi80AGXdcJpC7GU2yH7zYOaJ18HZnPZM1LqRI4eRv2iXl94JB3E5r-Njk8w-9Sr56qDvklWP9CTL38kebYO5T9GD4DrObiaoD9MAbSQpbeShxC1qqPPYxQXVODICXa1itolryi2cAUVDxhnUgzNxlYvb8gl1DWP_gDQbMwHmc5HgZzgsBNEj6os7qPd0F7cAJUf-ILPqMVTQh8xsm8E8cJz3EZgnb4euWeQI2VBme2UxbAeQZkUzT_TFss-btSFhB82ULVPC4uvmAOQeiv6fi6MLXLYK71Dt7UUz9xQ9PMO2MuYopQExIusszv_XdrsPVbqx5f0cyEP-x9xs4ogNrshlNlDU93TUV4nk5xoGWY-odBD_Aymwyr5c4L55m1BcmOsNKPfGe7ycTT_FYMLhiwmK0s07XaZTjaqoLM_VYCgQUkzkbAap8pbEmv6a5KcD9hsWfhvvgx154YsQG0NZ0wkwhcSxFsy1UPXsEKxttkiadx-JeBoW1HTPvz99oc04OZAj2f1UBoPyDIZCiXBeAp8pv4QBVGwwA0bz4OJau2wLvUEJTp3P4Vu2F9MvQ=\",\"format\":\"openai-responses-v1\",\"id\":\"rs_0b5a15fd725693ad0169b9944c766c8193a52bdcc22bf20f80\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":134,\"completion_tokens\":1178,\"total_tokens\":1312,\"cost\":0.0014993,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0014993,\"upstream_inference_prompt_cost\":0.0000268,\"upstream_inference_completions_cost\":0.0014725},\"completion_tokens_details\":{\"reasoning_tokens\":61,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769802-vTh00g1FpNyRh5bC4YlP",
+              "object": "chat.completion",
+              "created": 1773769802,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\n  \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\">\\n  <!-- Branch -->\\n  <path d=\\\"M40 180 C120 120, 220 90, 320 120 C390 140, 440 175, 485 220\\\" fill=\\\"none\\\" stroke=\\\"#7A4A1E\\\" stroke-width=\\\"22\\\" stroke-linecap=\\\"round\\\"/>\\n  <path d=\\\"M55 190 C130 135, 225 110, 320 135 C385 155, 435 185, 470 225\\\" fill=\\\"none\\\" stroke=\\\"#5C3414\\\" stroke-width=\\\"10\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.9\\\"/>\\n\\n  <!-- Sloth body -->\\n  <ellipse cx=\\\"320\\\" cy=\\\"290\\\" rx=\\\"80\\\" ry=\\\"95\\\" fill=\\\"#8B6B4F\\\"/>\\n  <ellipse cx=\\\"320\\\" cy=\\\"280\\\" rx=\\\"92\\\" ry=\\\"110\\\" fill=\\\"none\\\" stroke=\\\"#6F543B\\\" stroke-width=\\\"8\\\" opacity=\\\"0.7\\\"/>\\n\\n  <!-- Head -->\\n  <circle cx=\\\"340\\\" cy=\\\"205\\\" r=\\\"42\\\" fill=\\\"#8B6B4F\\\"/>\\n  <circle cx=\\\"340\\\" cy=\\\"205\\\" r=\\\"46\\\" fill=\\\"none\\\" stroke=\\\"#6F543B\\\" stroke-width=\\\"7\\\" opacity=\\\"0.75\\\"/>\\n\\n  <!-- Muzzle/Face patch -->\\n  <path d=\\\"M318 226 C330 240, 355 240, 368 225 C372 195, 357 182, 343 182 C328 182, 313 195, 318 226 Z\\\" fill=\\\"#A68463\\\" opacity=\\\"0.95\\\"/>\\n\\n  <!-- Eyes (no text) -->\\n  <circle cx=\\\"332\\\" cy=\\\"205\\\" r=\\\"6\\\" fill=\\\"#2B1F18\\\"/>\\n  <circle cx=\\\"352\\\" cy=\\\"205\\\" r=\\\"6\\\" fill=\\\"#2B1F18\\\"/>\\n  <path d=\\\"M334 219 C342 224, 349 224, 356 219\\\" fill=\\\"none\\\" stroke=\\\"#2B1F18\\\" stroke-width=\\\"4\\\" stroke-linecap=\\\"round\\\"/>\\n\\n  <!-- Arms grabbing branch -->\\n  <path d=\\\"M260 250 C235 235, 215 220, 205 200\\\" fill=\\\"none\\\" stroke=\\\"#8B6B4F\\\" stroke-width=\\\"22\\\" stroke-linecap=\\\"round\\\"/>\\n  <path d=\\\"M205 200 C196 182, 210 165, 228 168\\\" fill=\\\"none\\\" stroke=\\\"#8B6B4F\\\" stroke-width=\\\"22\\\" stroke-linecap=\\\"round\\\"/>\\n  <!-- Paw detail -->\\n  <path d=\\\"M214 171 C205 170, 195 180, 200 192 C208 199, 224 198, 230 189\\\" fill=\\\"#6F543B\\\" opacity=\\\"0.55\\\"/>\\n\\n  <!-- Legs -->\\n  <path d=\\\"M280 360 C280 405, 270 425, 250 450\\\" fill=\\\"none\\\" stroke=\\\"#8B6B4F\\\" stroke-width=\\\"22\\\" stroke-linecap=\\\"round\\\"/>\\n  <path d=\\\"M358 360 C360 405, 375 430, 405 455\\\" fill=\\\"none\\\" stroke=\\\"#8B6B4F\\\" stroke-width=\\\"22\\\" stroke-linecap=\\\"round\\\"/>\\n\\n  <!-- Feet/paws -->\\n  <path d=\\\"M242 452 C245 438, 258 432, 270 437 C282 441, 282 456, 272 463 C259 470, 244 463, 242 452 Z\\\" fill=\\\"#6F543B\\\" opacity=\\\"0.6\\\"/>\\n  <path d=\\\"M404 456 C403 441, 416 432, 429 436 C442 440, 444 456, 432 466 C419 475, 406 468, 404 456 Z\\\" fill=\\\"#6F543B\\\" opacity=\\\"0.6\\\"/>\\n\\n  <!-- Shadow under sloth -->\\n  <ellipse cx=\\\"320\\\" cy=\\\"430\\\" rx=\\\"120\\\" ry=\\\"26\\\" fill=\\\"#000000\\\" opacity=\\\"0.08\\\"/>\\n\\n  <!-- Background hints (soft sky) -->\\n  <rect x=\\\"0\\\" y=\\\"0\\\" width=\\\"512\\\" height=\\\"512\\\" fill=\\\"#F3F1EE\\\"/>\\n  <path d=\\\"M0 360 C70 330, 130 345, 200 360 C275 376, 350 370, 512 335 L512 512 L0 512 Z\\\" fill=\\\"#E6E1DB\\\" opacity=\\\"0.75\\\"/>\\n</svg>\"\n}",
+                    "refusal": null,
+                    "reasoning": "**Creating sloth SVG**\n\nI need to draw a simple SVG of a sloth without any text. I want to create a stylized sloth hanging from a branch, using basic shapes: for the branch, I’ll use a curved path or rectangle; the body will be an oval, the head as a circle, and the limbs will hang down. Everything should be in a 512x512 format. I’ll make sure to return a JSON with the SVG string!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Creating sloth SVG**\n\nI need to draw a simple SVG of a sloth without any text. I want to create a stylized sloth hanging from a branch, using basic shapes: for the branch, I’ll use a curved path or rectangle; the body will be an oval, the head as a circle, and the limbs will hang down. Everything should be in a 512x512 format. I’ll make sure to return a JSON with the SVG string!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRPaNwt7GXNymfJ4OaIVe_rK1FpcvO9xrlERNW6roa34l1Km6vEKKjBIr9MhzR5F7UcGFSOUdXCDZS7gmeFx0M3dOATKWR7WQghtmRb9A8JFp9F7NS5LJ6VhTyIOEm1XR7GPakTKbWtCuf-ghZqZXmM-YMGrTaNxPDNgiNcH2-9_tyJwKUPcj91VUGX70WxVdA-1froTN1SsOh9f9in9s_mZ1fLlcVwA0NkHy3W66oOCkuAK2CXyGN-rQ_6a_9ukBUw-XGVpe763c3Oje4em3kpP-kef0L6b990LGEDbvUWNIzwosaeXg7RFTCA50Ag67Zci_pJ8ZKH8PIVHPvXNg38msd-yuXOG8ORjyZOFnFkIfPOKGzUGttC4fmQ5nE_ULcStkxJusY6VEg7l1-vqls3f1SV81eRQcwgtv2ZlcnO64LixLPZhwHds0BDkYEldsdKbQiROggzMzY1uh0tZ3caLV_VV9B50kTeSwrNoM5BX1t7-s4tbQa8N3ou4jhUn4rg5HOcU2p11C8J8dJOKDvuGbjXc2lqAWB8A-uZf88qKUunJFiFejxliIxnOSSvm0zxS21ZBuWwODOB0IGuEQCZObS9ZxUDuN7aeg3EXbxOMdlXopZi80AGXdcJpC7GU2yH7zYOaJ18HZnPZM1LqRI4eRv2iXl94JB3E5r-Njk8w-9Sr56qDvklWP9CTL38kebYO5T9GD4DrObiaoD9MAbSQpbeShxC1qqPPYxQXVODICXa1itolryi2cAUVDxhnUgzNxlYvb8gl1DWP_gDQbMwHmc5HgZzgsBNEj6os7qPd0F7cAJUf-ILPqMVTQh8xsm8E8cJz3EZgnb4euWeQI2VBme2UxbAeQZkUzT_TFss-btSFhB82ULVPC4uvmAOQeiv6fi6MLXLYK71Dt7UUz9xQ9PMO2MuYopQExIusszv_XdrsPVbqx5f0cyEP-x9xs4ogNrshlNlDU93TUV4nk5xoGWY-odBD_Aymwyr5c4L55m1BcmOsNKPfGe7ycTT_FYMLhiwmK0s07XaZTjaqoLM_VYCgQUkzkbAap8pbEmv6a5KcD9hsWfhvvgx154YsQG0NZ0wkwhcSxFsy1UPXsEKxttkiadx-JeBoW1HTPvz99oc04OZAj2f1UBoPyDIZCiXBeAp8pv4QBVGwwA0bz4OJau2wLvUEJTp3P4Vu2F9MvQ=",
+                        "format": "openai-responses-v1",
+                        "id": "rs_0b5a15fd725693ad0169b9944c766c8193a52bdcc22bf20f80",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 134,
+                "completion_tokens": 1178,
+                "total_tokens": 1312,
+                "cost": 0.0014993,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0014993,
+                  "upstream_inference_prompt_cost": 0.0000268,
+                  "upstream_inference_completions_cost": 0.0014725
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 61,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.001499,
+          "requestDurationMs": 9033,
+          "error": null
+        },
+        {
+          "requestId": "77330ef4-a5d6-4def-a07e-bd1f4653b2b1",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:06.762Z",
+          "responseCompletedAt": "2026-03-17T17:50:11.457Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "sloth",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAIAAgADASIAAhEBAxEB/8QAGgABAAMBAQEAAAAAAAAAAAAAAAECBAMFCP/EACYQAQEAAQMDBAIDAQAAAAAAAAABAgMEMRFCgUFRcZETUhIyoSH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAwDAQACEQMRAD8A+tQGGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWyc2QEgAA55a2nj3dfgHQZ8t1O3G+a55bjUvHSeEpGwYLq6l5zqttvNtSkehcsZzlPtH5NP8AfH7eeFWN/wCXT/fH7T+TD98ft54Uj0P54/tj9pllecFSPSHnTLKcZWeV5rak76UjcMc3OpOel8Lzde+H1VpGkcZuNO89Z4Xx1NPLjOFFwFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWyc3oCRTLV05znPDnlucJxLUo7jLlucu3GT5c8tfUvd0+CkblMtXTx5zjDcrebb81CUjXlucJxLXPLc53jGRwEqx0y1tS853x/xS23m9UAN2erhhzl1vtHHPc5X+sk+WcWkWyzyy/tlaqCAAAAAAAAAAAAAAAACccsseMrPiumOvqTu6/LkA0Y7q92E8OmO407z1nzGMWkehjnhlxlL5WeatjnnjxlZ5KkegMWO41J6y/MXm6vrhPFWkahwm5w9cbFpr6V7ungo6ik1dO9+P2mZY3jKfaiwjrPdIAAAAAi2T1iLnhOcsfsFhS6unO+K3X0p3f4g6jjdzpziZXwpd1PTD/SjSMl3OfpjIrdxq31k8FI2otk5vRhupqXnPL7Vtt5Skbrq6c5zil3GnPW3wxhVjVd1PTC+apdzqXiSOAlHTLV1LznfCltvN6oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE9b7oAT1vvT+V979oAT1vugAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/Z"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769810-MZE4bUcqqiHg8TFAG5tw",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6a599aff16d-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:11 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769810-MZE4bUcqqiHg8TFAG5tw\",\"object\":\"chat.completion\",\"created\":1773769810,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"guesses\\\": [\\\"blank\\\",\\\"white\\\",\\\"paper\\\",\\\"canvas\\\",\\\"background\\\",\\\"empty\\\",\\\"nothing\\\",\\\"surface\\\",\\\"wall\\\",\\\"sheet\\\",\\\"snow\\\",\\\"cloud\\\",\\\"fog\\\",\\\"mist\\\",\\\"sky\\\",\\\"horizon\\\",\\\"shadow\\\",\\\"minimalism\\\",\\\"plain\\\",\\\"space\\\"] }\",\"refusal\":null,\"reasoning\":\"**Generating related words**\\n\\nI’m thinking the image appears blank and white, which might mean it’s just background or paper. I need to make some educated guesses! It could be empty or just a canvas. I’ll come up with a list of 20 related one-word terms: blank, white, paper, canvas, background, empty, nothing, fog, snow, cloud, wall, surface, sky, mist, minimalism, shadow — but no duplicates! Let’s craft that list!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Generating related words**\\n\\nI’m thinking the image appears blank and white, which might mean it’s just background or paper. I need to make some educated guesses! It could be empty or just a canvas. I’ll come up with a list of 20 related one-word terms: blank, white, paper, canvas, background, empty, nothing, fog, snow, cloud, wall, surface, sky, mist, minimalism, shadow — but no duplicates! Let’s craft that list!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRXWBq1W9r89UIdAjFeZKQMNoYTCqtbKMl25L6YTonJMIhMLrbY6hRyAN_bhzz4IOL-wXoCTn9RPlcS8s7jF-jOXigRzFlHzR-Zs_l8MGjRPp1DT5lkzvsyJ9RAexkFR5N40FdnjW8CMoLUkKI9C86JRUPwp0S1-dW82kIosrHrkLuhh-Ye1mKPu9JpjxFvoSaRW5jmnuDcwB3brsZ9Vq9_vfDPZjbenUMvbRi3IAAWwBnbN-xtTECZKS8FwNjjGoUZvdJCUlTXmMEkN5gbLgz-43C894KdXyjYmHGXa-GDp18TNnA3uLpKNc6VWdE131Wmpz8mzQhfVd7OaN_ATRP97SuJ-kZWibZpxDU2FzSFbFXhd27cxZrQ2hJczMIZadcxZPGsxZRVKbn2ba29tJ4sh26Nh-wDzacMNQIqSy3Ydow8c6bGw25gZOwiix1BxO_fw1rrfhQm0pfQGS-G1jBZlUeF87A3wADvaYGDw3Xr1b21Xrx00g3sbp6fqpoLX514VhiG5Ae_ZBzGIN_b__iHkn3qeByDX0_KaF4ARyoSJnGpfkfwI5wBakCy1ZFU7xUgj713SwK_p2iec3v7HmUC-ZXawPBQfzQCfJozszPdmPR-sokop12nTzrv9HQLiqHAJD64nVXrMGxTEsGWnXG2L6gmpdZI1uED62ywoAaGUlsjIS-asfwl4rbcBLs6YWb-f4ILAzv6d3xgJx5ABYM8Jz2MRbSDD1pEfQOCHFq1BzW_KEmHOQJ0EsCqKBpltjhS27chkcTwc9f-5hoxtWpI40U871LOsvxs2We0yVSC2_Pp3dlJ4Fch1_EkpBdYwHuOngnQr2rTtDcdh34TsV-IygP1O90KG01hJADQKOEdjozOipOTCPlttTogtUCTnq6yiukE-M5cbfTh0EbtNGY0HmsYY_aJf8CBCZPfo2pz71sBJNIj3k_0D_1Exk3DnoZYlHKAPQO_Dks0CgXa0FBOf_svT5pD7SxhPidhhIyWtosXj5jdYG5TNUaV3MAFQpzlyUeUYSvMBdg-TrHdFmxoTDIz5Zod-hAJP3hoIJRZcQtRHL3RSAxcNmIGzVOK5lhJfgbOsErhNhGzZqS3XdlG8b220ePCye3A89qYH78ctT6Dewbh1wpCFFN_ObvQil2nxSt_0exu4T0d5gvQ12z9fMxfdSN2YyjYmDVFHDvDbm-iJrGFfYOZ4cpESK-WjET3gmb0ZeKd2iTRi6QqYm4-G3COjoIQ2Cz3ZhuLZKy1CX00RTSOqRLtN8Qmo2ywz0dALDqmRMe-TcsQbIB0O_Ep9YjMHPfGXfUegW1xLX7ykh1K9jCo16CxWQYqz4ibOQw9zGAAGYT3RDH_eKqTxhllxSSYTlhpdDJVlaXOEjmvs4s=\",\"format\":\"openai-responses-v1\",\"id\":\"rs_0ce26047db516e340169b99453729c81949ea03fca1246eead\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":464,\"completion_tokens\":151,\"total_tokens\":615,\"cost\":0.00028155,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00028155,\"upstream_inference_prompt_cost\":0.0000928,\"upstream_inference_completions_cost\":0.00018875},\"completion_tokens_details\":{\"reasoning_tokens\":96,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769810-MZE4bUcqqiHg8TFAG5tw",
+              "object": "chat.completion",
+              "created": 1773769810,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{ \"guesses\": [\"blank\",\"white\",\"paper\",\"canvas\",\"background\",\"empty\",\"nothing\",\"surface\",\"wall\",\"sheet\",\"snow\",\"cloud\",\"fog\",\"mist\",\"sky\",\"horizon\",\"shadow\",\"minimalism\",\"plain\",\"space\"] }",
+                    "refusal": null,
+                    "reasoning": "**Generating related words**\n\nI’m thinking the image appears blank and white, which might mean it’s just background or paper. I need to make some educated guesses! It could be empty or just a canvas. I’ll come up with a list of 20 related one-word terms: blank, white, paper, canvas, background, empty, nothing, fog, snow, cloud, wall, surface, sky, mist, minimalism, shadow — but no duplicates! Let’s craft that list!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Generating related words**\n\nI’m thinking the image appears blank and white, which might mean it’s just background or paper. I need to make some educated guesses! It could be empty or just a canvas. I’ll come up with a list of 20 related one-word terms: blank, white, paper, canvas, background, empty, nothing, fog, snow, cloud, wall, surface, sky, mist, minimalism, shadow — but no duplicates! Let’s craft that list!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRXWBq1W9r89UIdAjFeZKQMNoYTCqtbKMl25L6YTonJMIhMLrbY6hRyAN_bhzz4IOL-wXoCTn9RPlcS8s7jF-jOXigRzFlHzR-Zs_l8MGjRPp1DT5lkzvsyJ9RAexkFR5N40FdnjW8CMoLUkKI9C86JRUPwp0S1-dW82kIosrHrkLuhh-Ye1mKPu9JpjxFvoSaRW5jmnuDcwB3brsZ9Vq9_vfDPZjbenUMvbRi3IAAWwBnbN-xtTECZKS8FwNjjGoUZvdJCUlTXmMEkN5gbLgz-43C894KdXyjYmHGXa-GDp18TNnA3uLpKNc6VWdE131Wmpz8mzQhfVd7OaN_ATRP97SuJ-kZWibZpxDU2FzSFbFXhd27cxZrQ2hJczMIZadcxZPGsxZRVKbn2ba29tJ4sh26Nh-wDzacMNQIqSy3Ydow8c6bGw25gZOwiix1BxO_fw1rrfhQm0pfQGS-G1jBZlUeF87A3wADvaYGDw3Xr1b21Xrx00g3sbp6fqpoLX514VhiG5Ae_ZBzGIN_b__iHkn3qeByDX0_KaF4ARyoSJnGpfkfwI5wBakCy1ZFU7xUgj713SwK_p2iec3v7HmUC-ZXawPBQfzQCfJozszPdmPR-sokop12nTzrv9HQLiqHAJD64nVXrMGxTEsGWnXG2L6gmpdZI1uED62ywoAaGUlsjIS-asfwl4rbcBLs6YWb-f4ILAzv6d3xgJx5ABYM8Jz2MRbSDD1pEfQOCHFq1BzW_KEmHOQJ0EsCqKBpltjhS27chkcTwc9f-5hoxtWpI40U871LOsvxs2We0yVSC2_Pp3dlJ4Fch1_EkpBdYwHuOngnQr2rTtDcdh34TsV-IygP1O90KG01hJADQKOEdjozOipOTCPlttTogtUCTnq6yiukE-M5cbfTh0EbtNGY0HmsYY_aJf8CBCZPfo2pz71sBJNIj3k_0D_1Exk3DnoZYlHKAPQO_Dks0CgXa0FBOf_svT5pD7SxhPidhhIyWtosXj5jdYG5TNUaV3MAFQpzlyUeUYSvMBdg-TrHdFmxoTDIz5Zod-hAJP3hoIJRZcQtRHL3RSAxcNmIGzVOK5lhJfgbOsErhNhGzZqS3XdlG8b220ePCye3A89qYH78ctT6Dewbh1wpCFFN_ObvQil2nxSt_0exu4T0d5gvQ12z9fMxfdSN2YyjYmDVFHDvDbm-iJrGFfYOZ4cpESK-WjET3gmb0ZeKd2iTRi6QqYm4-G3COjoIQ2Cz3ZhuLZKy1CX00RTSOqRLtN8Qmo2ywz0dALDqmRMe-TcsQbIB0O_Ep9YjMHPfGXfUegW1xLX7ykh1K9jCo16CxWQYqz4ibOQw9zGAAGYT3RDH_eKqTxhllxSSYTlhpdDJVlaXOEjmvs4s=",
+                        "format": "openai-responses-v1",
+                        "id": "rs_0ce26047db516e340169b99453729c81949ea03fca1246eead",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 464,
+                "completion_tokens": 151,
+                "total_tokens": 615,
+                "cost": 0.00028155,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00028155,
+                  "upstream_inference_prompt_cost": 0.0000928,
+                  "upstream_inference_completions_cost": 0.00018875
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 96,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.000282,
+          "requestDurationMs": 4695,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

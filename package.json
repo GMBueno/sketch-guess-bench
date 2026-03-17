@@ -7,8 +7,9 @@
   ],
   "packageManager": "bun@1.2.0",
   "scripts": {
-    "dev": "cd bench && bun run dev",
-    "dev:bench": "cd bench && bun run dev",
+    "bench:run": "cd bench && bun run run",
+    "bench:retry-word": "cd bench && bun run retry-word",
+    "bench:models": "cd bench && bun run models",
     "dev:visualizer": "cd visualizer && bun run dev",
     "build:visualizer": "cd visualizer && bun run build",
     "generate:visualizer-data": "cd bench && bun run generate:visualizer-data"

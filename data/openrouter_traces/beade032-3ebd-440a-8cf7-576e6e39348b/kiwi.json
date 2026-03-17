@@ -1,0 +1,534 @@
+{
+  "runId": "beade032-3ebd-440a-8cf7-576e6e39348b",
+  "targetWord": "kiwi",
+  "modelKey": "gpt54mini",
+  "modelLabel": "GPT-5.4 Mini",
+  "modelId": "openai/gpt-5.4-mini",
+  "effort": "medium",
+  "latestExecutionId": "0509da83-868f-4760-b5e2-28b91d6f22e0",
+  "executions": [
+    {
+      "executionId": "0509da83-868f-4760-b5e2-28b91d6f22e0",
+      "startedAt": "2026-03-17T17:49:57.566Z",
+      "completedAt": "2026-03-17T17:50:16.261Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "kiwi",
+        "solved": true,
+        "guessesUsed": 1,
+        "penalizedGuesses": 1,
+        "totalCostUsd": 0.010467,
+        "totalRequestMs": 18506,
+        "pricedRequests": 3,
+        "totalRequests": 3,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\"><rect width=\"512\" height=\"512\" fill=\"#f7f3e8\"/><g transform=\"translate(0,10)\"><ellipse cx=\"330\" cy=\"300\" rx=\"92\" ry=\"118\" fill=\"#6b4a2f\"/><ellipse cx=\"330\" cy=\"300\" rx=\"78\" ry=\"102\" fill=\"#2e8b3c\"/><ellipse cx=\"330\" cy=\"300\" rx=\"58\" ry=\"82\" fill=\"#9bd96b\"/><circle cx=\"330\" cy=\"300\" r=\"16\" fill=\"#f4f0dd\"/><g fill=\"#1f1f1f\"><circle cx=\"330\" cy=\"230\" r=\"5\"/><circle cx=\"357\" cy=\"238\" r=\"5\"/><circle cx=\"379\" cy=\"258\" r=\"5\"/><circle cx=\"390\" cy=\"285\" r=\"5\"/><circle cx=\"388\" cy=\"316\" r=\"5\"/><circle cx=\"374\" cy=\"342\" r=\"5\"/><circle cx=\"352\" cy=\"361\" r=\"5\"/><circle cx=\"326\" cy=\"368\" r=\"5\"/><circle cx=\"300\" cy=\"362\" r=\"5\"/><circle cx=\"278\" cy=\"347\" r=\"5\"/><circle cx=\"265\" cy=\"321\" r=\"5\"/><circle cx=\"264\" cy=\"292\" r=\"5\"/><circle cx=\"274\" cy=\"264\" r=\"5\"/><circle cx=\"294\" cy=\"243\" r=\"5\"/></g><ellipse cx=\"170\" cy=\"306\" rx=\"78\" ry=\"104\" fill=\"#7a5232\"/><ellipse cx=\"170\" cy=\"306\" rx=\"64\" ry=\"88\" fill=\"#6d4a2d\"/><g stroke=\"#8a6240\" stroke-width=\"5\" stroke-linecap=\"round\"><line x1=\"117\" y1=\"240\" x2=\"104\" y2=\"228\"/><line x1=\"104\" y1=\"264\" x2=\"88\" y2=\"257\"/><line x1=\"98\" y1=\"292\" x2=\"80\" y2=\"292\"/><line x1=\"100\" y1=\"320\" x2=\"82\" y2=\"326\"/><line x1=\"110\" y1=\"346\" x2=\"96\" y2=\"358\"/><line x1=\"129\" y1=\"366\" x2=\"121\" y2=\"383\"/><line x1=\"154\" y1=\"378\" x2=\"152\" y2=\"396\"/><line x1=\"180\" y1=\"380\" x2=\"186\" y2=\"398\"/><line x1=\"206\" y1=\"374\" x2=\"219\" y2=\"388\"/><line x1=\"229\" y1=\"360\" x2=\"246\" y2=\"366\"/><line x1=\"244\" y1=\"338\" x2=\"262\" y2=\"337\"/><line x1=\"250\" y1=\"311\" x2=\"268\" y2=\"305\"/><line x1=\"248\" y1=\"283\" x2=\"266\" y2=\"275\"/><line x1=\"238\" y1=\"257\" x2=\"252\" y2=\"244\"/></g></g></svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,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"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "kiwi",
+            "correct": true
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "kiwifruit",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "fruit",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "slice",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "half",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "crosssection",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "seed",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "green",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "brown",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "flesh",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "peel",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "tropical",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "snack",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "oval",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "organic",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "produce",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "edible",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "fresh",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "ripened",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "drupe",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "beade032-3ebd-440a-8cf7-576e6e39348b",
+          "targetWord": "kiwi",
+          "executionId": "0509da83-868f-4760-b5e2-28b91d6f22e0",
+          "file": "openrouter_traces/beade032-3ebd-440a-8cf7-576e6e39348b/kiwi.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 3,
+        "pricedRequests": 3,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.010467,
+        "totalRequestMs": 18506
+      },
+      "requests": [
+        {
+          "requestId": "a27b38a2-b39b-494b-8df6-d5ce36af1396",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:49:57.566Z",
+          "responseCompletedAt": "2026-03-17T17:50:04.747Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "kiwi",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-mini",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"kiwi\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769802-rVoVFBbyIAwynnggcZXd",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd66dcab5261c-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:02 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769802-rVoVFBbyIAwynnggcZXd\",\"object\":\"chat.completion\",\"created\":1773769802,\"model\":\"openai/gpt-5.4-mini-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"svg\\\":\\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\"><rect width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" fill=\\\\\\\"#f7f7f7\\\\\\\"/><g transform=\\\\\\\"translate(0,10)\\\\\\\"><ellipse cx=\\\\\\\"180\\\\\\\" cy=\\\\\\\"280\\\\\\\" rx=\\\\\\\"110\\\\\\\" ry=\\\\\\\"150\\\\\\\" fill=\\\\\\\"#7a4a2a\\\\\\\" stroke=\\\\\\\"#5a341a\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\"/><ellipse cx=\\\\\\\"190\\\\\\\" cy=\\\\\\\"270\\\\\\\" rx=\\\\\\\"92\\\\\\\" ry=\\\\\\\"132\\\\\\\" fill=\\\\\\\"#8b5a35\\\\\\\" opacity=\\\\\\\"0.35\\\\\\\"/><g><ellipse cx=\\\\\\\"360\\\\\\\" cy=\\\\\\\"275\\\\\\\" rx=\\\\\\\"120\\\\\\\" ry=\\\\\\\"92\\\\\\\" fill=\\\\\\\"#6fbf4b\\\\\\\" stroke=\\\\\\\"#4d8f33\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\"/><ellipse cx=\\\\\\\"360\\\\\\\" cy=\\\\\\\"275\\\\\\\" rx=\\\\\\\"78\\\\\\\" ry=\\\\\\\"60\\\\\\\" fill=\\\\\\\"#c9f27a\\\\\\\"/><ellipse cx=\\\\\\\"360\\\\\\\" cy=\\\\\\\"275\\\\\\\" rx=\\\\\\\"55\\\\\\\" ry=\\\\\\\"42\\\\\\\" fill=\\\\\\\"#f7f7f7\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/><circle cx=\\\\\\\"360\\\\\\\" cy=\\\\\\\"275\\\\\\\" r=\\\\\\\"10\\\\\\\" fill=\\\\\\\"#6b8f3a\\\\\\\"/><g fill=\\\\\\\"#1e1e1e\\\\\\\"><ellipse cx=\\\\\\\"360\\\\\\\" cy=\\\\\\\"205\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(18 360 205)\\\\\\\"/><ellipse cx=\\\\\\\"400\\\\\\\" cy=\\\\\\\"218\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(-25 400 218)\\\\\\\"/><ellipse cx=\\\\\\\"425\\\\\\\" cy=\\\\\\\"255\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(12 425 255)\\\\\\\"/><ellipse cx=\\\\\\\"421\\\\\\\" cy=\\\\\\\"302\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(-18 421 302)\\\\\\\"/><ellipse cx=\\\\\\\"392\\\\\\\" cy=\\\\\\\"338\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(20 392 338)\\\\\\\"/><ellipse cx=\\\\\\\"350\\\\\\\" cy=\\\\\\\"350\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(-10 350 350)\\\\\\\"/><ellipse cx=\\\\\\\"307\\\\\\\" cy=\\\\\\\"337\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(18 307 337)\\\\\\\"/><ellipse cx=\\\\\\\"281\\\\\\\" cy=\\\\\\\"302\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(-22 281 302)\\\\\\\"/><ellipse cx=\\\\\\\"277\\\\\\\" cy=\\\\\\\"255\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(10 277 255)\\\\\\\"/><ellipse cx=\\\\\\\"300\\\\\\\" cy=\\\\\\\"218\\\\\\\" rx=\\\\\\\"4\\\\\\\" ry=\\\\\\\"8\\\\\\\" transform=\\\\\\\"rotate(-16 300 218)\\\\\\\"/></g><path d=\\\\\\\"M360 275 L360 216\\\\\\\" stroke=\\\\\\\"#f2e5c7\\\\\\\" stroke-width=\\\\\\\"7\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M360 275 L406 232\\\\\\\" stroke=\\\\\\\"#f2e5c7\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M360 275 L416 274\\\\\\\" stroke=\\\\\\\"#f2e5c7\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M360 275 L401 319\\\\\\\" stroke=\\\\\\\"#f2e5c7\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M360 275 L360 334\\\\\\\" stroke=\\\\\\\"#f2e5c7\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M360 275 L319 320\\\\\\\" stroke=\\\\\\\"#f2e5c7\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M360 275 L303 275\\\\\\\" stroke=\\\\\\\"#f2e5c7\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M360 275 L321 231\\\\\\\" stroke=\\\\\\\"#f2e5c7\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/></g><g transform=\\\\\\\"translate(0,0)\\\\\\\"><path d=\\\\\\\"M152 131 C165 104 185 91 214 84\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#4f8f2f\\\\\\\" stroke-width=\\\\\\\"12\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M214 84 C194 88 180 99 171 116 C189 118 205 114 219 105 C220 95 219 89 214 84 Z\\\\\\\" fill=\\\\\\\"#6fbf4b\\\\\\\" stroke=\\\\\\\"#4d8f33\\\\\\\" stroke-width=\\\\\\\"6\\\\\\\" stroke-linejoin=\\\\\\\"round\\\\\\\"/></g></svg>\\\"}\",\"refusal\":null,\"reasoning\":\"**Creating kiwi fruit svg**\\n\\nI need to create a simple SVG representation of kiwi fruit, ideally showing both a whole kiwi and a sliced half. The whole kiwi should have a brown fuzzy exterior, and the inside needs to be green with black seeds visible. I'll focus on keeping the design recognizable. The final product should be a valid SVG formatted as a single string in JSON, with proper escaping for quotes. Let's keep it concise and clear!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Creating kiwi fruit svg**\\n\\nI need to create a simple SVG representation of kiwi fruit, ideally showing both a whole kiwi and a sliced half. The whole kiwi should have a brown fuzzy exterior, and the inside needs to be green with black seeds visible. I'll focus on keeping the design recognizable. The final product should be a valid SVG formatted as a single string in JSON, with proper escaping for quotes. Let's keep it concise and clear!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZROZL3iJK6cT7WIqogzR_fAYckqMByNrkb4fduY-H5HUIOp-D_NzvhS7s0x3vn2sPI3hfCXasDsM56LSLQM6Iy6aI9yKqaw873VFFtAfBlChteiWMuj63HicJUwRJfr_4B7fNTSbbUa3H8yVrKeR2XKW3eWbWQTv1JlkiH2liPs_OG_GIUhfkjpGeZY-WcPmwjP5VQcsvYXmqhbbMJUZ8e7y9A0pbqm8740Z5NIJMUeWIM4TvSWnfxCcQ8pgU-SmtnMTVWTH_bcvEhcx-CJGqJbZ7TFXzPVI0lFkhVi2G6KgYwOPKGJFL1X_Zgflsv_-oJsjAn0enF4SL-Ggfv9hUYu1Hzy7h1kN5Z_SFcUajyEXbiWpU1IJFjht1rHoRXyRiLWrE58wXOiM-nbhXq1-Ejggf7HwCISX5ELLa0uw4t3B43M9s79HOWokFgudzNTKq74ZLzYErI4XxGUdfYgwUzQ7yu4-cP0ERNF6qdV7IMsIcZvrUFa21VOF5fId73gEt4Yy32DhLtN95NFLqeIg33EmdqYAYoRQkSpW_loNNGBk8Gsz4C8CX852008pwhlFwUuRU7SKVwf21oGBxilm_oMb7IYM9XxG28urWlekE1vUt1UsneI5xNrtY6HpgnmuDbRMRm0j563hrRe555HOIc0KSRvIhH3qBnQe7p982lHj1dQmksCI8R8F_bOIQLWlAXjsYn4AZrT7W0j8roxXAL4x-Hq16Wz3ZwG5aZrY7BEPzD-RHqRTuoM7rhPidZ_BTa7yYiUVOYC-ERZoUM2SBiojQAmip3QQXoQ5Za3jeLckoFZ5BCvIVNGw_gCGaf6If2TVWrLvNRzyKt8i6-iRNqlx_TiTnNaXtFC6bnRzse1CBBABtKC3yStDi8oL9apiMG1yvDb1tR49Vy_j1UYwW6bIlxFB6G0HEMWJLvFITctVbSFe3MB-X4JZJjS8oB_GLJG0cxgR9V8dC5aOvrYmwNa0jdjM2lyH0tL7scPSz3FtAxb4oI3fp7t_f7QbHAGd8B1nzBrL8F-VscNywkNLw-KwTVb3jTqB4sJJ7JLoxPjmFJL9P5PCh-OenIuLTzzP01P_zvdEymnEmgKqnK3Xbks2vh8Q7bp3AuVQo5NoJGCqxFVdg9sST163A9fMG4plZOP5vUuN_KB5mIgfDA5vGjkxCIU5zdSFnGEFEr9L_sQbTF0kgrhvvowTgufUJIICquJlYQYIOAtaGrIGxqctek5ORHYsuLj8e3INNChxgs1J6JpQ6UEme4ElDrV-FagEoO0QipgR_rP20SQGEvORM0xsae7CmEa6S-bNwbjnaEyeA-fZCng1dsMw7cx3d-7RkNKlokq7lcsyPy8h6QJ3rJ1fw==\",\"format\":\"openai-responses-v1\",\"id\":\"rs_00f1647ec4fdb2340169b9944ad1008197a82dd235e3b06366\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":134,\"completion_tokens\":1050,\"total_tokens\":1184,\"cost\":0.0048255,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0048255,\"upstream_inference_prompt_cost\":0.0001005,\"upstream_inference_completions_cost\":0.004725},\"completion_tokens_details\":{\"reasoning_tokens\":83,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769802-rVoVFBbyIAwynnggcZXd",
+              "object": "chat.completion",
+              "created": 1773769802,
+              "model": "openai/gpt-5.4-mini-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\"svg\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\"><rect width=\\\"512\\\" height=\\\"512\\\" fill=\\\"#f7f7f7\\\"/><g transform=\\\"translate(0,10)\\\"><ellipse cx=\\\"180\\\" cy=\\\"280\\\" rx=\\\"110\\\" ry=\\\"150\\\" fill=\\\"#7a4a2a\\\" stroke=\\\"#5a341a\\\" stroke-width=\\\"10\\\"/><ellipse cx=\\\"190\\\" cy=\\\"270\\\" rx=\\\"92\\\" ry=\\\"132\\\" fill=\\\"#8b5a35\\\" opacity=\\\"0.35\\\"/><g><ellipse cx=\\\"360\\\" cy=\\\"275\\\" rx=\\\"120\\\" ry=\\\"92\\\" fill=\\\"#6fbf4b\\\" stroke=\\\"#4d8f33\\\" stroke-width=\\\"10\\\"/><ellipse cx=\\\"360\\\" cy=\\\"275\\\" rx=\\\"78\\\" ry=\\\"60\\\" fill=\\\"#c9f27a\\\"/><ellipse cx=\\\"360\\\" cy=\\\"275\\\" rx=\\\"55\\\" ry=\\\"42\\\" fill=\\\"#f7f7f7\\\" opacity=\\\"0.95\\\"/><circle cx=\\\"360\\\" cy=\\\"275\\\" r=\\\"10\\\" fill=\\\"#6b8f3a\\\"/><g fill=\\\"#1e1e1e\\\"><ellipse cx=\\\"360\\\" cy=\\\"205\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(18 360 205)\\\"/><ellipse cx=\\\"400\\\" cy=\\\"218\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(-25 400 218)\\\"/><ellipse cx=\\\"425\\\" cy=\\\"255\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(12 425 255)\\\"/><ellipse cx=\\\"421\\\" cy=\\\"302\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(-18 421 302)\\\"/><ellipse cx=\\\"392\\\" cy=\\\"338\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(20 392 338)\\\"/><ellipse cx=\\\"350\\\" cy=\\\"350\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(-10 350 350)\\\"/><ellipse cx=\\\"307\\\" cy=\\\"337\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(18 307 337)\\\"/><ellipse cx=\\\"281\\\" cy=\\\"302\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(-22 281 302)\\\"/><ellipse cx=\\\"277\\\" cy=\\\"255\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(10 277 255)\\\"/><ellipse cx=\\\"300\\\" cy=\\\"218\\\" rx=\\\"4\\\" ry=\\\"8\\\" transform=\\\"rotate(-16 300 218)\\\"/></g><path d=\\\"M360 275 L360 216\\\" stroke=\\\"#f2e5c7\\\" stroke-width=\\\"7\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M360 275 L406 232\\\" stroke=\\\"#f2e5c7\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M360 275 L416 274\\\" stroke=\\\"#f2e5c7\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M360 275 L401 319\\\" stroke=\\\"#f2e5c7\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M360 275 L360 334\\\" stroke=\\\"#f2e5c7\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M360 275 L319 320\\\" stroke=\\\"#f2e5c7\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M360 275 L303 275\\\" stroke=\\\"#f2e5c7\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M360 275 L321 231\\\" stroke=\\\"#f2e5c7\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\"/></g><g transform=\\\"translate(0,0)\\\"><path d=\\\"M152 131 C165 104 185 91 214 84\\\" fill=\\\"none\\\" stroke=\\\"#4f8f2f\\\" stroke-width=\\\"12\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M214 84 C194 88 180 99 171 116 C189 118 205 114 219 105 C220 95 219 89 214 84 Z\\\" fill=\\\"#6fbf4b\\\" stroke=\\\"#4d8f33\\\" stroke-width=\\\"6\\\" stroke-linejoin=\\\"round\\\"/></g></svg>\"}",
+                    "refusal": null,
+                    "reasoning": "**Creating kiwi fruit svg**\n\nI need to create a simple SVG representation of kiwi fruit, ideally showing both a whole kiwi and a sliced half. The whole kiwi should have a brown fuzzy exterior, and the inside needs to be green with black seeds visible. I'll focus on keeping the design recognizable. The final product should be a valid SVG formatted as a single string in JSON, with proper escaping for quotes. Let's keep it concise and clear!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Creating kiwi fruit svg**\n\nI need to create a simple SVG representation of kiwi fruit, ideally showing both a whole kiwi and a sliced half. The whole kiwi should have a brown fuzzy exterior, and the inside needs to be green with black seeds visible. I'll focus on keeping the design recognizable. The final product should be a valid SVG formatted as a single string in JSON, with proper escaping for quotes. Let's keep it concise and clear!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZROZL3iJK6cT7WIqogzR_fAYckqMByNrkb4fduY-H5HUIOp-D_NzvhS7s0x3vn2sPI3hfCXasDsM56LSLQM6Iy6aI9yKqaw873VFFtAfBlChteiWMuj63HicJUwRJfr_4B7fNTSbbUa3H8yVrKeR2XKW3eWbWQTv1JlkiH2liPs_OG_GIUhfkjpGeZY-WcPmwjP5VQcsvYXmqhbbMJUZ8e7y9A0pbqm8740Z5NIJMUeWIM4TvSWnfxCcQ8pgU-SmtnMTVWTH_bcvEhcx-CJGqJbZ7TFXzPVI0lFkhVi2G6KgYwOPKGJFL1X_Zgflsv_-oJsjAn0enF4SL-Ggfv9hUYu1Hzy7h1kN5Z_SFcUajyEXbiWpU1IJFjht1rHoRXyRiLWrE58wXOiM-nbhXq1-Ejggf7HwCISX5ELLa0uw4t3B43M9s79HOWokFgudzNTKq74ZLzYErI4XxGUdfYgwUzQ7yu4-cP0ERNF6qdV7IMsIcZvrUFa21VOF5fId73gEt4Yy32DhLtN95NFLqeIg33EmdqYAYoRQkSpW_loNNGBk8Gsz4C8CX852008pwhlFwUuRU7SKVwf21oGBxilm_oMb7IYM9XxG28urWlekE1vUt1UsneI5xNrtY6HpgnmuDbRMRm0j563hrRe555HOIc0KSRvIhH3qBnQe7p982lHj1dQmksCI8R8F_bOIQLWlAXjsYn4AZrT7W0j8roxXAL4x-Hq16Wz3ZwG5aZrY7BEPzD-RHqRTuoM7rhPidZ_BTa7yYiUVOYC-ERZoUM2SBiojQAmip3QQXoQ5Za3jeLckoFZ5BCvIVNGw_gCGaf6If2TVWrLvNRzyKt8i6-iRNqlx_TiTnNaXtFC6bnRzse1CBBABtKC3yStDi8oL9apiMG1yvDb1tR49Vy_j1UYwW6bIlxFB6G0HEMWJLvFITctVbSFe3MB-X4JZJjS8oB_GLJG0cxgR9V8dC5aOvrYmwNa0jdjM2lyH0tL7scPSz3FtAxb4oI3fp7t_f7QbHAGd8B1nzBrL8F-VscNywkNLw-KwTVb3jTqB4sJJ7JLoxPjmFJL9P5PCh-OenIuLTzzP01P_zvdEymnEmgKqnK3Xbks2vh8Q7bp3AuVQo5NoJGCqxFVdg9sST163A9fMG4plZOP5vUuN_KB5mIgfDA5vGjkxCIU5zdSFnGEFEr9L_sQbTF0kgrhvvowTgufUJIICquJlYQYIOAtaGrIGxqctek5ORHYsuLj8e3INNChxgs1J6JpQ6UEme4ElDrV-FagEoO0QipgR_rP20SQGEvORM0xsae7CmEa6S-bNwbjnaEyeA-fZCng1dsMw7cx3d-7RkNKlokq7lcsyPy8h6QJ3rJ1fw==",
+                        "format": "openai-responses-v1",
+                        "id": "rs_00f1647ec4fdb2340169b9944ad1008197a82dd235e3b06366",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 134,
+                "completion_tokens": 1050,
+                "total_tokens": 1184,
+                "cost": 0.0048255,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0048255,
+                  "upstream_inference_prompt_cost": 0.0001005,
+                  "upstream_inference_completions_cost": 0.004725
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 83,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.004825,
+          "requestDurationMs": 7181,
+          "error": null
+        },
+        {
+          "requestId": "064ae351-4426-4c84-889d-44e6212bd378",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:04.802Z",
+          "responseCompletedAt": "2026-03-17T17:50:12.888Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "kiwi",
+            "generationAttempt": 2
+          },
+          "request": {
+            "model": "openai/gpt-5.4-mini",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"kiwi\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769808-BwPKsGqh01zvnY7ZWLFZ",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd698feb9c089-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:09 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769808-BwPKsGqh01zvnY7ZWLFZ\",\"object\":\"chat.completion\",\"created\":1773769808,\"model\":\"openai/gpt-5.4-mini-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"svg\\\":\\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\"><rect width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" fill=\\\\\\\"#f7f3e8\\\\\\\"/><g transform=\\\\\\\"translate(0,10)\\\\\\\"><ellipse cx=\\\\\\\"330\\\\\\\" cy=\\\\\\\"300\\\\\\\" rx=\\\\\\\"92\\\\\\\" ry=\\\\\\\"118\\\\\\\" fill=\\\\\\\"#6b4a2f\\\\\\\"/><ellipse cx=\\\\\\\"330\\\\\\\" cy=\\\\\\\"300\\\\\\\" rx=\\\\\\\"78\\\\\\\" ry=\\\\\\\"102\\\\\\\" fill=\\\\\\\"#2e8b3c\\\\\\\"/><ellipse cx=\\\\\\\"330\\\\\\\" cy=\\\\\\\"300\\\\\\\" rx=\\\\\\\"58\\\\\\\" ry=\\\\\\\"82\\\\\\\" fill=\\\\\\\"#9bd96b\\\\\\\"/><circle cx=\\\\\\\"330\\\\\\\" cy=\\\\\\\"300\\\\\\\" r=\\\\\\\"16\\\\\\\" fill=\\\\\\\"#f4f0dd\\\\\\\"/><g fill=\\\\\\\"#1f1f1f\\\\\\\"><circle cx=\\\\\\\"330\\\\\\\" cy=\\\\\\\"230\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"357\\\\\\\" cy=\\\\\\\"238\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"379\\\\\\\" cy=\\\\\\\"258\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"390\\\\\\\" cy=\\\\\\\"285\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"388\\\\\\\" cy=\\\\\\\"316\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"374\\\\\\\" cy=\\\\\\\"342\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"352\\\\\\\" cy=\\\\\\\"361\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"326\\\\\\\" cy=\\\\\\\"368\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"300\\\\\\\" cy=\\\\\\\"362\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"278\\\\\\\" cy=\\\\\\\"347\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"265\\\\\\\" cy=\\\\\\\"321\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"264\\\\\\\" cy=\\\\\\\"292\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"274\\\\\\\" cy=\\\\\\\"264\\\\\\\" r=\\\\\\\"5\\\\\\\"/><circle cx=\\\\\\\"294\\\\\\\" cy=\\\\\\\"243\\\\\\\" r=\\\\\\\"5\\\\\\\"/></g><ellipse cx=\\\\\\\"170\\\\\\\" cy=\\\\\\\"306\\\\\\\" rx=\\\\\\\"78\\\\\\\" ry=\\\\\\\"104\\\\\\\" fill=\\\\\\\"#7a5232\\\\\\\"/><ellipse cx=\\\\\\\"170\\\\\\\" cy=\\\\\\\"306\\\\\\\" rx=\\\\\\\"64\\\\\\\" ry=\\\\\\\"88\\\\\\\" fill=\\\\\\\"#6d4a2d\\\\\\\"/><g stroke=\\\\\\\"#8a6240\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"><line x1=\\\\\\\"117\\\\\\\" y1=\\\\\\\"240\\\\\\\" x2=\\\\\\\"104\\\\\\\" y2=\\\\\\\"228\\\\\\\"/><line x1=\\\\\\\"104\\\\\\\" y1=\\\\\\\"264\\\\\\\" x2=\\\\\\\"88\\\\\\\" y2=\\\\\\\"257\\\\\\\"/><line x1=\\\\\\\"98\\\\\\\" y1=\\\\\\\"292\\\\\\\" x2=\\\\\\\"80\\\\\\\" y2=\\\\\\\"292\\\\\\\"/><line x1=\\\\\\\"100\\\\\\\" y1=\\\\\\\"320\\\\\\\" x2=\\\\\\\"82\\\\\\\" y2=\\\\\\\"326\\\\\\\"/><line x1=\\\\\\\"110\\\\\\\" y1=\\\\\\\"346\\\\\\\" x2=\\\\\\\"96\\\\\\\" y2=\\\\\\\"358\\\\\\\"/><line x1=\\\\\\\"129\\\\\\\" y1=\\\\\\\"366\\\\\\\" x2=\\\\\\\"121\\\\\\\" y2=\\\\\\\"383\\\\\\\"/><line x1=\\\\\\\"154\\\\\\\" y1=\\\\\\\"378\\\\\\\" x2=\\\\\\\"152\\\\\\\" y2=\\\\\\\"396\\\\\\\"/><line x1=\\\\\\\"180\\\\\\\" y1=\\\\\\\"380\\\\\\\" x2=\\\\\\\"186\\\\\\\" y2=\\\\\\\"398\\\\\\\"/><line x1=\\\\\\\"206\\\\\\\" y1=\\\\\\\"374\\\\\\\" x2=\\\\\\\"219\\\\\\\" y2=\\\\\\\"388\\\\\\\"/><line x1=\\\\\\\"229\\\\\\\" y1=\\\\\\\"360\\\\\\\" x2=\\\\\\\"246\\\\\\\" y2=\\\\\\\"366\\\\\\\"/><line x1=\\\\\\\"244\\\\\\\" y1=\\\\\\\"338\\\\\\\" x2=\\\\\\\"262\\\\\\\" y2=\\\\\\\"337\\\\\\\"/><line x1=\\\\\\\"250\\\\\\\" y1=\\\\\\\"311\\\\\\\" x2=\\\\\\\"268\\\\\\\" y2=\\\\\\\"305\\\\\\\"/><line x1=\\\\\\\"248\\\\\\\" y1=\\\\\\\"283\\\\\\\" x2=\\\\\\\"266\\\\\\\" y2=\\\\\\\"275\\\\\\\"/><line x1=\\\\\\\"238\\\\\\\" y1=\\\\\\\"257\\\\\\\" x2=\\\\\\\"252\\\\\\\" y2=\\\\\\\"244\\\\\\\"/></g></g></svg>\\\"}\",\"refusal\":null,\"reasoning\":\"**Designing kiwi fruit SVG**\\n\\nI need to create an SVG depicting kiwi fruit, ideally a whole fruit and a sliced version to indicate its inner structure. I'm considering two halves with green flesh and black seeds. The target word for a guessing game is \\\"kiwi,\\\" but since it can refer to both a fruit and a bird, I'll focus on the fruit. So, I’ll design a green oval slice with a brown fuzzy outer shell. I’ll use simple shapes like ellipses and circles for the seeds, ensuring the SVG string is properly formatted for JSON.**Creating kiwi fruit design**\\n\\nI’m focusing on designing one half of a kiwi, with an outer brown ellipse and a slightly smaller inner green ellipse, featuring a white center and black seeds around it. I’ll also include a whole fuzzy kiwi represented as a brown ellipse with tiny strokes for detail. Since the target word is \\\"kiwi,\\\" showing the sliced fruit should suffice for clarity. Now, I’ll format this design into JSON for output.\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Designing kiwi fruit SVG**\\n\\nI need to create an SVG depicting kiwi fruit, ideally a whole fruit and a sliced version to indicate its inner structure. I'm considering two halves with green flesh and black seeds. The target word for a guessing game is \\\"kiwi,\\\" but since it can refer to both a fruit and a bird, I'll focus on the fruit. So, I’ll design a green oval slice with a brown fuzzy outer shell. I’ll use simple shapes like ellipses and circles for the seeds, ensuring the SVG string is properly formatted for JSON.**Creating kiwi fruit design**\\n\\nI’m focusing on designing one half of a kiwi, with an outer brown ellipse and a slightly smaller inner green ellipse, featuring a white center and black seeds around it. I’ll also include a whole fuzzy kiwi represented as a brown ellipse with tiny strokes for detail. Since the target word is \\\"kiwi,\\\" showing the sliced fruit should suffice for clarity. Now, I’ll format this design into JSON for output.\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRXrYONfp8jimOEenHwFqmRr7gnxscGBR6ba0DYi8NHQQqpYn8wEyKw4liK-ZAuaFT71o3aahYSiNqdQA9rSTifd4nJuPj1ZgpQlu06u-mzpTS4jrpV0YC8J0llYDRk9utAP3l9UXBTTjt5j1ViLRiiR1YDiYncsy6zn1YhXCRbbKbfSfYhDwESpdrTNpcdVGte3fnTEPKobS-ys3WFrwUwcjie4YNChCIPvDzF9GOZNabHHoH0oXrTTqktlPyLQFnvZnopO9pEKKWPghexL63X4yVXj_TMN7U3Pl09-aSmsR1dQngGxTobqmdZomz4cP2rrJ4B7vjYA0AHS2jsCX8gtWCZSm3_xAVGlsjUVCvuyILwTJweuR4VdOZs86qI3mk-Z-n9N9NLGhBRdYe75ftq7RSLv0ibEHMM7MJMaIJ7zuHrBtgSaOSWzyUt4vfDzdzLJfGdHBSjvOc-6InpDL3vx8oRvr0xxga7IbHp6lBiN2GF_8H-D3vFXFqtaweajTZruglkS8ig5hCBqM935WkTOTbj3EKJnANpPtbrYnQ11RYyoXAINxEeeE4ffGyGqVuxSMz8XoKCXzqMopQPYLipaw5N1YFumxWsauTbtJFwII1UCd16VM4tERY-56T0Xev4-bn788XNwm1AweEJbMp7xr3imcKmvBgr3kJJRpfrDlONCJ5Em8hQP96IsIXO7MDB1DL244jSX-_Oq-MIyvLTtRKZaU15ehRj41z6XE2985dg_69xSfc_xV3f90lwx6paqQbss4-Hqj3qn0Ca_yXI1p_L3KuXy3tkoabcKXqCtCAJeRrUWdae4MTEJZXXxEs-oDGgMKuIDyaCRfHanWlts3dM7-6s09RixHMJoPBd4rLXL0YSDess1tdH9Fw3KXpVol-Deti0ToZbWHsXepiGsVLucTuikXtphSdy9MMtmmu1GSA0RBcd2ZEsdSfoeiX6eeXqDfl5oJ0C0P7kYQFft9wZkUxcV9nohCDBwFyFuE3245xCCDu0ZwXxg_Yjrt0P026LRGJyhJ6x6OzYrh1_VsGazPOnGXmN_UJHE1o2GjflrgW79dGZ2ZUT46ENu2LlevaBVcCh_Ithj7MNZAqfy99M1WcP8Q322jshG2yVgoEzYWElown64zGrLspjedZjAr79Fch-6xhigykabRFcz0g-GLudqHBH5OG9LmPIstAeQ0zL2M7LVG2zA_nkysqGJMFvSOsgStloAgFRJClKNCzF7sJx_GxJNUGEY5P4YDMDalBnzD6Zjyqi6QxaaFUnCM0EDpeZAff3JRPI2yVHhTfVqzpsNRtIV_H0nBbdfs3nq25lI4iHuOmbJnTsyvuawrYDRwpAtvTQZrP3hij9jtoqkhpECRZvPDFFU4OlqCndoKaoimujenDNswD9l0dm0SJ4pNJc6OSTbt_OOT0mcU_hmlOBStktb-ulf3nwkpY0y2kT2AFxqAxE-J4u9AJn_mSqqM-fyu1Rn4UnSFdy2S9K5WAKr_yRaKrK9uHSPKP6VyvDjp8x7Y6vqI6RQYleOuEIAALDIFJm-Bdj7NZDyPKF1IvcO5hN9_6N5jijnv_qMfMcT9RC6k3eb0bPgmEcDDsC9zMmg5NF5TsZ0u35-alKWs_Tv0VcQx2uIlwHkWY1o9m0-MzamwK6KC_CKHPCsN75JmTslZaClN5znz0XGAxHTrxuGdnoSWSdJXk1O6gy0NMbAgh1Yo3PkVmp0ZQgMsMKYW92MPoKjaijqzETOKZGFmT59Z_HgyDmAvlKgB1Pw1P07a9rCCW3UELTvcdvlMHrIHIt-mKgGac_ysLVMzS7KyPJWWdxq7lJp3wjhj2B-MJm9klmPdQEiM0Z1McgVXhozxwO_-UczKtJW6uayszwFnHT9l7cZ-pEtzcjBNyZfka_s42c1dsbja-UqAGqTu1JhZXRcP6xROJ3ZANAganuAg4Bn1csNQ7z0RAT32fEOLd7foqJyGoIwWbwUo6RmfF1paAkQS__BH_VnZrRobH4wCTNNfdyX6vgsotDgO-MnhChu-FDW2ZmiHmrCtr-By6iOA0YJbaNXCL3jB23xOFwUtcEWnQ-Ufq2Uma8rYQxsFd-YfdYLkkAKenlesaskNERm1bJ3Fin4aTVN-ryf_GpfjL_nEw_-Yu7j4juUyNvoBB2NAPhW_vfCgm-pjgjgM3HIcH-HmhR7TtWoMGMew55CT-t1Dei3kJWIJMAkgXZfkNQDSrDaj8SDQK9Y2JNFNwrXuIpydjeZlAN_pJmtFyQyiM_Nj1sY8IcMhU8o_0yi1z76CWECcMaOrJAdRWiMASQrj21CH9icBk5HXXv7Mh2gB2JtbccH9HI5i5hek0=\",\"format\":\"openai-responses-v1\",\"id\":\"rs_09b956c18eae011f0169b994515bb881948ba1596947fa9b86\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":134,\"completion_tokens\":1001,\"total_tokens\":1135,\"cost\":0.004605,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.004605,\"upstream_inference_prompt_cost\":0.0001005,\"upstream_inference_completions_cost\":0.0045045},\"completion_tokens_details\":{\"reasoning_tokens\":233,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769808-BwPKsGqh01zvnY7ZWLFZ",
+              "object": "chat.completion",
+              "created": 1773769808,
+              "model": "openai/gpt-5.4-mini-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\"svg\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\"><rect width=\\\"512\\\" height=\\\"512\\\" fill=\\\"#f7f3e8\\\"/><g transform=\\\"translate(0,10)\\\"><ellipse cx=\\\"330\\\" cy=\\\"300\\\" rx=\\\"92\\\" ry=\\\"118\\\" fill=\\\"#6b4a2f\\\"/><ellipse cx=\\\"330\\\" cy=\\\"300\\\" rx=\\\"78\\\" ry=\\\"102\\\" fill=\\\"#2e8b3c\\\"/><ellipse cx=\\\"330\\\" cy=\\\"300\\\" rx=\\\"58\\\" ry=\\\"82\\\" fill=\\\"#9bd96b\\\"/><circle cx=\\\"330\\\" cy=\\\"300\\\" r=\\\"16\\\" fill=\\\"#f4f0dd\\\"/><g fill=\\\"#1f1f1f\\\"><circle cx=\\\"330\\\" cy=\\\"230\\\" r=\\\"5\\\"/><circle cx=\\\"357\\\" cy=\\\"238\\\" r=\\\"5\\\"/><circle cx=\\\"379\\\" cy=\\\"258\\\" r=\\\"5\\\"/><circle cx=\\\"390\\\" cy=\\\"285\\\" r=\\\"5\\\"/><circle cx=\\\"388\\\" cy=\\\"316\\\" r=\\\"5\\\"/><circle cx=\\\"374\\\" cy=\\\"342\\\" r=\\\"5\\\"/><circle cx=\\\"352\\\" cy=\\\"361\\\" r=\\\"5\\\"/><circle cx=\\\"326\\\" cy=\\\"368\\\" r=\\\"5\\\"/><circle cx=\\\"300\\\" cy=\\\"362\\\" r=\\\"5\\\"/><circle cx=\\\"278\\\" cy=\\\"347\\\" r=\\\"5\\\"/><circle cx=\\\"265\\\" cy=\\\"321\\\" r=\\\"5\\\"/><circle cx=\\\"264\\\" cy=\\\"292\\\" r=\\\"5\\\"/><circle cx=\\\"274\\\" cy=\\\"264\\\" r=\\\"5\\\"/><circle cx=\\\"294\\\" cy=\\\"243\\\" r=\\\"5\\\"/></g><ellipse cx=\\\"170\\\" cy=\\\"306\\\" rx=\\\"78\\\" ry=\\\"104\\\" fill=\\\"#7a5232\\\"/><ellipse cx=\\\"170\\\" cy=\\\"306\\\" rx=\\\"64\\\" ry=\\\"88\\\" fill=\\\"#6d4a2d\\\"/><g stroke=\\\"#8a6240\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\"><line x1=\\\"117\\\" y1=\\\"240\\\" x2=\\\"104\\\" y2=\\\"228\\\"/><line x1=\\\"104\\\" y1=\\\"264\\\" x2=\\\"88\\\" y2=\\\"257\\\"/><line x1=\\\"98\\\" y1=\\\"292\\\" x2=\\\"80\\\" y2=\\\"292\\\"/><line x1=\\\"100\\\" y1=\\\"320\\\" x2=\\\"82\\\" y2=\\\"326\\\"/><line x1=\\\"110\\\" y1=\\\"346\\\" x2=\\\"96\\\" y2=\\\"358\\\"/><line x1=\\\"129\\\" y1=\\\"366\\\" x2=\\\"121\\\" y2=\\\"383\\\"/><line x1=\\\"154\\\" y1=\\\"378\\\" x2=\\\"152\\\" y2=\\\"396\\\"/><line x1=\\\"180\\\" y1=\\\"380\\\" x2=\\\"186\\\" y2=\\\"398\\\"/><line x1=\\\"206\\\" y1=\\\"374\\\" x2=\\\"219\\\" y2=\\\"388\\\"/><line x1=\\\"229\\\" y1=\\\"360\\\" x2=\\\"246\\\" y2=\\\"366\\\"/><line x1=\\\"244\\\" y1=\\\"338\\\" x2=\\\"262\\\" y2=\\\"337\\\"/><line x1=\\\"250\\\" y1=\\\"311\\\" x2=\\\"268\\\" y2=\\\"305\\\"/><line x1=\\\"248\\\" y1=\\\"283\\\" x2=\\\"266\\\" y2=\\\"275\\\"/><line x1=\\\"238\\\" y1=\\\"257\\\" x2=\\\"252\\\" y2=\\\"244\\\"/></g></g></svg>\"}",
+                    "refusal": null,
+                    "reasoning": "**Designing kiwi fruit SVG**\n\nI need to create an SVG depicting kiwi fruit, ideally a whole fruit and a sliced version to indicate its inner structure. I'm considering two halves with green flesh and black seeds. The target word for a guessing game is \"kiwi,\" but since it can refer to both a fruit and a bird, I'll focus on the fruit. So, I’ll design a green oval slice with a brown fuzzy outer shell. I’ll use simple shapes like ellipses and circles for the seeds, ensuring the SVG string is properly formatted for JSON.**Creating kiwi fruit design**\n\nI’m focusing on designing one half of a kiwi, with an outer brown ellipse and a slightly smaller inner green ellipse, featuring a white center and black seeds around it. I’ll also include a whole fuzzy kiwi represented as a brown ellipse with tiny strokes for detail. Since the target word is \"kiwi,\" showing the sliced fruit should suffice for clarity. Now, I’ll format this design into JSON for output.",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Designing kiwi fruit SVG**\n\nI need to create an SVG depicting kiwi fruit, ideally a whole fruit and a sliced version to indicate its inner structure. I'm considering two halves with green flesh and black seeds. The target word for a guessing game is \"kiwi,\" but since it can refer to both a fruit and a bird, I'll focus on the fruit. So, I’ll design a green oval slice with a brown fuzzy outer shell. I’ll use simple shapes like ellipses and circles for the seeds, ensuring the SVG string is properly formatted for JSON.**Creating kiwi fruit design**\n\nI’m focusing on designing one half of a kiwi, with an outer brown ellipse and a slightly smaller inner green ellipse, featuring a white center and black seeds around it. I’ll also include a whole fuzzy kiwi represented as a brown ellipse with tiny strokes for detail. Since the target word is \"kiwi,\" showing the sliced fruit should suffice for clarity. Now, I’ll format this design into JSON for output.",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRXrYONfp8jimOEenHwFqmRr7gnxscGBR6ba0DYi8NHQQqpYn8wEyKw4liK-ZAuaFT71o3aahYSiNqdQA9rSTifd4nJuPj1ZgpQlu06u-mzpTS4jrpV0YC8J0llYDRk9utAP3l9UXBTTjt5j1ViLRiiR1YDiYncsy6zn1YhXCRbbKbfSfYhDwESpdrTNpcdVGte3fnTEPKobS-ys3WFrwUwcjie4YNChCIPvDzF9GOZNabHHoH0oXrTTqktlPyLQFnvZnopO9pEKKWPghexL63X4yVXj_TMN7U3Pl09-aSmsR1dQngGxTobqmdZomz4cP2rrJ4B7vjYA0AHS2jsCX8gtWCZSm3_xAVGlsjUVCvuyILwTJweuR4VdOZs86qI3mk-Z-n9N9NLGhBRdYe75ftq7RSLv0ibEHMM7MJMaIJ7zuHrBtgSaOSWzyUt4vfDzdzLJfGdHBSjvOc-6InpDL3vx8oRvr0xxga7IbHp6lBiN2GF_8H-D3vFXFqtaweajTZruglkS8ig5hCBqM935WkTOTbj3EKJnANpPtbrYnQ11RYyoXAINxEeeE4ffGyGqVuxSMz8XoKCXzqMopQPYLipaw5N1YFumxWsauTbtJFwII1UCd16VM4tERY-56T0Xev4-bn788XNwm1AweEJbMp7xr3imcKmvBgr3kJJRpfrDlONCJ5Em8hQP96IsIXO7MDB1DL244jSX-_Oq-MIyvLTtRKZaU15ehRj41z6XE2985dg_69xSfc_xV3f90lwx6paqQbss4-Hqj3qn0Ca_yXI1p_L3KuXy3tkoabcKXqCtCAJeRrUWdae4MTEJZXXxEs-oDGgMKuIDyaCRfHanWlts3dM7-6s09RixHMJoPBd4rLXL0YSDess1tdH9Fw3KXpVol-Deti0ToZbWHsXepiGsVLucTuikXtphSdy9MMtmmu1GSA0RBcd2ZEsdSfoeiX6eeXqDfl5oJ0C0P7kYQFft9wZkUxcV9nohCDBwFyFuE3245xCCDu0ZwXxg_Yjrt0P026LRGJyhJ6x6OzYrh1_VsGazPOnGXmN_UJHE1o2GjflrgW79dGZ2ZUT46ENu2LlevaBVcCh_Ithj7MNZAqfy99M1WcP8Q322jshG2yVgoEzYWElown64zGrLspjedZjAr79Fch-6xhigykabRFcz0g-GLudqHBH5OG9LmPIstAeQ0zL2M7LVG2zA_nkysqGJMFvSOsgStloAgFRJClKNCzF7sJx_GxJNUGEY5P4YDMDalBnzD6Zjyqi6QxaaFUnCM0EDpeZAff3JRPI2yVHhTfVqzpsNRtIV_H0nBbdfs3nq25lI4iHuOmbJnTsyvuawrYDRwpAtvTQZrP3hij9jtoqkhpECRZvPDFFU4OlqCndoKaoimujenDNswD9l0dm0SJ4pNJc6OSTbt_OOT0mcU_hmlOBStktb-ulf3nwkpY0y2kT2AFxqAxE-J4u9AJn_mSqqM-fyu1Rn4UnSFdy2S9K5WAKr_yRaKrK9uHSPKP6VyvDjp8x7Y6vqI6RQYleOuEIAALDIFJm-Bdj7NZDyPKF1IvcO5hN9_6N5jijnv_qMfMcT9RC6k3eb0bPgmEcDDsC9zMmg5NF5TsZ0u35-alKWs_Tv0VcQx2uIlwHkWY1o9m0-MzamwK6KC_CKHPCsN75JmTslZaClN5znz0XGAxHTrxuGdnoSWSdJXk1O6gy0NMbAgh1Yo3PkVmp0ZQgMsMKYW92MPoKjaijqzETOKZGFmT59Z_HgyDmAvlKgB1Pw1P07a9rCCW3UELTvcdvlMHrIHIt-mKgGac_ysLVMzS7KyPJWWdxq7lJp3wjhj2B-MJm9klmPdQEiM0Z1McgVXhozxwO_-UczKtJW6uayszwFnHT9l7cZ-pEtzcjBNyZfka_s42c1dsbja-UqAGqTu1JhZXRcP6xROJ3ZANAganuAg4Bn1csNQ7z0RAT32fEOLd7foqJyGoIwWbwUo6RmfF1paAkQS__BH_VnZrRobH4wCTNNfdyX6vgsotDgO-MnhChu-FDW2ZmiHmrCtr-By6iOA0YJbaNXCL3jB23xOFwUtcEWnQ-Ufq2Uma8rYQxsFd-YfdYLkkAKenlesaskNERm1bJ3Fin4aTVN-ryf_GpfjL_nEw_-Yu7j4juUyNvoBB2NAPhW_vfCgm-pjgjgM3HIcH-HmhR7TtWoMGMew55CT-t1Dei3kJWIJMAkgXZfkNQDSrDaj8SDQK9Y2JNFNwrXuIpydjeZlAN_pJmtFyQyiM_Nj1sY8IcMhU8o_0yi1z76CWECcMaOrJAdRWiMASQrj21CH9icBk5HXXv7Mh2gB2JtbccH9HI5i5hek0=",
+                        "format": "openai-responses-v1",
+                        "id": "rs_09b956c18eae011f0169b994515bb881948ba1596947fa9b86",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 134,
+                "completion_tokens": 1001,
+                "total_tokens": 1135,
+                "cost": 0.004605,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.004605,
+                  "upstream_inference_prompt_cost": 0.0001005,
+                  "upstream_inference_completions_cost": 0.0045045
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 233,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.004605,
+          "requestDurationMs": 8086,
+          "error": null
+        },
+        {
+          "requestId": "b625407c-9cc0-476e-9400-435cfdf12e3a",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:13.022Z",
+          "responseCompletedAt": "2026-03-17T17:50:16.261Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "kiwi",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-mini",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,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"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769817-CVLMTTmLETZPlpsJ0yVd",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6cc7d71c089-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:17 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769817-CVLMTTmLETZPlpsJ0yVd\",\"object\":\"chat.completion\",\"created\":1773769817,\"model\":\"openai/gpt-5.4-mini-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"guesses\\\": [\\\"kiwi\\\",\\\"kiwifruit\\\",\\\"fruit\\\",\\\"slice\\\",\\\"half\\\",\\\"crosssection\\\",\\\"seed\\\",\\\"green\\\",\\\"brown\\\",\\\"flesh\\\",\\\"peel\\\",\\\"tropical\\\",\\\"snack\\\",\\\"oval\\\",\\\"organic\\\",\\\"produce\\\",\\\"edible\\\",\\\"fresh\\\",\\\"ripened\\\",\\\"drupe\\\"] }\",\"refusal\":null,\"reasoning\":\"**Generating fruit guesses**\\n\\nI need to create a JSON output with 20 one-word guesses related to the image of a kiwi fruit cut in half. I should make sure there are no repeats and that each guess is just one word in American English. I'll start with words like kiwi, kiwifruit, fruit, and slice, and ensure to include only distinct terms. Let’s aim for 20 guesses in total, focusing on fruit-related terms!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Generating fruit guesses**\\n\\nI need to create a JSON output with 20 one-word guesses related to the image of a kiwi fruit cut in half. I should make sure there are no repeats and that each guess is just one word in American English. I'll start with words like kiwi, kiwifruit, fruit, and slice, and ensure to include only distinct terms. Let’s aim for 20 guesses in total, focusing on fruit-related terms!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRcghf0dtx8jibEImXJY2fwWIFdbVYfnRSLjIlhbD9SM23o73VZ3XukaF_Gzs0ShOCp36n_olj6iQ3PcZ9oQEy3jsoBYxMeJ04zzvzsOOTZC4ciQTDCjMS6hpuPe98524ChQ21SS2HAhdeVD6BHIiwcjNI1SVjfM714EZhei-fDLfqSxJYTtIMuPsHjg_9B54ffrnuCr_L8-ig52LkyVRR79gvsmmdHfwcDkI63p0TMjhqMgrjUFNIsEme1XLgo2kjIFVoXwVg0SvSme8shaMPcnqhv2AWKzGec-G3JQWr7fIJFR1C-nRK-7n-VMi9V-6R2t_oAIZY7syjt_h3eI7dzxIb4npzzCWRMAzHQY_G0c7ecn11zH0ocXTUkPSVEIhy9bAfJHgfOywsW0fv9rzYNVE5HxWa3l81S6FI3IKSSHAHFRoiUbptMLteGQr_byjhtgcjcqB_lf0BdoZunh2Q1SS4DHa3GfGFv7ivyEXX6iXYLzq1lZaX-aGo3hjYz2QJ-KxXLRdRQdaxhh21FKP4af-ip7tYDe5SrGNRvoY97Xj6HGAKoPW71UrrejqvqYEy3s1VXxMn8AMHqUvxReY-JBC36WrIrqTalkVVhlVBwoOgs_H0ihkygketFnsxTXQUYZ2GpLrl_TM2jxYgHks_QGEviMmUzx5pAr6qSPrO4x4M99G3o5i6SPwZkKx2pv1s1UC5YYaUWt6FPZ2z3hjs5FoT9hj9q4H0g-s0aglJBIzA4NvjywuuQYXf4E-03kR75Rmap7TPG_mK5tNLb0kHaCd-hTal6iQhz-YnHbYiue3_IDv8vwwgE4oSfIGcQdbdUbpS0unpQXEzEPBRFPXwiL7E2ZVPrwogr8WMLrmSa3jPByj3jjmig7txzXqNyWGqEYNDiE_n3N0QtvyeJIQ5HEcwuwARbwZM8mxMbHkzOWKcxwhXkHTE__LQ5lBvlndO3aTcBQvfqUACjdTDIDLO4PICdQ-rkYpnSMAf8EiCecZpYQuKryk2j5BeDnrWv-EuMAp9lj5og-QrQs9jSR8SROHFen7zFDqVLeXsGAkAiNn_ez3ctjAg0tUyVJP0jUKH8vT3LKjAcxRHQaz05ganZC3F8fLL63GTDFeS2lmF6v1aZaul112WfVjjX1hK3yElR0lW5xzkTW89KO99eL5H6_Pv4pS7Uivggio7OvV50pg_JMY9HqeAgRETi4Yxj2ZutXeBRRGqwr0QGhjBZ7VELjZ6p8gdefbvsfa6g8TlvvcuPP1-5dBdRJ4LrDMl4j1RiLrxWprNg-DvyIsyHWLs13g==\",\"format\":\"openai-responses-v1\",\"id\":\"rs_0856430b06ffdfe80169b99459be008194a2b8388c4fdac379\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":464,\"completion_tokens\":153,\"total_tokens\":617,\"cost\":0.0010365,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0010365,\"upstream_inference_prompt_cost\":0.000348,\"upstream_inference_completions_cost\":0.0006885},\"completion_tokens_details\":{\"reasoning_tokens\":87,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769817-CVLMTTmLETZPlpsJ0yVd",
+              "object": "chat.completion",
+              "created": 1773769817,
+              "model": "openai/gpt-5.4-mini-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{ \"guesses\": [\"kiwi\",\"kiwifruit\",\"fruit\",\"slice\",\"half\",\"crosssection\",\"seed\",\"green\",\"brown\",\"flesh\",\"peel\",\"tropical\",\"snack\",\"oval\",\"organic\",\"produce\",\"edible\",\"fresh\",\"ripened\",\"drupe\"] }",
+                    "refusal": null,
+                    "reasoning": "**Generating fruit guesses**\n\nI need to create a JSON output with 20 one-word guesses related to the image of a kiwi fruit cut in half. I should make sure there are no repeats and that each guess is just one word in American English. I'll start with words like kiwi, kiwifruit, fruit, and slice, and ensure to include only distinct terms. Let’s aim for 20 guesses in total, focusing on fruit-related terms!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Generating fruit guesses**\n\nI need to create a JSON output with 20 one-word guesses related to the image of a kiwi fruit cut in half. I should make sure there are no repeats and that each guess is just one word in American English. I'll start with words like kiwi, kiwifruit, fruit, and slice, and ensure to include only distinct terms. Let’s aim for 20 guesses in total, focusing on fruit-related terms!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRcghf0dtx8jibEImXJY2fwWIFdbVYfnRSLjIlhbD9SM23o73VZ3XukaF_Gzs0ShOCp36n_olj6iQ3PcZ9oQEy3jsoBYxMeJ04zzvzsOOTZC4ciQTDCjMS6hpuPe98524ChQ21SS2HAhdeVD6BHIiwcjNI1SVjfM714EZhei-fDLfqSxJYTtIMuPsHjg_9B54ffrnuCr_L8-ig52LkyVRR79gvsmmdHfwcDkI63p0TMjhqMgrjUFNIsEme1XLgo2kjIFVoXwVg0SvSme8shaMPcnqhv2AWKzGec-G3JQWr7fIJFR1C-nRK-7n-VMi9V-6R2t_oAIZY7syjt_h3eI7dzxIb4npzzCWRMAzHQY_G0c7ecn11zH0ocXTUkPSVEIhy9bAfJHgfOywsW0fv9rzYNVE5HxWa3l81S6FI3IKSSHAHFRoiUbptMLteGQr_byjhtgcjcqB_lf0BdoZunh2Q1SS4DHa3GfGFv7ivyEXX6iXYLzq1lZaX-aGo3hjYz2QJ-KxXLRdRQdaxhh21FKP4af-ip7tYDe5SrGNRvoY97Xj6HGAKoPW71UrrejqvqYEy3s1VXxMn8AMHqUvxReY-JBC36WrIrqTalkVVhlVBwoOgs_H0ihkygketFnsxTXQUYZ2GpLrl_TM2jxYgHks_QGEviMmUzx5pAr6qSPrO4x4M99G3o5i6SPwZkKx2pv1s1UC5YYaUWt6FPZ2z3hjs5FoT9hj9q4H0g-s0aglJBIzA4NvjywuuQYXf4E-03kR75Rmap7TPG_mK5tNLb0kHaCd-hTal6iQhz-YnHbYiue3_IDv8vwwgE4oSfIGcQdbdUbpS0unpQXEzEPBRFPXwiL7E2ZVPrwogr8WMLrmSa3jPByj3jjmig7txzXqNyWGqEYNDiE_n3N0QtvyeJIQ5HEcwuwARbwZM8mxMbHkzOWKcxwhXkHTE__LQ5lBvlndO3aTcBQvfqUACjdTDIDLO4PICdQ-rkYpnSMAf8EiCecZpYQuKryk2j5BeDnrWv-EuMAp9lj5og-QrQs9jSR8SROHFen7zFDqVLeXsGAkAiNn_ez3ctjAg0tUyVJP0jUKH8vT3LKjAcxRHQaz05ganZC3F8fLL63GTDFeS2lmF6v1aZaul112WfVjjX1hK3yElR0lW5xzkTW89KO99eL5H6_Pv4pS7Uivggio7OvV50pg_JMY9HqeAgRETi4Yxj2ZutXeBRRGqwr0QGhjBZ7VELjZ6p8gdefbvsfa6g8TlvvcuPP1-5dBdRJ4LrDMl4j1RiLrxWprNg-DvyIsyHWLs13g==",
+                        "format": "openai-responses-v1",
+                        "id": "rs_0856430b06ffdfe80169b99459be008194a2b8388c4fdac379",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 464,
+                "completion_tokens": 153,
+                "total_tokens": 617,
+                "cost": 0.0010365,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.0010365,
+                  "upstream_inference_prompt_cost": 0.000348,
+                  "upstream_inference_completions_cost": 0.0006885
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 87,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.001037,
+          "requestDurationMs": 3239,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

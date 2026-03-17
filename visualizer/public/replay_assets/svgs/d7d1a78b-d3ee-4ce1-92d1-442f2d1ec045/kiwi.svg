@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="gKiwi" cx="45%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#9ef06a"/>
+      <stop offset="55%" stop-color="#2fb84f"/>
+      <stop offset="100%" stop-color="#0f7f35"/>
+    </radialGradient>
+    <radialGradient id="gSeeds" cx="45%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#ffe7a8"/>
+      <stop offset="100%" stop-color="#d2a35c"/>
+    </radialGradient>
+    <radialGradient id="gSkin" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#6b4c2f"/>
+      <stop offset="55%" stop-color="#3b2718"/>
+      <stop offset="100%" stop-color="#1f140d"/>
+    </radialGradient>
+  </defs>
+
+  <!-- whole kiwi -->
+  <g transform="translate(95,55)">
+    <ellipse cx="170" cy="210" rx="135" ry="160" fill="url(#gSkin)"/>
+    <!-- fuzzy dots -->
+    <g fill="#6f5a46" opacity="0.75">
+      <circle cx="60" cy="190" r="4"/>
+      <circle cx="90" cy="120" r="5"/>
+      <circle cx="135" cy="75" r="4"/>
+      <circle cx="190" cy="55" r="5"/>
+      <circle cx="250" cy="75" r="4"/>
+      <circle cx="285" cy="135" r="5"/>
+      <circle cx="300" cy="210" r="4"/>
+      <circle cx="275" cy="280" r="5"/>
+      <circle cx="210" cy="330" r="4"/>
+      <circle cx="145" cy="325" r="5"/>
+      <circle cx="95" cy="275" r="4"/>
+      <circle cx="70" cy="235" r="5"/>
+      <circle cx="120" cy="220" r="4"/>
+      <circle cx="160" cy="160" r="4"/>
+      <circle cx="210" cy="160" r="5"/>
+      <circle cx="245" cy="215" r="4"/>
+      <circle cx="215" cy="265" r="4"/>
+      <circle cx="160" cy="270" r="5"/>
+      <circle cx="120" cy="260" r="4"/>
+      <circle cx="150" cy="205" r="5"/>
+    </g>
+    <ellipse cx="170" cy="210" rx="120" ry="145" fill="none" stroke="#2c1c10" stroke-width="6" opacity="0.35"/>
+  </g>
+
+  <!-- kiwi slice -->
+  <g transform="translate(235,225) rotate(-18)">
+    <!-- outer rim -->
+    <path d="M -130 -40 C -115 -95, -45 -145, 15 -150 C 70 -155, 125 -115, 135 -60 C 145 -5, 110 55, 60 95 C 15 130, -50 130, -95 95 C -140 60, -145 5, -130 -40 Z" fill="url(#gSkin)"/>
+
+    <!-- green flesh -->
+    <path d="M -105 -30 C -95 -70, -40 -108, 10 -112 C 55 -116, 105 -90, 112 -55 C 119 -20, 92 30, 55 62 C 20 93, -32 98, -67 72 C -105 45, -112 5, -105 -30 Z" fill="url(#gKiwi)"/>
+
+    <!-- seed ring -->
+    <g>
+      <!-- lighter inner area -->
+      <path d="M -70 -5 C -60 -40, -20 -68, 18 -70 C 55 -72, 90 -55, 97 -25 C 104 5, 82 40, 52 60 C 20 82, -20 82, -45 62 C -75 38, -80 10, -70 -5 Z" fill="#37cf5a" opacity="0.9"/>
+
+      <!-- seeds (no text) -->
+      <g fill="url(#gSeeds)" stroke="#9a6b2f" stroke-width="2" opacity="0.95">
+        <ellipse cx="-35" cy="-5" rx="9" ry="12"/>
+        <ellipse cx="-15" cy="-20" rx="8" ry="11"/>
+        <ellipse cx="5" cy="-30" rx="9" ry="12"/>
+        <ellipse cx="25" cy="-18" rx="8" ry="11"/>
+        <ellipse cx="40" cy="0" rx="9" ry="12"/>
+        <ellipse cx="20" cy="18" rx="8" ry="11"/>
+        <ellipse cx="0" cy="28" rx="9" ry="12"/>
+        <ellipse cx="-22" cy="20" rx="8" ry="11"/>
+
+        <ellipse cx="-55" cy="10" rx="7" ry="10"/>
+        <ellipse cx="-30" cy="35" rx="7" ry="10"/>
+        <ellipse cx="12" cy="40" rx="7" ry="10"/>
+        <ellipse cx="52" cy="18" rx="7" ry="10"/>
+        <ellipse cx="60" cy="-12" rx="7" ry="10"/>
+        <ellipse cx="30" cy="-42" rx="7" ry="10"/>
+        <ellipse cx="-5" cy="-45" rx="7" ry="10"/>
+        <ellipse cx="-45" cy="-25" rx="7" ry="10"/>
+      </g>
+
+      <!-- central seed highlights -->
+      <g fill="#ffeecb" opacity="0.55">
+        <circle cx="0" cy="0" r="26"/>
+      </g>
+    </g>
+
+    <!-- radial texture lines -->
+    <g opacity="0.22" stroke="#e7ffd6" stroke-width="2" stroke-linecap="round">
+      <path d="M -45 55 C -25 45, -10 25, 10 5" fill="none"/>
+      <path d="M -10 70 C 5 55, 15 35, 30 15" fill="none"/>
+      <path d="M -70 20 C -45 10, -25 -5, 0 -20" fill="none"/>
+      <path d="M -20 -70 C -5 -55, 10 -35, 25 -15" fill="none"/>
+      <path d="M 30 -65 C 45 -50, 55 -30, 70 -5" fill="none"/>
+      <path d="M 65 -5 C 48 10, 35 25, 18 45" fill="none"/>
+    </g>
+  </g>
+
+  <!-- subtle shadow -->
+  <ellipse cx="210" cy="420" rx="190" ry="35" fill="#000" opacity="0.07"/>
+</svg>

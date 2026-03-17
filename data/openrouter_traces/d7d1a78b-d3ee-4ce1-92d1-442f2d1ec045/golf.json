@@ -1,0 +1,534 @@
+{
+  "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+  "targetWord": "golf",
+  "modelKey": "gpt54nano",
+  "modelLabel": "GPT-5.4 Nano",
+  "modelId": "openai/gpt-5.4-nano",
+  "effort": "medium",
+  "latestExecutionId": "be2e2fe6-eceb-4806-b646-c28c911fcce9",
+  "executions": [
+    {
+      "executionId": "be2e2fe6-eceb-4806-b646-c28c911fcce9",
+      "startedAt": "2026-03-17T17:50:07.534Z",
+      "completedAt": "2026-03-17T17:53:04.579Z",
+      "status": "completed",
+      "failureMessage": null,
+      "game": {
+        "targetWord": "golf",
+        "solved": false,
+        "guessesUsed": 20,
+        "penalizedGuesses": 21,
+        "totalCostUsd": 0.003591,
+        "totalRequestMs": 176737,
+        "pricedRequests": 3,
+        "totalRequests": 3,
+        "missingPriceRequests": 0,
+        "turns": [
+          {
+            "turnNumber": 1,
+            "role": "draw",
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\" role=\"img\" aria-label=\"Golf scene\"><rect width=\"512\" height=\"512\" fill=\"#dff6ff\"/><path d=\"M0 320 C90 290, 170 340, 260 320 C340 300, 420 340, 512 310 L512 512 L0 512 Z\" fill=\"#4caf50\" opacity=\"0.95\"/><path d=\"M0 345 C100 315, 160 365, 260 350 C360 335, 420 370, 512 342 L512 512 L0 512 Z\" fill=\"#3d9b3f\" opacity=\"0.9\"/><!-- tee/ground highlight --><ellipse cx=\"170\" cy=\"338\" rx=\"38\" ry=\"14\" fill=\"#2e7d32\" opacity=\"0.65\"/><ellipse cx=\"170\" cy=\"342\" rx=\"36\" ry=\"12\" fill=\"#66bb6a\" opacity=\"0.55\"/><!-- golf ball --><circle cx=\"238\" cy=\"318\" r=\"12\" fill=\"#ffffff\"/><circle cx=\"242\" cy=\"313\" r=\"3\" fill=\"#d9eaff\"/><circle cx=\"232\" cy=\"325\" r=\"2\" fill=\"#cfe2ff\"/><path d=\"M230 318 L244 318\" stroke=\"#cfd8dc\" stroke-width=\"2\" opacity=\"0.5\"/><g><!-- flag pole --><rect x=\"340\" y=\"155\" width=\"8\" height=\"170\" rx=\"4\" fill=\"#6d4c41\"/><rect x=\"343\" y=\"165\" width=\"2\" height=\"145\" rx=\"1\" fill=\"#8d6e63\" opacity=\"0.6\"/><path d=\"M349 165 C372 180, 372 204, 349 214 L349 165 Z\" fill=\"#ef5350\" opacity=\"0.95\"/><!-- flag notch --><path d=\"M349 170 C362 184, 362 201, 349 211\" fill=\"none\" stroke=\"#c62828\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\"0.8\"/><!-- small pennant shadow --><path d=\"M349 165 C356 173, 356 198, 349 214\" fill=\"none\" stroke=\"#ff8a80\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\"0.6\"/><ellipse cx=\"344\" cy=\"325\" rx=\"7\" ry=\"6\" fill=\"#8d6e63\" opacity=\"0.4\"/></g><!-- club --><g transform=\"translate(0,0)\"><!-- handle --><path d=\"M130 390 C165 360, 205 350, 245 340\" fill=\"none\" stroke=\"#5d4037\" stroke-width=\"14\" stroke-linecap=\"round\"/><path d=\"M130 390 C165 360, 205 350, 245 340\" fill=\"none\" stroke=\"#795548\" stroke-width=\"5\" stroke-linecap=\"round\" opacity=\"0.65\"/><!-- shaft end / grip --><path d=\"M240 340 C262 332, 284 334, 296 352\" fill=\"none\" stroke=\"#5d4037\" stroke-width=\"12\" stroke-linecap=\"round\"/><path d=\"M296 352 C306 370, 292 392, 270 401\" fill=\"none\" stroke=\"#3e2723\" stroke-width=\"10\" stroke-linecap=\"round\" opacity=\"0.95\"/><!-- club head --><path d=\"M270 401 C290 380, 322 370, 352 370 C374 370, 395 376, 412 385 C374 410, 320 427, 280 424 C274 423, 268 415, 270 401 Z\" fill=\"#455a64\" opacity=\"0.95\"/><path d=\"M292 404 C310 390, 334 383, 359 383 C375 383, 392 387, 405 394\" fill=\"none\" stroke=\"#263238\" stroke-width=\"4\" stroke-linecap=\"round\" opacity=\"0.55\"/><path d=\"M270 401 C286 395, 304 394, 322 395\" fill=\"none\" stroke=\"#90a4ae\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.6\"/></g><!-- subtle fairway streaks --><path d=\"M60 420 C140 385, 240 435, 320 415 C390 398, 450 420, 500 405\" fill=\"none\" stroke=\"#76c893\" stroke-width=\"10\" opacity=\"0.35\" stroke-linecap=\"round\"/><path d=\"M30 455 C130 420, 220 465, 320 450 C400 438, 460 458, 500 445\" fill=\"none\" stroke=\"#6fbf73\" stroke-width=\"8\" opacity=\"0.25\" stroke-linecap=\"round\"/></svg>",
+            "jpgDataUrl": "data:image/jpeg;base64,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"
+          },
+          {
+            "turnNumber": 1,
+            "role": "guess",
+            "text": "fishing",
+            "correct": false
+          },
+          {
+            "turnNumber": 2,
+            "role": "guess",
+            "text": "fishingrod",
+            "correct": false
+          },
+          {
+            "turnNumber": 3,
+            "role": "guess",
+            "text": "bobber",
+            "correct": false
+          },
+          {
+            "turnNumber": 4,
+            "role": "guess",
+            "text": "float",
+            "correct": false
+          },
+          {
+            "turnNumber": 5,
+            "role": "guess",
+            "text": "fishingline",
+            "correct": false
+          },
+          {
+            "turnNumber": 6,
+            "role": "guess",
+            "text": "rod",
+            "correct": false
+          },
+          {
+            "turnNumber": 7,
+            "role": "guess",
+            "text": "lure",
+            "correct": false
+          },
+          {
+            "turnNumber": 8,
+            "role": "guess",
+            "text": "hook",
+            "correct": false
+          },
+          {
+            "turnNumber": 9,
+            "role": "guess",
+            "text": "bait",
+            "correct": false
+          },
+          {
+            "turnNumber": 10,
+            "role": "guess",
+            "text": "reel",
+            "correct": false
+          },
+          {
+            "turnNumber": 11,
+            "role": "guess",
+            "text": "tackle",
+            "correct": false
+          },
+          {
+            "turnNumber": 12,
+            "role": "guess",
+            "text": "angler",
+            "correct": false
+          },
+          {
+            "turnNumber": 13,
+            "role": "guess",
+            "text": "fishingfloat",
+            "correct": false
+          },
+          {
+            "turnNumber": 14,
+            "role": "guess",
+            "text": "biteindicator",
+            "correct": false
+          },
+          {
+            "turnNumber": 15,
+            "role": "guess",
+            "text": "line",
+            "correct": false
+          },
+          {
+            "turnNumber": 16,
+            "role": "guess",
+            "text": "tacklebundle",
+            "correct": false
+          },
+          {
+            "turnNumber": 17,
+            "role": "guess",
+            "text": "fishinggear",
+            "correct": false
+          },
+          {
+            "turnNumber": 18,
+            "role": "guess",
+            "text": "net",
+            "correct": false
+          },
+          {
+            "turnNumber": 19,
+            "role": "guess",
+            "text": "dock",
+            "correct": false
+          },
+          {
+            "turnNumber": 20,
+            "role": "guess",
+            "text": "river",
+            "correct": false
+          }
+        ],
+        "traceRef": {
+          "runId": "d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045",
+          "targetWord": "golf",
+          "executionId": "be2e2fe6-eceb-4806-b646-c28c911fcce9",
+          "file": "openrouter_traces/d7d1a78b-d3ee-4ce1-92d1-442f2d1ec045/golf.json"
+        }
+      },
+      "requestStats": {
+        "totalRequests": 3,
+        "pricedRequests": 3,
+        "missingPriceRequests": 0,
+        "totalCostUsd": 0.003591,
+        "totalRequestMs": 176737
+      },
+      "requests": [
+        {
+          "requestId": "d2aa5f1a-82eb-45fb-973f-2f2666636f20",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:50:07.534Z",
+          "responseCompletedAt": "2026-03-17T17:52:50.466Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "golf",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"golf\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769811-fJV8sAgay3I8thnVhiKb",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9dddd6aa191eb284-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:50:15 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769811-fJV8sAgay3I8thnVhiKb\",\"object\":\"chat.completion\",\"created\":1773769811,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"svg\\\": \\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\">\\\\\\n  <defs>\\\\\\n    <radialGradient id=\\\\\\\"grass\\\\\\\" cx=\\\\\\\"50%\\\\\\\" cy=\\\\\\\"30%\\\\\\\" r=\\\\\\\"70%\\\\\\\">\\\\\\n      <stop offset=\\\\\\\"0%\\\\\\\" stop-color=\\\\\\\"#4fd07a\\\\\\\"/>\\\\\\n      <stop offset=\\\\\\\"100%\\\\\\\" stop-color=\\\\\\\"#1e8b3f\\\\\\\"/>\\\\\\n    </radialGradient>\\\\\\n    <linearGradient id=\\\\\\\"sky\\\\\\\" x1=\\\\\\\"0\\\\\\\" y1=\\\\\\\"0\\\\\\\" x2=\\\\\\\"0\\\\\\\" y2=\\\\\\\"1\\\\\\\">\\\\\\n      <stop offset=\\\\\\\"0%\\\\\\\" stop-color=\\\\\\\"#cfefff\\\\\\\"/>\\\\\\n      <stop offset=\\\\\\\"100%\\\\\\\" stop-color=\\\\\\\"#eaf7ff\\\\\\\"/>\\\\\\n    </linearGradient>\\\\\\n  </defs>\\\\\\n  <!-- sky -->\\\\\\n  <rect x=\\\\\\\"0\\\\\\\" y=\\\\\\\"0\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"220\\\\\\\" fill=\\\\\\\"url(#sky)\\\\\\\"/>\\\\\\n  <!-- ground -->\\\\\\n  <rect x=\\\\\\\"0\\\\\\\" y=\\\\\\\"220\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"292\\\\\\\" fill=\\\\\\\"url(#grass)\\\\\\\"/>\\\\\\n  <!-- subtle turf lines -->\\\\\\n  <path d=\\\\\\\"M0 320 C120 300, 220 360, 330 340 C420 322, 470 335, 512 328\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#1a7a35\\\\\\\" stroke-width=\\\\\\\"3\\\\\\\" opacity=\\\\\\\"0.35\\\\\\\"/>\\\\\\n  <path d=\\\\\\\"M0 385 C110 362, 240 420, 355 392 C425 375, 475 392, 512 383\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#1a7a35\\\\\\\" stroke-width=\\\\\\\"3\\\\\\\" opacity=\\\\\\\"0.3\\\\\\\"/>\\\\\\n  <!-- golf hole -->\\\\\\n  <ellipse cx=\\\\\\\"320\\\\\\\" cy=\\\\\\\"410\\\\\\\" rx=\\\\\\\"26\\\\\\\" ry=\\\\\\\"10\\\\\\\" fill=\\\\\\\"#0c5a26\\\\\\\" opacity=\\\\\\\"0.9\\\\\\\"/>\\\\\\n  <ellipse cx=\\\\\\\"320\\\\\\\" cy=\\\\\\\"404\\\\\\\" rx=\\\\\\\"18\\\\\\\" ry=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#063a16\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/>\\\\\\n  <circle cx=\\\\\\\"320\\\\\\\" cy=\\\\\\\"408\\\\\\\" r=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#033012\\\\\\\" opacity=\\\\\\\"0.9\\\\\\\"/>\\\\\\n  <!-- flag pole -->\\\\\\n  <path d=\\\\\\\"M320 330 L320 400\\\\\\\" stroke=\\\\\\\"#d9d9d9\\\\\\\" stroke-width=\\\\\\\"6\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\\\n  <path d=\\\\\\\"M320 330 L320 400\\\\\\\" stroke=\\\\\\\"#9c9c9c\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.6\\\\\\\"/>\\\\\\n  <!-- flag -->\\\\\\n  <path d=\\\\\\\"M320 332 C340 342, 360 338, 378 349 C360 358, 345 360, 320 372 Z\\\\\\\" fill=\\\\\\\"#2c62ff\\\\\\\"/>\\\\\\n  <path d=\\\\\\\"M320 332 C340 342, 360 338, 378 349\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#1241b8\\\\\\\" stroke-width=\\\\\\\"3\\\\\\\" opacity=\\\\\\\"0.6\\\\\\\"/>\\\\\\n  <!-- golf ball -->\\\\\\n  <circle cx=\\\\\\\"235\\\\\\\" cy=\\\\\\\"405\\\\\\\" r=\\\\\\\"18\\\\\\\" fill=\\\\\\\"#ffffff\\\\\\\"/>\\\\\\n  <circle cx=\\\\\\\"235\\\\\\\" cy=\\\\\\\"405\\\\\\\" r=\\\\\\\"18\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#cfcfcf\\\\\\\" stroke-width=\\\\\\\"3\\\\\\\"/>\\\\\\n  <!-- simple dimples -->\\\\\\n  <g fill=\\\\\\\"#e6e6e6\\\\\\\" opacity=\\\\\\\"0.9\\\\\\\">\\\\\\n    <circle cx=\\\\\\\"229\\\\\\\" cy=\\\\\\\"398\\\\\\\" r=\\\\\\\"2\\\\\\\"/>\\\\\\n    <circle cx=\\\\\\\"241\\\\\\\" cy=\\\\\\\"398\\\\\\\" r=\\\\\\\"2\\\\\\\"/>\\\\\\n    <circle cx=\\\\\\\"232\\\\\\\" cy=\\\\\\\"409\\\\\\\" r=\\\\\\\"2\\\\\\\"/>\\\\\\n    <circle cx=\\\\\\\"240\\\\\\\" cy=\\\\\\\"412\\\\\\\" r=\\\\\\\"2\\\\\\\"/>\\\\\\n    <circle cx=\\\\\\\"228\\\\\\\" cy=\\\\\\\"412\\\\\\\" r=\\\\\\\"1.8\\\\\\\"/>\\\\\\n    <circle cx=\\\\\\\"235\\\\\\\" cy=\\\\\\\"401\\\\\\\" r=\\\\\\\"1.7\\\\\\\"/>\\\\\\n  </g>\\\\\\n  <!-- golf club (behind ball) -->\\\\\\n  <g transform=\\\\\\\"translate(0,0)\\\\\\\">\\\\\\n    <path d=\\\\\\\"M120 360 C180 330, 210 330, 245 350\\\\\\\" stroke=\\\\\\\"#6b4b2a\\\\\\\" stroke-width=\\\\\\\"16\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" fill=\\\\\\\"none\\\\\\\"/>\\\\\\n    <path d=\\\\\\\"M120 360 C180 330, 210 330, 245 350\\\\\\\" stroke=\\\\\\\"#3b2413\\\\\\\" stroke-width=\\\\\\\"4\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" fill=\\\\\\\"none\\\\\\\" opacity=\\\\\\\"0.55\\\\\\\"/>\\\\\\n    <!-- head -->\\\\\\n    <path d=\\\\\\\"M245 350 C270 360, 292 382, 300 410 C287 412, 270 405, 260 398 C252 392, 246 382, 245 350 Z\\\\\\\" fill=\\\\\\\"#2f2f2f\\\\\\\"/>\\\\\\n    <path d=\\\\\\\"M252 376 C268 384, 283 398, 294 410\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#6d6d6d\\\\\\\" stroke-width=\\\\\\\"4\\\\\\\" opacity=\\\\\\\"0.7\\\\\\\"/>\\\\\\n    <path d=\\\\\\\"M220 345 L235 355\\\\\\\" stroke=\\\\\\\"#6b4b2a\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/>\\\\\\n  </g>\\\\\\n  </svg>\\\"\\n}\",\"refusal\":null,\"reasoning\":\"**Creating a golf representation**\\n\\nI need to create a visual representation of golf without using any letters. It should include a golf ball, a flag hole, and a club. I can keep it simple by using basic shapes: a circle for the ball, a pole with a flag for the hole, and an arc shape for the club. My goal is to return this as an SVG format design. Let's go ahead and put this together!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Creating a golf representation**\\n\\nI need to create a visual representation of golf without using any letters. It should include a golf ball, a flag hole, and a club. I can keep it simple by using basic shapes: a circle for the ball, a pole with a flag for the hole, and an arc shape for the club. My goal is to return this as an SVG format design. Let's go ahead and put this together!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZRmx_hZ2yi8IoGka-CPZYzETRc9ifpssQT82G6hPwOjanUERM9hjsp7cDp1U7wp9c5Js0bMs_EXXITvc6HvYvFcDlJl5cNzs5yXkC0FOnDFiXvjGUaQutLLNMzFco0ViiG3_87NMLWxSESPG4-IFaNZyih0SI3EOq2q3iC6q0daZhMgdPplR0r97yXsWtCkiJUOvVhh790ZehyitciI4Dv_EXS6Vb40vTSvcmLhLDCAH0EEQIXVwbMwi4J85kP_18TVO_r0arD2-O48GLcBSUJBhPsoQW_iU2-H-QvhDAlfSS33lrHFX0H061zxclQIvMCEnH1AaQofU2b5090RvKkqk__IxCuR_oC_kXlmmvpoHbNxCna0ZKzZl33d-GAou_UX-r0a_qVjeYUzQOma5qnjBOZB_nVrvll0NP-QvpqHafwSoGk_TxPx1n2Ly0bOXOsXdov8a6gFq4n9MKM4IqIQ0RmACxgzMJuD2wMMU-WbdGb3rilOcTa_qX_RObL0wXnLIoJWeUpA4Z66U1WmlcDLzhqGq3jQH-KmqI97IFJxWAM5LEp3HEQ__iMzrknvznd9TuE4i-FpmvZDGnlAfFzgvHvngYOpss_ho_6IJ1vGdm5a8QnDAnNQFy1_rNXc4QjepqkaxmdDiL_RTjOjZK93FxbKu2wkKiXJIeaODYiP53ehB3JZRliSdlXl8HQkQKiyoCvXe35xSeiyhk96PoTphW0FT3jm1lrTeEHyrLf0RmX5ADmlL40ViPnlqHs7dsD3FO14BT3GpZVEi1JPvDteNkISd38XWX2t9CzyC3s7n_JrqrCxkAWPQgkburbczMTFLOkfdltBecaaonIgkj0ccoigrqCr6gIO4Z0T6eBQBsiY-Od7K0s0nGtCHzfDXaFuY7lFbtuN3d3j5CsdtaRGJemI0wvmFFyJPEPprhZ7exyQag0QpyeDRYUwFiKl8sEjrz6qUrHaWrfpI9O0pLt4aRxnUdZ0_GgkpJFgm3PxQjBBXSXU2EFH9DDD-4euCWXxPJNvU-Z3w3XzH05WwsEnM-4VZJMhQ_uJOIh7waOtQHY=\",\"format\":\"openai-responses-v1\",\"id\":\"rs_0e70680566cba5120169b9945877ac81939090044eb3c829bf\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":134,\"completion_tokens\":1207,\"total_tokens\":1341,\"cost\":0.00153555,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00153555,\"upstream_inference_prompt_cost\":0.0000268,\"upstream_inference_completions_cost\":0.00150875},\"completion_tokens_details\":{\"reasoning_tokens\":42,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769811-fJV8sAgay3I8thnVhiKb",
+              "object": "chat.completion",
+              "created": 1773769811,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\n  \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\">\\\n  <defs>\\\n    <radialGradient id=\\\"grass\\\" cx=\\\"50%\\\" cy=\\\"30%\\\" r=\\\"70%\\\">\\\n      <stop offset=\\\"0%\\\" stop-color=\\\"#4fd07a\\\"/>\\\n      <stop offset=\\\"100%\\\" stop-color=\\\"#1e8b3f\\\"/>\\\n    </radialGradient>\\\n    <linearGradient id=\\\"sky\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"0\\\" y2=\\\"1\\\">\\\n      <stop offset=\\\"0%\\\" stop-color=\\\"#cfefff\\\"/>\\\n      <stop offset=\\\"100%\\\" stop-color=\\\"#eaf7ff\\\"/>\\\n    </linearGradient>\\\n  </defs>\\\n  <!-- sky -->\\\n  <rect x=\\\"0\\\" y=\\\"0\\\" width=\\\"512\\\" height=\\\"220\\\" fill=\\\"url(#sky)\\\"/>\\\n  <!-- ground -->\\\n  <rect x=\\\"0\\\" y=\\\"220\\\" width=\\\"512\\\" height=\\\"292\\\" fill=\\\"url(#grass)\\\"/>\\\n  <!-- subtle turf lines -->\\\n  <path d=\\\"M0 320 C120 300, 220 360, 330 340 C420 322, 470 335, 512 328\\\" fill=\\\"none\\\" stroke=\\\"#1a7a35\\\" stroke-width=\\\"3\\\" opacity=\\\"0.35\\\"/>\\\n  <path d=\\\"M0 385 C110 362, 240 420, 355 392 C425 375, 475 392, 512 383\\\" fill=\\\"none\\\" stroke=\\\"#1a7a35\\\" stroke-width=\\\"3\\\" opacity=\\\"0.3\\\"/>\\\n  <!-- golf hole -->\\\n  <ellipse cx=\\\"320\\\" cy=\\\"410\\\" rx=\\\"26\\\" ry=\\\"10\\\" fill=\\\"#0c5a26\\\" opacity=\\\"0.9\\\"/>\\\n  <ellipse cx=\\\"320\\\" cy=\\\"404\\\" rx=\\\"18\\\" ry=\\\"6\\\" fill=\\\"#063a16\\\" opacity=\\\"0.95\\\"/>\\\n  <circle cx=\\\"320\\\" cy=\\\"408\\\" r=\\\"6\\\" fill=\\\"#033012\\\" opacity=\\\"0.9\\\"/>\\\n  <!-- flag pole -->\\\n  <path d=\\\"M320 330 L320 400\\\" stroke=\\\"#d9d9d9\\\" stroke-width=\\\"6\\\" stroke-linecap=\\\"round\\\"/>\\\n  <path d=\\\"M320 330 L320 400\\\" stroke=\\\"#9c9c9c\\\" stroke-width=\\\"2\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.6\\\"/>\\\n  <!-- flag -->\\\n  <path d=\\\"M320 332 C340 342, 360 338, 378 349 C360 358, 345 360, 320 372 Z\\\" fill=\\\"#2c62ff\\\"/>\\\n  <path d=\\\"M320 332 C340 342, 360 338, 378 349\\\" fill=\\\"none\\\" stroke=\\\"#1241b8\\\" stroke-width=\\\"3\\\" opacity=\\\"0.6\\\"/>\\\n  <!-- golf ball -->\\\n  <circle cx=\\\"235\\\" cy=\\\"405\\\" r=\\\"18\\\" fill=\\\"#ffffff\\\"/>\\\n  <circle cx=\\\"235\\\" cy=\\\"405\\\" r=\\\"18\\\" fill=\\\"none\\\" stroke=\\\"#cfcfcf\\\" stroke-width=\\\"3\\\"/>\\\n  <!-- simple dimples -->\\\n  <g fill=\\\"#e6e6e6\\\" opacity=\\\"0.9\\\">\\\n    <circle cx=\\\"229\\\" cy=\\\"398\\\" r=\\\"2\\\"/>\\\n    <circle cx=\\\"241\\\" cy=\\\"398\\\" r=\\\"2\\\"/>\\\n    <circle cx=\\\"232\\\" cy=\\\"409\\\" r=\\\"2\\\"/>\\\n    <circle cx=\\\"240\\\" cy=\\\"412\\\" r=\\\"2\\\"/>\\\n    <circle cx=\\\"228\\\" cy=\\\"412\\\" r=\\\"1.8\\\"/>\\\n    <circle cx=\\\"235\\\" cy=\\\"401\\\" r=\\\"1.7\\\"/>\\\n  </g>\\\n  <!-- golf club (behind ball) -->\\\n  <g transform=\\\"translate(0,0)\\\">\\\n    <path d=\\\"M120 360 C180 330, 210 330, 245 350\\\" stroke=\\\"#6b4b2a\\\" stroke-width=\\\"16\\\" stroke-linecap=\\\"round\\\" fill=\\\"none\\\"/>\\\n    <path d=\\\"M120 360 C180 330, 210 330, 245 350\\\" stroke=\\\"#3b2413\\\" stroke-width=\\\"4\\\" stroke-linecap=\\\"round\\\" fill=\\\"none\\\" opacity=\\\"0.55\\\"/>\\\n    <!-- head -->\\\n    <path d=\\\"M245 350 C270 360, 292 382, 300 410 C287 412, 270 405, 260 398 C252 392, 246 382, 245 350 Z\\\" fill=\\\"#2f2f2f\\\"/>\\\n    <path d=\\\"M252 376 C268 384, 283 398, 294 410\\\" fill=\\\"none\\\" stroke=\\\"#6d6d6d\\\" stroke-width=\\\"4\\\" opacity=\\\"0.7\\\"/>\\\n    <path d=\\\"M220 345 L235 355\\\" stroke=\\\"#6b4b2a\\\" stroke-width=\\\"10\\\" stroke-linecap=\\\"round\\\"/>\\\n  </g>\\\n  </svg>\"\n}",
+                    "refusal": null,
+                    "reasoning": "**Creating a golf representation**\n\nI need to create a visual representation of golf without using any letters. It should include a golf ball, a flag hole, and a club. I can keep it simple by using basic shapes: a circle for the ball, a pole with a flag for the hole, and an arc shape for the club. My goal is to return this as an SVG format design. Let's go ahead and put this together!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Creating a golf representation**\n\nI need to create a visual representation of golf without using any letters. It should include a golf ball, a flag hole, and a club. I can keep it simple by using basic shapes: a circle for the ball, a pole with a flag for the hole, and an arc shape for the club. My goal is to return this as an SVG format design. Let's go ahead and put this together!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZRmx_hZ2yi8IoGka-CPZYzETRc9ifpssQT82G6hPwOjanUERM9hjsp7cDp1U7wp9c5Js0bMs_EXXITvc6HvYvFcDlJl5cNzs5yXkC0FOnDFiXvjGUaQutLLNMzFco0ViiG3_87NMLWxSESPG4-IFaNZyih0SI3EOq2q3iC6q0daZhMgdPplR0r97yXsWtCkiJUOvVhh790ZehyitciI4Dv_EXS6Vb40vTSvcmLhLDCAH0EEQIXVwbMwi4J85kP_18TVO_r0arD2-O48GLcBSUJBhPsoQW_iU2-H-QvhDAlfSS33lrHFX0H061zxclQIvMCEnH1AaQofU2b5090RvKkqk__IxCuR_oC_kXlmmvpoHbNxCna0ZKzZl33d-GAou_UX-r0a_qVjeYUzQOma5qnjBOZB_nVrvll0NP-QvpqHafwSoGk_TxPx1n2Ly0bOXOsXdov8a6gFq4n9MKM4IqIQ0RmACxgzMJuD2wMMU-WbdGb3rilOcTa_qX_RObL0wXnLIoJWeUpA4Z66U1WmlcDLzhqGq3jQH-KmqI97IFJxWAM5LEp3HEQ__iMzrknvznd9TuE4i-FpmvZDGnlAfFzgvHvngYOpss_ho_6IJ1vGdm5a8QnDAnNQFy1_rNXc4QjepqkaxmdDiL_RTjOjZK93FxbKu2wkKiXJIeaODYiP53ehB3JZRliSdlXl8HQkQKiyoCvXe35xSeiyhk96PoTphW0FT3jm1lrTeEHyrLf0RmX5ADmlL40ViPnlqHs7dsD3FO14BT3GpZVEi1JPvDteNkISd38XWX2t9CzyC3s7n_JrqrCxkAWPQgkburbczMTFLOkfdltBecaaonIgkj0ccoigrqCr6gIO4Z0T6eBQBsiY-Od7K0s0nGtCHzfDXaFuY7lFbtuN3d3j5CsdtaRGJemI0wvmFFyJPEPprhZ7exyQag0QpyeDRYUwFiKl8sEjrz6qUrHaWrfpI9O0pLt4aRxnUdZ0_GgkpJFgm3PxQjBBXSXU2EFH9DDD-4euCWXxPJNvU-Z3w3XzH05WwsEnM-4VZJMhQ_uJOIh7waOtQHY=",
+                        "format": "openai-responses-v1",
+                        "id": "rs_0e70680566cba5120169b9945877ac81939090044eb3c829bf",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 134,
+                "completion_tokens": 1207,
+                "total_tokens": 1341,
+                "cost": 0.00153555,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00153555,
+                  "upstream_inference_prompt_cost": 0.0000268,
+                  "upstream_inference_completions_cost": 0.00150875
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 42,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.001536,
+          "requestDurationMs": 162932,
+          "error": null
+        },
+        {
+          "requestId": "77fdf9ac-7d49-4101-abe3-02e89163d65b",
+          "attempt": 2,
+          "requestStartedAt": "2026-03-17T17:52:50.618Z",
+          "responseCompletedAt": "2026-03-17T17:52:56.986Z",
+          "traceMeta": {
+            "phase": "draw",
+            "targetWord": "golf",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a drawing agent in a one-word guessing game.\nReturn JSON only, with a single field: svg.\n\nRules:\n1) Draw the target word using only SVG graphics.\n2) Output one complete <svg>...</svg> string.\n3) Do not include text labels, letters, or numbers in the drawing.\n4) Keep the SVG simple and valid. No scripts, no foreignObject.\n5) Use a 512x512 canvas.\n\nOutput schema:\n{ \"svg\": \"string\" }"
+              },
+              {
+                "role": "user",
+                "content": "{\"targetWord\":\"golf\",\"language\":\"EN-US\",\"canvas\":{\"width\":512,\"height\":512}}"
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769974-TQWuAGZK1J3RFMb5yIKB",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9ddddaa5ca5a07de-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:52:55 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769974-TQWuAGZK1J3RFMb5yIKB\",\"object\":\"chat.completion\",\"created\":1773769974,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"svg\\\": \\\"<svg xmlns=\\\\\\\"http://www.w3.org/2000/svg\\\\\\\" width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" viewBox=\\\\\\\"0 0 512 512\\\\\\\" role=\\\\\\\"img\\\\\\\" aria-label=\\\\\\\"Golf scene\\\\\\\"><rect width=\\\\\\\"512\\\\\\\" height=\\\\\\\"512\\\\\\\" fill=\\\\\\\"#dff6ff\\\\\\\"/><path d=\\\\\\\"M0 320 C90 290, 170 340, 260 320 C340 300, 420 340, 512 310 L512 512 L0 512 Z\\\\\\\" fill=\\\\\\\"#4caf50\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/><path d=\\\\\\\"M0 345 C100 315, 160 365, 260 350 C360 335, 420 370, 512 342 L512 512 L0 512 Z\\\\\\\" fill=\\\\\\\"#3d9b3f\\\\\\\" opacity=\\\\\\\"0.9\\\\\\\"/><!-- tee/ground highlight --><ellipse cx=\\\\\\\"170\\\\\\\" cy=\\\\\\\"338\\\\\\\" rx=\\\\\\\"38\\\\\\\" ry=\\\\\\\"14\\\\\\\" fill=\\\\\\\"#2e7d32\\\\\\\" opacity=\\\\\\\"0.65\\\\\\\"/><ellipse cx=\\\\\\\"170\\\\\\\" cy=\\\\\\\"342\\\\\\\" rx=\\\\\\\"36\\\\\\\" ry=\\\\\\\"12\\\\\\\" fill=\\\\\\\"#66bb6a\\\\\\\" opacity=\\\\\\\"0.55\\\\\\\"/><!-- golf ball --><circle cx=\\\\\\\"238\\\\\\\" cy=\\\\\\\"318\\\\\\\" r=\\\\\\\"12\\\\\\\" fill=\\\\\\\"#ffffff\\\\\\\"/><circle cx=\\\\\\\"242\\\\\\\" cy=\\\\\\\"313\\\\\\\" r=\\\\\\\"3\\\\\\\" fill=\\\\\\\"#d9eaff\\\\\\\"/><circle cx=\\\\\\\"232\\\\\\\" cy=\\\\\\\"325\\\\\\\" r=\\\\\\\"2\\\\\\\" fill=\\\\\\\"#cfe2ff\\\\\\\"/><path d=\\\\\\\"M230 318 L244 318\\\\\\\" stroke=\\\\\\\"#cfd8dc\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\" opacity=\\\\\\\"0.5\\\\\\\"/><g><!-- flag pole --><rect x=\\\\\\\"340\\\\\\\" y=\\\\\\\"155\\\\\\\" width=\\\\\\\"8\\\\\\\" height=\\\\\\\"170\\\\\\\" rx=\\\\\\\"4\\\\\\\" fill=\\\\\\\"#6d4c41\\\\\\\"/><rect x=\\\\\\\"343\\\\\\\" y=\\\\\\\"165\\\\\\\" width=\\\\\\\"2\\\\\\\" height=\\\\\\\"145\\\\\\\" rx=\\\\\\\"1\\\\\\\" fill=\\\\\\\"#8d6e63\\\\\\\" opacity=\\\\\\\"0.6\\\\\\\"/><path d=\\\\\\\"M349 165 C372 180, 372 204, 349 214 L349 165 Z\\\\\\\" fill=\\\\\\\"#ef5350\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/><!-- flag notch --><path d=\\\\\\\"M349 170 C362 184, 362 201, 349 211\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#c62828\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.8\\\\\\\"/><!-- small pennant shadow --><path d=\\\\\\\"M349 165 C356 173, 356 198, 349 214\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#ff8a80\\\\\\\" stroke-width=\\\\\\\"2\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.6\\\\\\\"/><ellipse cx=\\\\\\\"344\\\\\\\" cy=\\\\\\\"325\\\\\\\" rx=\\\\\\\"7\\\\\\\" ry=\\\\\\\"6\\\\\\\" fill=\\\\\\\"#8d6e63\\\\\\\" opacity=\\\\\\\"0.4\\\\\\\"/></g><!-- club --><g transform=\\\\\\\"translate(0,0)\\\\\\\"><!-- handle --><path d=\\\\\\\"M130 390 C165 360, 205 350, 245 340\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#5d4037\\\\\\\" stroke-width=\\\\\\\"14\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M130 390 C165 360, 205 350, 245 340\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#795548\\\\\\\" stroke-width=\\\\\\\"5\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.65\\\\\\\"/><!-- shaft end / grip --><path d=\\\\\\\"M240 340 C262 332, 284 334, 296 352\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#5d4037\\\\\\\" stroke-width=\\\\\\\"12\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M296 352 C306 370, 292 392, 270 401\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#3e2723\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/><!-- club head --><path d=\\\\\\\"M270 401 C290 380, 322 370, 352 370 C374 370, 395 376, 412 385 C374 410, 320 427, 280 424 C274 423, 268 415, 270 401 Z\\\\\\\" fill=\\\\\\\"#455a64\\\\\\\" opacity=\\\\\\\"0.95\\\\\\\"/><path d=\\\\\\\"M292 404 C310 390, 334 383, 359 383 C375 383, 392 387, 405 394\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#263238\\\\\\\" stroke-width=\\\\\\\"4\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.55\\\\\\\"/><path d=\\\\\\\"M270 401 C286 395, 304 394, 322 395\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#90a4ae\\\\\\\" stroke-width=\\\\\\\"3\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\" opacity=\\\\\\\"0.6\\\\\\\"/></g><!-- subtle fairway streaks --><path d=\\\\\\\"M60 420 C140 385, 240 435, 320 415 C390 398, 450 420, 500 405\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#76c893\\\\\\\" stroke-width=\\\\\\\"10\\\\\\\" opacity=\\\\\\\"0.35\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/><path d=\\\\\\\"M30 455 C130 420, 220 465, 320 450 C400 438, 460 458, 500 445\\\\\\\" fill=\\\\\\\"none\\\\\\\" stroke=\\\\\\\"#6fbf73\\\\\\\" stroke-width=\\\\\\\"8\\\\\\\" opacity=\\\\\\\"0.25\\\\\\\" stroke-linecap=\\\\\\\"round\\\\\\\"/></svg>\\\"\\n}\",\"refusal\":null,\"reasoning\":\"**Creating a golf illustration**\\n\\nI need to create a simple golf scene using only visuals. I'll focus on essential shapes like a circular golf ball, a flag on a pole, possibly including a tee and the ground, and a golf club. It's important to make sure that there are no letters or text in the image, just the shapes. I'll return the illustration as an SVG file for clarity and quality. This should be fun!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Creating a golf illustration**\\n\\nI need to create a simple golf scene using only visuals. I'll focus on essential shapes like a circular golf ball, a flag on a pole, possibly including a tee and the ground, and a golf club. It's important to make sure that there are no letters or text in the image, just the shapes. I'll return the illustration as an SVG file for clarity and quality. This should be fun!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZT5NnxxKD8d4qzB49m2kdFyWyyHXBNUoKueY1MxMK-05MfbJ7MfDuZvL5G4vgU2GeybfKX3NLnPIgpZWk1HSLjF7RfsmLRGmaF-SfqPKGtKt50f5c4DcfPnhwHi6HncSY8j2aEa-6AzSerYIT2kXguSoKgAbVo5NKXDjAoiHvbDNdDJLEFXJLuDO8ZkCIQWySlOCsZwXdxU2ypJiexy8kZl2O4Sq90X0yiCbsEeyfCCu2Zl5Wf4ZqjD3y9Xh3f1bl387_e1R_npDMN3TJI9-Bgk9tRtyr0roXVffCcXUN3oKDrTK_Dn-QLa7BfIJTjOMZtAS4fJEcGwi69mWHMgXEQYBBxAsdl_a_jN5PN7qC4UEhWmB5gC1J6Jz4xoO_fBpEdSxqlwYLsiAGv2rbnC-983GGFRCYqpZ01qyK6F9EnZXjjjzPrc4FZCsmzsw8j8rLE1KSQl7Q_daWpzcH1DMs-WQjPi7t2VrvQ3RUHF64cggDmnkWSICXKJjrqfa8PHB_6SgaHH-GalxxrGkxrC8hyGtBoAan-iGUwDtZmBlsPNg7G-ZIAHepx32F5krJGT5mxhCIewoMymVKoCwoaOWr0Fhiq32UBywwv1S13OWjsdU_huqQlfkPSQP73dKIgIhdB9f2mGkaxAbpmp8BzgkapzDzCy2GX2VcG2CKE3PcarA8qtEuot3vb2nxZeHB3rThENNi4p2nsns9EPaVXh40F6egfEf-xkTm-9vztP2taguu-5kEeYq1iiDFhPiEVkeh2T4vV7gxc_ZS4iFR0ensZTBHYLEWxaj3MexAlAPSuyGeD-MsUBNdqdqiUJGXPPMLKY4RwfPJYp2A6bP_w6g145pZ4K-kcxkJgPjh2L2hQRusEU3xMOXyA2xXnRJyYMF5jahVPyRutA9M9Pu7g-viSEJZHVNcuRgQu8x64UUnyNtaiZCNfpaFWO6vm_0ew8MkmyqMkNZUA2VkOwoz53VxDV-XJVLx8iq35R59kQTsUmTGcc083wnfsZ7sEUWKOwIn3iZe3dzSXJ7vyIoiwekEda-rxRAr1Xf4tAV1bjNNugCRpYSEh9E7r3jpB1gdydMvLXwgqbKRNci1fVjxdWQkYIbU3fu04Y1bbmg4J__REKAT8=\",\"format\":\"openai-responses-v1\",\"id\":\"rs_055fa374e13599d70169b994f75af4819080d3fa2ef85eadea\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":134,\"completion_tokens\":1221,\"total_tokens\":1355,\"cost\":0.00155305,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00155305,\"upstream_inference_prompt_cost\":0.0000268,\"upstream_inference_completions_cost\":0.00152625},\"completion_tokens_details\":{\"reasoning_tokens\":53,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769974-TQWuAGZK1J3RFMb5yIKB",
+              "object": "chat.completion",
+              "created": 1773769974,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\n  \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"512\\\" height=\\\"512\\\" viewBox=\\\"0 0 512 512\\\" role=\\\"img\\\" aria-label=\\\"Golf scene\\\"><rect width=\\\"512\\\" height=\\\"512\\\" fill=\\\"#dff6ff\\\"/><path d=\\\"M0 320 C90 290, 170 340, 260 320 C340 300, 420 340, 512 310 L512 512 L0 512 Z\\\" fill=\\\"#4caf50\\\" opacity=\\\"0.95\\\"/><path d=\\\"M0 345 C100 315, 160 365, 260 350 C360 335, 420 370, 512 342 L512 512 L0 512 Z\\\" fill=\\\"#3d9b3f\\\" opacity=\\\"0.9\\\"/><!-- tee/ground highlight --><ellipse cx=\\\"170\\\" cy=\\\"338\\\" rx=\\\"38\\\" ry=\\\"14\\\" fill=\\\"#2e7d32\\\" opacity=\\\"0.65\\\"/><ellipse cx=\\\"170\\\" cy=\\\"342\\\" rx=\\\"36\\\" ry=\\\"12\\\" fill=\\\"#66bb6a\\\" opacity=\\\"0.55\\\"/><!-- golf ball --><circle cx=\\\"238\\\" cy=\\\"318\\\" r=\\\"12\\\" fill=\\\"#ffffff\\\"/><circle cx=\\\"242\\\" cy=\\\"313\\\" r=\\\"3\\\" fill=\\\"#d9eaff\\\"/><circle cx=\\\"232\\\" cy=\\\"325\\\" r=\\\"2\\\" fill=\\\"#cfe2ff\\\"/><path d=\\\"M230 318 L244 318\\\" stroke=\\\"#cfd8dc\\\" stroke-width=\\\"2\\\" opacity=\\\"0.5\\\"/><g><!-- flag pole --><rect x=\\\"340\\\" y=\\\"155\\\" width=\\\"8\\\" height=\\\"170\\\" rx=\\\"4\\\" fill=\\\"#6d4c41\\\"/><rect x=\\\"343\\\" y=\\\"165\\\" width=\\\"2\\\" height=\\\"145\\\" rx=\\\"1\\\" fill=\\\"#8d6e63\\\" opacity=\\\"0.6\\\"/><path d=\\\"M349 165 C372 180, 372 204, 349 214 L349 165 Z\\\" fill=\\\"#ef5350\\\" opacity=\\\"0.95\\\"/><!-- flag notch --><path d=\\\"M349 170 C362 184, 362 201, 349 211\\\" fill=\\\"none\\\" stroke=\\\"#c62828\\\" stroke-width=\\\"2\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.8\\\"/><!-- small pennant shadow --><path d=\\\"M349 165 C356 173, 356 198, 349 214\\\" fill=\\\"none\\\" stroke=\\\"#ff8a80\\\" stroke-width=\\\"2\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.6\\\"/><ellipse cx=\\\"344\\\" cy=\\\"325\\\" rx=\\\"7\\\" ry=\\\"6\\\" fill=\\\"#8d6e63\\\" opacity=\\\"0.4\\\"/></g><!-- club --><g transform=\\\"translate(0,0)\\\"><!-- handle --><path d=\\\"M130 390 C165 360, 205 350, 245 340\\\" fill=\\\"none\\\" stroke=\\\"#5d4037\\\" stroke-width=\\\"14\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M130 390 C165 360, 205 350, 245 340\\\" fill=\\\"none\\\" stroke=\\\"#795548\\\" stroke-width=\\\"5\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.65\\\"/><!-- shaft end / grip --><path d=\\\"M240 340 C262 332, 284 334, 296 352\\\" fill=\\\"none\\\" stroke=\\\"#5d4037\\\" stroke-width=\\\"12\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M296 352 C306 370, 292 392, 270 401\\\" fill=\\\"none\\\" stroke=\\\"#3e2723\\\" stroke-width=\\\"10\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.95\\\"/><!-- club head --><path d=\\\"M270 401 C290 380, 322 370, 352 370 C374 370, 395 376, 412 385 C374 410, 320 427, 280 424 C274 423, 268 415, 270 401 Z\\\" fill=\\\"#455a64\\\" opacity=\\\"0.95\\\"/><path d=\\\"M292 404 C310 390, 334 383, 359 383 C375 383, 392 387, 405 394\\\" fill=\\\"none\\\" stroke=\\\"#263238\\\" stroke-width=\\\"4\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.55\\\"/><path d=\\\"M270 401 C286 395, 304 394, 322 395\\\" fill=\\\"none\\\" stroke=\\\"#90a4ae\\\" stroke-width=\\\"3\\\" stroke-linecap=\\\"round\\\" opacity=\\\"0.6\\\"/></g><!-- subtle fairway streaks --><path d=\\\"M60 420 C140 385, 240 435, 320 415 C390 398, 450 420, 500 405\\\" fill=\\\"none\\\" stroke=\\\"#76c893\\\" stroke-width=\\\"10\\\" opacity=\\\"0.35\\\" stroke-linecap=\\\"round\\\"/><path d=\\\"M30 455 C130 420, 220 465, 320 450 C400 438, 460 458, 500 445\\\" fill=\\\"none\\\" stroke=\\\"#6fbf73\\\" stroke-width=\\\"8\\\" opacity=\\\"0.25\\\" stroke-linecap=\\\"round\\\"/></svg>\"\n}",
+                    "refusal": null,
+                    "reasoning": "**Creating a golf illustration**\n\nI need to create a simple golf scene using only visuals. I'll focus on essential shapes like a circular golf ball, a flag on a pole, possibly including a tee and the ground, and a golf club. It's important to make sure that there are no letters or text in the image, just the shapes. I'll return the illustration as an SVG file for clarity and quality. This should be fun!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Creating a golf illustration**\n\nI need to create a simple golf scene using only visuals. I'll focus on essential shapes like a circular golf ball, a flag on a pole, possibly including a tee and the ground, and a golf club. It's important to make sure that there are no letters or text in the image, just the shapes. I'll return the illustration as an SVG file for clarity and quality. This should be fun!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZT5NnxxKD8d4qzB49m2kdFyWyyHXBNUoKueY1MxMK-05MfbJ7MfDuZvL5G4vgU2GeybfKX3NLnPIgpZWk1HSLjF7RfsmLRGmaF-SfqPKGtKt50f5c4DcfPnhwHi6HncSY8j2aEa-6AzSerYIT2kXguSoKgAbVo5NKXDjAoiHvbDNdDJLEFXJLuDO8ZkCIQWySlOCsZwXdxU2ypJiexy8kZl2O4Sq90X0yiCbsEeyfCCu2Zl5Wf4ZqjD3y9Xh3f1bl387_e1R_npDMN3TJI9-Bgk9tRtyr0roXVffCcXUN3oKDrTK_Dn-QLa7BfIJTjOMZtAS4fJEcGwi69mWHMgXEQYBBxAsdl_a_jN5PN7qC4UEhWmB5gC1J6Jz4xoO_fBpEdSxqlwYLsiAGv2rbnC-983GGFRCYqpZ01qyK6F9EnZXjjjzPrc4FZCsmzsw8j8rLE1KSQl7Q_daWpzcH1DMs-WQjPi7t2VrvQ3RUHF64cggDmnkWSICXKJjrqfa8PHB_6SgaHH-GalxxrGkxrC8hyGtBoAan-iGUwDtZmBlsPNg7G-ZIAHepx32F5krJGT5mxhCIewoMymVKoCwoaOWr0Fhiq32UBywwv1S13OWjsdU_huqQlfkPSQP73dKIgIhdB9f2mGkaxAbpmp8BzgkapzDzCy2GX2VcG2CKE3PcarA8qtEuot3vb2nxZeHB3rThENNi4p2nsns9EPaVXh40F6egfEf-xkTm-9vztP2taguu-5kEeYq1iiDFhPiEVkeh2T4vV7gxc_ZS4iFR0ensZTBHYLEWxaj3MexAlAPSuyGeD-MsUBNdqdqiUJGXPPMLKY4RwfPJYp2A6bP_w6g145pZ4K-kcxkJgPjh2L2hQRusEU3xMOXyA2xXnRJyYMF5jahVPyRutA9M9Pu7g-viSEJZHVNcuRgQu8x64UUnyNtaiZCNfpaFWO6vm_0ew8MkmyqMkNZUA2VkOwoz53VxDV-XJVLx8iq35R59kQTsUmTGcc083wnfsZ7sEUWKOwIn3iZe3dzSXJ7vyIoiwekEda-rxRAr1Xf4tAV1bjNNugCRpYSEh9E7r3jpB1gdydMvLXwgqbKRNci1fVjxdWQkYIbU3fu04Y1bbmg4J__REKAT8=",
+                        "format": "openai-responses-v1",
+                        "id": "rs_055fa374e13599d70169b994f75af4819080d3fa2ef85eadea",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 134,
+                "completion_tokens": 1221,
+                "total_tokens": 1355,
+                "cost": 0.00155305,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00155305,
+                  "upstream_inference_prompt_cost": 0.0000268,
+                  "upstream_inference_completions_cost": 0.00152625
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 53,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.001553,
+          "requestDurationMs": 6368,
+          "error": null
+        },
+        {
+          "requestId": "9ef4b2ea-6f9f-446b-a5a2-c6b783017eb2",
+          "attempt": 1,
+          "requestStartedAt": "2026-03-17T17:52:57.141Z",
+          "responseCompletedAt": "2026-03-17T17:53:04.578Z",
+          "traceMeta": {
+            "phase": "guess",
+            "targetWord": "golf",
+            "generationAttempt": 1
+          },
+          "request": {
+            "model": "openai/gpt-5.4-nano",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are the guesser in a visual one-word guessing game.\nReturn JSON only, with a single field: guesses.\n\nRules:\n1) You receive one JPEG image of a drawing.\n2) Return exactly 20 one-word guesses in order of confidence (best guess first).\n3) The order is important and will be scored by first correct position.\n4) Do not repeat guesses.\n5) Each guess must be EN-US one word, no spaces.\n6) Avoid punctuation and numbers.\n\nOutput schema:\n{ \"guesses\": [\"string\", \"... exactly 20 items ...\"] }"
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\"language\":\"EN-US\",\"maxHints\":20,\"note\":\"Return 20 ordered guesses. Position 1 is the highest-confidence guess.\"}"
+                  },
+                  {
+                    "type": "image_url",
+                    "image_url": {
+                      "url": "data:image/jpeg;base64,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"
+                    }
+                  }
+                ]
+              }
+            ],
+            "temperature": 0.3,
+            "provider": {
+              "order": [
+                "openai"
+              ],
+              "allow_fallbacks": false
+            },
+            "reasoning": {
+              "effort": "medium",
+              "exclude": false
+            }
+          },
+          "response": {
+            "status": 200,
+            "ok": true,
+            "openrouterRequestId": "gen-1773769981-okNEKMJpkqoKVKPx2A7z",
+            "headers": {
+              "access-control-allow-origin": "*",
+              "cf-ray": "9ddddace1dcb07de-GRU",
+              "connection": "keep-alive",
+              "content-encoding": "gzip",
+              "content-type": "application/json",
+              "date": "Tue, 17 Mar 2026 17:53:01 GMT",
+              "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+              "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+              "server": "cloudflare",
+              "transfer-encoding": "chunked",
+              "x-content-type-options": "nosniff"
+            },
+            "rawBody": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1773769981-okNEKMJpkqoKVKPx2A7z\",\"object\":\"chat.completion\",\"created\":1773769981,\"model\":\"openai/gpt-5.4-nano-20260317\",\"provider\":\"OpenAI\",\"system_fingerprint\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"guesses\\\": [\\\"fishing\\\",\\\"fishingrod\\\",\\\"bobber\\\",\\\"float\\\",\\\"fishingline\\\",\\\"rod\\\",\\\"lure\\\",\\\"hook\\\",\\\"bait\\\",\\\"reel\\\",\\\"tackle\\\",\\\"angler\\\",\\\"fishingfloat\\\",\\\"biteindicator\\\",\\\"line\\\",\\\"tacklebundle\\\",\\\"fishinggear\\\",\\\"net\\\",\\\"dock\\\",\\\"river\\\"] }\",\"refusal\":null,\"reasoning\":\"**Describing fishing scene**\\n\\nI’m observing an image that looks like a fishing scene with water and green hills. I notice it has a long fishing rod with a red flag, probably indicating a bite. There’s a bobber and a tackle box nearby. A brown stick resembling a fishing rod is planted in the ground, and a white sphere is at the line's end. I'm compiling a list of one-word guesses like fishing, angler, rod, lure, line, and tacklebox, aiming for about 20 unique terms without spacing or punctuation.**Compiling fishing terms**\\n\\nI'm generating a list of one-word fishing-related terms without spaces. I've thought of options like fishing, fishingrod, fishingline, bobber, float, lure, hook, bait, reel, tackle, angler, and rod. I’m considering \\\"biteindicator\\\" as well. This is fun and straightforward! I’ll structure it in JSON format for easy use. I need to ensure I keep each term uniquely identified without any spaces or punctuation errors. Let's finalize this list!\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Describing fishing scene**\\n\\nI’m observing an image that looks like a fishing scene with water and green hills. I notice it has a long fishing rod with a red flag, probably indicating a bite. There’s a bobber and a tackle box nearby. A brown stick resembling a fishing rod is planted in the ground, and a white sphere is at the line's end. I'm compiling a list of one-word guesses like fishing, angler, rod, lure, line, and tacklebox, aiming for about 20 unique terms without spacing or punctuation.**Compiling fishing terms**\\n\\nI'm generating a list of one-word fishing-related terms without spaces. I've thought of options like fishing, fishingrod, fishingline, bobber, float, lure, hook, bait, reel, tackle, angler, and rod. I’m considering \\\"biteindicator\\\" as well. This is fun and straightforward! I’ll structure it in JSON format for easy use. I need to ensure I keep each term uniquely identified without any spaces or punctuation errors. Let's finalize this list!\",\"format\":\"openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABpuZUEjTye4eFsr2SEQJCUYnkhRyCj9f7GMyhFEJoKLMz3NqVwARlm---hBVXkLZPZKt63B0hY0lC21iBu8yqddQ3G78bUfTULgJohjg4V1c9LP7prlTgOPMWdKtS0xgkwGX1C6r57LSFUjyFwLjpDx8RiEwYT4h4A1B83pq211P8twjJtDZifHk8BD20Yk7zgpEVw3dMSaPy_uOcrT2XRHMvpvYviBLdLHO80tAVO_2R7GrDnZzuVJxlaUg9_lGnUITa-JfuXrw5VnWrKfDNiPRVfoA9vbXLupAziXihIhvR0ubiBOrjDtNwOGvguD1avZXgGej6nub396OWmKIrDb-G6NLvA0eckfRopC92YNJ4Eapct5iW_wGMrcF05RffRLlg_xmfiQtPo7SiZGmUIC58Sg4yWi0fTTH9DJG7eJ9cKOwEK_diy8tcH_NfEUMLXTI92k-nHAeImN8e07NlYGsP98olxeNc10-ztUJifh382dc1pLQuHz8XD4NzH2UitSI9Jpn3mJkdjS_sHNBGQKflmFUJn0tBLmHjj2PeJ1h-HVy6S-Rda5lx8EaSYlZVvEE9lHHS3R8pMweJnLi4ednAgdGQmSNjUaNiSKNzoiGkuB_SqlHHg50sdw2A6jwpRn_ysdZxaPvX90OXHiYe23Ckwctw5Vw90_NVBhFRSTcDtZ3WNSqnrDNuTl1v8zGm79GkBCLkLWu3gfhNyOrtWYg-huDmx9xhH5eXfM3k1jNuQCFsH8UhnfY9ZUPfCboXgY6ZIYsKjE5IOOuVMuBphrzXeXS-yw1-Bxsx9-ZarljwgQ0LYnXB_J52xwoPJ9SlVaBz3L-DzwbfZKEBuIytskqWu53e_EjxJO1Zuw4baQPpa8yggqp5ceyWAn8Z-V1kxxsH_PC-FziojAX2UeZR8c8hhd-av-XObEMIjHQHtBvxCTMwWBaXylmNGetR14WQGewxslqrXiDus51v2bXLVHKjFvUaX6-wmGv0Fp2ha8qzeq2FVv-CYP9My1m5yBZ6u1fVRiGZsMmU1C877PTy_0pdA7ZHjkc9WETetyyThqOPngc-wrl0LCLHQSlIIjwrT5R7HOEPaJARRLbUN1AhP-4ZMLuHQod_MGRlR-XA9Xa77UkOEVrWUAFxm3tvRag861__lHLMmhl5PxAVSpq0Ab0rzChi5p-TOG_hTVb7p-ObXtrc8_QmGKUvusDbC4DnCGmx-F4PTqjcM-nrwIAWu8fnt2TMkZBVWU6KRS_JtSFhBpYYMwg5du8fqz4_ebdjF9aXsVUBYPWwzno8mM_wP-t5UOXwIkoGwwq9YebfsJAFIX-LQkrAdiBh9Gatw4bmCwE8d-n978GrpdDIuRCYPc2ocUThSnE1_CzvjxHKPI68sEdRt_T-3yw37a38ji_n4lPT0JT90IYS8f8WxEeZGlpzX7fKtJPw8wa7vGGQyaved4E6yDOK-4hr2HcQmFDxd70fCZNXQkCrYBAiqceOVDRu_6wEEDM6LXBcXbsVFeUgbZZVo_c4JTTSBMRPdT3YZH3TKyTPUKH1JxTFTCSW4jVfmoJ3hTnY0IcCKrZfBlaX54Y7Z1WRFIBXeKcUHzWYh1elfJvD6H7EtYmRPkkvaXdCNLgZQyw_TYK6ZeLcwOjWxK99SThGvqrQzplUhAfMzRr-LPChK2IUVUd7mktGkSO7-fAXA7qYma9patOPi5thfXhhrN4-ggb3W1Bg5E1F0X6slg1Nkun1v29VfdTvBukaEntgEX3gt6XBBgCtHQvNsjiugcuvzpJlqfbpE2HXjS3I5C8CyaVFezRWuLfYpWEMYmgY2wS-JzTtivs2qir-vjowpqYYJ6qD71GxyRtsu6SeSBKvbpM_kqPUNIcEIHne8Ryub_abuhy3t5qgGfmDqV-iNF8YcG6yf2Wvf66UVjqzozGsiTdnRcOO5wZPcdBKnaAjlf3H2TCnqRkk-uDBcBgOzkm_uCezjsnLVM6P-anmKvr_6IiRUBzleDtee08IRBI2fVBYVbncxqifDUI3xH1oWEKD9oq7W8_IKA3hXTOnh-S34uQVUFUG-ycFZk4koMS18jNhvYBGsux8-I0QA3kFKk062mKy6DnjWzyy9pDJypBNSwk1oWy0LReAc789qP2zXRw7swrLpiKFQicCrhOiO-3ddDK4lM3Pkkk6SiFS6YsrqnrPpacrdcrH7oTJcHIRb5oCaTIu2QzZcZZf1WshWxHFPjCP_BLAOVGEpjnh_57_SZI9iuBkJdCU2sfyF7Q==\",\"format\":\"openai-responses-v1\",\"id\":\"rs_02a50d7223a21ff50169b994fdac94819080a3f0c41c1ba3b5\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":464,\"completion_tokens\":327,\"total_tokens\":791,\"cost\":0.00050155,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00050155,\"upstream_inference_prompt_cost\":0.0000928,\"upstream_inference_completions_cost\":0.00040875},\"completion_tokens_details\":{\"reasoning_tokens\":257,\"image_tokens\":0,\"audio_tokens\":0}}}",
+            "body": {
+              "id": "gen-1773769981-okNEKMJpkqoKVKPx2A7z",
+              "object": "chat.completion",
+              "created": 1773769981,
+              "model": "openai/gpt-5.4-nano-20260317",
+              "provider": "OpenAI",
+              "system_fingerprint": null,
+              "choices": [
+                {
+                  "index": 0,
+                  "logprobs": null,
+                  "finish_reason": "stop",
+                  "native_finish_reason": "completed",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{ \"guesses\": [\"fishing\",\"fishingrod\",\"bobber\",\"float\",\"fishingline\",\"rod\",\"lure\",\"hook\",\"bait\",\"reel\",\"tackle\",\"angler\",\"fishingfloat\",\"biteindicator\",\"line\",\"tacklebundle\",\"fishinggear\",\"net\",\"dock\",\"river\"] }",
+                    "refusal": null,
+                    "reasoning": "**Describing fishing scene**\n\nI’m observing an image that looks like a fishing scene with water and green hills. I notice it has a long fishing rod with a red flag, probably indicating a bite. There’s a bobber and a tackle box nearby. A brown stick resembling a fishing rod is planted in the ground, and a white sphere is at the line's end. I'm compiling a list of one-word guesses like fishing, angler, rod, lure, line, and tacklebox, aiming for about 20 unique terms without spacing or punctuation.**Compiling fishing terms**\n\nI'm generating a list of one-word fishing-related terms without spaces. I've thought of options like fishing, fishingrod, fishingline, bobber, float, lure, hook, bait, reel, tackle, angler, and rod. I’m considering \"biteindicator\" as well. This is fun and straightforward! I’ll structure it in JSON format for easy use. I need to ensure I keep each term uniquely identified without any spaces or punctuation errors. Let's finalize this list!",
+                    "reasoning_details": [
+                      {
+                        "type": "reasoning.summary",
+                        "summary": "**Describing fishing scene**\n\nI’m observing an image that looks like a fishing scene with water and green hills. I notice it has a long fishing rod with a red flag, probably indicating a bite. There’s a bobber and a tackle box nearby. A brown stick resembling a fishing rod is planted in the ground, and a white sphere is at the line's end. I'm compiling a list of one-word guesses like fishing, angler, rod, lure, line, and tacklebox, aiming for about 20 unique terms without spacing or punctuation.**Compiling fishing terms**\n\nI'm generating a list of one-word fishing-related terms without spaces. I've thought of options like fishing, fishingrod, fishingline, bobber, float, lure, hook, bait, reel, tackle, angler, and rod. I’m considering \"biteindicator\" as well. This is fun and straightforward! I’ll structure it in JSON format for easy use. I need to ensure I keep each term uniquely identified without any spaces or punctuation errors. Let's finalize this list!",
+                        "format": "openai-responses-v1",
+                        "index": 0
+                      },
+                      {
+                        "type": "reasoning.encrypted",
+                        "data": "gAAAAABpuZUEjTye4eFsr2SEQJCUYnkhRyCj9f7GMyhFEJoKLMz3NqVwARlm---hBVXkLZPZKt63B0hY0lC21iBu8yqddQ3G78bUfTULgJohjg4V1c9LP7prlTgOPMWdKtS0xgkwGX1C6r57LSFUjyFwLjpDx8RiEwYT4h4A1B83pq211P8twjJtDZifHk8BD20Yk7zgpEVw3dMSaPy_uOcrT2XRHMvpvYviBLdLHO80tAVO_2R7GrDnZzuVJxlaUg9_lGnUITa-JfuXrw5VnWrKfDNiPRVfoA9vbXLupAziXihIhvR0ubiBOrjDtNwOGvguD1avZXgGej6nub396OWmKIrDb-G6NLvA0eckfRopC92YNJ4Eapct5iW_wGMrcF05RffRLlg_xmfiQtPo7SiZGmUIC58Sg4yWi0fTTH9DJG7eJ9cKOwEK_diy8tcH_NfEUMLXTI92k-nHAeImN8e07NlYGsP98olxeNc10-ztUJifh382dc1pLQuHz8XD4NzH2UitSI9Jpn3mJkdjS_sHNBGQKflmFUJn0tBLmHjj2PeJ1h-HVy6S-Rda5lx8EaSYlZVvEE9lHHS3R8pMweJnLi4ednAgdGQmSNjUaNiSKNzoiGkuB_SqlHHg50sdw2A6jwpRn_ysdZxaPvX90OXHiYe23Ckwctw5Vw90_NVBhFRSTcDtZ3WNSqnrDNuTl1v8zGm79GkBCLkLWu3gfhNyOrtWYg-huDmx9xhH5eXfM3k1jNuQCFsH8UhnfY9ZUPfCboXgY6ZIYsKjE5IOOuVMuBphrzXeXS-yw1-Bxsx9-ZarljwgQ0LYnXB_J52xwoPJ9SlVaBz3L-DzwbfZKEBuIytskqWu53e_EjxJO1Zuw4baQPpa8yggqp5ceyWAn8Z-V1kxxsH_PC-FziojAX2UeZR8c8hhd-av-XObEMIjHQHtBvxCTMwWBaXylmNGetR14WQGewxslqrXiDus51v2bXLVHKjFvUaX6-wmGv0Fp2ha8qzeq2FVv-CYP9My1m5yBZ6u1fVRiGZsMmU1C877PTy_0pdA7ZHjkc9WETetyyThqOPngc-wrl0LCLHQSlIIjwrT5R7HOEPaJARRLbUN1AhP-4ZMLuHQod_MGRlR-XA9Xa77UkOEVrWUAFxm3tvRag861__lHLMmhl5PxAVSpq0Ab0rzChi5p-TOG_hTVb7p-ObXtrc8_QmGKUvusDbC4DnCGmx-F4PTqjcM-nrwIAWu8fnt2TMkZBVWU6KRS_JtSFhBpYYMwg5du8fqz4_ebdjF9aXsVUBYPWwzno8mM_wP-t5UOXwIkoGwwq9YebfsJAFIX-LQkrAdiBh9Gatw4bmCwE8d-n978GrpdDIuRCYPc2ocUThSnE1_CzvjxHKPI68sEdRt_T-3yw37a38ji_n4lPT0JT90IYS8f8WxEeZGlpzX7fKtJPw8wa7vGGQyaved4E6yDOK-4hr2HcQmFDxd70fCZNXQkCrYBAiqceOVDRu_6wEEDM6LXBcXbsVFeUgbZZVo_c4JTTSBMRPdT3YZH3TKyTPUKH1JxTFTCSW4jVfmoJ3hTnY0IcCKrZfBlaX54Y7Z1WRFIBXeKcUHzWYh1elfJvD6H7EtYmRPkkvaXdCNLgZQyw_TYK6ZeLcwOjWxK99SThGvqrQzplUhAfMzRr-LPChK2IUVUd7mktGkSO7-fAXA7qYma9patOPi5thfXhhrN4-ggb3W1Bg5E1F0X6slg1Nkun1v29VfdTvBukaEntgEX3gt6XBBgCtHQvNsjiugcuvzpJlqfbpE2HXjS3I5C8CyaVFezRWuLfYpWEMYmgY2wS-JzTtivs2qir-vjowpqYYJ6qD71GxyRtsu6SeSBKvbpM_kqPUNIcEIHne8Ryub_abuhy3t5qgGfmDqV-iNF8YcG6yf2Wvf66UVjqzozGsiTdnRcOO5wZPcdBKnaAjlf3H2TCnqRkk-uDBcBgOzkm_uCezjsnLVM6P-anmKvr_6IiRUBzleDtee08IRBI2fVBYVbncxqifDUI3xH1oWEKD9oq7W8_IKA3hXTOnh-S34uQVUFUG-ycFZk4koMS18jNhvYBGsux8-I0QA3kFKk062mKy6DnjWzyy9pDJypBNSwk1oWy0LReAc789qP2zXRw7swrLpiKFQicCrhOiO-3ddDK4lM3Pkkk6SiFS6YsrqnrPpacrdcrH7oTJcHIRb5oCaTIu2QzZcZZf1WshWxHFPjCP_BLAOVGEpjnh_57_SZI9iuBkJdCU2sfyF7Q==",
+                        "format": "openai-responses-v1",
+                        "id": "rs_02a50d7223a21ff50169b994fdac94819080a3f0c41c1ba3b5",
+                        "index": 1
+                      }
+                    ]
+                  }
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 464,
+                "completion_tokens": 327,
+                "total_tokens": 791,
+                "cost": 0.00050155,
+                "is_byok": false,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "audio_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost_details": {
+                  "upstream_inference_cost": 0.00050155,
+                  "upstream_inference_prompt_cost": 0.0000928,
+                  "upstream_inference_completions_cost": 0.00040875
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 257,
+                  "image_tokens": 0,
+                  "audio_tokens": 0
+                }
+              }
+            }
+          },
+          "costUsd": 0.000502,
+          "requestDurationMs": 7437,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#ffffff"/>
+
+  <!-- Ground / foundation -->
+  <rect x="86" y="360" width="340" height="40" rx="6" fill="#d9d9de" stroke="#b7b7c1" stroke-width="3"/>
+
+  <!-- Brick stack (suggests building) -->
+  <g transform="translate(110,290)">
+    <!-- bottom row -->
+    <g>
+      <rect x="0" y="70" width="292" height="26" fill="#c65a3a" stroke="#a44a31" stroke-width="2"/>
+      <rect x="13" y="83" width="266" height="0" fill="none"/>
+      <rect x="0" y="70" width="292" height="26" fill="none"/>
+    </g>
+
+    <!-- bricks with staggered pattern -->
+    <g>
+      <!-- row 1 -->
+      <rect x="0" y="42" width="292" height="28" fill="#c85d3f" stroke="#a44a31" stroke-width="2"/>
+      <g stroke="#a44a31" stroke-width="2" opacity="0.95">
+        <!-- vertical joints -->
+        <line x1="36" y1="42" x2="36" y2="70"/>
+        <line x1="72" y1="42" x2="72" y2="70"/>
+        <line x1="108" y1="42" x2="108" y2="70"/>
+        <line x1="144" y1="42" x2="144" y2="70"/>
+        <line x1="180" y1="42" x2="180" y2="70"/>
+        <line x1="216" y1="42" x2="216" y2="70"/>
+        <line x1="252" y1="42" x2="252" y2="70"/>
+        <!-- horizontal joint line accent -->
+        <line x1="0" y1="56" x2="292" y2="56"/>
+      </g>
+    </g>
+
+    <g>
+      <!-- row 2 (staggered) -->
+      <rect x="18" y="14" width="274" height="28" fill="#c65a3a" stroke="#a44a31" stroke-width="2"/>
+      <g stroke="#a44a31" stroke-width="2" opacity="0.95">
+        <line x1="54" y1="14" x2="54" y2="42"/>
+        <line x1="90" y1="14" x2="90" y2="42"/>
+        <line x1="126" y1="14" x2="126" y2="42"/>
+        <line x1="162" y1="14" x2="162" y2="42"/>
+        <line x1="198" y1="14" x2="198" y2="42"/>
+        <line x1="234" y1="14" x2="234" y2="42"/>
+        <line x1="270" y1="14" x2="270" y2="42"/>
+        <line x1="18" y1="28" x2="292" y2="28"/>
+      </g>
+    </g>
+
+    <!-- small top cap bricks -->
+    <rect x="56" y="0" width="180" height="22" fill="#b94f33" stroke="#943a28" stroke-width="2"/>
+    <g stroke="#943a28" stroke-width="2" opacity="0.9">
+      <line x1="92" y1="0" x2="92" y2="22"/>
+      <line x1="128" y1="0" x2="128" y2="22"/>
+      <line x1="164" y1="0" x2="164" y2="22"/>
+    </g>
+  </g>
+
+  <!-- House shell (being built) -->
+  <g transform="translate(160,190)">
+    <!-- walls -->
+    <rect x="0" y="140" width="192" height="160" rx="10" fill="#f2f2f7" stroke="#cfcfda" stroke-width="4"/>
+    <rect x="22" y="200" width="148" height="100" fill="#e9e9f3" stroke="#c1c1cc" stroke-width="3"/>
+
+    <!-- roof -->
+    <path d="M-10 146 L96 70 L202 146" fill="#d35f47" stroke="#b34b37" stroke-width="4"/>
+    <path d="M30 140 L96 96 L162 140" fill="none" stroke="#b34b37" stroke-width="3" opacity="0.55"/>
+
+    <!-- door / opening -->
+    <rect x="72" y="260" width="48" height="40" rx="6" fill="#cfd0d8" stroke="#b0b0bb" stroke-width="3"/>
+  </g>
+
+  <!-- Scaffolding/beam hints -->
+  <g opacity="0.95">
+    <rect x="120" y="130" width="14" height="250" fill="#6d7a8b"/>
+    <rect x="378" y="130" width="14" height="250" fill="#6d7a8b"/>
+    <g fill="#6d7a8b">
+      <rect x="120" y="200" width="272" height="10" rx="3"/>
+      <rect x="120" y="260" width="272" height="10" rx="3"/>
+      <rect x="120" y="320" width="272" height="10" rx="3"/>
+    </g>
+  </g>
+
+  <!-- Small construction crane hook hint -->
+  <g transform="translate(310,55)" opacity="0.95">
+    <rect x="0" y="0" width="10" height="170" rx="4" fill="#9aa3af"/>
+    <path d="M5 0 L120 0" stroke="#9aa3af" stroke-width="10" stroke-linecap="round"/>
+    <path d="M120 0 L92 35" stroke="#9aa3af" stroke-width="10" stroke-linecap="round"/>
+    <path d="M92 35 L92 165" stroke="#9aa3af" stroke-width="10" stroke-linecap="round"/>
+    <rect x="87" y="170" width="10" height="50" rx="3" fill="#7f8793"/>
+    <path d="M82 220 L92 205 L102 220" fill="#7f8793"/>
+    <rect x="80" y="225" width="24" height="18" rx="4" fill="#6f7783"/>
+  </g>
+
+</svg>
