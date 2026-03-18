@@ -922,13 +922,14 @@ async function main() {
     generatedAt: metadata.timestamp,
     runs: await buildReplayRuns(benchmarks, rankingByRunId),
   };
+
+  await fs.writeFile(REPLAY_OUTPUT_PATH, JSON.stringify(replay, null, 2), "utf8");
+  console.log(`Wrote ${replay.runs.length} replay runs to ${REPLAY_OUTPUT_PATH}`);
+
   await generateReplaySharePreviews(replay.runs, REPLAY_SHARE_PREVIEW_MODE);
   if (!REPLAY_SHARE_SKIP_HTML) {
     await writeReplayShareLandingPages(replay.runs);
   }
-
-  await fs.writeFile(REPLAY_OUTPUT_PATH, JSON.stringify(replay, null, 2), "utf8");
-  console.log(`Wrote ${replay.runs.length} replay runs to ${REPLAY_OUTPUT_PATH}`);
 }
 
 await main();
