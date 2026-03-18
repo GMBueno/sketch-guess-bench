@@ -41,7 +41,7 @@ const execFileAsync = promisify(execFile);
 const DYNAMIC_MODEL_IDS = new Set(["google/gemini-3-flash-preview"]);
 const EFFORT_LABEL_MODEL_IDS = new Set(["google/gemini-3.1-flash-lite-preview"]);
 const traceFileCache = new Map();
-const runTimingCache = new Map();
+const gameStatsCache = new Map();
 
 function numberOrZero(value) {
   const numeric = Number(value);
@@ -96,12 +96,43 @@ function deriveRequestDurationMs(request) {
   return 0;
 }
 
-function deriveExecutionTimingMs(execution) {
-  const totalRequestMs = numberOrZero(execution?.requestStats?.totalRequestMs);
-  if (totalRequestMs > 0) return totalRequestMs;
+function deriveExecutionStats(execution) {
+  const explicitStats = execution?.requestStats;
+  if (explicitStats && typeof explicitStats === "object") {
+    return {
+      totalRequestMs: numberOrZero(explicitStats.totalRequestMs),
+      totalCostUsd: numberOrZero(explicitStats.totalCostUsd),
+      pricedRequests: numberOrZero(explicitStats.pricedRequests),
+      totalRequests: numberOrZero(explicitStats.totalRequests),
+      missingPriceRequests: numberOrZero(explicitStats.missingPriceRequests),
+    };
+  }
 
-  if (!Array.isArray(execution?.requests)) return 0;
-  return execution.requests.reduce((sum, request) => sum + deriveRequestDurationMs(request), 0);
+  if (!Array.isArray(execution?.requests)) {
+    return {
+      totalRequestMs: 0,
+      totalCostUsd: 0,
+      pricedRequests: 0,
+      totalRequests: 0,
+      missingPriceRequests: 0,
+    };
+  }
+
+  const successfulResponses = execution.requests.filter(
+    (request) => request?.response?.ok && Number.isFinite(Number(request?.costUsd))
+  );
+  const totalRequests = execution.requests.length;
+  const pricedRequests = successfulResponses.length;
+  const totalCostUsd = successfulResponses.reduce((sum, request) => sum + numberOrZero(request?.costUsd), 0);
+  const totalRequestMs = execution.requests.reduce((sum, request) => sum + deriveRequestDurationMs(request), 0);
+
+  return {
+    totalRequestMs,
+    totalCostUsd,
+    pricedRequests,
+    totalRequests,
+    missingPriceRequests: Math.max(0, successfulResponses.length - pricedRequests),
+  };
 }
 
 async function readTracePayload(relativeTraceFile) {
@@ -120,25 +151,67 @@ async function readTracePayload(relativeTraceFile) {
   }
 }
 
-async function deriveGameTimingMs(game) {
+async function deriveGameStats(game) {
   const traceFile = game?.traceRef?.file;
-  if (!traceFile) return 0;
+  if (traceFile && gameStatsCache.has(traceFile)) {
+    return gameStatsCache.get(traceFile);
+  }
+
+  const fallbackStats = {
+    totalRequestMs: numberOrZero(game?.totalRequestMs),
+    totalCostUsd: numberOrZero(game?.totalCostUsd),
+    pricedRequests: numberOrZero(game?.pricedRequests),
+    totalRequests: numberOrZero(game?.totalRequests),
+    missingPriceRequests: numberOrZero(game?.missingPriceRequests),
+  };
+
+  if (!traceFile) {
+    return fallbackStats;
+  }
 
   const tracePayload = await readTracePayload(traceFile);
   const latestExecution = getLatestExecution(tracePayload);
-  return deriveExecutionTimingMs(latestExecution);
+  const stats = latestExecution ? deriveExecutionStats(latestExecution) : fallbackStats;
+  gameStatsCache.set(traceFile, stats);
+  return stats;
+}
+
+async function deriveGameTimingMs(game) {
+  const stats = await deriveGameStats(game);
+  return stats.totalRequestMs;
+}
+
+async function deriveRunStatsFromGames(run) {
+  const games = Array.isArray(run?.games) ? run.games : [];
+  const totals = {
+    totalRequestMs: 0,
+    totalCostUsd: 0,
+    pricedRequests: 0,
+    totalRequests: 0,
+    missingPriceRequests: 0,
+  };
+
+  for (const game of games) {
+    const stats = await deriveGameStats(game);
+    totals.totalRequestMs += stats.totalRequestMs;
+    totals.totalCostUsd += stats.totalCostUsd;
+    totals.pricedRequests += stats.pricedRequests;
+    totals.totalRequests += stats.totalRequests;
+    totals.missingPriceRequests += stats.missingPriceRequests;
+  }
+
+  totals.totalCostUsd = Number(totals.totalCostUsd.toFixed(6));
+  return totals;
 }
 
 async function deriveRunTimingFromTraces(runId) {
   if (!runId) return 0;
-  if (runTimingCache.has(runId)) return runTimingCache.get(runId);
 
   const runTraceDir = path.join(TRACE_DIR, runId);
   let entries;
   try {
     entries = await fs.readdir(runTraceDir, { withFileTypes: true });
   } catch {
-    runTimingCache.set(runId, 0);
     return 0;
   }
 
@@ -149,10 +222,9 @@ async function deriveRunTimingFromTraces(runId) {
     const relativeTraceFile = path.join("openrouter_traces", runId, entry.name);
     const tracePayload = await readTracePayload(relativeTraceFile);
     const latestExecution = getLatestExecution(tracePayload);
-    totalRequestMs += deriveExecutionTimingMs(latestExecution);
+    totalRequestMs += deriveExecutionStats(latestExecution).totalRequestMs;
   }
 
-  runTimingCache.set(runId, totalRequestMs);
   return totalRequestMs;
 }
 
@@ -196,9 +268,9 @@ async function toRankingEntry(benchmark) {
   const correct = numberOrZero(run?.solvedCount);
   const errors = numberOrZero(run?.failedCount);
   const incorrect = Math.max(0, totalTests - correct - errors);
-  const totalCost = numberOrZero(run?.totalCostUsd);
-  const totalRequestMs =
-    numberOrZero(run?.totalRequestMs) || (await deriveRunTimingFromTraces(benchmark?.id));
+  const derivedRunStats = await deriveRunStatsFromGames(run);
+  const totalCost = derivedRunStats.totalCostUsd;
+  const totalRequestMs = derivedRunStats.totalRequestMs || (await deriveRunTimingFromTraces(benchmark?.id));
   const averageDuration = totalTests > 0 ? totalRequestMs / totalTests : 0;
 
   return {
@@ -218,9 +290,9 @@ async function toRankingEntry(benchmark) {
     averageCostPerTest: totalTests > 0 ? totalCost / totalTests : 0,
     totalGuesses: numberOrZero(run?.totalGuesses),
     averageGuesses: numberOrZero(run?.averageGuesses),
-    pricedRequests: numberOrZero(run?.pricedRequests),
-    totalRequests: numberOrZero(run?.totalRequests),
-    missingPriceRequests: numberOrZero(run?.missingPriceRequests),
+    pricedRequests: derivedRunStats.pricedRequests,
+    totalRequests: derivedRunStats.totalRequests,
+    missingPriceRequests: derivedRunStats.missingPriceRequests,
   };
 }
 
@@ -758,14 +830,15 @@ async function buildReplayRuns(benchmarks, rankingByRunId) {
           .map((turn) => turn.text);
         const svgPath = await writeReplaySvg(benchmark.id, game.targetWord, drawTurn?.svg);
 
+        const gameStats = await deriveGameStats(game);
         return {
           targetWord: game.targetWord,
           solved: Boolean(game.solved),
           guessesUsed: numberOrZero(game.guessesUsed),
           penalizedGuesses: numberOrZero(game.penalizedGuesses),
-          totalCostUsd: numberOrZero(game.totalCostUsd),
-          totalRequestMs: await deriveGameTimingMs(game),
-          totalRequests: numberOrZero(game.totalRequests),
+          totalCostUsd: gameStats.totalCostUsd,
+          totalRequestMs: gameStats.totalRequestMs,
+          totalRequests: gameStats.totalRequests,
           svgPath,
           guesses,
           traceRef: game.traceRef || null,
@@ -774,6 +847,7 @@ async function buildReplayRuns(benchmarks, rankingByRunId) {
     );
 
     const ranking = rankingByRunId.get(benchmark.id);
+    const runStats = await deriveRunStatsFromGames(run);
     runs.push({
       model: formatModelName(run),
       modelId: run.modelId || null,
@@ -784,9 +858,9 @@ async function buildReplayRuns(benchmarks, rankingByRunId) {
       totalWords: numberOrZero(run.totalWords),
       totalGuesses: numberOrZero(run.totalGuesses),
       averageGuesses: numberOrZero(run.averageGuesses),
-      totalCostUsd: numberOrZero(run.totalCostUsd),
-      totalRequestMs: ranking?.totalRequestMs || 0,
-      totalRequests: numberOrZero(run.totalRequests),
+      totalCostUsd: runStats.totalCostUsd,
+      totalRequestMs: ranking?.totalRequestMs || runStats.totalRequestMs || 0,
+      totalRequests: runStats.totalRequests,
       games,
       wordBank: Array.isArray(benchmark.wordBank) ? benchmark.wordBank : games.map((game) => game.targetWord),
     });
