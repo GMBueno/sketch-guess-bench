@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <pattern id="board" width="108" height="108" patternUnits="userSpaceOnUse">
+      <rect width="54" height="54" fill="#f0d9b5"/>
+      <rect x="54" width="54" height="54" fill="#b58863"/>
+      <rect y="54" width="54" height="54" fill="#b58863"/>
+      <rect x="54" y="54" width="54" height="54" fill="#f0d9b5"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Board -->
+  <rect x="40" y="40" width="432" height="432" rx="16" fill="#0b2a3a"/>
+  <rect x="44" y="44" width="424" height="424" rx="12" fill="url(#board)"/>
+
+  <!-- Threat highlight -->
+  <circle cx="283" cy="337" r="54" fill="none" stroke="#e53935" stroke-width="6" opacity="0.35"/>
+  <line x1="337" y1="175" x2="283" y2="337" stroke="#e53935" stroke-width="7" stroke-linecap="round"/>
+  <line x1="258" y1="314" x2="309" y2="365" stroke="#e53935" stroke-width="8" stroke-linecap="round"/>
+  <line x1="309" y1="314" x2="258" y2="365" stroke="#e53935" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Pieces -->
+  <!-- White Queen -->
+  <g filter="url(#shadow)" transform="translate(0,0)">
+    <g transform="translate(337 175)">
+      <ellipse cx="0" cy="60" rx="34" ry="14" fill="#c7a36a"/>
+      <path d="M-30 55 Q0 20 30 55 Z" fill="#f7f7f7"/>
+      <rect x="-22" y="30" width="44" height="40" rx="18" fill="#ffffff"/>
+      <ellipse cx="0" cy="35" rx="16" ry="10" fill="#e8e8e8"/>
+      <path d="M-20 24 L-10 8 L0 24 L10 8 L20 24 Z" fill="#f2c14b"/>
+      <path d="M-10 8 L0 0 L10 8 Z" fill="#d19a2a"/>
+      <circle cx="0" cy="-2" r="5" fill="#b97a12"/>
+    </g>
+  </g>
+
+  <!-- Black King (target) -->
+  <g filter="url(#shadow)" transform="translate(0,0)">
+    <g transform="translate(283 337)">
+      <ellipse cx="0" cy="56" rx="33" ry="13" fill="#8b8b8b" opacity="0.9"/>
+      <rect x="-24" y="20" width="48" height="50" rx="18" fill="#1f2937"/>
+      <ellipse cx="0" cy="30" rx="15" ry="9" fill="#111827"/>
+      <path d="M-22 45 Q0 14 22 45 Z" fill="#0f172a"/>
+      <path d="M-18 18 L-9 6 L0 18 L9 6 L18 18 Z" fill="#c9b07a" opacity="0.95"/>
+      <path d="M-9 6 L0 0 L9 6 Z" fill="#f2c14b"/>
+      <circle cx="0" cy="-2" r="4.7" fill="#b97a12"/>
+    </g>
+  </g>
+
+  <!-- White Rooks blocking escape -->
+  <g filter="url(#shadow)">
+    <!-- Left rook -->
+    <g transform="translate(229 337)">
+      <ellipse cx="0" cy="58" rx="30" ry="12" fill="#c7a36a"/>
+      <rect x="-22" y="18" width="44" height="56" rx="16" fill="#ffffff"/>
+      <rect x="-18" y="10" width="36" height="16" rx="8" fill="#e8e8e8"/>
+      <path d="M-26 18 H26" stroke="#e6e6e6" stroke-width="6" stroke-linecap="round"/>
+      <rect x="-26" y="30" width="52" height="8" rx="4" fill="#d8d8d8"/>
+      <rect x="-18" y="30" width="36" height="18" rx="6" fill="#f7f7f7"/>
+      <path d="M-12 18 L-6 6 L0 18 L6 6 L12 18 Z" fill="#f2c14b"/>
+    </g>
+    <!-- Right rook -->
+    <g transform="translate(337 337)">
+      <ellipse cx="0" cy="58" rx="30" ry="12" fill="#c7a36a"/>
+      <rect x="-22" y="18" width="44" height="56" rx="16" fill="#ffffff"/>
+      <rect x="-18" y="10" width="36" height="16" rx="8" fill="#e8e8e8"/>
+      <path d="M-26 18 H26" stroke="#e6e6e6" stroke-width="6" stroke-linecap="round"/>
+      <rect x="-26" y="30" width="52" height="8" rx="4" fill="#d8d8d8"/>
+      <rect x="-18" y="30" width="36" height="18" rx="6" fill="#f7f7f7"/>
+      <path d="M-12 18 L-6 6 L0 18 L6 6 L12 18 Z" fill="#f2c14b"/>
+    </g>
+  </g>
+
+  <!-- Subtle board coordinates hint (still no text): small dark borders -->
+  <rect x="60" y="60" width="392" height="392" rx="10" fill="none" stroke="#0b2a3a" stroke-width="3" opacity="0.35"/>
+</svg>

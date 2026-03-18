@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bh" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#020208"/>
+      <stop offset="35%" stop-color="#070714"/>
+      <stop offset="70%" stop-color="#0d0d22"/>
+      <stop offset="100%" stop-color="#150f2b"/>
+    </radialGradient>
+    <radialGradient id="ring" cx="50%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="55%" stop-color="#ffb74d" stop-opacity="0.65"/>
+      <stop offset="75%" stop-color="#ff6f00" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- space background -->
+  <rect width="512" height="512" fill="#050513"/>
+
+  <!-- stars -->
+  <g fill="#d7e2ff" opacity="0.95">
+    <circle cx="78" cy="115" r="1.6"/>
+    <circle cx="128" cy="70" r="1.2"/>
+    <circle cx="190" cy="140" r="1.4"/>
+    <circle cx="420" cy="120" r="1.5"/>
+    <circle cx="465" cy="200" r="1.2"/>
+    <circle cx="380" cy="70" r="1.1"/>
+    <circle cx="55" cy="220" r="1.3"/>
+    <circle cx="92" cy="320" r="1.2"/>
+    <circle cx="170" cy="430" r="1.5"/>
+    <circle cx="420" cy="360" r="1.4"/>
+    <circle cx="460" cy="430" r="1.2"/>
+    <circle cx="330" cy="445" r="1.1"/>
+    <circle cx="250" cy="35" r="1.2"/>
+    <circle cx="30" cy="400" r="1.1"/>
+    <circle cx="500" cy="320" r="1.1"/>
+    <circle cx="260" cy="270" r="1.0" opacity="0.6"/>
+  </g>
+
+  <!-- gravitational lens ring glow -->
+  <circle cx="256" cy="256" r="120" fill="url(#ring)" filter="url(#softGlow)"/>
+
+  <!-- accretion disk (subtle swirl) -->
+  <g opacity="0.95" filter="url(#softGlow)">
+    <ellipse cx="256" cy="256" rx="175" ry="70" fill="none" stroke="#ffcc80" stroke-opacity="0.35" stroke-width="10"/>
+    <ellipse cx="256" cy="256" rx="140" ry="55" fill="none" stroke="#ff9800" stroke-opacity="0.28" stroke-width="8" transform="rotate(-12 256 256)"/>
+    <ellipse cx="256" cy="256" rx="115" ry="45" fill="none" stroke="#ff6f00" stroke-opacity="0.25" stroke-width="7" transform="rotate(9 256 256)"/>
+
+    <!-- spiral arcs -->
+    <path d="M 165 245 C 210 165, 320 165, 355 250" fill="none" stroke="#ffd180" stroke-opacity="0.35" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 155 270 C 205 210, 315 205, 365 275" fill="none" stroke="#ff8f00" stroke-opacity="0.28" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 175 295 C 215 255, 295 245, 340 310" fill="none" stroke="#ff6f00" stroke-opacity="0.22" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- event horizon -->
+  <circle cx="256" cy="256" r="85" fill="url(#bh)"/>
+
+  <!-- darker inner core and subtle rim -->
+  <circle cx="256" cy="256" r="55" fill="#000" opacity="0.88"/>
+  <circle cx="256" cy="256" r="88" fill="none" stroke="#2a1b52" stroke-opacity="0.9" stroke-width="6"/>
+  <circle cx="256" cy="256" r="70" fill="none" stroke="#120a28" stroke-opacity="0.8" stroke-width="5"/>
+
+  <!-- lensing warp: faint curved streaks around center -->
+  <g fill="none" stroke="#8fa6ff" stroke-opacity="0.15" stroke-width="2">
+    <path d="M 85 260 C 135 200, 200 180, 260 180"/>
+    <path d="M 110 330 C 160 275, 225 245, 290 235"/>
+    <path d="M 120 205 C 180 175, 235 165, 305 175"/>
+    <path d="M 95 345 C 155 310, 220 290, 305 285"/>
+  </g>
+</svg>

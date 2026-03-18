@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .stroke{stroke:#1f2937;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+      .thin{stroke:#1f2937;stroke-width:5;}
+      .fill{fill:#93c5fd;opacity:0.45;}
+      .glass{fill:#60a5fa;opacity:0.20;}
+      .glow{fill:#fde68a;opacity:0.55;}
+      .atom{fill:none;stroke:#ef4444;stroke-width:6;stroke-linecap:round;}
+      .atom2{fill:none;stroke:#f59e0b;stroke-width:6;stroke-linecap:round;}
+      .atom3{fill:none;stroke:#22c55e;stroke-width:6;stroke-linecap:round;}
+      .base{fill:#111827;opacity:0.9;}
+    </style>
+  </defs>
+
+  <!-- Atom (symbol of science) -->
+  <circle cx="128" cy="140" r="10" class="glow"/>
+  <circle cx="152" cy="120" r="7" class="glow"/>
+  <circle cx="162" cy="155" r="6" class="glow"/>
+  <ellipse cx="138" cy="138" rx="78" ry="35" class="atom" transform="rotate(20 138 138)"/>
+  <ellipse cx="138" cy="138" rx="60" ry="30" class="atom2" transform="rotate(-25 138 138)"/>
+  <ellipse cx="138" cy="138" rx="45" ry="22" class="atom3" transform="rotate(70 138 138)"/>
+
+  <!-- Beaker / flask -->
+  <path d="M315 120 L365 120 L402 170 Q410 180 400 190 L380 210 L400 430 Q401 450 380 450 L310 450 Q289 450 290 430 L310 210 L290 190 Q280 180 288 170 L315 120 Z" class="stroke"/>
+  <path d="M322 140 L358 140" class="thin stroke"/>
+  <path d="M305 230 Q325 240 345 235 Q360 230 385 240" class="thin stroke" opacity="0.7"/>
+  <path d="M305 260 L390 260" class="thin stroke" opacity="0.7"/>
+  <path d="M300 240 Q320 255 345 252 Q365 250 392 258 L392 320 Q392 350 365 360 Q338 370 310 355 Q300 350 300 325 Z" class="glass"/>
+  <path d="M310 210 L372 210" class="thin stroke"/>
+
+  <!-- Liquid highlight -->
+  <path d="M330 235 Q350 260 350 300 Q350 345 325 360" class="thin stroke" opacity="0.55"/>
+
+  <!-- Microscope -->
+  <g transform="translate(0,0)">
+    <!-- base -->
+    <path d="M255 360 L332 360" class="stroke"/>
+    <path d="M240 430 Q255 400 280 400 Q305 400 322 430 L240 430 Z" class="base"/>
+    <path d="M250 420 L312 420" class="thin stroke" opacity="0.7"/>
+
+    <!-- arm -->
+    <path d="M250 360 L240 280" class="stroke"/>
+    <path d="M240 280 L292 220" class="stroke"/>
+    <path d="M292 220 L350 250" class="stroke"/>
+    <path d="M350 250 L360 245" class="stroke"/>
+
+    <!-- stage -->
+    <path d="M210 310 L320 310" class="stroke"/>
+    <path d="M215 310 L230 285" class="thin stroke" opacity="0.8"/>
+    <path d="M312 310 L325 285" class="thin stroke" opacity="0.8"/>
+
+    <!-- lens/tube -->
+    <path d="M292 220 L285 180" class="stroke"/>
+    <circle cx="290" cy="170" r="22" class="stroke"/>
+    <path d="M290 170 L350 170" class="thin stroke"/>
+
+    <!-- eyepiece support -->
+    <path d="M260 170 L285 180" class="thin stroke"/>
+  </g>
+
+  <!-- Connecting lines to imply working area -->
+  <path d="M125 310 C170 270 220 260 255 280" class="thin stroke" opacity="0.35"/>
+  <path d="M105 340 C160 320 210 320 250 350" class="thin stroke" opacity="0.25"/>
+
+  <!-- Decorative stars/dots -->
+  <circle cx="430" cy="120" r="3" fill="#111827" opacity="0.7"/>
+  <circle cx="455" cy="165" r="4" fill="#111827" opacity="0.5"/>
+  <circle cx="405" cy="165" r="2.5" fill="#111827" opacity="0.55"/>
+  <circle cx="420" cy="95" r="2.5" fill="#111827" opacity="0.55"/>
+</svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe9ff"/>
+      <stop offset="0.55" stop-color="#a9d3ff"/>
+      <stop offset="1" stop-color="#77b6ff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="32%" r="35%">
+      <stop offset="0" stop-color="#fff2a8" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#ffe066" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffd000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c8ad6"/>
+      <stop offset="1" stop-color="#0a4d87"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#sky)"/>
+
+  <!-- Sun glow and rays -->
+  <circle cx="256" cy="170" r="140" fill="url(#glow)"/>
+  <g stroke="#ffd45a" stroke-width="10" stroke-linecap="round" opacity="0.55">
+    <path d="M256 40 L256 95"/>
+    <path d="M256 245 L256 300"/>
+    <path d="M116 170 L168 170"/>
+    <path d="M344 170 L396 170"/>
+    <path d="M150 115 L186 151"/>
+    <path d="M322 189 L358 225"/>
+    <path d="M186 151 L150 115"/>
+    <path d="M358 225 L322 189"/>
+    <path d="M176 92 L206 132"/>
+    <path d="M306 208 L336 248"/>
+  </g>
+
+  <!-- Clouds -->
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="120" cy="140" rx="75" ry="35"/>
+    <ellipse cx="165" cy="125" rx="55" ry="28"/>
+    <ellipse cx="95" cy="135" rx="45" ry="22"/>
+
+    <ellipse cx="365" cy="125" rx="70" ry="32"/>
+    <ellipse cx="410" cy="120" rx="50" ry="24"/>
+    <ellipse cx="340" cy="135" rx="45" ry="22"/>
+  </g>
+
+  <!-- Water -->
+  <path d="M0 330 C70 310, 140 350, 210 330 C280 305, 330 365, 400 340 C445 325, 485 330, 512 320 L512 512 L0 512 Z" fill="url(#water)" opacity="0.95"/>
+  <g fill="none" stroke="#b9f0ff" stroke-width="6" opacity="0.7">
+    <path d="M0 360 C70 340, 140 390, 210 370 C280 350, 330 410, 400 385 C445 370, 485 375, 512 365"/>
+    <path d="M0 405 C70 385, 140 435, 210 415 C280 395, 330 455, 400 430 C445 415, 485 420, 512 410"/>
+  </g>
+
+  <!-- Hands reaching upward -->
+  <g fill="#2b2b2b" opacity="0.9">
+    <!-- left arm -->
+    <path d="M150 420 C160 385, 175 360, 200 350 C215 345, 225 355, 220 372 C212 405, 205 415, 192 438 C178 463, 140 465, 150 420 Z"/>
+    <!-- left hand -->
+    <path d="M185 445 C195 430, 210 425, 230 430 C245 434, 244 456, 226 468 C205 482, 170 472, 185 445 Z"/>
+
+    <!-- right arm -->
+    <path d="M362 420 C352 385, 337 360, 312 350 C297 345, 287 355, 292 372 C300 405, 307 415, 320 438 C334 463, 372 465, 362 420 Z"/>
+    <!-- right hand -->
+    <path d="M327 445 C317 430, 302 425, 282 430 C267 434, 268 456, 286 468 C307 482, 342 472, 327 445 Z"/>
+  </g>
+
+  <!-- Cross (salvation) -->
+  <g transform="translate(0,0)">
+    <rect x="238" y="140" width="36" height="250" rx="10" fill="#f7f7f7"/>
+    <rect x="168" y="225" width="176" height="36" rx="10" fill="#f7f7f7"/>
+    <!-- subtle shading -->
+    <rect x="246" y="150" width="20" height="230" rx="10" fill="#e7e7e7" opacity="0.9"/>
+    <rect x="176" y="233" width="160" height="20" rx="10" fill="#e7e7e7" opacity="0.9"/>
+  </g>
+
+  <!-- Light rays from cross -->
+  <g stroke="#ffe68a" stroke-width="8" stroke-linecap="round" opacity="0.5">
+    <path d="M256 100 L256 150"/>
+    <path d="M230 110 L220 155"/>
+    <path d="M282 110 L292 155"/>
+    <path d="M200 135 L188 170"/>
+    <path d="M312 135 L324 170"/>
+  </g>
+</svg>

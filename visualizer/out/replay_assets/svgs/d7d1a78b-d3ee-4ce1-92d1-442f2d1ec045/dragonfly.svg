@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="wingGrad1" x1="120" y1="130" x2="280" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7fe9ff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#2aa3ff" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="wingGrad2" x1="150" y1="260" x2="310" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b0f5ff" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#2aa3ff" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="bodyGrad" x1="250" y1="150" x2="250" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#35d07f"/>
+      <stop offset="1" stop-color="#0a6c3a"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Wings (back) -->
+  <g filter="url(#softGlow)">
+    <path d="M120 210 C140 140, 220 105, 270 150 C250 160, 220 195, 210 240 C195 310, 165 335, 140 320 C115 305, 105 270, 120 210 Z"
+          fill="url(#wingGrad2)" stroke="#7fe9ff" stroke-opacity="0.35" stroke-width="2"/>
+    <path d="M295 150 C350 105, 430 140, 445 210 C455 270, 445 305, 420 320 C390 338, 365 310, 350 240 C340 195, 315 160, 295 150 Z"
+          fill="url(#wingGrad2)" stroke="#7fe9ff" stroke-opacity="0.35" stroke-width="2"/>
+
+    <!-- Wing veins -->
+    <path d="M190 210 C215 190, 245 185, 255 205" fill="none" stroke="#d9fbff" stroke-width="2" stroke-opacity="0.55"/>
+    <path d="M325 210 C300 190, 270 185, 260 205" fill="none" stroke="#d9fbff" stroke-width="2" stroke-opacity="0.55"/>
+
+    <!-- Wings (front) -->
+    <path d="M145 245 C160 190, 220 165, 265 190 C260 210, 230 230, 215 265 C190 320, 160 340, 140 335 C125 330, 120 300, 145 245 Z"
+          fill="url(#wingGrad1)" stroke="#7fe9ff" stroke-opacity="0.42" stroke-width="2"/>
+    <path d="M365 245 C390 300, 385 330, 370 335 C350 340, 320 320, 295 265 C280 230, 250 210, 245 190 C290 165, 350 190, 365 245 Z"
+          fill="url(#wingGrad1)" stroke="#7fe9ff" stroke-opacity="0.42" stroke-width="2"/>
+
+    <path d="M225 250 C245 240, 255 240, 265 255" fill="none" stroke="#d9fbff" stroke-width="2" stroke-opacity="0.6"/>
+    <path d="M285 255 C295 240, 305 240, 325 250" fill="none" stroke="#d9fbff" stroke-width="2" stroke-opacity="0.6"/>
+  </g>
+
+  <!-- Body -->
+  <g>
+    <!-- Abdomen (segmented) -->
+    <path d="M250 155 C240 190, 238 220, 240 245 C242 275, 242 300, 235 330 C228 360, 226 378, 236 395"
+          fill="none" stroke="url(#bodyGrad)" stroke-width="22" stroke-linecap="round"/>
+    <path d="M236 395 C245 414, 245 430, 252 444"
+          fill="none" stroke="#0b5a33" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
+
+    <!-- Spine / central highlight -->
+    <path d="M250 155 C240 190, 242 225, 245 255 C248 285, 248 315, 242 340 C237 360, 236 382, 240 405 C244 425, 247 435, 252 444"
+          fill="none" stroke="#a8ffe0" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Segment rings (ellipses) -->
+    <g opacity="0.95">
+      <ellipse cx="242" cy="202" rx="12" ry="9" fill="#11a864"/>
+      <ellipse cx="243" cy="235" rx="12" ry="9" fill="#0f9157"/>
+      <ellipse cx="242" cy="268" rx="12" ry="9" fill="#11a864"/>
+      <ellipse cx="238" cy="302" rx="12" ry="9" fill="#0f9157"/>
+      <ellipse cx="235" cy="336" rx="12" ry="9" fill="#11a864"/>
+      <ellipse cx="245" cy="370" rx="11" ry="8" fill="#0f9157"/>
+    </g>
+
+    <!-- Head -->
+    <g>
+      <circle cx="255" cy="145" r="20" fill="#0e3f22"/>
+      <circle cx="250" cy="142" r="14" fill="#18c978"/>
+      <ellipse cx="235" cy="135" rx="7" ry="5" fill="#eaffff" opacity="0.85"/>
+      <ellipse cx="270" cy="135" rx="7" ry="5" fill="#eaffff" opacity="0.85"/>
+      <!-- Mandibles / snout -->
+      <path d="M250 162 C242 170, 232 175, 220 178" fill="none" stroke="#0e3f22" stroke-width="6" stroke-linecap="round"/>
+      <path d="M255 162 C262 170, 272 175, 285 178" fill="none" stroke="#0e3f22" stroke-width="6" stroke-linecap="round"/>
+    </g>
+
+    <!-- Tail tip -->
+    <path d="M252 444 C262 446, 276 450, 285 458" fill="none" stroke="#07351e" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <!-- Legs (simple) -->
+  <g opacity="0.9" stroke="#0b2f1a" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M252 280 C235 295, 220 305, 205 310"/>
+    <path d="M255 295 C230 315, 215 330, 195 340"/>
+    <path d="M245 305 C230 320, 220 330, 208 350"/>
+  </g>
+
+  <!-- Small glow around dragonfly -->
+  <ellipse cx="260" cy="300" rx="170" ry="150" fill="#2aa3ff" opacity="0.05"/>
+</svg>

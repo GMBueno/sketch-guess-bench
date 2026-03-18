@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cfefff"/>
+      <stop offset="60%" stop-color="#b7e2ff"/>
+      <stop offset="100%" stop-color="#7fc6a8"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2f7d4a"/>
+      <stop offset="100%" stop-color="#1f4f35"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#sky)"/>
+
+  <!-- distant haze / treeline -->
+  <path d="M0,285 C60,260 120,270 180,255 C240,240 300,255 360,250 C430,243 470,260 512,248 L512,512 L0,512 Z" fill="#2a6b43" opacity="0.35" filter="url(#soft)"/>
+
+  <!-- ground base -->
+  <path d="M0,330 C80,315 160,340 240,330 C320,320 400,350 512,330 L512,512 L0,512 Z" fill="url(#ground)"/>
+
+  <!-- trees back layer -->
+  <g opacity="0.95">
+    <g transform="translate(40,160)">
+      <rect x="18" y="150" width="14" height="90" rx="5" fill="#1b3b2a"/>
+      <polygon points="25,150 5,195 45,195" fill="#2c7a4e"/>
+      <polygon points="25,150 0,225 50,225" fill="#1f6a44"/>
+      <circle cx="25" cy="160" r="45" fill="#2e8557" opacity="0.95"/>
+      <circle cx="5" cy="210" r="35" fill="#2c7a4e" opacity="0.95"/>
+      <circle cx="45" cy="210" r="35" fill="#2c7a4e" opacity="0.95"/>
+    </g>
+
+    <g transform="translate(130,185)">
+      <rect x="18" y="140" width="14" height="100" rx="5" fill="#1b3b2a"/>
+      <circle cx="25" cy="145" r="48" fill="#2f8a5b"/>
+      <polygon points="25,155 0,215 50,215" fill="#237044"/>
+      <polygon points="25,125 0,195 50,195" fill="#2a7b4f"/>
+      <circle cx="8" cy="215" r="32" fill="#2c7a4e"/>
+      <circle cx="42" cy="215" r="32" fill="#2c7a4e"/>
+    </g>
+
+    <g transform="translate(250,170)">
+      <rect x="18" y="150" width="14" height="90" rx="5" fill="#1b3b2a"/>
+      <circle cx="25" cy="150" r="55" fill="#2e8d5f"/>
+      <polygon points="25,155 0,240 50,240" fill="#1f6a44"/>
+      <polygon points="25,120 0,205 50,205" fill="#2a7b4f"/>
+      <circle cx="-5" cy="240" r="35" fill="#2c7a4e" opacity="0.95"/>
+      <circle cx="55" cy="240" r="35" fill="#2c7a4e" opacity="0.95"/>
+    </g>
+
+    <g transform="translate(360,190)">
+      <rect x="18" y="145" width="14" height="95" rx="5" fill="#1b3b2a"/>
+      <circle cx="25" cy="150" r="45" fill="#2d8658"/>
+      <polygon points="25,160 0,220 50,220" fill="#1f6a44"/>
+      <polygon points="25,130 0,205 50,205" fill="#2a7b4f"/>
+      <circle cx="8" cy="220" r="30" fill="#2c7a4e"/>
+      <circle cx="42" cy="220" r="30" fill="#2c7a4e"/>
+    </g>
+  </g>
+
+  <!-- trees front layer -->
+  <g>
+    <g transform="translate(70,210)">
+      <rect x="18" y="190" width="14" height="120" rx="6" fill="#153526"/>
+      <circle cx="25" cy="205" r="70" fill="#1f6a44"/>
+      <circle cx="-10" cy="245" r="55" fill="#246f47"/>
+      <circle cx="60" cy="245" r="55" fill="#246f47"/>
+      <polygon points="25,210 0,305 50,305" fill="#1b5f3c"/>
+      <polygon points="25,170 -10,270 60,270" fill="#2b7f53" opacity="0.95"/>
+    </g>
+
+    <g transform="translate(160,235)">
+      <rect x="18" y="175" width="14" height="135" rx="6" fill="#153526"/>
+      <circle cx="25" cy="190" r="78" fill="#1f6a44"/>
+      <polygon points="25,195 0,320 50,320" fill="#1b5f3c"/>
+      <circle cx="-20" cy="245" r="58" fill="#246f47"/>
+      <circle cx="70" cy="245" r="58" fill="#246f47"/>
+      <circle cx="10" cy="315" r="40" fill="#1c6a43"/>
+      <circle cx="42" cy="315" r="40" fill="#1c6a43"/>
+    </g>
+
+    <g transform="translate(275,210)">
+      <rect x="18" y="195" width="14" height="115" rx="6" fill="#153526"/>
+      <circle cx="25" cy="215" r="82" fill="#1f6a44"/>
+      <polygon points="25,220 0,330 50,330" fill="#1b5f3c"/>
+      <polygon points="25,180 -12,290 62,290" fill="#2b7f53" opacity="0.95"/>
+      <circle cx="-15" cy="275" r="60" fill="#246f47"/>
+      <circle cx="65" cy="275" r="60" fill="#246f47"/>
+    </g>
+
+    <g transform="translate(375,230)">
+      <rect x="18" y="175" width="14" height="135" rx="6" fill="#153526"/>
+      <circle cx="25" cy="200" r="70" fill="#1f6a44"/>
+      <polygon points="25,205 0,320 50,320" fill="#1b5f3c"/>
+      <polygon points="25,165 0,260 50,260" fill="#2b7f53" opacity="0.95"/>
+      <circle cx="-10" cy="255" r="48" fill="#246f47"/>
+      <circle cx="60" cy="255" r="48" fill="#246f47"/>
+      <circle cx="18" cy="320" r="38" fill="#1c6a43"/>
+      <circle cx="42" cy="320" r="38" fill="#1c6a43"/>
+    </g>
+
+    <!-- small foreground shrubs -->
+    <path d="M40,410 C70,390 100,390 130,410 C110,430 70,435 40,410 Z" fill="#16523a" opacity="0.95"/>
+    <path d="M190,420 C215,400 255,405 275,425 C255,450 210,450 190,420 Z" fill="#15503a" opacity="0.95"/>
+    <path d="M335,420 C360,395 410,400 440,425 C410,455 365,455 335,420 Z" fill="#15503a" opacity="0.95"/>
+  </g>
+
+  <!-- subtle sun glow -->
+  <circle cx="420" cy="90" r="65" fill="#ffd27a" opacity="0.18" filter="url(#soft)"/>
+</svg>

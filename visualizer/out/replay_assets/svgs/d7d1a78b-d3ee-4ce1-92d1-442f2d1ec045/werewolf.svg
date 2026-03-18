@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="moonGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#dfe7ff"/>
+      <stop offset="100%" stop-color="#b7c7ff"/>
+    </radialGradient>
+    <linearGradient id="furGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#33383f"/>
+      <stop offset="100%" stop-color="#0f1115"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Night background -->
+  <rect width="512" height="512" fill="#0b1220"/>
+  <circle cx="395" cy="120" r="60" fill="url(#moonGrad)" opacity="0.95"/>
+  <circle cx="414" cy="135" r="78" fill="#0b1220" opacity="0.12"/>
+
+  <!-- Moon rays -->
+  <g stroke="#cfe0ff" stroke-opacity="0.18" stroke-width="6" stroke-linecap="round">
+    <path d="M395 46 L395 10"/>
+    <path d="M463 120 L499 120"/>
+    <path d="M395 194 L395 230"/>
+    <path d="M326 120 L290 120"/>
+    <path d="M440 75 L465 50"/>
+    <path d="M350 165 L325 190"/>
+    <path d="M440 165 L465 190"/>
+    <path d="M350 75 L325 50"/>
+  </g>
+
+  <!-- Ground mist -->
+  <g opacity="0.25" fill="#6aa3ff">
+    <path d="M40 430 C90 400, 150 410, 200 430 C250 450, 310 450, 360 430 C405 412, 450 410, 472 420 L472 512 L40 512 Z"/>
+  </g>
+
+  <!-- Wolf silhouette -->
+  <g filter="url(#softShadow)" transform="translate(0,0)">
+    <!-- Tail -->
+    <path d="M165 315 C125 305, 98 280, 92 255 C86 232, 104 218, 124 220 C147 222, 155 242, 158 259 C160 272, 165 285, 175 295 C185 306, 189 322, 175 332 C168 337, 158 335, 165 315 Z" fill="url(#furGrad)"/>
+
+    <!-- Main body -->
+    <path d="M125 318 C125 255, 165 210, 220 198 C235 152, 277 128, 318 140 C350 150, 372 180, 377 215 C420 230, 444 268, 436 314 C425 382, 358 418, 295 418 C224 418, 125 385, 125 318 Z" fill="url(#furGrad)"/>
+
+    <!-- Head base -->
+    <path d="M205 235 C205 190, 238 158, 282 160 C320 162, 350 195, 350 236 C350 280, 318 309, 276 309 C235 309, 205 280, 205 235 Z" fill="url(#furGrad)"/>
+
+    <!-- Ears -->
+    <path d="M232 188 L208 128 L255 150 Z" fill="url(#furGrad)"/>
+    <path d="M315 188 L340 128 L292 150 Z" fill="url(#furGrad)"/>
+
+    <!-- Face muzzle -->
+    <path d="M260 268 C260 242, 276 225, 300 225 C325 225, 338 242, 338 268 C338 292, 324 308, 300 308 C276 308, 260 292, 260 268 Z" fill="#12151b"/>
+
+    <!-- Mouth line (no text) -->
+    <path d="M290 294 C301 305, 312 303, 320 292" fill="none" stroke="#3a3f48" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Eyes (dark ovals) -->
+    <ellipse cx="272" cy="246" rx="12" ry="18" fill="#040507"/>
+    <ellipse cx="312" cy="246" rx="12" ry="18" fill="#040507"/>
+
+    <!-- Subtle highlight on forehead -->
+    <path d="M240 245 C250 210, 280 195, 308 200" fill="none" stroke="#5e6a78" stroke-opacity="0.35" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Transformation hint: moonlight reflection trail -->
+    <path d="M360 360 C385 345, 410 328, 435 322" fill="none" stroke="#7fb1ff" stroke-opacity="0.35" stroke-width="10" stroke-linecap="round"/>
+    <path d="M360 385 C390 370, 420 360, 452 362" fill="none" stroke="#7fb1ff" stroke-opacity="0.20" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Legs -->
+    <path d="M175 382 C170 350, 190 332, 214 332 C230 332, 245 348, 245 370 C245 410, 206 420, 175 382 Z" fill="url(#furGrad)"/>
+    <path d="M245 378 C245 345, 262 332, 286 332 C315 332, 328 354, 324 386 C318 434, 270 428, 245 378 Z" fill="url(#furGrad)"/>
+  </g>
+
+  <!-- Foreground mist for mood -->
+  <g opacity="0.18" fill="#94c0ff">
+    <path d="M0 430 C50 408, 110 424, 160 440 C210 456, 255 452, 310 438 C360 426, 420 416, 512 430 L512 512 L0 512 Z"/>
+  </g>
+</svg>

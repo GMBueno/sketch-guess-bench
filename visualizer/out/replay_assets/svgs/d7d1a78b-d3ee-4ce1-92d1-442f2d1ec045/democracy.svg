@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4b5563"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- subtle ground shadow -->
+  <ellipse cx="256" cy="432" rx="170" ry="28" fill="#0f172a" opacity="0.08"/>
+
+  <!-- People/crowd silhouettes -->
+  <g opacity="0.95">
+    <!-- left person -->
+    <g transform="translate(120,190)">
+      <circle cx="0" cy="0" r="26" fill="#1f2937"/>
+      <path d="M-44,84 C-35,40 -14,22 0,22 C14,22 35,40 44,84 Z" fill="#334155"/>
+    </g>
+    <!-- center person -->
+    <g transform="translate(256,160)">
+      <circle cx="0" cy="0" r="30" fill="#111827"/>
+      <path d="M-52,96 C-41,45 -17,22 0,22 C17,22 41,45 52,96 Z" fill="#3b4252"/>
+    </g>
+    <!-- right person -->
+    <g transform="translate(392,190)">
+      <circle cx="0" cy="0" r="26" fill="#1f2937"/>
+      <path d="M-44,84 C-35,40 -14,22 0,22 C14,22 35,40 44,84 Z" fill="#334155"/>
+    </g>
+  </g>
+
+  <!-- Ballot box -->
+  <g transform="translate(96,150)">
+    <!-- base -->
+    <rect x="92" y="170" width="220" height="210" rx="18" fill="#0b1220" opacity="0.35"/>
+
+    <!-- outer body -->
+    <rect x="78" y="150" width="252" height="232" rx="20" fill="url(#box)"/>
+
+    <!-- inner panel -->
+    <rect x="98" y="172" width="212" height="188" rx="14" fill="#111827" opacity="0.55"/>
+
+    <!-- slot -->
+    <g>
+      <rect x="170" y="252" width="72" height="20" rx="10" fill="#0f172a"/>
+      <path d="M160 260 C170 246 342 246 352 260" fill="none" stroke="#0f172a" stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+    </g>
+
+    <!-- top rim -->
+    <rect x="66" y="132" width="276" height="30" rx="15" fill="#0f172a" opacity="0.9"/>
+    <rect x="82" y="140" width="244" height="18" rx="9" fill="#111827" opacity="0.75"/>
+
+    <!-- front highlight -->
+    <path d="M106 168 C92 210 92 320 106 358" fill="none" stroke="#93c5fd" stroke-width="6" opacity="0.25"/>
+
+    <!-- handles/edges -->
+    <rect x="78" y="150" width="252" height="232" rx="20" fill="none" stroke="#e5e7eb" stroke-width="3" opacity="0.35"/>
+  </g>
+
+  <!-- Ballot papers being inserted (hands) -->
+  <!-- left hand + ballot -->
+  <g transform="translate(70,250)">
+    <path d="M170 70 C140 62 115 48 96 28 C86 18 86 5 97 -6 C110 -20 133 -10 149 2 C165 14 191 33 206 36 C225 40 240 58 230 76 C217 99 195 82 170 70 Z" fill="#7c3aed" opacity="0.25"/>
+    <path d="M165 78 C136 70 114 56 95 37 C83 25 80 10 93 -3 C107 -16 131 -8 147 3 C165 15 190 34 205 37 C223 41 240 59 231 79 C218 102 195 87 165 78 Z" fill="#111827" opacity="0.8"/>
+    <path d="M188 0 C208 22 208 58 192 82 C188 88 176 93 170 87 L135 55 C128 49 136 38 142 31 C162 8 177 -8 188 0 Z" fill="url(#paper)" stroke="#93c5fd" stroke-width="3" opacity="0.95"/>
+  </g>
+
+  <!-- right hand + ballot -->
+  <g transform="translate(292,250) scale(-1,1) translate(-292, -250)">
+    <path d="M170 70 C140 62 115 48 96 28 C86 18 86 5 97 -6 C110 -20 133 -10 149 2 C165 14 191 33 206 36 C225 40 240 58 230 76 C217 99 195 82 170 70 Z" fill="#7c3aed" opacity="0.25"/>
+    <path d="M165 78 C136 70 114 56 95 37 C83 25 80 10 93 -3 C107 -16 131 -8 147 3 C165 15 190 34 205 37 C223 41 240 59 231 79 C218 102 195 87 165 78 Z" fill="#111827" opacity="0.8"/>
+    <path d="M188 0 C208 22 208 58 192 82 C188 88 176 93 170 87 L135 55 C128 49 136 38 142 31 C162 8 177 -8 188 0 Z" fill="url(#paper)" stroke="#93c5fd" stroke-width="3" opacity="0.95"/>
+  </g>
+
+  <!-- Decorative rays to suggest civic spirit -->
+  <g opacity="0.35" stroke="#2563eb" stroke-width="3" stroke-linecap="round">
+    <path d="M256 64 C266 92 273 116 280 140" fill="none"/>
+    <path d="M210 80 C223 108 233 132 240 156" fill="none"/>
+    <path d="M302 80 C289 108 279 132 272 156" fill="none"/>
+    <path d="M170 112 C188 138 202 162 212 184" fill="none"/>
+    <path d="M342 112 C324 138 310 162 300 184" fill="none"/>
+  </g>
+</svg>

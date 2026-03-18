@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#78c9ff"/>
+      <stop offset="60%" stop-color="#2f86d6"/>
+      <stop offset="100%" stop-color="#0b4f86"/>
+    </linearGradient>
+    <linearGradient id="seaweed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#66e06f"/>
+      <stop offset="100%" stop-color="#0e7a3a"/>
+    </linearGradient>
+    <linearGradient id="seaweed2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4fe85a"/>
+      <stop offset="100%" stop-color="#0a5f2d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#water)"/>
+
+  <!-- Light caustics -->
+  <g opacity="0.18">
+    <path d="M0,120 C70,90 120,150 190,120 C260,90 310,160 380,130 C440,105 480,120 512,140 L512,0 L0,0 Z" fill="#bff0ff"/>
+    <path d="M0,210 C90,170 140,230 220,200 C300,170 350,240 430,210 C470,195 495,205 512,220 L512,0 L0,0 Z" fill="#a8e6ff"/>
+  </g>
+
+  <!-- Horizon / surface line -->
+  <path d="M0,190 C60,175 120,210 180,195 C250,175 305,215 370,198 C440,180 480,200 512,210" fill="none" stroke="#9fe4ff" stroke-width="4" opacity="0.7"/>
+
+  <!-- Bubbles -->
+  <g fill="none" stroke="#bff7ff" stroke-width="3" opacity="0.65">
+    <circle cx="70" cy="260" r="12"/>
+    <circle cx="112" cy="320" r="7"/>
+    <circle cx="170" cy="280" r="9"/>
+    <circle cx="420" cy="250" r="11"/>
+    <circle cx="455" cy="315" r="8"/>
+    <circle cx="330" cy="290" r="6"/>
+  </g>
+
+  <!-- Seafloor -->
+  <path d="M0,420 C70,390 140,450 210,425 C280,400 330,470 400,440 C455,420 485,430 512,445 L512,512 L0,512 Z" fill="#053d3b"/>
+  <path d="M0,430 C75,405 145,465 220,438 C295,410 340,480 410,450 C460,430 490,438 512,452" fill="none" stroke="#0a5a56" stroke-width="6" opacity="0.55"/>
+
+  <!-- Algae / seaweed fronds -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left clump -->
+    <path d="M155,450 C150,405 170,380 160,330 C150,280 130,255 140,210 C150,165 180,155 200,140" fill="none" stroke="url(#seaweed)" stroke-width="14"/>
+    <path d="M155,450 C152,405 175,385 170,350 C165,315 155,290 165,255 C175,220 200,210 215,200" fill="none" stroke="url(#seaweed2)" stroke-width="10" opacity="0.95"/>
+
+    <path d="M195,430 C205,400 215,395 220,370 C225,345 210,335 220,310 C230,285 255,270 270,255" fill="none" stroke="url(#seaweed2)" stroke-width="10"/>
+    <path d="M205,420 C215,390 225,385 232,360 C240,335 230,325 240,300" fill="none" stroke="#1bd35a" stroke-width="7" opacity="0.8"/>
+
+    <!-- Right clump -->
+    <path d="M330,460 C335,415 315,395 325,350 C335,305 355,285 350,235 C345,185 320,165 300,150" fill="none" stroke="url(#seaweed)" stroke-width="14"/>
+    <path d="M330,460 C338,415 320,400 330,370 C340,340 345,320 340,285 C335,250 310,235 295,222" fill="none" stroke="url(#seaweed2)" stroke-width="10" opacity="0.95"/>
+
+    <!-- Extra thin strands -->
+    <path d="M250,460 C240,420 255,400 245,360 C235,320 245,295 245,260 C245,225 235,200 225,180" fill="none" stroke="#2de35f" stroke-width="7" opacity="0.85"/>
+    <path d="M265,470 C260,430 280,420 275,385 C270,350 275,330 285,300 C295,270 290,245 285,220" fill="none" stroke="#18b84e" stroke-width="6" opacity="0.85"/>
+
+    <!-- Leafy fronds (side branches) -->
+    <g opacity="0.95" fill="none" stroke-linecap="round" stroke-width="6">
+      <path d="M175,355 C190,345 200,350 210,345" stroke="#2ef06b"/>
+      <path d="M150,320 C165,310 178,320 188,312" stroke="#1fb85a"/>
+      <path d="M170,285 C185,275 200,285 214,276" stroke="#26d563"/>
+      <path d="M210,300 C225,290 240,300 255,292" stroke="#1fb85a"/>
+
+      <path d="M360,370 C345,360 335,365 322,358" stroke="#2ef06b"/>
+      <path d="M365,335 C350,325 338,335 328,325" stroke="#1fb85a"/>
+      <path d="M350,290 C335,280 320,290 308,280" stroke="#26d563"/>
+      <path d="M310,255 C295,245 280,255 265,246" stroke="#1fb85a"/>
+    </g>
+  </g>
+
+  <!-- Foreground algae shimmer blobs -->
+  <g opacity="0.35">
+    <path d="M70,455 C90,430 130,430 150,450 C170,470 205,465 220,450 C250,420 295,425 320,445 C350,470 395,465 420,445 C450,420 485,430 505,445 L512,512 L0,512 L0,455 C20,470 45,470 70,455 Z" fill="#0b6a3a"/>
+  </g>
+</svg>

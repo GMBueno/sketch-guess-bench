@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="outer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f0ff"/>
+      <stop offset="1" stop-color="#d8ccff"/>
+    </linearGradient>
+    <linearGradient id="inner" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffe7d6"/>
+      <stop offset="1" stop-color="#ffd1b0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" fill="#ffffff"/>
+
+  <!-- Mitochondrion outer membrane (bean/elliptical) -->
+  <ellipse cx="256" cy="260" rx="180" ry="120" fill="url(#outer)" stroke="#7a5cff" stroke-width="6"/>
+  <!-- Outer ring hint -->
+  <ellipse cx="256" cy="260" rx="155" ry="98" fill="none" stroke="#5a38ff" stroke-width="4"/>
+
+  <!-- Inner matrix -->
+  <ellipse cx="256" cy="260" rx="140" ry="88" fill="url(#inner)" stroke="#ff8a4a" stroke-width="3"/>
+
+  <!-- Inner membrane cristae (folds) -->
+  <g fill="none" stroke="#7a2fff" stroke-width="5" stroke-linecap="round" opacity="0.95">
+    <path d="M185 210 C220 185, 250 182, 286 190"/>
+    <path d="M170 240 C215 214, 260 208, 304 220"/>
+    <path d="M168 270 C220 248, 270 246, 312 260"/>
+    <path d="M176 300 C220 288, 270 292, 306 306"/>
+    <path d="M192 325 C225 322, 255 330, 285 340"/>
+  </g>
+
+  <g fill="none" stroke="#b64dff" stroke-width="3.5" stroke-linecap="round" opacity="0.9">
+    <path d="M210 205 C235 194, 265 196, 286 205"/>
+    <path d="M198 235 C238 220, 275 220, 300 232"/>
+    <path d="M198 270 C235 260, 275 262, 300 272"/>
+    <path d="M206 305 C240 300, 273 306, 292 316"/>
+    <path d="M220 335 C245 336, 265 344, 280 352"/>
+  </g>
+
+  <!-- Slight highlight edges for depth -->
+  <path d="M168 250 C190 170, 300 150, 342 230" fill="none" stroke="#ffffff" stroke-width="8" opacity="0.35"/>
+</svg>

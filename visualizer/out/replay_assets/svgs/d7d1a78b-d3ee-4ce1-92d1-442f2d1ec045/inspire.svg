@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="inspire">
+  <rect width="512" height="512" fill="#ffffff"/>
+  <!-- rays -->
+  <g fill="none" stroke="#FFD54F" stroke-width="10" stroke-linecap="round" opacity="0.95">
+    <path d="M256 60 L256 120"/>
+    <path d="M256 392 L256 452"/>
+    <path d="M60 256 L120 256"/>
+    <path d="M392 256 L452 256"/>
+    <path d="M108 108 L150 150"/>
+    <path d="M362 362 L404 404"/>
+    <path d="M404 108 L362 150"/>
+    <path d="M150 362 L108 404"/>
+  </g>
+
+  <!-- light bulb body -->
+  <g transform="translate(0,0)">
+    <path d="M256 120
+             C206 120 170 160 170 206
+             C170 238 186 262 204 279
+             C214 289 222 300 224 314
+             L288 314
+             C290 300 298 289 308 279
+             C326 262 342 238 342 206
+             C342 160 306 120 256 120 Z" 
+          fill="#FFEB3B" stroke="#F4B400" stroke-width="6"/>
+
+    <!-- bulb inner glow -->
+    <path d="M256 140
+             C216 140 188 170 188 206
+             C188 232 202 252 217 266
+             C229 277 238 292 238 308
+             L274 308
+             C274 292 283 277 295 266
+             C310 252 324 232 324 206
+             C324 170 296 140 256 140 Z" 
+          fill="#FFF59D" opacity="0.65"/>
+
+    <!-- base -->
+    <g>
+      <rect x="208" y="318" width="96" height="32" rx="12" fill="#FFB300" stroke="#E08A00" stroke-width="6"/>
+      <rect x="196" y="350" width="120" height="36" rx="18" fill="#FFA726" stroke="#E08A00" stroke-width="6"/>
+      <path d="M214 386 C240 406 272 406 298 386" fill="none" stroke="#E08A00" stroke-width="6" stroke-linecap="round"/>
+    </g>
+
+    <!-- subtle highlight -->
+    <path d="M233 150 C212 164 204 186 205 206" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- filament lines -->
+    <g stroke="#D84315" stroke-width="6" stroke-linecap="round" opacity="0.9">
+      <path d="M220 322 L256 322"/>
+      <path d="M256 322 L292 322"/>
+      <path d="M236 332 C248 344 264 344 276 332"/>
+    </g>
+  </g>
+
+  <!-- small floating sparkles -->
+  <g fill="#FFFFFF" opacity="0.9">
+    <path d="M128 210 l10 5 l-10 5 l-10 -5 Z"/>
+    <path d="M390 190 l8 4 l-8 4 l-8 -4 Z"/>
+    <path d="M150 320 l9 5 l-9 5 l-9 -5 Z"/>
+  </g>
+  <g fill="none" stroke="#FFEA00" stroke-width="6" stroke-linecap="round" opacity="0.9">
+    <path d="M136 230 l-12 0"/>
+    <path d="M376 170 l-12 0"/>
+    <path d="M158 340 l-12 0"/>
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="gHandle" x1="120" y1="380" x2="240" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff8a5b"/>
+      <stop offset="1" stop-color="#d9533a"/>
+    </linearGradient>
+    <linearGradient id="gShaft" x1="250" y1="200" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#cfd8dc"/>
+      <stop offset="1" stop-color="#90a4ae"/>
+    </linearGradient>
+  </defs>
+
+  <!-- shadow -->
+  <ellipse cx="270" cy="410" rx="120" ry="22" fill="#000" opacity="0.12"/>
+
+  <!-- screwdriver body (rotated) -->
+  <g transform="translate(0,0) rotate(-18 260 260)" >
+    <!-- handle -->
+    <rect x="110" y="300" width="175" height="85" rx="22" fill="url(#gHandle)"/>
+    <rect x="130" y="315" width="135" height="55" rx="16" fill="#f39c7a" opacity="0.35"/>
+
+    <!-- handle grip rings -->
+    <rect x="150" y="332" width="95" height="10" rx="5" fill="#9b4b3f" opacity="0.35"/>
+    <rect x="160" y="360" width="75" height="8" rx="4" fill="#9b4b3f" opacity="0.25"/>
+
+    <!-- shaft -->
+    <rect x="258" y="220" width="110" height="255" rx="18" fill="url(#gShaft)"/>
+
+    <!-- metal highlight -->
+    <path d="M280 230 C300 265, 350 315, 345 465" stroke="#e9f0f2" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- tip (cross shape silhouette without letters) -->
+    <g transform="translate(340 430) rotate(8)">
+      <polygon points="0,0 40,-10 40,10" fill="#b0bec5"/>
+      <polygon points="-10,0 30,-35 40,-10" fill="#c7d1d6"/>
+      <polygon points="-10,0 30,35 40,10" fill="#90a4ae"/>
+      <path d="M0,0 L22,-30 L22,30 Z" fill="#a5b7c0" opacity="0.35"/>
+    </g>
+
+    <!-- ferrule -->
+    <rect x="235" y="275" width="55" height="35" rx="14" fill="#9fb3bf" opacity="0.9"/>
+    <rect x="238" y="279" width="49" height="27" rx="12" fill="#bfcad1" opacity="0.55"/>
+  </g>
+
+  <!-- small sparkle dots for style -->
+  <g opacity="0.35" fill="#fff">
+    <circle cx="170" cy="200" r="3"/>
+    <circle cx="195" cy="185" r="2"/>
+    <circle cx="215" cy="225" r="2.5"/>
+  </g>
+</svg>

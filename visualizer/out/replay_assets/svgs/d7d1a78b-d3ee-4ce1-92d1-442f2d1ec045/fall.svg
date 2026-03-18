@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- ground -->
+  <rect x="0" y="410" width="512" height="102" fill="#3b2f2a"/>
+  <path d="M0 430 C90 410, 170 455, 260 430 C350 405, 430 460, 512 432 L512 512 L0 512 Z" fill="#2f241f" opacity="0.6"/>
+
+  <!-- tree trunk -->
+  <path d="M245 150 C235 220, 232 285, 240 350 C243 376, 252 398, 264 420 C268 428, 254 442, 244 430 C226 405, 216 370, 217 340 C219 275, 222 220, 232 145 Z" fill="#6b3f2a"/>
+  <path d="M256 165 C250 230, 250 290, 258 352 C262 384, 274 403, 290 425 C295 432, 284 445, 275 438 C260 426, 250 398, 245 372 C235 320, 238 235, 246 175 Z" fill="#5a3322"/>
+
+  <!-- canopy (mostly bare autumn) -->
+  <circle cx="210" cy="170" r="44" fill="#7a4b2f" opacity="0.85"/>
+  <circle cx="250" cy="145" r="55" fill="#6f442f" opacity="0.9"/>
+  <circle cx="290" cy="178" r="42" fill="#6a3f2b" opacity="0.85"/>
+
+  <!-- branches hint -->
+  <path d="M215 190 C245 160, 270 155, 310 175" stroke="#4f2a1b" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <path d="M200 215 C235 190, 265 190, 295 205" stroke="#4f2a1b" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.75"/>
+
+  <!-- falling leaves -->
+  <g fill="#e07a2f" opacity="0.95">
+    <path d="M120 120 C135 92, 165 92, 176 122 C186 150, 172 172, 148 173 C127 174, 107 150, 120 120 Z"/>
+    <path d="M155 235 C168 210, 195 210, 205 235 C214 259, 201 276, 181 279 C161 281, 146 260, 155 235 Z" fill="#d85f2b"/>
+    <path d="M320 150 C335 122, 365 122, 376 152 C386 180, 372 202, 348 203 C327 204, 307 180, 320 150 Z" fill="#db6b2f"/>
+    <path d="M360 240 C375 210, 407 212, 418 244 C427 270, 412 292, 388 292 C366 292, 345 268, 360 240 Z" fill="#c95729"/>
+    <path d="M255 295 C270 270, 300 270, 310 296 C320 320, 305 340, 283 342 C262 344, 245 320, 255 295 Z" fill="#e06a2e"/>
+  </g>
+
+  <!-- leaf motion streaks -->
+  <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round">
+    <path d="M150 140 C145 190, 145 230, 155 285"/>
+    <path d="M300 170 C295 220, 300 260, 310 320"/>
+    <path d="M360 260 C355 305, 350 345, 360 390"/>
+  </g>
+
+  <!-- reposition leaves to look like falling (overlay small duplicates) -->
+  <g opacity="0.9">
+    <path d="M135 165 C148 145, 174 148, 183 168 C193 191, 180 210, 160 212 C140 214, 123 190, 135 165 Z" fill="#f08a3a"/>
+    <path d="M210 270 C225 246, 252 250, 260 274 C268 298, 252 316, 231 318 C209 320, 195 294, 210 270 Z" fill="#d85f2b"/>
+    <path d="M335 240 C350 215, 378 220, 387 246 C396 272, 380 290, 358 292 C336 294, 320 266, 335 240 Z" fill="#c95729"/>
+  </g>
+</svg>

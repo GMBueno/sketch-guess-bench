@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bell" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#B7F2FF" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#6FD6FF" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#2A7FBF" stop-opacity="0.75"/>
+    </radialGradient>
+    <linearGradient id="tent" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#B7F2FF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#1F4E7A" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- Background bubbles -->
+  <g opacity="0.35">
+    <circle cx="80" cy="110" r="10" fill="#8FE8FF"/>
+    <circle cx="410" cy="90" r="14" fill="#8FE8FF"/>
+    <circle cx="455" cy="190" r="8" fill="#8FE8FF"/>
+    <circle cx="120" cy="210" r="7" fill="#8FE8FF"/>
+    <circle cx="380" cy="250" r="9" fill="#8FE8FF"/>
+  </g>
+
+  <!-- Jellyfish tentacles -->
+  <g fill="none" stroke="url(#tent)" stroke-width="5" stroke-linecap="round" opacity="0.95">
+    <path d="M160 250 C145 285, 150 320, 135 350 C120 380, 125 410, 140 440"/>
+    <path d="M190 250 C185 295, 195 325, 190 355 C185 385, 190 415, 200 450"/>
+    <path d="M220 250 C215 300, 230 330, 225 360 C220 395, 225 420, 235 455"/>
+    <path d="M250 250 C245 305, 255 335, 255 365 C255 400, 252 430, 260 460"/>
+    <path d="M280 250 C285 300, 275 335, 290 365 C305 395, 300 425, 300 460"/>
+    <path d="M310 250 C320 295, 330 330, 320 360 C310 395, 320 425, 335 455"/>
+    <path d="M340 250 C350 285, 360 320, 355 350 C350 380, 360 405, 375 445"/>
+    <path d="M365 250 C378 290, 385 325, 385 355 C385 390, 400 415, 410 445"/>
+  </g>
+
+  <!-- Main bell -->
+  <g>
+    <path d="M170 230
+             C175 170, 220 120, 260 120
+             C300 120, 345 170, 350 230
+             C352 255, 345 270, 332 290
+             C318 312, 300 325, 260 330
+             C220 325, 202 312, 188 290
+             C175 270, 168 255, 170 230 Z" 
+          fill="url(#bell)" filter="url(#soft)"/>
+
+    <!-- Inner shading -->
+    <path d="M195 235
+             C200 190, 230 155, 260 155
+             C290 155, 320 190, 325 235
+             C327 260, 318 278, 305 295
+             C290 315, 274 320, 260 322
+             C246 320, 230 315, 215 295
+             C202 278, 193 260, 195 235 Z"
+          fill="#7FE4FF" opacity="0.35"/>
+
+    <!-- Rim -->
+    <path d="M185 230
+             C190 200, 210 165, 240 150
+             C250 145, 270 145, 280 150
+             C310 165, 330 200, 335 230"
+          fill="none" stroke="#BFF7FF" stroke-width="6" stroke-linecap="round" opacity="0.65"/>
+
+    <!-- Hanging mouth strands -->
+    <g opacity="0.95" stroke="#B7F2FF" stroke-width="4" stroke-linecap="round" fill="none">
+      <path d="M235 305 C230 325, 230 340, 240 360"/>
+      <path d="M260 305 C260 330, 260 350, 260 372"/>
+      <path d="M285 305 C290 325, 290 340, 280 360"/>
+    </g>
+
+    <!-- Ripple highlights -->
+    <g opacity="0.35" fill="#FFFFFF">
+      <ellipse cx="240" cy="190" rx="22" ry="14"/>
+      <ellipse cx="285" cy="205" rx="18" ry="12"/>
+    </g>
+  </g>
+
+  <!-- Small glow at top -->
+  <ellipse cx="260" cy="170" rx="70" ry="30" fill="#6FD6FF" opacity="0.18"/>
+</svg>

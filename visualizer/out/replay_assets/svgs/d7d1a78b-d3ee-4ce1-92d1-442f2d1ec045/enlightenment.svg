@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="enlightenment">
+  <rect width="512" height="512" fill="#0b1020"/>
+
+  <!-- Outer glow -->
+  <circle cx="256" cy="270" r="140" fill="#ffd27a" opacity="0.12"/>
+  <circle cx="256" cy="270" r="110" fill="#ffd27a" opacity="0.18"/>
+
+  <!-- Rays -->
+  <g opacity="0.95">
+    <g fill="#ffdd9a">
+      <rect x="248" y="78" width="16" height="56" rx="8"/>
+      <rect x="248" y="378" width="16" height="56" rx="8"/>
+      <rect x="78" y="262" width="56" height="16" rx="8"/>
+      <rect x="378" y="262" width="56" height="16" rx="8"/>
+      <rect x="128" y="126" width="16" height="56" rx="8" transform="rotate(-45 136 154)"/>
+      <rect x="368" y="126" width="16" height="56" rx="8" transform="rotate(45 376 154)"/>
+      <rect x="128" y="348" width="16" height="56" rx="8" transform="rotate(45 136 376)"/>
+      <rect x="368" y="348" width="16" height="56" rx="8" transform="rotate(-45 376 376)"/>
+    </g>
+  </g>
+
+  <!-- Halo circle -->
+  <circle cx="256" cy="270" r="95" fill="#ffd27a" opacity="0.25"/>
+  <circle cx="256" cy="270" r="78" fill="#ffd27a" opacity="0.30"/>
+
+  <!-- Central bright form (light) -->
+  <g>
+    <radialGradient id="g1" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fff4c7" stop-opacity="1"/>
+      <stop offset="45%" stop-color="#ffe08a" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ffb84d" stop-opacity="0.0"/>
+    </radialGradient>
+    <circle cx="256" cy="270" r="110" fill="url(#g1)"/>
+  </g>
+
+  <!-- Lamp / bulb silhouette (no text) -->
+  <g transform="translate(0,8)">
+    <!-- Base -->
+    <path d="M206 382c0-22 16-38 50-38s50 16 50 38c0 14-9 25-22 31-18 9-40 9-58 0-13-6-20-17-20-31z" fill="#2a2f4e" opacity="0.95"/>
+    <path d="M218 385c0-16 13-28 38-28s38 12 38 28c0 10-6 18-16 22-14 6-32 6-44 0-10-4-16-12-16-22z" fill="#3a4270"/>
+
+    <!-- Bulb body -->
+    <path d="M180 250c0-52 36-98 76-98s76 46 76 98c0 33-15 58-35 78-12 12-19 25-19 41h-4c0-16-7-29-19-41-20-20-35-45-35-78z" fill="#ffd27a" opacity="0.18"/>
+    <path d="M196 250c0-44 30-82 60-82s60 38 60 82c0 27-12 48-29 64-13 12-23 27-23 45h-16c0-18-10-33-23-45-17-16-29-37-29-64z" fill="#ffdf9f" opacity="0.35"/>
+    <path d="M206 250c0-37 24-66 50-66s50 29 50 66c0 22-9 39-23 52-14 13-27 31-27 54h-0c0-23-13-41-27-54-14-13-23-30-23-52z" fill="#fff4c7" opacity="0.55"/>
+
+    <!-- Light rays from bulb -->
+    <g>
+      <path d="M256 150c-10 22-12 40-8 64" stroke="#ffe59a" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+      <path d="M256 150c10 22 12 40 8 64" stroke="#ffe59a" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+      <path d="M196 210c20 4 36 14 48 30" stroke="#ffe59a" stroke-width="6" stroke-linecap="round" opacity="0.65"/>
+      <path d="M316 210c-20 4-36 14-48 30" stroke="#ffe59a" stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+    </g>
+
+    <!-- Soft highlight -->
+    <ellipse cx="235" cy="218" rx="26" ry="44" fill="#ffffff" opacity="0.22"/>
+    <ellipse cx="270" cy="232" rx="18" ry="34" fill="#ffffff" opacity="0.14"/>
+  </g>
+
+  <!-- Subtle vignette -->
+  <radialGradient id="v" cx="50%" cy="45%" r="70%">
+    <stop offset="0%" stop-color="#0b1020" stop-opacity="0"/>
+    <stop offset="70%" stop-color="#0b1020" stop-opacity="0.35"/>
+    <stop offset="100%" stop-color="#0b1020" stop-opacity="0.75"/>
+  </radialGradient>
+  <rect width="512" height="512" fill="url(#v)"/>
+</svg>

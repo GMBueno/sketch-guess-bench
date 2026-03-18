@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .orbit{fill:none;stroke:#1f77b4;stroke-width:3;opacity:0.9}
+      .nucleus{fill:#ff6b6b;stroke:#a50000;stroke-width:2}
+      .electron{fill:#4ecdc4;stroke:#1b998b;stroke-width:2}
+      .shadow{fill:#000;opacity:0.06}
+    </style>
+  </defs>
+
+  <!-- subtle background -->
+  <circle cx="256" cy="256" r="220" class="shadow"/>
+
+  <!-- Orbits (ellipses) -->
+  <ellipse cx="256" cy="256" rx="150" ry="55" class="orbit"/>
+  <ellipse cx="256" cy="256" rx="105" ry="85" class="orbit"/>
+  <ellipse cx="256" cy="256" rx="80" ry="120" class="orbit"/>
+
+  <!-- Nucleus -->
+  <circle cx="256" cy="256" r="38" class="nucleus"/>
+  <circle cx="242" cy="246" r="10" fill="#ffd3d3" opacity="0.85"/>
+
+  <!-- Electrons -->
+  <circle cx="256" cy="256" r="3" fill="none"/>
+  <!-- on first orbit -->
+  <circle cx="256" cy="201" r="8" class="electron"/>
+  <circle cx="256" cy="311" r="8" class="electron"/>
+  <!-- on second orbit -->
+  <circle cx="350" cy="268" r="7" class="electron"/>
+  <circle cx="168" cy="244" r="7" class="electron"/>
+  <!-- on third orbit -->
+  <circle cx="316" cy="144" r="6.5" class="electron"/>
+  <circle cx="195" cy="356" r="6.5" class="electron"/>
+</svg>

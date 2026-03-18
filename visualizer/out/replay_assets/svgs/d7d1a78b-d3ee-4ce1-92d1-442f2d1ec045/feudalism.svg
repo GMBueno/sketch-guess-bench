@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f6f2e9"/>
+
+  <!-- Ground -->
+  <path d="M0 420 C120 390, 200 430, 280 410 C370 388, 450 420, 512 400 L512 512 L0 512 Z" fill="#d9c7a6"/>
+
+  <!-- Feudal hierarchy: top lord (castle) -->
+  <g transform="translate(256 120)">
+    <path d="M-70 120 L-70 40 L-45 40 L-45 20 L-22 20 L-22 40 L5 40 L5 20 L28 20 L28 40 L55 40 L55 120 Z" fill="#9b6b3f"/>
+    <path d="M-85 120 L85 120" stroke="#7a4f2d" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Towers -->
+    <path d="M-85 120 L-85 65 Q-85 55 -75 55 L-55 55 Q-45 55 -45 65 L-45 120 Z" fill="#8a5a34"/>
+    <path d="M45 120 L45 65 Q45 55 55 55 L75 55 Q85 55 85 65 L85 120 Z" fill="#8a5a34"/>
+
+    <!-- Main gate -->
+    <path d="M-18 120 V70 Q-18 60 -8 60 H8 Q18 60 18 70 V120 Z" fill="#6f3f22"/>
+    <rect x="-10" y="78" width="20" height="18" rx="2" fill="#3b1f11" opacity="0.35"/>
+
+    <!-- Windows -->
+    <rect x="-64" y="85" width="18" height="18" rx="3" fill="#2f1a10" opacity="0.25"/>
+    <rect x="52" y="85" width="18" height="18" rx="3" fill="#2f1a10" opacity="0.25"/>
+    <rect x="-10" y="98" width="20" height="12" rx="3" fill="#2f1a10" opacity="0.18"/>
+
+    <!-- Roof lines -->
+    <path d="M-78 65 L-60 35 L-42 65" stroke="#6b3c1f" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M42 65 L60 35 L78 65" stroke="#6b3c1f" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Knight (mid-level vassal) -->
+  <g transform="translate(256 285)">
+    <!-- Shield / armor body -->
+    <path d="M-55 95 Q0 130 55 95 V20 Q55 -10 28 -25 Q0 -38 -28 -25 Q-55 -10 -55 20 Z" fill="#37424f"/>
+    <!-- Belt -->
+    <rect x="-50" y="35" width="100" height="18" rx="9" fill="#2a313a" opacity="0.9"/>
+    <!-- Chest highlight -->
+    <path d="M-18 0 Q0 -10 18 0 Q18 55 0 85 Q-18 55 -18 0 Z" fill="#4b5969" opacity="0.55"/>
+
+    <!-- Head -->
+    <path d="M-18 0 Q0 -28 18 0 V18 Q0 36 -18 18 Z" fill="#2b333d"/>
+    <path d="M-10 6 Q0 -6 10 6 Q10 14 0 22 Q-10 14 -10 6 Z" fill="#121821" opacity="0.35"/>
+
+    <!-- Helmet plume -->
+    <path d="M-2 -40 C10 -55 24 -35 14 -15 C6 -2 -10 -10 -2 -40 Z" fill="#b14b3c" opacity="0.85"/>
+
+    <!-- Sword/authority (no text) -->
+    <g transform="translate(60 35)">
+      <rect x="-8" y="-30" width="16" height="120" rx="6" fill="#2f2f35"/>
+      <path d="M-18 -28 L0 -48 L18 -28" fill="#6b6f78"/>
+      <rect x="-12" y="-6" width="24" height="18" rx="6" fill="#b89a5a" opacity="0.9"/>
+    </g>
+
+    <!-- Arm/holding (connected to shield) -->
+    <path d="M-60 55 C-90 35 -100 70 -82 92 C-70 110 -55 95 -52 80" fill="#2f3945"/>
+
+    <!-- Legs -->
+    <path d="M-22 90 L-12 165 Q-10 178 2 175 L-2 90 Z" fill="#2a313a"/>
+    <path d="M22 90 L12 165 Q10 178 -2 175 L2 90 Z" fill="#2a313a"/>
+    <path d="M-18 168 Q-5 190 8 168" fill="#1b212a" opacity="0.9"/>
+    <path d="M18 168 Q5 190 -8 168" fill="#1b212a" opacity="0.9"/>
+  </g>
+
+  <!-- Peasants (bottom level) -->
+  <g transform="translate(256 385)">
+    <!-- Left peasant -->
+    <g transform="translate(-120 10)">
+      <circle cx="0" cy="-40" r="18" fill="#6b4a3a"/>
+      <path d="M-28 -10 Q0 -35 28 -10 V55 Q28 80 0 80 Q-28 80 -28 55 Z" fill="#7a8b4f"/>
+      <path d="M-28 -10 Q0 -35 28 -10 Q20 10 0 8 Q-20 10 -28 -10 Z" fill="#5d7241" opacity="0.85"/>
+      <path d="M-22 70 Q-10 90 -2 78 Q4 70 -8 64" fill="#586046"/>
+      <path d="M22 70 Q10 90 2 78 Q-4 70 8 64" fill="#586046"/>
+      <!-- Farm tool handle -->
+      <rect x="34" y="-5" width="8" height="95" rx="4" fill="#8a6b3f" opacity="0.9"/>
+      <path d="M-2 -5 L40 18 L14 22 L-2 -5 Z" fill="#7b7f88" opacity="0.45"/>
+    </g>
+
+    <!-- Center peasant -->
+    <g transform="translate(0 20)">
+      <circle cx="0" cy="-55" r="16" fill="#6a4636"/>
+      <path d="M-25 -25 Q0 -50 25 -25 V70 Q25 95 0 95 Q-25 95 -25 70 Z" fill="#7b6a4b"/>
+      <path d="M-25 -25 Q0 -50 25 -25 Q10 -5 0 0 Q-10 -5 -25 -25 Z" fill="#6a5a3e" opacity="0.85"/>
+      <path d="M-18 80 Q-6 98 4 82 Q10 73 -4 68" fill="#5b4d36"/>
+      <path d="M18 80 Q6 98 -4 82 Q-10 73 4 68" fill="#5b4d36"/>
+      <!-- Simple hoe-like head -->
+      <rect x="-8" y="-10" width="6" height="85" rx="3" fill="#8a6b3f" opacity="0.95"/>
+      <path d="M-8 -10 L18 5 L5 18 L-8 -10 Z" fill="#7a7f88" opacity="0.35"/>
+    </g>
+
+    <!-- Right peasant -->
+    <g transform="translate(130 10)">
+      <circle cx="0" cy="-45" r="17" fill="#6d4a3a"/>
+      <path d="M-26 -15 Q0 -40 26 -15 V60 Q26 85 0 85 Q-26 85 -26 60 Z" fill="#7a8b4f"/>
+      <path d="M-26 -15 Q0 -40 26 -15 Q18 5 0 3 Q-18 5 -26 -15 Z" fill="#5d7241" opacity="0.85"/>
+      <!-- Bundle / bag -->
+      <path d="M-6 30 Q0 20 6 30 Q12 45 0 55 Q-12 45 -6 30 Z" fill="#b89a5a" opacity="0.55"/>
+      <path d="M-20 70 Q-8 92 0 78 Q6 70 -6 64" fill="#586046"/>
+      <path d="M20 70 Q8 92 0 78 Q-6 70 6 64" fill="#586046"/>
+      <!-- Pitchfork -->
+      <rect x="-44" y="-10" width="8" height="100" rx="4" fill="#8a6b3f" opacity="0.92"/>
+      <path d="M-48 5 L-62 18 L-42 18 Z" fill="#7a7f88" opacity="0.35"/>
+      <path d="M-48 25 L-70 45 L-45 40 Z" fill="#7a7f88" opacity="0.25"/>
+    </g>
+  </g>
+
+  <!-- Subtle hierarchical lines (ties/structure) -->
+  <g stroke="#7a5a3a" stroke-width="3" opacity="0.25" fill="none">
+    <path d="M256 245 C236 290, 220 310, 170 345"/>
+    <path d="M256 245 C276 290, 292 312, 345 345"/>
+    <path d="M256 245 C256 290, 256 315, 256 360"/>
+  </g>
+</svg>
